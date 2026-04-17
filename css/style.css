@@ -1,0 +1,169 @@
+/* =========================================
+   ✨ 鼠标指针美化 (软萌胖箭头 + 小爱心) ✨
+   ========================================= */
+body, html {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'><path d='M4 3l15 9-6.5 1.5 3.5 6-3 2-3.5-6.5L4 20Z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 4 3, auto;
+}
+
+a, button, .site-logo, .top-nav span, .menu-toggle, .design-link, .lang-btn {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 12 12, pointer !important;
+}
+
+/* =========================================
+   ✨ 基础设定 & 引入可爱字体 & 人物背景 ✨
+   ========================================= */
+body {
+    background-color: #fdf8f9; 
+    background-image: linear-gradient(-45deg, #fff0f5, #ffe4e1, #ffd1df, #fff0f5); 
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite; 
+    font-family: 'ZCOOL KuaiLe', 'Nunito', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
+    font-weight: normal; 
+    margin: 0; padding: 0; color: #4a4a4a; min-height: 100vh; line-height: 1.8; overflow-x: hidden;
+}
+
+.background-image {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('../images/bg-character.png'); 
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat;
+    z-index: -3; pointer-events: none; opacity: 0.75; 
+}
+
+.bg-mask {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(255, 255, 255, 0.45); 
+    z-index: -2; pointer-events: none;
+}
+
+h1, h2, h3, strong {
+    font-family: 'ZCOOL KuaiLe', 'Nunito', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
+    color: #2c2c2c; font-weight: normal; letter-spacing: 1px;
+}
+
+@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ffb8d1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #ff9cbd; }
+
+/* =========================================
+   ✨ 全屏加载动画 (Loading) ✨
+   ========================================= */
+#loader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #fff0f5; display: flex; justify-content: center; align-items: center;
+    z-index: 9999; transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.loader-content { text-align: center; color: #d87093; font-weight: bold; font-size: 1.2rem;}
+.bounce-ball {
+    width: 20px; height: 20px; background-color: #d87093; border-radius: 50%;
+    margin: 0 auto 15px auto; animation: bounce 0.5s alternate infinite ease-in-out;
+}
+@keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-30px); } }
+
+/* =========================================
+   ✨ 樱花飘落容器 ✨
+   ========================================= */
+#sakura-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden; }
+.sakura {
+    position: absolute; top: -10%; background: #ffd1df; border-radius: 150% 0 150% 0; 
+    animation: fall linear infinite, sway ease-in-out infinite alternate; opacity: 0.8;
+}
+@keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
+@keyframes sway { 0% { transform: translateX(0) rotate(0deg); } 100% { transform: translateX(50px) rotate(45deg); } }
+
+/* =========================================
+   ✨ 导航栏 & 语言切换按钮 ✨
+   ========================================= */
+.nav-wrapper { 
+    position: sticky; top: 0; z-index: 100; background: rgba(253, 248, 249, 0.85); 
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; 
+    border-bottom: 1px solid rgba(216, 112, 147, 0.1); transition: transform 0.4s cubic-bezier(0.3, 0, 0.2, 1);
+}
+.nav-hidden { transform: translateY(-100%); }
+.site-logo { height: 55px; object-fit: contain; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.site-logo:hover { transform: scale(1.1); }
+
+.top-nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: flex-end; }
+.top-nav span { color: #666; font-size: 15px; transition: color 0.2s; position: relative; }
+.top-nav span:hover { color: #d87093; }
+
+/* 语言切换胶囊按钮 */
+.lang-switch {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px; padding: 4px; display: inline-flex; align-items: center; gap: 2px;
+    margin-left: 10px; border: 1px solid rgba(216, 112, 147, 0.15);
+}
+.lang-btn {
+    font-size: 13px !important; color: #888 !important; padding: 4px 12px; border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.lang-btn.active {
+    color: #d87093 !important; background-color: #fff;
+    box-shadow: 0 2px 8px rgba(216, 112, 147, 0.2); font-weight: normal;
+}
+
+.menu-toggle { display: none; flex-direction: column; gap: 5px; }
+.menu-toggle .bar { width: 25px; height: 3px; background-color: #d87093; transition: 0.3s; border-radius: 2px; }
+
+/* =========================================
+   ✨ 主容器 (居中布局) ✨
+   ========================================= */
+.page-container { width: 95%; max-width: 900px; margin: 20px auto 60px auto; padding: 0; display: flex; flex-direction: column; align-items: center; }
+.sub-page { display: none; opacity: 0; width: 100%;}
+.active-page { display: block; animation: fadeUpIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+@keyframes fadeUpIn { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+
+.content-area {
+    background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(8px); border-radius: 24px; 
+    box-shadow: 0 10px 30px rgba(216, 112, 147, 0.15); padding: 35px 40px; margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.5); width: 100%; box-sizing: border-box;
+}
+
+.header-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+img.avatar { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(216, 112, 147, 0.3); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+img.avatar:hover { transform: scale(1.1) rotate(5deg); }
+.header-name { margin: 0 0 10px 0; font-size: 34px; font-weight: normal; } 
+.header-subname { font-weight: 700; font-size: 18px; color: #d87093; margin-left: 8px; }
+.header-intro { color: #555; max-width: 800px; font-size: 15px; margin-top: 15px;}
+
+/* =========================================
+   ✨ 果冻弹簧动效按钮 ✨
+   ========================================= */
+.site-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px; }
+.site-links a { 
+    background-color: #fff; color: #d87093; padding: 6px 14px; font-size: 13px; font-weight: normal; 
+    border-radius: 20px; text-decoration: none; border: 1px solid rgba(216,112,147,0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.site-links a:hover { background-color: #d87093; color: white; transform: translateY(-4px) scale(1.05); box-shadow: 0 6px 15px rgba(216, 112, 147, 0.3); }
+
+.content-area h2, .content-area h3 { color: #d87093; margin-bottom: 20px; font-size: 22px; border-left: 5px solid #d87093; padding-left: 15px; border-radius: 3px; font-weight: normal;}
+.content-area p { margin-bottom: 12px; font-size: 15px; }
+.info-list { padding-left: 20px; color: #555; font-size: 15px; line-height: 1.8; }
+.info-list li { margin-bottom: 12px; }
+
+.design-link { color: #d87093; text-decoration: none; border-bottom: 1px solid #ffb8d1; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); padding-bottom: 2px; display: inline-block; font-weight: normal;}
+.design-link:hover { color: #ff8fb8; border-bottom-color: #ff8fb8; transform: translateY(-2px); }
+.design-full-img { width: 100%; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: block; margin: 0 auto; }
+.disclaimer-box { background-color: #fff; padding: 20px; border-radius: 16px; border-top: 4px solid #ff9cbd; font-size: 14px; color: #666; margin-top: 30px; line-height: 1.8; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+
+/* --- 手机端适配 --- */
+@media (max-width: 768px) {
+    .nav-wrapper { padding: 15px 5%; flex-direction: row; }
+    .site-logo { height: 45px; } 
+    .menu-toggle { display: flex; }
+    .top-nav { 
+        display: none; flex-direction: column; position: absolute; top: 75px; right: 5%;
+        background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1); gap: 15px; text-align: center; border: 1px solid rgba(216, 112, 147, 0.1);
+    }
+    .top-nav.active { display: flex; }
+    .content-area { padding: 25px 20px; border-radius: 20px;}
+    .background-image { background-position: center center; background-size: cover; opacity: 0.5; }
+    .lang-switch { margin-left: 0; justify-content: center;}
+}
