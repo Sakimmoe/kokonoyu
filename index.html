@@ -9,7 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 基础样式 --- */
+        /* =========================================
+           💖 魔法 1：专属猛男粉滚动条 
+           ========================================= */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fff0f5; }
+        ::-webkit-scrollbar-thumb { background: #ffb8d1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff9cbd; }
+
+        /* =========================================
+           ✨ 魔法 2：动态呼吸背景 
+           ========================================= */
         body {
             background-color: #ffe8ef; 
             background-image: linear-gradient(-45deg, #fff0f5, #ffe4e1, #ffd1df, #fff0f5); 
@@ -17,6 +27,7 @@
             animation: gradientBG 15s ease infinite; 
             font-family: 'Nunito', 'TsukuBRdGothic-Regular', 'Yuanti SC', 'YouYuan', '幼圆', 'PingFang SC', 'Comic Sans MS', sans-serif;
             margin: 0; padding: 50px 0; color: #555; text-align: left; min-height: 100vh; 
+            overflow-x: hidden; /* 防止樱花飘到外面产生横向滚动条 */
         }
         
         h1, h2, h3, .sp-title, .header-name, .design-link, strong {
@@ -25,89 +36,130 @@
 
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
+        /* =========================================
+           🧊 魔法 3：极致毛玻璃卡片质感 (Glassmorphism)
+           ========================================= */
         .page-container {
             width: 90%; max-width: 900px; margin: 0 auto; 
-            background-color: rgba(255, 255, 255, 0.95); 
-            padding: 40px; border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(216, 112, 147, 0.15); 
+            background-color: rgba(255, 255, 255, 0.75); /* 背景变更透明 */
+            backdrop-filter: blur(16px); /* 强大的毛玻璃模糊效果 */
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8); /* 玻璃边缘反光 */
+            padding: 40px; border-radius: 24px; 
+            box-shadow: 0 15px 35px rgba(216, 112, 147, 0.15), inset 0 0 0 1px rgba(255,255,255,0.5); /* 外部阴影+内部高光 */
             position: relative; min-height: 500px; 
+            z-index: 1; /* 保证在樱花之上 */
+        }
+
+        /* =========================================
+           🌸 魔法 4：纯 CSS 樱花飘落系统 
+           ========================================= */
+        .sakura-petal {
+            position: fixed;
+            top: -10vh;
+            background: linear-gradient(135deg, #ffc0cb, #ff69b4);
+            border-radius: 15px 0px 15px 0px; /* 模拟樱花花瓣形状 */
+            opacity: 0.6;
+            pointer-events: none; /* 穿透点击，绝不影响网页操作 */
+            z-index: 0; 
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); }
+            100% { transform: translateY(110vh) rotate(720deg) translateX(100px); }
         }
 
         /* --- 导航栏 --- */
-        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 15px; margin-bottom: 20px; }
-        .site-logo { height: 70px; cursor: pointer; transition: 0.3s; }
-        .site-logo:hover { transform: scale(1.05); }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted rgba(204,204,204,0.6); padding-bottom: 15px; margin-bottom: 20px; }
+        .site-logo { height: 70px; cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); filter: drop-shadow(0 4px 6px rgba(216, 112, 147, 0.2)); }
+        .site-logo:hover { transform: scale(1.08) rotate(-2deg); } /* 鼠标滑过时Logo带一点点弹性旋转 */
 
         .top-nav { text-align: right; }
         .top-nav span { color: #d87093; font-size: 14px; margin-left: 12px; font-weight: bold; cursor: pointer; transition: 0.3s; position: relative; }
         .top-nav span:hover { color: #ff9cbd; }
+        .top-nav span::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: #ff9cbd; transition: width 0.3s ease; }
+        .top-nav span:hover::after { width: 100%; }
 
-        .lang-switch { margin-bottom: 15px; border-bottom: 1px solid #ffe8ef; padding-bottom: 10px; }
-        .lang-btn { font-size: 12px; color: #999; cursor: pointer; margin-left: 10px; transition: 0.3s; padding: 2px 8px; border-radius: 10px; font-weight: normal; }
-        .lang-btn:hover, .lang-btn.active { color: white; background-color: #ff9cbd; text-decoration: none; }
+        .lang-switch { margin-bottom: 15px; border-bottom: 1px solid rgba(255,232,239,0.6); padding-bottom: 10px; }
+        .lang-btn { font-size: 12px; color: #999; cursor: pointer; margin-left: 10px; transition: 0.3s; padding: 3px 10px; border-radius: 12px; font-weight: normal; }
+        .lang-btn:hover, .lang-btn.active { color: white; background-color: #ff9cbd; text-decoration: none; box-shadow: 0 3px 8px rgba(255, 156, 189, 0.4); }
 
+        /* --- 流光按钮 --- */
         .site-links { margin-bottom: 40px; }
         .site-links a { 
             display: inline-flex; align-items: center; justify-content: center;
-            background-color: #e0f0f8; color: #d87093; padding: 6px 16px; 
+            background-color: rgba(224, 240, 248, 0.8); color: #d87093; padding: 6px 16px; 
             font-size: 13px; border-radius: 15px; margin: 0 8px 8px 0; 
-            border: 1px solid #ffe8ef; transition: 0.3s; text-decoration: none; 
+            border: 1px solid rgba(255, 232, 239, 0.9); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
-        .site-links a:hover { background-color: #ffb8d1; color: white; transform: translateY(-4px); box-shadow: 0 6px 12px rgba(255, 184, 209, 0.4); }
+        .site-links a:hover { background-color: #ffb8d1; color: white; transform: translateY(-4px); box-shadow: 0 8px 15px rgba(255, 184, 209, 0.5); }
 
-        img.avatar { width: 150px; height: 150px; border-radius: 50%; float: left; margin-right: 30px; margin-bottom: 20px; border: 2px dotted #ffb8d1; transition: 0.4s; }
-        img.avatar:hover { transform: scale(1.08) rotate(5deg); box-shadow: 0 8px 25px rgba(255, 156, 189, 0.7); border-color: #ff8fb8; }
+        /* =========================================
+           🎈 魔法 5：呼吸感悬浮头像 
+           ========================================= */
+        img.avatar { 
+            width: 150px; height: 150px; border-radius: 50%; float: left; margin-right: 30px; margin-bottom: 20px; 
+            border: 3px dotted #ffb8d1; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            box-shadow: 0 4px 15px rgba(216, 112, 147, 0.2);
+            animation: floatAvatar 4s ease-in-out infinite; 
+        }
+        @keyframes floatAvatar {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(216, 112, 147, 0.3); }
+            100% { transform: translateY(0); }
+        }
+        img.avatar:hover { 
+            animation-play-state: paused; 
+            transform: scale(1.1) rotate(5deg) !important; 
+            box-shadow: 0 10px 30px rgba(255, 156, 189, 0.8) !important; 
+            border-color: #ff8fb8; 
+        }
 
-        .header-content { overflow: hidden; border-bottom: 1px dotted #ccc; padding-bottom: 30px; margin-bottom: 20px; }
-        .header-name { color: #d87093; margin-top: 0; font-size: 32px; }
-        .header-subname { font-weight: normal; font-size: 18px; color: #ff9cbd; margin-left: 10px; }
-        .content-area { margin-bottom: 30px; line-height: 1.8; }
-        .content-area h2 { color: #d87093; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #ffe8ef; }
+        .header-content { overflow: hidden; border-bottom: 1px dotted rgba(204,204,204,0.6); padding-bottom: 30px; margin-bottom: 20px; }
+        .header-name { color: #d87093; margin-top: 0; font-size: 34px; text-shadow: 1px 2px 3px rgba(216,112,147,0.15); letter-spacing: 1px; }
+        .header-subname { font-weight: normal; font-size: 18px; color: #ff9cbd; margin-left: 10px; text-shadow: none; }
+        
+        .content-area { margin-bottom: 30px; line-height: 1.9; }
+        .content-area h2 { display: flex; align-items: center; color: #d87093; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,232,239,0.8); }
         .content-area h3 { color: #ff9cbd; margin-top: 25px; font-size: 18px; }
 
         .sub-page { display: none; opacity: 0; }
-        .active-page { display: block; animation: fadeInSlideUp 0.5s ease forwards; }
-        @keyframes fadeInSlideUp { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
+        .active-page { display: block; animation: fadeInSlideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        @keyframes fadeInSlideUp { 0% { opacity: 0; transform: translateY(25px); } 100% { opacity: 1; transform: translateY(0); } }
 
+        /* --- 赞助与按钮排版美化 --- */
         .sponsor-section { text-align: center; padding-top: 30px; }
-        .sp-title { font-size: 36px; color: white; font-weight: 900; -webkit-text-stroke: 2px #c1eaf9; text-shadow: 0 0 10px rgba(193, 234, 249, 0.8); margin-bottom: 30px; letter-spacing: 2px; }
-        .sp-btn { display: inline-block; background-color: #a4c3d6; color: white !important; padding: 10px 40px; font-size: 16px; border-radius: 30px; border: 1px solid #5a646e; margin: 8px 0; text-decoration: none; transition: 0.2s; position: relative; }
-        .sp-btn:hover { background-color: #8daec1; transform: translateY(-2px); }
+        .sp-title { font-size: 36px; color: white; font-weight: 900; -webkit-text-stroke: 2px #c1eaf9; text-shadow: 0 0 15px rgba(193, 234, 249, 0.9); margin-bottom: 30px; letter-spacing: 2px; }
+        .sp-btn { display: inline-block; background-color: rgba(164, 195, 214, 0.9); color: white !important; padding: 12px 45px; font-size: 16px; border-radius: 35px; border: 1px solid #5a646e; margin: 8px 0; text-decoration: none; transition: 0.3s; position: relative; backdrop-filter: blur(4px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .sp-btn:hover { background-color: #8daec1; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(164, 195, 214, 0.6); }
         .sp-btn::before, .sp-btn::after { content: "✦"; position: absolute; color: #5a646e; font-size: 14px; }
-        .sp-btn::before { left: -20px; top: -5px; } .sp-btn::after { right: -20px; bottom: -5px; }
-        .sp-desc { color: #666; font-size: 13px; margin-top: 15px; margin-bottom: 50px; line-height: 1.8; }
+        .sp-btn::before { left: -20px; top: -2px; } .sp-btn::after { right: -20px; bottom: -2px; }
+        .sp-desc { color: #777; font-size: 13px; margin-top: 15px; margin-bottom: 50px; line-height: 1.8; }
         
-        .rules-banner { background-color: #a4c3d6; color: white; padding: 12px 20px; border-radius: 20px; font-size: 15px; font-weight: bold; width: 85%; margin: 0 auto 20px auto; }
+        .rules-banner { background-color: rgba(164, 195, 214, 0.9); color: white; padding: 14px 20px; border-radius: 20px; font-size: 15px; font-weight: bold; width: 85%; margin: 0 auto 20px auto; backdrop-filter: blur(4px); box-shadow: 0 4px 10px rgba(164, 195, 214, 0.2); }
         .rules-list { text-align: left; width: 80%; margin: 0 auto 50px auto; color: #666; font-size: 13px; line-height: 2; }
-        .rules-list li { margin-bottom: 8px; }
+        .rules-list li { margin-bottom: 8px; position: relative; }
         
-        .design-link { color: #d87093; font-weight: bold; cursor: pointer; text-decoration: underline; transition: 0.2s; }
-        .design-link:hover { color: #ff8fb8; }
-        .disclaimer-box { background-color: #fff0f5; padding: 15px 20px; border-radius: 10px; border-left: 5px solid #ff9cbd; font-size: 13px; color: #666; margin-top: 20px; }
-        .design-full-img { width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .design-link { color: #d87093; font-weight: bold; cursor: pointer; text-decoration: none; transition: 0.2s; border-bottom: 2px dashed #ffb8d1; padding-bottom: 2px; }
+        .design-link:hover { color: #ff8fb8; border-bottom: 2px solid #ff8fb8; text-shadow: 0 0 8px rgba(255,143,184,0.4); }
+        .disclaimer-box { background-color: rgba(255, 240, 245, 0.8); padding: 18px 25px; border-radius: 15px; border-left: 6px solid #ff9cbd; font-size: 13px; color: #666; margin-top: 20px; backdrop-filter: blur(4px); line-height: 1.8; box-shadow: 0 4px 15px rgba(255,156,189,0.1); }
+        .design-full-img { width: 100%; border-radius: 12px; box-shadow: 0 8px 25px rgba(216,112,147,0.2); }
 
         /* =========================================
-           📱 魔法 2：移动端专属兼容代码 (Media Queries) 📱
+           📱 移动端自适应重构
            ========================================= */
         @media (max-width: 768px) {
             body { padding: 20px 0; }
-            .page-container { width: 92%; padding: 20px; }
-            
-            /* 导航栏从左右变成上下堆叠 */
-            .nav-wrapper { flex-direction: column; text-align: center; gap: 15px; border-bottom: none; }
-            .site-logo { height: 60px; margin-bottom: 10px; }
-            
-            /* 菜单自动换行，增加间距防误触 */
+            .page-container { width: 92%; padding: 20px; border-radius: 15px; }
+            .nav-wrapper { flex-direction: column; text-align: center; gap: 15px; border-bottom: none; margin-bottom: 20px; }
+            .site-logo { height: 60px; margin-bottom: 5px; }
             .top-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
             .top-nav span { margin-left: 0; padding: 5px 0; }
-            .lang-switch { display: flex; justify-content: center; border-bottom: 1px dotted #ccc; padding-bottom: 15px; width: 100%; margin-bottom: 10px; }
-
-            /* 头像从居左变成居中 */
+            .lang-switch { display: flex; justify-content: center; border-bottom: 1px dotted rgba(204,204,204,0.6); padding-bottom: 15px; width: 100%; margin-bottom: 10px; }
             .header-content { text-align: center; }
             img.avatar { float: none; display: block; margin: 0 auto 15px auto; }
             .header-subname { display: block; margin-left: 0; margin-top: 5px; }
-            
-            /* 按钮和横幅适应屏幕宽度 */
             .site-links { text-align: center; }
             .rules-banner, .rules-list { width: 95%; }
             .sp-title { font-size: 28px; }
@@ -199,8 +251,8 @@
             <div class="content-area">
                 <h2 style="justify-content:center;" data-key="title_design">Character Design</h2>
                 <img src="design.jpg" class="design-full-img" alt="Design">
-                <p style="text-align:center; margin-top:30px;">
-                    <span class="design-link" onclick="showPage('home-page')" data-key="btn_back">← 返回上一页</span>
+                <p style="text-align:center; margin-top:40px;">
+                    <span class="design-link" onclick="showPage('home-page')" data-key="btn_back" style="font-size:16px;">← 返回上一页</span>
                 </p>
             </div>
         </div>
@@ -275,6 +327,20 @@
     </div>
 
     <script>
+        // --- 🌸 樱花飘落生成器 🌸 ---
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('sakura-petal');
+            const size = Math.random() * 10 + 8; 
+            petal.style.width = size + 'px';
+            petal.style.height = size + 'px';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 4 + 6 + 's'; 
+            document.body.appendChild(petal);
+            setTimeout(() => { petal.remove(); }, 10000);
+        }
+        setInterval(createPetal, 400);
+
         const langDict = {
             cn: {
                 nav_gift: "赞助/GIFT", nav_comm: "COMMISSION", nav_work: "关于委托工作", nav_contact: "联系我", nav_site: "关于本站", name: "九重紫",
