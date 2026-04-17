@@ -1,3 +1,6 @@
+// =========================================
+// 🌐 中日英多语言大词典 🌐
+// =========================================
 const langDict = {
     cn: {
         nav_home: "首页 / HOME", nav_gift: "赞助 / GIFT", nav_comm: "COMMISSION", nav_work: "关于委托工作", nav_contact: "联系我", nav_site: "关于本站", name: "九重紫",
@@ -61,7 +64,7 @@ const langDict = {
     }
 };
 
-// 切换语言函数
+// 切换语言
 function changeLang(lang, element) {
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     if(element) element.classList.add('active');
@@ -74,7 +77,7 @@ function changeLang(lang, element) {
     });
 }
 
-// 切换页面函数
+// 切换页面
 function showPage(pageId) {
     var pages = document.getElementsByClassName('sub-page');
     for (var i = 0; i < pages.length; i++) {
@@ -86,3 +89,31 @@ function showPage(pageId) {
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// =========================================
+// 🌟 智能导航栏：向下滑动缓慢消失，向上滑动出现 🌟
+// =========================================
+let lastScrollTop = 0; 
+
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.nav-wrapper');
+    if (!navbar) return; // 确保找到了导航栏
+    
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // 如果滑到了最顶部，强制显示导航栏
+    if (scrollTop <= 0) {
+        navbar.classList.remove('nav-hidden');
+        return;
+    }
+
+    // 向下滑动超过80px时，缓慢隐藏
+    if (scrollTop > lastScrollTop && scrollTop > 80) {
+        navbar.classList.add('nav-hidden');
+    } else {
+        // 向上滑动，立刻重新显示
+        navbar.classList.remove('nav-hidden');
+    }
+    
+    lastScrollTop = scrollTop;
+});
