@@ -9,15 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* =========================================
-           ✨ 魔法 1：专属猛男粉滚动条 ✨
-           ========================================= */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #fff0f5; }
-        ::-webkit-scrollbar-thumb { background: #ffb8d1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #ff9cbd; }
-
-        /* --- 动态呼吸背景 --- */
+        /* --- 基础样式 --- */
         body {
             background-color: #ffe8ef; 
             background-image: linear-gradient(-45deg, #fff0f5, #ffe4e1, #ffd1df, #fff0f5); 
@@ -25,7 +17,6 @@
             animation: gradientBG 15s ease infinite; 
             font-family: 'Nunito', 'TsukuBRdGothic-Regular', 'Yuanti SC', 'YouYuan', '幼圆', 'PingFang SC', 'Comic Sans MS', sans-serif;
             margin: 0; padding: 50px 0; color: #555; text-align: left; min-height: 100vh; 
-            overflow-x: hidden; /* 防止樱花飘落产生横向滚动条 */
         }
         
         h1, h2, h3, .sp-title, .header-name, .design-link, strong {
@@ -34,132 +25,89 @@
 
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* =========================================
-           ✨ 魔法 2：高级毛玻璃卡片质感 ✨
-           ========================================= */
         .page-container {
             width: 90%; max-width: 900px; margin: 0 auto; 
-            /* 背景改为稍微透明一点的白色 */
-            background-color: rgba(255, 255, 255, 0.85); 
-            /* 毛玻璃模糊特效 */
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            /* 给玻璃加一个淡淡的反光白边 */
-            border: 1px solid rgba(255, 255, 255, 0.6); 
+            background-color: rgba(255, 255, 255, 0.95); 
             padding: 40px; border-radius: 20px; 
-            /* 增强阴影，让卡片更立体 */
-            box-shadow: 0 15px 35px rgba(216, 112, 147, 0.2); 
+            box-shadow: 0 10px 30px rgba(216, 112, 147, 0.15); 
             position: relative; min-height: 500px; 
-            z-index: 1; /* 确保卡片在樱花上方 */
-        }
-
-        /* =========================================
-           ✨ 魔法 3：樱花飘落的 CSS ✨
-           ========================================= */
-        .petal {
-            position: fixed;
-            top: -10vh;
-            background: linear-gradient(135deg, #ffc0cb, #ff69b4);
-            border-radius: 15px 0px 15px 0px; /* 像一片花瓣的形状 */
-            opacity: 0.6;
-            pointer-events: none; /* 穿透点击，不影响网页操作 */
-            z-index: 0; /* 在背景图和毛玻璃卡片之间飘落 */
-            animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(110vh) rotate(720deg);
-            }
         }
 
         /* --- 导航栏 --- */
-        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted rgba(204,204,204,0.6); padding-bottom: 15px; margin-bottom: 20px; }
-        .site-logo { height: 70px; cursor: pointer; transition: 0.3s; filter: drop-shadow(0 4px 6px rgba(216, 112, 147, 0.2)); /* Logo加点发光 */ }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 15px; margin-bottom: 20px; }
+        .site-logo { height: 70px; cursor: pointer; transition: 0.3s; }
         .site-logo:hover { transform: scale(1.05); }
 
         .top-nav { text-align: right; }
         .top-nav span { color: #d87093; font-size: 14px; margin-left: 12px; font-weight: bold; cursor: pointer; transition: 0.3s; position: relative; }
         .top-nav span:hover { color: #ff9cbd; }
 
-        .lang-switch { margin-bottom: 15px; border-bottom: 1px solid rgba(255,232,239,0.6); padding-bottom: 10px; }
+        .lang-switch { margin-bottom: 15px; border-bottom: 1px solid #ffe8ef; padding-bottom: 10px; }
         .lang-btn { font-size: 12px; color: #999; cursor: pointer; margin-left: 10px; transition: 0.3s; padding: 2px 8px; border-radius: 10px; font-weight: normal; }
-        .lang-btn:hover, .lang-btn.active { color: white; background-color: #ff9cbd; text-decoration: none; box-shadow: 0 2px 5px rgba(255,156,189,0.4); }
+        .lang-btn:hover, .lang-btn.active { color: white; background-color: #ff9cbd; text-decoration: none; }
 
         .site-links { margin-bottom: 40px; }
         .site-links a { 
             display: inline-flex; align-items: center; justify-content: center;
-            background-color: rgba(224, 240, 248, 0.7); color: #d87093; padding: 6px 16px; 
+            background-color: #e0f0f8; color: #d87093; padding: 6px 16px; 
             font-size: 13px; border-radius: 15px; margin: 0 8px 8px 0; 
-            border: 1px solid rgba(255, 232, 239, 0.8); transition: 0.3s; text-decoration: none; 
+            border: 1px solid #ffe8ef; transition: 0.3s; text-decoration: none; 
         }
         .site-links a:hover { background-color: #ffb8d1; color: white; transform: translateY(-4px); box-shadow: 0 6px 12px rgba(255, 184, 209, 0.4); }
 
-        /* =========================================
-           ✨ 魔法 4：呼吸悬浮头像 ✨
-           ========================================= */
-        img.avatar { 
-            width: 150px; height: 150px; border-radius: 50%; float: left; margin-right: 30px; margin-bottom: 20px; 
-            border: 2px dotted #ffb8d1; transition: 0.4s; 
-            box-shadow: 0 4px 15px rgba(216, 112, 147, 0.2);
-            animation: floatAvatar 4s ease-in-out infinite; /* 加入呼吸悬浮动画 */
-        }
-        @keyframes floatAvatar {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-8px); box-shadow: 0 8px 20px rgba(216, 112, 147, 0.3); }
-            100% { transform: translateY(0); }
-        }
-        img.avatar:hover { 
-            animation-play-state: paused; /* 鼠标放上去暂停悬浮 */
-            transform: scale(1.08) rotate(5deg) !important; 
-            box-shadow: 0 8px 25px rgba(255, 156, 189, 0.7) !important; 
-            border-color: #ff8fb8; 
-        }
+        img.avatar { width: 150px; height: 150px; border-radius: 50%; float: left; margin-right: 30px; margin-bottom: 20px; border: 2px dotted #ffb8d1; transition: 0.4s; }
+        img.avatar:hover { transform: scale(1.08) rotate(5deg); box-shadow: 0 8px 25px rgba(255, 156, 189, 0.7); border-color: #ff8fb8; }
 
-        .icon-star { width: 16px; height: 16px; fill: #d87093; margin-right: 8px; vertical-align: middle; position: relative; top: -1px; }
-        .site-links .icon-star { width: 12px; height: 12px; margin-right: 4px; top: 0; }
-        .site-links a:hover .icon-star { fill: white; }
-
-        .header-content { overflow: hidden; border-bottom: 1px dotted rgba(204,204,204,0.6); padding-bottom: 30px; margin-bottom: 20px; }
-        .header-name { color: #d87093; margin-top: 0; font-size: 32px; text-shadow: 1px 1px 2px rgba(216,112,147,0.1); }
+        .header-content { overflow: hidden; border-bottom: 1px dotted #ccc; padding-bottom: 30px; margin-bottom: 20px; }
+        .header-name { color: #d87093; margin-top: 0; font-size: 32px; }
         .header-subname { font-weight: normal; font-size: 18px; color: #ff9cbd; margin-left: 10px; }
         .content-area { margin-bottom: 30px; line-height: 1.8; }
-        .content-area h2 { display: flex; align-items: center; color: #d87093; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,232,239,0.8); }
+        .content-area h2 { color: #d87093; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #ffe8ef; }
         .content-area h3 { color: #ff9cbd; margin-top: 25px; font-size: 18px; }
 
         .sub-page { display: none; opacity: 0; }
         .active-page { display: block; animation: fadeInSlideUp 0.5s ease forwards; }
-        @keyframes fadeInSlideUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInSlideUp { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
 
         .sponsor-section { text-align: center; padding-top: 30px; }
         .sp-title { font-size: 36px; color: white; font-weight: 900; -webkit-text-stroke: 2px #c1eaf9; text-shadow: 0 0 10px rgba(193, 234, 249, 0.8); margin-bottom: 30px; letter-spacing: 2px; }
-        .sp-btn { display: inline-block; background-color: rgba(164, 195, 214, 0.9); color: white !important; padding: 10px 40px; font-size: 16px; border-radius: 30px; border: 1px solid #5a646e; margin: 8px 0; text-decoration: none; transition: 0.2s; position: relative; backdrop-filter: blur(4px); }
-        .sp-btn:hover { background-color: #8daec1; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(164, 195, 214, 0.6); }
+        .sp-btn { display: inline-block; background-color: #a4c3d6; color: white !important; padding: 10px 40px; font-size: 16px; border-radius: 30px; border: 1px solid #5a646e; margin: 8px 0; text-decoration: none; transition: 0.2s; position: relative; }
+        .sp-btn:hover { background-color: #8daec1; transform: translateY(-2px); }
         .sp-btn::before, .sp-btn::after { content: "✦"; position: absolute; color: #5a646e; font-size: 14px; }
         .sp-btn::before { left: -20px; top: -5px; } .sp-btn::after { right: -20px; bottom: -5px; }
         .sp-desc { color: #666; font-size: 13px; margin-top: 15px; margin-bottom: 50px; line-height: 1.8; }
         
-        .rules-banner { background-color: rgba(164, 195, 214, 0.9); color: white; padding: 12px 20px; border-radius: 20px; font-size: 15px; font-weight: bold; width: 85%; margin: 0 auto 20px auto; backdrop-filter: blur(4px); }
+        .rules-banner { background-color: #a4c3d6; color: white; padding: 12px 20px; border-radius: 20px; font-size: 15px; font-weight: bold; width: 85%; margin: 0 auto 20px auto; }
         .rules-list { text-align: left; width: 80%; margin: 0 auto 50px auto; color: #666; font-size: 13px; line-height: 2; }
         .rules-list li { margin-bottom: 8px; }
         
         .design-link { color: #d87093; font-weight: bold; cursor: pointer; text-decoration: underline; transition: 0.2s; }
-        .design-link:hover { color: #ff8fb8; text-shadow: 0 0 5px rgba(255,143,184,0.3); }
-        .disclaimer-box { background-color: rgba(255, 240, 245, 0.7); padding: 15px 20px; border-radius: 10px; border-left: 5px solid #ff9cbd; font-size: 13px; color: #666; margin-top: 20px; backdrop-filter: blur(4px); }
-        .design-full-img { width: 100%; border-radius: 10px; box-shadow: 0 5px 20px rgba(216,112,147,0.15); margin-top: 10px; }
+        .design-link:hover { color: #ff8fb8; }
+        .disclaimer-box { background-color: #fff0f5; padding: 15px 20px; border-radius: 10px; border-left: 5px solid #ff9cbd; font-size: 13px; color: #666; margin-top: 20px; }
+        .design-full-img { width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
-        /* --- 移动端兼容 --- */
+        /* =========================================
+           📱 魔法 2：移动端专属兼容代码 (Media Queries) 📱
+           ========================================= */
         @media (max-width: 768px) {
             body { padding: 20px 0; }
             .page-container { width: 92%; padding: 20px; }
+            
+            /* 导航栏从左右变成上下堆叠 */
             .nav-wrapper { flex-direction: column; text-align: center; gap: 15px; border-bottom: none; }
             .site-logo { height: 60px; margin-bottom: 10px; }
+            
+            /* 菜单自动换行，增加间距防误触 */
             .top-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
             .top-nav span { margin-left: 0; padding: 5px 0; }
-            .lang-switch { display: flex; justify-content: center; border-bottom: 1px dotted rgba(204,204,204,0.6); padding-bottom: 15px; width: 100%; margin-bottom: 10px; }
+            .lang-switch { display: flex; justify-content: center; border-bottom: 1px dotted #ccc; padding-bottom: 15px; width: 100%; margin-bottom: 10px; }
+
+            /* 头像从居左变成居中 */
             .header-content { text-align: center; }
             img.avatar { float: none; display: block; margin: 0 auto 15px auto; }
             .header-subname { display: block; margin-left: 0; margin-top: 5px; }
+            
+            /* 按钮和横幅适应屏幕宽度 */
             .site-links { text-align: center; }
             .rules-banner, .rules-list { width: 95%; }
             .sp-title { font-size: 28px; }
@@ -169,12 +117,6 @@
 </head>
 <body>
     
-    <svg style="display:none;">
-        <symbol id="svg-star" viewBox="0 0 1024 1024">
-            <path d="M512 0l132.8 379.2 379.2 132.8-379.2 132.8L512 1024l-132.8-379.2L0 512l379.2-132.8z"></path>
-        </symbol>
-    </svg>
-
     <div class="page-container">
 
         <div class="nav-wrapper">
@@ -206,17 +148,17 @@
             </div>
 
             <div class="site-links">
-                <a href="https://space.bilibili.com/225347042" target="_blank"><svg class="icon-star"><use href="#svg-star"></use></svg>bilibili</a>
-                <a href="https://live.bilibili.com/9162799?broadcast_type=0&is_room_feed=1&spm_id_from=333.1387.to_liveroom.0.click&live_from=86002" target="_blank"><svg class="icon-star"><use href="#svg-star"></use></svg>bilibili/LIVE</a> 
-                <a href="https://www.youtube.com/@KokonoeYukari" target="_blank"><svg class="icon-star"><use href="#svg-star"></use></svg>YouTube</a>
-                <a href="https://twitter.com/Kokonoe_Yukari" target="_blank"><svg class="icon-star"><use href="#svg-star"></use></svg>X (Twitter)</a>
-                <a href="https://kokonoe-yukari.fanbox.cc" target="_blank"><svg class="icon-star"><use href="#svg-star"></use></svg>FANBOX</a>
-                <a href="https://fantia.jp/fanclubs/246651" target="_blank"><svg class="icon-star"><use href="#svg-star"></use></svg>Fantia</a>
-                <a href="https://kokonoeyukari.booth.pm" target="_blank"><svg class="icon-star"><use href="#svg-star"></use></svg>BOOTH</a>
+                <a href="https://space.bilibili.com/225347042" target="_blank">bilibili</a>
+                <a href="https://live.bilibili.com/9162799?broadcast_type=0&is_room_feed=1&spm_id_from=333.1387.to_liveroom.0.click&live_from=86002" target="_blank">bilibili/LIVE</a> 
+                <a href="https://www.youtube.com/@KokonoeYukari" target="_blank">YouTube</a>
+                <a href="https://twitter.com/Kokonoe_Yukari" target="_blank">X (Twitter)</a>
+                <a href="https://kokonoe-yukari.fanbox.cc" target="_blank">FANBOX</a>
+                <a href="https://fantia.jp/fanclubs/246651" target="_blank">Fantia</a>
+                <a href="https://kokonoeyukari.booth.pm" target="_blank">BOOTH</a>
             </div>
 
             <div class="content-area">
-                <h2 data-key="title_profile"><svg class="icon-star"><use href="#svg-star"></use></svg> 个人档案</h2>
+                <h2 data-key="title_profile">个人档案</h2>
                 <p data-key="p_nick"><strong>昵称：</strong> ここのゆ、のゆ、ゆ</p>
                 <p data-key="p_height"><strong>身高：</strong> 152cm</p>
                 <p data-key="p_zodiac"><strong>星座：</strong> 巨蟹座</p>
@@ -240,13 +182,13 @@
             </div>
             
             <div class="content-area">
-                <h2 data-key="title_story"><svg class="icon-star"><use href="#svg-star"></use></svg> 角色设定</h2>
+                <h2 data-key="title_story">角色设定</h2>
                 <p data-key="p_story1">几年前因为被来自冥王星的光直击，从人类变成了亚人。现在一边作为 VUP 活动，一边以“代替梦的主人去追寻那些未能实现或被遗忘的梦并予以供养”为生。</p>
                 <p data-key="p_story2">我的梦想是：<strong>能够变得更加闪耀光芒！</strong></p>
             </div>
 
             <div class="content-area">
-                <h2 data-key="title_intro"><svg class="icon-star"><use href="#svg-star"></use></svg> 主播轶事</h2>
+                <h2 data-key="title_intro">主播轶事</h2>
                 <p data-key="val_intro1">直播内容以游戏直播和杂谈为主，偶尔会唱歌和画画。虽然游戏力不高，特别不擅长FPS还会晕3D，但总是非常努力！</p>
                 <p data-key="val_intro2">因为懂得很多本土梗被粉丝称为“整活大师”，还因为能熟练吹奏各种神曲的口哨被弹幕赐号“天哨星”~</p>
                 <p data-key="val_intro3">虽然是个常常发烧的“病弱”体质，但总是坚持带病为大家直播，是个非常宠粉、温柔纯情的“豆腐心”小娘紫哦！</p>
@@ -255,7 +197,7 @@
 
         <div id="design-page" class="sub-page">
             <div class="content-area">
-                <h2 style="justify-content:center;" data-key="title_design"><svg class="icon-star"><use href="#svg-star"></use></svg> Character Design</h2>
+                <h2 style="justify-content:center;" data-key="title_design">Character Design</h2>
                 <img src="design.jpg" class="design-full-img" alt="Design">
                 <p style="text-align:center; margin-top:30px;">
                     <span class="design-link" onclick="showPage('home-page')" data-key="btn_back">← 返回上一页</span>
@@ -304,22 +246,22 @@
         </div>
 
         <div id="commission-page" class="sub-page content-area">
-            <h2 data-key="nav_comm"><svg class="icon-star"><use href="#svg-star"></use></svg> 委托工作 (COMMISSION)</h2>
+            <h2 data-key="nav_comm">委托工作 (COMMISSION)</h2>
             <p data-key="p_coming1">施工中...</p>
         </div>
 
         <div id="about-work-page" class="sub-page content-area">
-            <h2 data-key="nav_work"><svg class="icon-star"><use href="#svg-star"></use></svg> 关于委托工作</h2>
+            <h2 data-key="nav_work">关于委托工作</h2>
             <p data-key="p_coming2">施工中...</p>
         </div>
 
         <div id="contact-page" class="sub-page content-area">
-            <h2 data-key="nav_contact"><svg class="icon-star"><use href="#svg-star"></use></svg> 联系我</h2>
+            <h2 data-key="nav_contact">联系我</h2>
             <p data-key="p_coming3">施工中...</p>
         </div>
 
         <div id="about-site-page" class="sub-page content-area">
-            <h2 data-key="nav_site"><svg class="icon-star"><use href="#svg-star"></use></svg> 关于本站</h2>
+            <h2 data-key="nav_site">关于本站</h2>
             <p data-key="site_p1">你好！欢迎来到这里。这是一个由粉丝用爱发电、自发搭建的<strong>非官方个人主页</strong>。</p>
             <h3 data-key="site_h1">📝 搭建初衷</h3>
             <p data-key="site_p2">作为一名一直关注着九重紫（のゆ）的粉丝，我被她温柔的声音、可爱的性格以及向往和平的“豆腐心”深深打动。为了能让更多人方便地了解她、找到她的各种官方社交媒体和支持渠道，我制作了这个简单的网页。希望能尽自己的一份绵薄之力，让更多人看到正在闪耀光芒的她！</p>
@@ -333,42 +275,21 @@
     </div>
 
     <script>
-        // --- 动态生成樱花飘落 ---
-        function createPetal() {
-            const petal = document.createElement('div');
-            petal.classList.add('petal');
-            
-            // 随机大小、起始位置和下落速度
-            const size = Math.random() * 10 + 8; 
-            petal.style.width = size + 'px';
-            petal.style.height = size + 'px';
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.animationDuration = Math.random() * 4 + 5 + 's'; // 5到9秒飘落到底
-            
-            document.body.appendChild(petal);
-            
-            // 飘出屏幕后自动清理DOM，防止卡顿
-            setTimeout(() => {
-                petal.remove();
-            }, 9000);
-        }
-        setInterval(createPetal, 600); // 每0.6秒生成一片樱花
-
         const langDict = {
             cn: {
                 nav_gift: "赞助/GIFT", nav_comm: "COMMISSION", nav_work: "关于委托工作", nav_contact: "联系我", nav_site: "关于本站", name: "九重紫",
                 bio: "自2020年开始在国内外活动活动的虚拟主播（VUP）。<br>自称向往和平的“动画女孩巫女”。<br>除联动，商品介绍，企划参与 外，还承接Live2D建模的工作。<br>如果有什么需求请随时联系我。",
-                title_profile: "<svg class='icon-star'><use href='#svg-star'></use></svg> 个人档案",
+                title_profile: "个人档案",
                 p_nick: "<strong>昵称：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身高：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 巨蟹座", p_birth: "<strong>生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”", p_moe: "<strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇", p_fans: "<strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑", p_treasure: "<strong>最珍视的事物：</strong> 家人与粉丝（听众）", p_role: "<strong>喜欢的角色：</strong> sirotan", p_tag: "<strong>主标签：</strong> #ここのゆ", p_fanart: "<strong>同人图标签：</strong> #ここのゆああと", p_mama: "画师妈妈：",
                 p_design: "<strong>🎨 艺术设计：</strong> <span class='design-link' onclick=\"showPage('design-page')\">design</span>",
-                title_story: "<svg class='icon-star'><use href='#svg-star'></use></svg> 角色设定",
+                title_story: "角色设定",
                 p_story1: "几年前因为被来自冥王星的光直击，从人类变成了亚人。现在一边作为 VUP 活动，一边以“代替梦的主人去追寻那些未能实现或被遗忘的梦并予以供养”为生。",
                 p_story2: "我的梦想是：<strong>能够变得更加闪耀光芒！</strong>",
-                title_intro: "<svg class='icon-star'><use href='#svg-star'></use></svg> 主播轶事",
+                title_intro: "主播轶事",
                 val_intro1: "直播内容以游戏直播和杂谈为主，偶尔会唱歌和画画。虽然游戏力不高，特别不擅长FPS还会晕3D，但总是非常努力！",
                 val_intro2: "因为懂得很多本土梗被粉丝称为“整活大师”，还因为能熟练吹奏各种神曲的口哨被弹幕赐号“天哨星”~",
                 val_intro3: "虽然是个常常发烧的“病弱”体质，但总是坚持带病为大家直播，是个非常宠粉、温柔纯情的“豆腐心”小娘紫哦！",
-                title_design: "<svg class='icon-star'><use href='#svg-star'></use></svg> Character Design", btn_back: "← 返回上一页",
+                title_design: "Character Design", btn_back: "← 返回上一页",
                 sp_desc1: "每月更新一次，发布绘画日记和个人拍摄的照片等。", sp_desc2: "其他礼物或信件的寄送，可以通过fansfer。<br>可以从海外寄送。", sp_desc3: "可以送九重的“愿望清单”中的物品。<br>可以使用PayPal和信用卡进行支付。", sp_desc4: "销售九重紫的手绘周边商品。", sp_desc5: "我可以画一些非常简单的插图，用作头像。<br>※请先阅读Skeb的规定。<br>※目前仅接受原创角色或允许代办请求的VTuber的委托。", sp_desc6: "音频文件出售。",
                 rb1: "制作和发布九重紫的直播剪辑视频：可以", rl1: "<li>恶意编辑和剪辑禁止。</li><li>禁止篡改视频发言的意图或表达，造成误解的编辑。</li><li>禁止任何损害九重紫名誉、人格或信誉的编辑。</li><li>禁止剪辑YouTube的限定公开直播档案。</li><li>利用素材时请确定使用许可。</li><li>无法承诺公开的视频会被九重紫宣传或转发。</li>",
                 rb2: "可以向插画师委托九重紫的粉丝艺术作品（如Skeb等）", rl2: "<li>请告知版权拥有者和插图的使用范围（是否允许商业用途、是否适用于活动等）。</li><li>如果作品包含过度的色情或暴力等敏感内容，可能无法公开或使用。</li><li>创作者的业绩展示是允许的。</li><li>请尽量避免给创作者带来困扰。</li>",
@@ -378,17 +299,17 @@
             jp: {
                 nav_gift: "支援/GIFT", nav_comm: "依頼", nav_work: "お仕事について", nav_contact: "連絡先", nav_site: "このサイトについて", name: "ここのえゆかり",
                 bio: "2020年からVTuber（VUP）として国内外で活動中。<br>平和を愛する自称「アニメガール巫女」。<br>コラボ、商品紹介などのほか、Live2Dモデリングも承っております。<br>お気軽にお問い合わせください。",
-                title_profile: "<svg class='icon-star'><use href='#svg-star'></use></svg> プロフィール",
+                title_profile: "プロフィール",
                 p_nick: "<strong>ニックネーム：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身長：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 蟹座", p_birth: "<strong>誕生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 物腰が柔らかく真面目、少し臆病で素直な「豆腐メンタル」", p_moe: "<strong>萌え属性：</strong> 癒やし系、巫女、亜人、病弱、ツンデレ", p_fans: "<strong>ファンネーム：</strong> 平和族 / 一家紫 / 紫細胞 / 兵馬俑", p_treasure: "<strong>大切にしているもの：</strong> 家族、ファン（リスナー様）", p_role: "<strong>好きなキャラ：</strong> しろたん", p_tag: "<strong>メインタグ：</strong> #ここのゆ", p_fanart: "<strong>ファンアートタグ：</strong> #ここのゆああと", p_mama: "絵師ママ：",
                 p_design: "<strong>🎨 キャラクターデザイン：</strong> <span class='design-link' onclick=\"showPage('design-page')\">design</span>",
-                title_story: "<svg class='icon-star'><use href='#svg-star'></use></svg> キャラクター設定",
+                title_story: "キャラクター設定",
                 p_story1: "数年前に冥王星からの光が直撃したことで人間から亜人になりました。現在はVUPとして活動しながら、叶えられなかった夢や忘れられた夢を代わりに追体験し、供養する仕事をしています。",
                 p_story2: "私の夢は：<strong>もっと大きく光り輝くこと！</strong>",
-                title_intro: "<svg class='icon-star'><use href='#svg-star'></use></svg> 配信エピソード",
+                title_intro: "配信エピソード",
                 val_intro1: "配信はゲームと雑談がメインで、たまに歌やイラストも。FPSや3D酔いには弱いですが、いつも一生懸命です！",
                 val_intro2: "ネットミームに詳しく「ネタ職人」と呼ばれたり、口笛が上手で「天哨星」の異名を持ったりします。",
                 val_intro3: "よく熱を出す「病弱」体質ですが、リスナー想いで純情な優しい「豆腐メンタル」です！",
-                title_design: "<svg class='icon-star'><use href='#svg-star'></use></svg> Character Design", btn_back: "← 戻る",
+                title_design: "Character Design", btn_back: "← 戻る",
                 sp_desc1: "毎月更新。お絵描き日記や限定写真などを公開しています。", sp_desc2: "プレゼントやお手紙はfansferを通じて送れます。<br>海外発送にも対応しています。", sp_desc3: "九重の「ほしい物リスト」からプレゼントが送れます。<br>PayPalやクレジットカード決済が可能です。", sp_desc4: "九重紫の描き下ろしグッズを販売中。", sp_desc5: "アイコン用の簡単なイラストを描きます。<br>※Skebの規約をお読みください。<br>※現在はオリジナルキャラクターのみ受付中です。", sp_desc6: "ボイスデータの販売。",
                 rb1: "切り抜き動画の制作・投稿：許可", rl1: "<li>悪意のある編集や切り抜きは禁止です。</li><li>発言の意図を歪める編集は禁止です。</li><li>名誉や信用を損なう編集は禁止です。</li><li>YouTubeの限定公開アーカイブの切り抜きは禁止です。</li><li>素材利用時は許諾を確認してください。</li><li>宣伝やリツイートをお約束することはできません。</li>",
                 rb2: "絵師様へのファンアート依頼（Skeb等）：許可", rl2: "<li>著作権の所在と使用範囲をお伝えください。</li><li>過度な性的・暴力的な表現が含まれる場合は公開できない可能性があります。</li><li>クリエイター様の実績公開は許可します。</li><li>クリエイター様にご迷惑をおかけしないようお願いします。</li>",
@@ -398,17 +319,17 @@
             en: {
                 nav_gift: "Support/GIFT", nav_comm: "COMMISSION", nav_work: "About Work", nav_contact: "Contact", nav_site: "About Site", name: "Kokonoe Yukari",
                 bio: "Active globally as a VTuber (VUP) since 2020.<br>A self-proclaimed peace-loving 'Anime Girl Miko'.<br>I do collabs, promotions, and Live2D modeling.<br>Please feel free to contact me for work.",
-                title_profile: "<svg class='icon-star'><use href='#svg-star'></use></svg> Profile",
+                title_profile: "Profile",
                 p_nick: "<strong>Nickname:</strong> Kokonoyu, Noyu, Yu", p_height: "<strong>Height:</strong> 152cm", p_zodiac: "<strong>Zodiac:</strong> Cancer", p_birth: "<strong>Birthday:</strong> July 22", p_nature: "<strong>Personality:</strong> Gentle, serious, slightly timid, honest 'Tofu Heart'.", p_moe: "<strong>Moe Traits:</strong> Healing, Miko, Demi-human, Frail", p_fans: "<strong>Fan Name:</strong> Heiwa-zoku / Ikka-zi", p_treasure: "<strong>Treasure:</strong> Family & Fans", p_role: "<strong>Fav Character:</strong> Sirotan", p_tag: "<strong>Main Tag:</strong> #ここのゆ", p_fanart: "<strong>Fanart Tag:</strong> #ここのゆああと", p_mama: "Artist: ",
                 p_design: "<strong>🎨 Character Design:</strong> <span class='design-link' onclick=\"showPage('design-page')\">design</span>",
-                title_story: "<svg class='icon-star'><use href='#svg-star'></use></svg> Character Lore",
+                title_story: "Character Lore",
                 p_story1: "Years ago, I turned from human to demi-human after being hit by a light from Pluto. Now working as a VUP, my job is to perform rituals for forgotten or unfulfilled dreams by reliving them.",
                 p_story2: "My dream is: <strong>To grow big and shine brightly!</strong>",
-                title_intro: "<svg class='icon-star'><use href='#svg-star'></use></svg> Stream Trivia",
+                title_intro: "Stream Trivia",
                 val_intro1: "Streams mostly consist of chatting and games, with occasional singing and drawing. Weak against FPS games and 3D motion sickness, but always tries her best!",
                 val_intro2: "Known as a 'Meme Master' and earned the title 'Whistling Star' for her great whistling skills.",
                 val_intro3: "Despite her 'frail' constitution, she always insists on streaming for everyone, and deeply cares for her fans with her gentle 'Tofu Heart'!",
-                title_design: "<svg class='icon-star'><use href='#svg-star'></use></svg> Character Design", btn_back: "← Back",
+                title_design: "Character Design", btn_back: "← Back",
                 sp_desc1: "Updated monthly. Drawing diaries and exclusive photos.", sp_desc2: "You can send gifts/letters via fansfer.<br>Overseas shipping is supported.", sp_desc3: "You can gift items from my Wishlist via Gipt.<br>PayPal and Credit Cards accepted.", sp_desc4: "Selling hand-drawn merchandise.", sp_desc5: "I can draw simple icons.<br>*Please read Skeb's TOS.<br>*Currently only accepting original characters.", sp_desc6: "Voice data for sale.",
                 rb1: "Making & posting clips: Allowed", rl1: "<li>Malicious editing is strictly prohibited.</li><li>Do not alter the intent of the speech.</li><li>No content that damages reputation.</li><li>Do not clip unlisted YouTube streams.</li><li>Check terms before using materials.</li><li>We do not promise to promote your clips.</li>",
                 rb2: "Commissioning Fanart (e.g., Skeb): Allowed", rl2: "<li>Please specify copyrights and usage scope.</li><li>Extreme NSFW/Gore may not be showcased.</li><li>Creators can post the works as their portfolio.</li><li>Please be respectful to the creators.</li>",
