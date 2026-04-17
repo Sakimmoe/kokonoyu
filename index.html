@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>九重紫 -Jiuchong Zi- 个人主页</title>
+    
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-content">
+            <div class="bounce-ball"></div>
+            <p>Kokonoyu 正在努力加载中...</p>
+        </div>
+    </div>
+
+    <div id="sakura-container"></div>
+
+    <div class="background-image"></div>
+    <div class="bg-mask"></div>
+
+    <div class="nav-wrapper">
+        <img src="images/logo.png" class="site-logo" onclick="showPage('home-page')" title="Home" alt="Logo">
+        
+        <div class="menu-toggle" id="mobile-menu-btn">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <div class="top-nav" id="top-nav-menu">
+            <span onclick="showPage('home-page')" data-key="nav_home">首页 / HOME</span>
+            <span onclick="showPage('about-site-page')" data-key="nav_site">关于本站</span> 
+            
+            <div class="lang-switch">
+                <span class="lang-btn active" onclick="changeLang('cn', this)">CN</span>
+                <span class="lang-btn" onclick="changeLang('jp', this)">JP</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-container">
+
+        <div id="home-page" class="sub-page active-page">
+            
+            <div class="content-area header-content">
+                <img src="images/avatar.jpg" class="avatar" alt="Avatar">
+                <h1 class="header-name"><span data-key="name">九重紫</span> <span class="header-subname">-Jiuchong Zi-</span></h1>
+                
+                <div class="site-links">
+                    <a href="https://space.bilibili.com/225347042" target="_blank">bilibili</a>
+                    <a href="https://live.bilibili.com/9162799?broadcast_type=0&is_room_feed=1&spm_id_from=333.1387.to_liveroom.0.click&live_from=86002" target="_blank">bilibili/LIVE</a> 
+                    <a href="https://www.youtube.com/@KokonoeYukari" target="_blank">YouTube</a>
+                    <a href="https://twitter.com/Kokonoe_Yukari" target="_blank">X (Twitter)</a>
+                    <a href="https://kokonoe-yukari.fanbox.cc" target="_blank">FANBOX</a>
+                    <a href="https://fantia.jp/fanclubs/246651" target="_blank">Fantia</a>
+                    <a href="https://kokonoeyukari.booth.pm" target="_blank">BOOTH</a>
+                </div>
+
+                <p class="header-intro" data-key="bio">
+                    通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。
+                </p>
+            </div>
+
+            <div class="content-area">
+                <h2 data-key="title_profile">个人档案</h2>
+                <p data-key="p_nick"><strong>昵称：</strong> ここのゆ、のゆ、ゆ</p>
+                <p data-key="p_height"><strong>身高：</strong> 152cm</p>
+                <p data-key="p_zodiac"><strong>星座：</strong> 巨蟹座</p>
+                <p data-key="p_birth"><strong>生日：</strong> 7月22日</p>
+                <p data-key="p_nature"><strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”</p>
+                <p data-key="p_moe"><strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇</p>
+                <p data-key="p_fans"><strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑</p>
+                <p data-key="p_treasure"><strong>最珍视的事物：</strong> 家人与粉丝（听众）</p>
+                <p data-key="p_role"><strong>喜欢的角色：</strong> sirotan</p>
+                <p data-key="p_tag"><strong>主标签：</strong> #ここのゆ</p>
+                <p data-key="p_fanart"><strong>同人图标签：</strong> #ここのゆああと</p>
+                <p class="illustrator-links">
+                    <strong data-key="p_mama">画师妈妈：</strong> 
+                    <a href="https://twitter.com/zo3mie" target="_blank" class="design-link" style="border:none;">犬山ななみ</a> / 
+                    <a href="https://x.com/faitescoco" target="_blank" class="design-link" style="border:none;">ココナツ</a> / 
+                    <a href="https://www.pixiv.net/users/2783388" target="_blank" class="design-link" style="border:none;">雲雀ひな</a> / 
+                    <a href="https://x.com/kuno_on" target="_blank" class="design-link" style="border:none;">クノオ</a> / 
+                    <a href="#" target="_blank" class="design-link" style="border:none;">燕小酱</a>
+                </p>
+                <p style="margin-top: 20px;" data-key="p_design"><strong>🎨 艺术设计：</strong> <span class="design-link" onclick="showPage('design-page')">点击查看 Design</span></p>
+            </div>
+            
+            <div class="content-area">
+                <h2 data-key="title_activity">直播内容 - 活动内容</h2>
+                <div data-key="val_activity">
+                    <p>基本是游戏直播和杂谈，有时候会唱歌和画画。</p>
+                    <p>游戏直播以RPG为主，不过会尝试各种不同类型的游戏。</p>
+                    <p>游戏力水平比较低，含有杀戮，犯罪，欺骗的游戏基本都不擅长。特别不擅长FPS，会晕3D。</p>
+                    <p>没有字幕组，自己制作视频和整活（现已成立自己的字幕组）。</p>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <h2 data-key="title_personal">个人相关</h2>
+                <div data-key="val_personal">
+                    <ul class="info-list">
+                        <li><strong>啊加嘛似嘛似：</strong>紫老师常用“啊加嘛似嘛似（あじゃますます）”表达感谢。完整的表达通常会在后面加上“ありがとうにゃん 谢谢”。</li>
+                        <li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常是发烧。目前带病直播几乎是常态。</li>
+                        <li><strong>简称：</strong>紫老师全名 ここのえゆかり ⇒ こ这个のゆ ⇒ のゆ ⇒ ゆ。一般简称到ここのゆ，直播待机结束画面说的也是ここのゆ。</li>
+                        <li><strong>整活大师：</strong>熟悉本土各种梗，经常会做视频将梗运用到极致，常整得一手好活。自称所有的梗都是从萌娘百科看明白的。很多视频鉴赏回当场一脸懵逼，但第二天就玩得66的。可怕的吸收能力。</li>
+                        <li><strong>天哨星：</strong>紫老师直播吹得一手好口哨，能熟练吹出《好汉歌》、《Never Gonna Give You Up》等歌曲，弹幕曾在水浒回赐号：天哨星。紫老师便是这108将的第109人。</li>
+                        <li><strong>字幕组校对：</strong>紫老师曾在oto字幕组当校对。你永远不知道自己推的女人在干什么。</li>
+                        <li><strong>理工男气质：</strong>紫老师礼貌、努力、懂事，做事一板一眼，颇有理工男气质。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <h2 data-key="title_meme">相关梗</h2>
+                <div data-key="val_meme">
+                    <ul class="info-list">
+                        <li><strong>秦始皇/兵马俑：</strong>首次出现在《三句话把我骗到了bilibili》。原梗为早期电信诈骗：“我是秦始皇，现在给我打钱，我起势了封你做大官”。因为视频中出现了“秦始皇让兵马俑给我点了赞”，所以阿紫的粉丝玩此梗时便自称为兵马俑。</li>
+                        <li><strong>紫细胞：</strong>在直播中抓获某位粉丝的DD行为时，该粉丝自称：推其他人都是我的细胞自己分裂出去的，我是阿紫的单推人。因为此行为类似细胞分裂，所以粉丝玩此梗时会自称是紫细胞。</li>
+                        <li><strong>平和族/变态族：</strong>粉丝名称一开始为和平族，后因为觉得比起世界和平，更希望粉丝们能内心平和，因此改名为平和族。但是经常会有粉丝做出一些hentai的发言/行为，这部分粉丝被称为变态族。</li>
+                        <li><strong>男孩紫：</strong>出现于《日本小巫女看王迅找茬》。其中的白发紫在被找茬后，反怼对方说自己是男孩子。DD狂喜：那不是更好。</li>
+                        <li><strong>粉丝握手会：</strong>在粉丝握手会的直播中，玩起了VR打僵尸（DD）游戏。僵尸（DD）们前来和阿紫握手，被阿紫热烈款待（DD爆头）。</li>
+                        <li><strong>×重紫：</strong>直播间的当前人气排名是第几名就是几重紫（如当前排名第一就是一重紫）。此梗出自修仙小说体系中表示修仙者能力的层数。</li>
+                        <li><strong>旧重紫：</strong>通常指初代模型，也可用于形容阿紫比较老的直播内容或动态。</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="design-page" class="sub-page content-area">
+            <h2 style="border:none; text-align:center;">Character Design</h2>
+            <img src="images/design.jpg" class="design-full-img" alt="Design">
+            <p style="text-align:center; margin-top:30px;">
+                <span class="design-link" onclick="showPage('home-page')" data-key="btn_back">← 返回上一页</span>
+            </p>
+        </div>
+
+        <div id="about-site-page" class="sub-page content-area">
+            <h2 data-key="nav_site">关于本站</h2>
+            <p data-key="site_p1">你好！欢迎来到这里。这是一个由粉丝用爱发电、自发搭建的<strong>非官方个人主页</strong>。</p>
+            <h3 data-key="site_h1">搭建初衷</h3>
+            <p data-key="site_p2">我是2026年1月13日开始关注紫老师的，当时紫老师正在看《爱情公寓》，我也跟着看了一两集，我发现一件让我觉得很奇怪的事：为什么这么大的一个主播连一毛钱的礼物都会很认真的感谢？后面就逐渐对紫老师的直播感兴趣了。<br><br>我觉得紫老师是一个对工作很认真、很负责的人，对粉丝也很用心、很真诚。后面了解到原来之前圣诞节还会上舰给舰长画头像的活动，我发现紫老师对每一个头像画的都很认真，没有一丝丝的敷衍（可惜我错过活动了呜呜）。<br><br>在那之后我就想给紫老师做点什么，正好发现紫老师kokonoyu.com这个域名还没有人注册，于是我就买了下来准备做点东西。<br><br>所以我首先做了紫老师的主页，后续可能还会做紫老师的作品导航、音乐站之类的（如果能得到紫老师授权的话）。</p>
+            <h3 data-key="site_h2">内容来源与建议</h3>
+            <p data-key="site_p3">本站的部分内容资料摘自 <strong>萌娘百科</strong> 以及 <strong>九重紫的B站个人空间</strong>。我只是一名普通的粉丝，如果你也喜欢九重紫，或者对这个网页的排版与内容有什么建议，欢迎通过哔哩哔哩私信我：<br>👉 <a href="https://space.bilibili.com/17276?spm_id_from=333.976.0.0" target="_blank" class="design-link" style="border:none;">点击访问我的 Bilibili 个人主页</a></p>
+            <div class="disclaimer-box" data-key="site_box">
+                <strong>⚠️ 版权与免责声明</strong><br><br>1. 本网站内所使用的<strong>所有美术素材、图片、Logo、背景故事及设定等内容，版权均归主播 <a href="https://kokonoeyukari.my.canva.site/" target="_blank">九重紫（Kokonoe Yukari）</a> 及其合作画师所有。</strong><br>2. 本站仅作粉丝安利与导航整理用途，没有任何商业盈利目的。<br>3. 如果本站的内容有任何侵权或不妥之处，请随时通过上方 B 站链接私信联系我，我会在第一时间配合修改或删除。
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>
