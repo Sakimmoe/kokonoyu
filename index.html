@@ -2,16 +2,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>九重紫 -Jiuchong Zi- 个人主页</title>
     <link rel="icon" type="image/png" href="favicon.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 魔法 1：稳定的纯粉色动态背景 --- */
+        /* --- 基础样式 --- */
         body {
-            background-color: #ffe8ef; /* 基础底色，防止刷新时闪白 */
-            background-image: linear-gradient(-45deg, #fff0f5, #ffe4e1, #ffd1df, #fff0f5); /* 纯粉色系渐变 */
+            background-color: #ffe8ef; 
+            background-image: linear-gradient(-45deg, #fff0f5, #ffe4e1, #ffd1df, #fff0f5); 
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite; 
             font-family: 'Nunito', 'TsukuBRdGothic-Regular', 'Yuanti SC', 'YouYuan', '幼圆', 'PingFang SC', 'Comic Sans MS', sans-serif;
@@ -22,11 +23,7 @@
             font-family: 'Nunito', 'TsukuBRdGothic-Regular', 'Yuanti SC', 'YouYuan', '幼圆', 'PingFang SC', 'Comic Sans MS', sans-serif;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
         .page-container {
             width: 90%; max-width: 900px; margin: 0 auto; 
@@ -37,11 +34,7 @@
         }
 
         /* --- 导航栏 --- */
-        .nav-wrapper {
-            display: flex; justify-content: space-between; align-items: center; 
-            border-bottom: 1px dotted #ccc; padding-bottom: 15px; margin-bottom: 20px;
-        }
-
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted #ccc; padding-bottom: 15px; margin-bottom: 20px; }
         .site-logo { height: 70px; cursor: pointer; transition: 0.3s; }
         .site-logo:hover { transform: scale(1.05); }
 
@@ -49,12 +42,10 @@
         .top-nav span { color: #d87093; font-size: 14px; margin-left: 12px; font-weight: bold; cursor: pointer; transition: 0.3s; position: relative; }
         .top-nav span:hover { color: #ff9cbd; }
 
-        /* 语言切换按钮 */
         .lang-switch { margin-bottom: 15px; border-bottom: 1px solid #ffe8ef; padding-bottom: 10px; }
         .lang-btn { font-size: 12px; color: #999; cursor: pointer; margin-left: 10px; transition: 0.3s; padding: 2px 8px; border-radius: 10px; font-weight: normal; }
         .lang-btn:hover, .lang-btn.active { color: white; background-color: #ff9cbd; text-decoration: none; }
 
-        /* 链接按钮与头像 */
         .site-links { margin-bottom: 40px; }
         .site-links a { 
             display: inline-flex; align-items: center; justify-content: center;
@@ -71,15 +62,13 @@
         .header-name { color: #d87093; margin-top: 0; font-size: 32px; }
         .header-subname { font-weight: normal; font-size: 18px; color: #ff9cbd; margin-left: 10px; }
         .content-area { margin-bottom: 30px; line-height: 1.8; }
-        .content-area h2 { display: flex; align-items: center; color: #d87093; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #ffe8ef; }
+        .content-area h2 { color: #d87093; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #ffe8ef; }
         .content-area h3 { color: #ff9cbd; margin-top: 25px; font-size: 18px; }
 
-        /* 页面切换动画 */
         .sub-page { display: none; opacity: 0; }
         .active-page { display: block; animation: fadeInSlideUp 0.5s ease forwards; }
         @keyframes fadeInSlideUp { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        /* 赞助页/规则页样式 */
         .sponsor-section { text-align: center; padding-top: 30px; }
         .sp-title { font-size: 36px; color: white; font-weight: 900; -webkit-text-stroke: 2px #c1eaf9; text-shadow: 0 0 10px rgba(193, 234, 249, 0.8); margin-bottom: 30px; letter-spacing: 2px; }
         .sp-btn { display: inline-block; background-color: #a4c3d6; color: white !important; padding: 10px 40px; font-size: 16px; border-radius: 30px; border: 1px solid #5a646e; margin: 8px 0; text-decoration: none; transition: 0.2s; position: relative; }
@@ -87,6 +76,7 @@
         .sp-btn::before, .sp-btn::after { content: "✦"; position: absolute; color: #5a646e; font-size: 14px; }
         .sp-btn::before { left: -20px; top: -5px; } .sp-btn::after { right: -20px; bottom: -5px; }
         .sp-desc { color: #666; font-size: 13px; margin-top: 15px; margin-bottom: 50px; line-height: 1.8; }
+        
         .rules-banner { background-color: #a4c3d6; color: white; padding: 12px 20px; border-radius: 20px; font-size: 15px; font-weight: bold; width: 85%; margin: 0 auto 20px auto; }
         .rules-list { text-align: left; width: 80%; margin: 0 auto 50px auto; color: #666; font-size: 13px; line-height: 2; }
         .rules-list li { margin-bottom: 8px; }
@@ -95,6 +85,34 @@
         .design-link:hover { color: #ff8fb8; }
         .disclaimer-box { background-color: #fff0f5; padding: 15px 20px; border-radius: 10px; border-left: 5px solid #ff9cbd; font-size: 13px; color: #666; margin-top: 20px; }
         .design-full-img { width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        /* =========================================
+           📱 魔法 2：移动端专属兼容代码 (Media Queries) 📱
+           ========================================= */
+        @media (max-width: 768px) {
+            body { padding: 20px 0; }
+            .page-container { width: 92%; padding: 20px; }
+            
+            /* 导航栏从左右变成上下堆叠 */
+            .nav-wrapper { flex-direction: column; text-align: center; gap: 15px; border-bottom: none; }
+            .site-logo { height: 60px; margin-bottom: 10px; }
+            
+            /* 菜单自动换行，增加间距防误触 */
+            .top-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+            .top-nav span { margin-left: 0; padding: 5px 0; }
+            .lang-switch { display: flex; justify-content: center; border-bottom: 1px dotted #ccc; padding-bottom: 15px; width: 100%; margin-bottom: 10px; }
+
+            /* 头像从居左变成居中 */
+            .header-content { text-align: center; }
+            img.avatar { float: none; display: block; margin: 0 auto 15px auto; }
+            .header-subname { display: block; margin-left: 0; margin-top: 5px; }
+            
+            /* 按钮和横幅适应屏幕宽度 */
+            .site-links { text-align: center; }
+            .rules-banner, .rules-list { width: 95%; }
+            .sp-title { font-size: 28px; }
+            .sp-btn { padding: 10px 30px; font-size: 14px; }
+        }
     </style>
 </head>
 <body>
