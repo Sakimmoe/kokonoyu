@@ -17,7 +17,7 @@
     <div class="nav-wrapper">
         <img src="images/logo.png" class="site-logo" onclick="showPage('home-page')" title="Home">
         
-        <div class="menu-toggle" id="menuToggle">
+        <div class="menu-toggle" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
             <span></span>
@@ -40,6 +40,7 @@
     </div>
 
     <div class="page-container">
+
         <div id="home-page" class="sub-page active-page">
             <div class="header-content">
                 <img src="images/avatar.jpg" class="avatar">
@@ -69,6 +70,14 @@
                 <p data-key="p_nature"><strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”</p>
                 <p data-key="p_moe"><strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇</p>
                 <p data-key="p_fans"><strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑</p>
+                <p data-key="p_treasure"><strong>最珍视的事物：</strong> 家人与粉丝（听众）</p>
+                <p data-key="p_role"><strong>喜欢的角色：</strong> sirotan</p>
+                <p class="illustrator-links">
+                    <strong data-key="p_mama">画师妈妈：</strong> 
+                    <a href="https://twitter.com/zo3mie" target="_blank">犬山ななみ</a> / 
+                    <a href="#">ココナツ</a> / <a href="#">雲雀ひな</a> / 
+                    <a href="https://twitter.com/kuno_on">クノオ</a> / <a href="#">燕小酱</a>
+                </p>
                 <p style="margin-top: 20px;"><strong data-key="p_design">🎨 艺术设计：</strong> <span class="design-link" onclick="showPage('design-page')">点击查看 Design</span></p>
             </div>
 
@@ -76,35 +85,49 @@
                 <h2 data-key="title_activity">直播内容 - 活动内容</h2>
                 <div data-key="val_activity">
                     <p>基本是游戏直播和杂谈，有时候会唱歌和画画。</p>
+                    <p>游戏直播以RPG为主，不过会尝试各种不同类型的游戏。</p>
+                    <p>游戏力水平比较低，含有杀戮，犯罪，欺骗的游戏基本都不擅长。特别不擅长FPS，会晕3D。</p>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <h2 data-key="title_personal">个人相关</h2>
+                <div data-key="val_personal">
+                    <ul class="info-list">
+                        <li><strong>啊加嘛似嘛似：</strong>常用“啊加嘛似嘛似（あじゃますます）”表达感谢。</li>
+                        <li><strong>病弱：</strong>大约一至两个月会有身体不佳的情况，通常是发烧。</li>
+                        <li><strong>简称：</strong>全名 ここのえゆかり ⇒ ここのゆ ⇒ のゆ ⇒ ゆ。</li>
+                        <li><strong>整活大师：</strong>熟悉本土各种梗，自称梗都是从萌娘百科看明白的。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <h2 data-key="title_meme">相关梗</h2>
+                <div data-key="val_meme">
+                    <ul class="info-list">
+                        <li><strong>秦始皇/兵马俑：</strong>源于“我是秦始皇，给我打钱”的电信诈骗梗。</li>
+                        <li><strong>紫细胞：</strong>DD粉丝被抓获时的狡辩梗。</li>
+                        <li><strong>平和族/变态族：</strong>粉丝本名平和族，但因言论被戏称为变态族。</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <div id="design-page" class="sub-page">
-            <div class="content-area">
-                <h2 style="border:none; text-align:center;" data-key="title_design">Character Design</h2>
-                <img src="images/design.jpg" class="design-full-img" alt="Design">
-                <p style="text-align:center; margin-top:30px;">
-                    <span class="design-link" onclick="showPage('home-page')" data-key="btn_back">← 返回上一页</span>
-                </p>
-            </div>
-        </div>
-
-        <div id="sponsor-page" class="sub-page content-area sponsor-section">
-            <h2 data-key="nav_gift">赞助 / GIFT</h2>
-            <p data-key="sp_desc1">每月更新一次，发布绘画日记和个人拍摄的照片等。</p>
-            <a href="https://kokonoe-yukari.fanbox.cc" target="_blank" class="sp-btn">PIXIVFANBOX</a>
+        <div id="design-page" class="sub-page content-area">
+            <h2 style="border:none; text-align:center;" data-key="title_design">Character Design</h2>
+            <img src="images/design.jpg" class="design-full-img" alt="Design">
+            <p style="text-align:center; margin-top:30px;">
+                <span class="design-link" onclick="showPage('home-page')" data-key="btn_back">← 返回上一页</span>
+            </p>
         </div>
 
         <div id="about-site-page" class="sub-page content-area">
             <h2 data-key="nav_site">关于本站</h2>
-            <p data-key="site_p1">这是一个由粉丝用爱发电搭建的非官方个人主页。</p>
-            <p data-key="site_p3">内容资料摘自 萌娘百科 与 九重紫B站空间。如有建议欢迎私信。</p>
+            <p data-key="site_p1">你好！欢迎来到这里。这是一个由粉丝用爱发电、自发搭建的非官方个人主页。</p>
+            <h3 data-key="site_h1">内容来源与建议</h3>
+            <p data-key="site_p3">本站资料摘自 萌娘百科 与 九重紫B站空间。如有建议欢迎私信。</p>
         </div>
-
-        <div id="commission-page" class="sub-page content-area"><h2 data-key="nav_comm">COMMISSION</h2><p>施工中...</p></div>
-        <div id="about-work-page" class="sub-page content-area"><h2 data-key="nav_work">关于委托工作</h2><p>施工中...</p></div>
-        <div id="contact-page" class="sub-page content-area"><h2 data-key="nav_contact">联系我</h2><p>施工中...</p></div>
 
     </div>
 
