@@ -1,157 +1,202 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>九重紫 -Jiuchong Zi- 个人主页</title>
+/* =========================================
+   ✨ 鼠标指针美化 (软萌胖箭头 + 小爱心) ✨
+   ========================================= */
+body, html {
+    /* 默认：可爱的粉色胖箭头，标准的左上角指向 */
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'><path d='M4 3l15 9-6.5 1.5 3.5 6-3 2-3.5-6.5L4 20Z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 4 3, auto;
+}
+
+a, button, .site-logo, .top-nav span, .menu-toggle, .design-link {
+    /* 悬停：粉色胖爱心 */
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 12 12, pointer !important;
+}
+
+/* =========================================
+   ✨ 基础设定 & 引入可爱字体 & 人物背景 ✨
+   ========================================= */
+body {
+    background-color: #fdf8f9; 
+    background-image: linear-gradient(-45deg, #fff0f5, #ffe4e1, #ffd1df, #fff0f5); 
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite; 
+    /* 将 ZCOOL KuaiLe (站酷快乐体) 设为首选字体，全局默认细体 */
+    font-family: 'ZCOOL KuaiLe', 'Nunito', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
+    font-weight: normal; 
+    margin: 0; padding: 0; color: #4a4a4a; min-height: 100vh; line-height: 1.8; overflow-x: hidden;
+}
+
+/* ✨ 新增：人物背景图，固定在右下角 ✨ */
+.background-image {
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    /* 替换成你透明背景图片的文件名 */
+    background-image: url('../images/bg-character.png'); 
+    background-size: auto 85%; /* 高度占屏幕85%，不会被拉伸变形 */
+    background-position: right bottom; /* 固定在右下角 */
+    background-repeat: no-repeat;
+    z-index: -3; /* 放在最底层 */
+    pointer-events: none; /* 防止遮挡鼠标点击 */
+    opacity: 0.9; /* 稍微调低一点点透明度，更柔和 */
+}
+
+/* 白色半透明蒙版，压在人物图上，保证文字清晰阅读 */
+.bg-mask {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(255, 255, 255, 0.45); 
+    z-index: -2; 
+    pointer-events: none;
+}
+
+h1, h2, h3, strong {
+    font-family: 'ZCOOL KuaiLe', 'Nunito', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
+    color: #2c2c2c; 
+    font-weight: normal; /* 全局取消粗体 */
+    letter-spacing: 1px;
+}
+
+@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ffb8d1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #ff9cbd; }
+
+/* =========================================
+   ✨ 全屏加载动画 (Loading) ✨
+   ========================================= */
+#loader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #fff0f5;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.loader-content { text-align: center; color: #d87093; font-weight: bold; font-size: 1.2rem;}
+.bounce-ball {
+    width: 20px; height: 20px; background-color: #d87093; border-radius: 50%;
+    margin: 0 auto 15px auto;
+    animation: bounce 0.5s alternate infinite ease-in-out;
+}
+@keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-30px); } }
+
+/* =========================================
+   ✨ 樱花飘落容器 ✨
+   ========================================= */
+#sakura-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: -1; overflow: hidden;
+}
+.sakura {
+    position: absolute; top: -10%; background: #ffd1df;
+    border-radius: 150% 0 150% 0; /* 让它看起来像个花瓣 */
+    animation: fall linear infinite, sway ease-in-out infinite alternate;
+    opacity: 0.8;
+}
+@keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
+@keyframes sway { 0% { transform: translateX(0) rotate(0deg); } 100% { transform: translateX(50px) rotate(45deg); } }
+
+/* =========================================
+   ✨ 导航栏 ✨
+   ========================================= */
+.nav-wrapper { 
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(253, 248, 249, 0.85); 
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; 
+    border-bottom: 1px solid rgba(216, 112, 147, 0.1);
+    transition: transform 0.4s cubic-bezier(0.3, 0, 0.2, 1);
+}
+.nav-hidden { transform: translateY(-100%); }
+.site-logo { height: 55px; object-fit: contain; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.site-logo:hover { transform: scale(1.1); }
+
+.top-nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: flex-end; }
+.top-nav span { color: #666; font-size: 15px; transition: color 0.2s; position: relative; }
+.top-nav span:hover { color: #d87093; }
+
+.menu-toggle { display: none; flex-direction: column; gap: 5px; }
+.menu-toggle .bar { width: 25px; height: 3px; background-color: #d87093; transition: 0.3s; border-radius: 2px; }
+
+/* =========================================
+   ✨ 主容器 (终极万无一失居中方案) ✨
+   ========================================= */
+.page-container { 
+    width: 95%; max-width: 900px; 
+    margin: 20px auto 60px auto; 
+    padding: 0;
+    /* 终极居中解决方案，防止视觉偏差 */
+    display: flex; flex-direction: column; align-items: center;
+}
+.sub-page { display: none; opacity: 0; width: 100%;} /* 确保子页面撑满卡片 */
+.active-page { display: block; animation: fadeUpIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+@keyframes fadeUpIn { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+
+.content-area {
+    background: rgba(255, 255, 255, 0.75); 
+    backdrop-filter: blur(8px); 
+    border-radius: 24px; 
+    box-shadow: 0 10px 30px rgba(216, 112, 147, 0.15); 
+    padding: 35px 40px; 
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.5); 
+    width: 100%; /* 卡片宽度铺满父级容器 */
+    box-sizing: border-box;
+}
+
+.header-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+img.avatar { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(216, 112, 147, 0.3); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+img.avatar:hover { transform: scale(1.1) rotate(5deg); }
+.header-name { margin: 0 0 10px 0; font-size: 34px; font-weight: normal; } /* 名字变细一点 */
+.header-subname { font-weight: 700; font-size: 18px; color: #d87093; margin-left: 8px; }
+.header-intro { color: #555; max-width: 800px; font-size: 15px; margin-top: 15px;}
+
+/* =========================================
+   ✨ 果冻弹簧动效按钮 (全面瘦身、一行排布) ✨
+   ========================================= */
+.site-links { 
+    display: flex; flex-wrap: wrap; justify-content: center; 
+    gap: 8px; /* 减小按钮之间的间隙 */
+    margin-bottom: 20px; 
+}
+.site-links a { 
+    background-color: #fff; color: #d87093; 
+    padding: 6px 14px; /* 减小内边距，让按钮变小 */
+    font-size: 13px; /* 字体改小 */
+    font-weight: normal; /* 取消粗体 */
+    border-radius: 20px; text-decoration: none; 
+    border: 1px solid rgba(216,112,147,0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.site-links a:hover { 
+    background-color: #d87093; color: white; 
+    transform: translateY(-4px) scale(1.05); 
+    box-shadow: 0 6px 15px rgba(216, 112, 147, 0.3); 
+}
+
+.content-area h2 { color: #d87093; margin-bottom: 20px; font-size: 22px; border-left: 5px solid #d87093; padding-left: 15px; border-radius: 3px; font-weight: normal;}
+.content-area p { margin-bottom: 12px; font-size: 15px; }
+.info-list { padding-left: 20px; color: #555; font-size: 15px; line-height: 1.8; }
+.info-list li { margin-bottom: 12px; }
+
+.design-link { color: #d87093; text-decoration: none; border-bottom: 1px solid #ffb8d1; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); padding-bottom: 2px; display: inline-block; font-weight: normal;}
+.design-link:hover { color: #ff8fb8; border-bottom-color: #ff8fb8; transform: translateY(-2px); }
+.design-full-img { width: 100%; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: block; margin: 0 auto; }
+.disclaimer-box { background-color: #fff; padding: 20px; border-radius: 16px; border-top: 4px solid #ff9cbd; font-size: 14px; color: #666; margin-top: 30px; line-height: 1.8; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+
+/* --- 手机端适配 --- */
+@media (max-width: 768px) {
+    .nav-wrapper { padding: 15px 5%; flex-direction: row; }
+    .site-logo { height: 45px; } 
+    .menu-toggle { display: flex; }
+    .top-nav { 
+        display: none; flex-direction: column; position: absolute; top: 75px; right: 5%;
+        background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1); gap: 15px; text-align: center; border: 1px solid rgba(216, 112, 147, 0.1);
+    }
+    .top-nav.active { display: flex; }
+    .content-area { padding: 25px 20px; border-radius: 20px;}
     
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-    <div id="loader">
-        <div class="loader-content">
-            <div class="bounce-ball"></div>
-            <p>Kokonoyu 正在努力加载中...</p>
-        </div>
-    </div>
-
-    <div id="sakura-container"></div>
-
-    <div class="background-image"></div>
-
-    <div class="bg-mask"></div>
-
-    <div class="nav-wrapper">
-        <img src="images/logo.png" class="site-logo" onclick="showPage('home-page')" title="Home" alt="Logo">
-        
-        <div class="menu-toggle" id="mobile-menu-btn">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-
-        <div class="top-nav" id="top-nav-menu">
-            <span onclick="showPage('home-page')">首页 / HOME</span>
-            <span onclick="showPage('about-site-page')">关于本站</span> 
-        </div>
-    </div>
-
-    <div class="page-container">
-
-        <div id="home-page" class="sub-page active-page">
-            
-            <div class="content-area header-content">
-                <img src="images/avatar.jpg" class="avatar" alt="Avatar">
-                <h1 class="header-name">九重紫 <span class="header-subname">-Jiuchong Zi-</span></h1>
-                
-                <div class="site-links">
-                    <a href="https://space.bilibili.com/225347042" target="_blank">bilibili</a>
-                    <a href="https://live.bilibili.com/9162799?broadcast_type=0&is_room_feed=1&spm_id_from=333.1387.to_liveroom.0.click&live_from=86002" target="_blank">bilibili/LIVE</a> 
-                    <a href="https://www.youtube.com/@KokonoeYukari" target="_blank">YouTube</a>
-                    <a href="https://twitter.com/Kokonoe_Yukari" target="_blank">X (Twitter)</a>
-                    <a href="https://kokonoe-yukari.fanbox.cc" target="_blank">FANBOX</a>
-                    <a href="https://fantia.jp/fanclubs/246651" target="_blank">Fantia</a>
-                    <a href="https://kokonoeyukari.booth.pm" target="_blank">BOOTH</a>
-                </div>
-
-                <p class="header-intro">
-                    通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。
-                </p>
-            </div>
-
-            <div class="content-area">
-                <h2>个人档案</h2>
-                <p><strong>昵称：</strong> ここのゆ、のゆ、ゆ</p>
-                <p><strong>身高：</strong> 152cm</p>
-                <p><strong>星座：</strong> 巨蟹座</p>
-                <p><strong>生日：</strong> 7月22日</p>
-                <p><strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”</p>
-                <p><strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇</p>
-                <p><strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑</p>
-                <p><strong>最珍视的事物：</strong> 家人与粉丝（听众）</p>
-                <p><strong>喜欢的角色：</strong> sirotan</p>
-                <p><strong>主标签：</strong> #ここのゆ</p>
-                <p><strong>同人图标签：</strong> #ここのゆああと</p>
-                <p class="illustrator-links">
-                    <strong>画师妈妈：</strong> 
-                    <a href="https://twitter.com/zo3mie" target="_blank" class="design-link" style="border:none;">犬山ななみ</a> / 
-                    <a href="https://x.com/faitescoco" target="_blank" class="design-link" style="border:none;">ココナツ</a> / 
-                    <a href="https://www.pixiv.net/users/2783388?_gl=1*j66of9*_ga*MTU3NDgyMzA4Ny4xNjg4MDU3NjM1*_ga_D9TLP3EFER*MTY5MzIzODM5OC4xOS4xLjE2OTMyMzk2MjQuNjAuMC4w" target="_blank" class="design-link" style="border:none;">雲雀ひな</a> / 
-                    <a href="https://x.com/kuno_on" target="_blank" class="design-link" style="border:none;">クノオ</a> / 
-                    <a href="#" target="_blank" class="design-link" style="border:none;">燕小酱</a>
-                </p>
-                <p style="margin-top: 20px;"><strong>🎨 艺术设计：</strong> <span class="design-link" onclick="showPage('design-page')">点击查看 Design</span></p>
-            </div>
-            
-            <div class="content-area">
-                <h2>直播内容 - 活动内容</h2>
-                <div>
-                    <p>基本是游戏直播和杂谈，有时候会唱歌和画画。</p>
-                    <p>游戏直播以RPG为主，不过会尝试各种不同类型的游戏。</p>
-                    <p>游戏力水平比较低，含有杀戮，犯罪，欺骗的游戏基本都不擅长。特别不擅长FPS，会晕3D。</p>
-                    <p>没有字幕组，自己制作视频和整活（现已成立自己的字幕组）。</p>
-                </div>
-            </div>
-
-            <div class="content-area">
-                <h2>个人相关</h2>
-                <div>
-                    <ul class="info-list">
-                        <li><strong>啊加嘛似嘛似：</strong>紫老师常用“啊加嘛似嘛似（あじゃますます）”表达感谢。完整的表达通常会在后面加上“ありがとうにゃん 谢谢”。</li>
-                        <li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常是发烧。目前带病直播几乎是常态。</li>
-                        <li><strong>简称：</strong>紫老师全名 ここのえゆかり ⇒ ここのゆ ⇒ のゆ ⇒ ゆ。一般简称到ここのゆ，直播待机结束画面说的也是ここのゆ。</li>
-                        <li><strong>整活大师：</strong>熟悉本土各种梗，经常会做视频将梗运用到极致，常整得一手好活。自称所有的梗都是从萌娘百科看明白的。很多视频鉴赏回当场一脸懵逼，但第二天就玩得66的。可怕的吸收能力。</li>
-                        <li><strong>天哨星：</strong>紫老师直播吹得一手好口哨，能熟练吹出《好汉歌》、《Never Gonna Give You Up》等歌曲，弹幕曾在水浒回赐号：天哨星。紫老师便是这108将的第109人。</li>
-                        <li><strong>字幕组校对：</strong>紫老师曾在oto字幕组当校对。你永远不知道自己推的女人在干什么。</li>
-                        <li><strong>理工男气质：</strong>紫老师礼貌、努力、懂事，做事一板一眼，颇有理工男气质。</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="content-area">
-                <h2>相关梗</h2>
-                <div>
-                    <ul class="info-list">
-                        <li><strong>秦始皇/兵马俑：</strong>首次出现在《三句话把我骗到了bilibili》。原梗为早期电信诈骗：“我是秦始皇，现在给我打钱，我起势了封你做大官”。因为视频中出现了“秦始皇让兵马俑给我点了158000次赞”，所以阿紫的粉丝玩此梗时便自称为兵马俑。</li>
-                        <li><strong>紫细胞：</strong>在直播中抓获某位粉丝的DD行为时，该粉丝自称：推其他人都是我的细胞自己分裂出去的，我是阿紫的单推人。因为此行为类似细胞分裂，所以粉丝玩此梗时会自称是紫细胞。</li>
-                        <li><strong>平和族/变态族：</strong>粉丝名称一开始为和平族，后因为觉得比起世界和平，更希望粉丝们能内心平和，因此改名为平和族。但是经常会有粉丝做出一些hentai的发言/行为，这部分粉丝被称为变态族。</li>
-                        <li><strong>男孩紫：</strong>出现于《日本小巫女看王迅找茬》。其中的白发紫在被找茬后，反怼对方说自己是男孩子。DD狂喜：那不是更好。</li>
-                        <li><strong>粉丝握手会：</strong>在粉丝握手会的直播中，玩起了VR打僵尸（DD）游戏。僵尸（DD）们前来和阿紫握手，被阿紫热烈款待（DD爆头）。</li>
-                        <li><strong>×重紫：</strong>直播间的当前人气排名是第几名就是几重紫（如当前排名第一就是一重紫）。此梗出自修仙小说体系中表示修仙者能力的层数。</li>
-                        <li><strong>旧重紫：</strong>通常指初代模型，也可用于形容阿紫比较老的直播内容或动态。</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-        <div id="design-page" class="sub-page content-area">
-            <h2 style="border:none; text-align:center;">Character Design</h2>
-            <img src="images/design.jpg" class="design-full-img" alt="Design">
-            <p style="text-align:center; margin-top:30px;">
-                <span class="design-link" onclick="showPage('home-page')">← 返回上一页</span>
-            </p>
-        </div>
-
-        <div id="about-site-page" class="sub-page content-area">
-            <h2>关于本站</h2>
-            <p>你好！欢迎来到这里。这是一个由粉丝用爱发电、自发搭建的<strong>非官方个人主页</strong>。</p>
-            <h3>搭建初衷</h3>
-            <p>作为一名一直关注着九重紫（のゆ）的粉丝，我深深地被她温柔的声音、可爱的性格以及向往和平的“豆腐心”所打动。为了让更多人能方便地了解她，并快速找到她的官方账号与支持渠道，我制作了这个网页。希望能尽自己的一份绵薄之力，让正在闪耀光芒的她被更多人看见！</p>
-            <h3>内容来源与建议</h3>
-            <p>本站的部分内容资料摘自 <strong>萌娘百科</strong> 以及 <strong>九重紫的B站个人空间</strong>。我只是一名普通的粉丝，如果你也喜欢九重紫，或者对这个网页的排版与内容有什么建议，欢迎通过哔哩哔哩私信我：<br>👉 <a href="https://space.bilibili.com/17276?spm_id_from=333.976.0.0" target="_blank" class="design-link" style="border:none;">点击访问我的 Bilibili 个人主页</a></p>
-            <div class="disclaimer-box">
-                <strong>⚠️ 版权与免责声明</strong><br><br>1. 本网站内所使用的<strong>所有美术素材、图片、Logo、背景故事及设定等内容，版权均归主播 <a href="https://kokonoeyukari.my.canva.site/" target="_blank">九重紫（Kokonoe Yukari）</a> 及其合作画师所有。</strong><br>2. 本站仅作粉丝安利与导航整理用途，没有任何商业盈利目的。<br>3. 如果本站的内容有任何侵权或不妥之处，请随时通过上方 B 站链接私信联系我，我会在第一时间配合修改或删除。
-            </div>
-        </div>
-
-    </div>
-
-    <script src="js/main.js"></script>
-
-</body>
-</html>
+    /* 手机端背景图稍微缩小或调整位置以免把内容挡得太死 */
+    .background-image { background-position: right 20%; background-size: auto 60%; opacity: 0.6; }
+}
