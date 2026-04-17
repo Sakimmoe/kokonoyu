@@ -28,4 +28,94 @@ const langDict = {
         title_personal: "パーソナル情報",
         val_personal: "<ul class='info-list'><li><strong>あじゃますます：</strong>感謝を伝える際によく使う言葉。後に「ありがとうにゃん」を続けることが多い。</li><li><strong>病弱：</strong>1〜2ヶ月に一度体調を崩し、よく熱を出す。現在では病み上がり配信がほぼ日常茶飯事。</li><li><strong>略称：</strong>ここのえゆかり ⇒ ここのゆ ⇒ のゆ ⇒ ゆ。一般的には「ここのゆ」と呼ばれ、待機画面でもそう名乗っている。</li><li><strong>ネタ職人：</strong>中国のネットミームに精通しており、動画でよく使いこなす。吸収力が凄まじい。</li><li><strong>天哨星：</strong>配信で口笛を吹くのが上手く、「天哨星」というあだ名が付けられた。</li><li><strong>字幕組校対：</strong>かつてoto字幕組で校正を担当していた。</li><li><strong>理系男子気質：</strong>礼儀正しく、努力家で物事をきっちりこなす理系男子のような一面がある。</li></ul>",
         title_meme: "関連ミーム",
-        val_meme: "<ul class='info-list'><li><strong>始皇帝/兵馬俑：</strong>詐欺ミームが元ネタ。動画で「始皇帝が兵馬俑にいいねを押させた」と言ったことから、ファンが兵馬俑を自称するように。</li><li><strong>紫細胞：</strong>DD行為がバレたファンが「他の推しは自分の細胞が分裂したもの」と言い訳したことから。</li><li><strong>平和族/変態族：</strong>ファンネームは平和族だが、変態的な発言をするファンは「変態族」
+        val_meme: "<ul class='info-list'><li><strong>始皇帝/兵馬俑：</strong>詐欺ミームが元ネタ。動画で「始皇帝が兵馬俑にいいねを押させた」と言ったことから、ファンが兵馬俑を自称するように。</li><li><strong>紫細胞：</strong>DD行為がバレたファンが「他の推しは自分の細胞が分裂したもの」と言い訳したことから。</li><li><strong>平和族/変態族：</strong>ファンネームは平和族だが、変態的な発言をするファンは「変態族」と呼ばれる。</li><li><strong>男の子紫：</strong>動画内で「僕は男の子だよ」と反論したことから。DD歓喜。</li><li><strong>ファン握手会：</strong>VRゾンビゲームで近づいてくるゾンビ（DD）をヘッドショットすること。</li><li><strong>×重紫：</strong>配信の現在人気ランキング順位＝×重紫（1位なら一重紫）。</li><li><strong>旧重紫：</strong>初期モデルや、昔の配信コンテンツを指す言葉。</li></ul>",
+        btn_back: "← 戻る",
+        site_p1: "こんにちは！このサイトはファンが愛を込めて自主的に作成した<strong>非公式の個人サイト</strong>です。", site_h1: "制作のきっかけ", site_p2: "九重紫さんの優しい声、可愛い性格、そして平和を愛する心に打たれました。彼女の魅力をより多くの方に知っていただき、公式SNSや支援窓口にアクセスしやすくなるよう、このサイトを作成しました。彼女がさらに輝くための一助になれば幸いです！", site_h2: "情報源とご意見について", site_p3: "当サイトのコンテンツの一部は、<strong>萌娘百科</strong>および<strong>九重紫さんのBilibili個人ページ</strong>から引用しています。私はただの一般ファンですが、もしこのサイトについてアドバイスやご意見がありましたら、BilibiliのDMでお気軽にお知らせください：<br>👉 <a href='https://space.bilibili.com/17276?spm_id_from=333.976.0.0' target='_blank' class='design-link' style='border:none;'>私の Bilibili ページへ</a>", site_box: "<strong>⚠️ 著作権および免責事項</strong><br><br>1. 当サイトで使用している<strong>すべてのイラスト等の著作権は、<a href='https://kokonoeyukari.my.canva.site/' target='_blank'>九重紫様</a>および絵師様に帰属します。</strong><br>2. 当サイトは非営利目的のファンサイトです。<br>3. 万が一問題がございましたら、Bilibiliのリンクからご連絡ください。"
+    }
+};
+
+// 切换语言功能
+function changeLang(lang, element) {
+    // 切换按钮高亮状态
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    if(element) element.classList.add('active');
+    
+    // 遍历并替换所有带有 data-key 的文本
+    document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (langDict[lang][key]) {
+            el.innerHTML = langDict[lang][key];
+        }
+    });
+}
+
+// =========================================
+// 全屏加载动画逻辑 (Loading)
+// =========================================
+window.addEventListener('load', function() {
+    const loader = document.getElementById('loader');
+    if(loader) {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+    }
+});
+setTimeout(function() {
+    const loader = document.getElementById('loader');
+    if(loader) {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+    }
+}, 1500);
+
+// =========================================
+// 樱花飘落生成器 (Sakura Falling)
+// =========================================
+function createSakura() {
+    const container = document.getElementById('sakura-container');
+    if(!container) return;
+    const sakura = document.createElement('div');
+    sakura.classList.add('sakura');
+    const size = Math.random() * 10 + 10; 
+    sakura.style.width = size + 'px';
+    sakura.style.height = size + 'px';
+    sakura.style.left = Math.random() * 100 + 'vw';
+    const fallDuration = Math.random() * 5 + 5;
+    const swayDuration = Math.random() * 2 + 2;
+    sakura.style.animationDuration = `${fallDuration}s, ${swayDuration}s`;
+    container.appendChild(sakura);
+    setTimeout(() => { sakura.remove(); }, fallDuration * 1000);
+}
+setInterval(createSakura, 300);
+
+// =========================================
+// 页面切换与交互逻辑
+// =========================================
+function showPage(pageId) {
+    var pages = document.getElementsByClassName('sub-page');
+    for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active-page'); }
+    var targetPage = document.getElementById(pageId);
+    void targetPage.offsetWidth; 
+    targetPage.classList.add('active-page');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const topNav = document.getElementById('top-nav-menu');
+    if (topNav.classList.contains('active')) { topNav.classList.remove('active'); }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const topNav = document.getElementById('top-nav-menu');
+    if(menuBtn && topNav) {
+        menuBtn.addEventListener('click', function() { topNav.classList.toggle('active'); });
+    }
+});
+
+let lastScrollTop = 0; 
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.nav-wrapper');
+    if (!navbar) return;
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop <= 0) { navbar.classList.remove('nav-hidden'); return; }
+    if (scrollTop > lastScrollTop && scrollTop > 80) { navbar.classList.add('nav-hidden'); } 
+    else { navbar.classList.remove('nav-hidden'); }
+    lastScrollTop = scrollTop;
+});
