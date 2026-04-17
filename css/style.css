@@ -124,7 +124,32 @@ h1, h2, h3, strong {
     border: 1px solid rgba(255, 255, 255, 0.5); width: 100%; box-sizing: border-box;
 }
 
-.header-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+/* -----------------------------------------
+   ✨ 画圈处的专属：首张卡片内的立绘背景 ✨
+   ----------------------------------------- */
+.header-content { 
+    position: relative; /* 为内部的伪元素提供定位基准 */
+    z-index: 1; 
+    display: flex; flex-direction: column; align-items: center; text-align: center; 
+}
+
+/* 变出专属的内部立绘图层 */
+.header-content::before {
+    content: "";
+    position: absolute;
+    bottom: 0;         /* 贴着卡片底部 */
+    right: 3%;         /* 贴着卡片右侧 (正是你画圈的地方) */
+    width: 35%;        /* 占据卡片宽度的三分之一左右 */
+    height: 85%;       /* 高度占据大部分 */
+    background-image: url('../images/cbg-character.png'); /* 调用你的新抠图 */
+    background-size: contain;  /* 保持图片原比例 */
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    z-index: -1;       /* 核心：确保它在白色背景之上，但在黑字之下 */
+    opacity: 0.85;     /* 微微透明，保证文字清晰 */
+    pointer-events: none; /* 防止挡住超链接的点击 */
+}
+
 img.avatar { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(216, 112, 147, 0.3); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .header-name { margin: 0 0 10px 0; font-size: 34px; font-weight: normal; } 
@@ -166,4 +191,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     .content-area { padding: 25px 20px; border-radius: 20px;}
     .background-image { background-position: center center; background-size: cover; opacity: 0.5; }
     .lang-switch { margin-left: 0; justify-content: center;}
+    
+    /* 手机端由于卡片太窄，把内部立绘稍微弱化以免挡字 */
+    .header-content::before { opacity: 0.2; width: 60%; right: 0; }
 }
