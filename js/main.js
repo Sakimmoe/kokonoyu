@@ -1,7 +1,54 @@
 // =========================================
-// 页面切换与交互逻辑
+// 1. 全屏加载动画逻辑 (Loading)
 // =========================================
+window.addEventListener('load', function() {
+    const loader = document.getElementById('loader');
+    if(loader) {
+        // 给一点点延迟，让用户能看清可爱的加载动画
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+        }, 500); 
+    }
+});
 
+// =========================================
+// 2. 樱花飘落生成器 (Sakura Falling)
+// =========================================
+function createSakura() {
+    const container = document.getElementById('sakura-container');
+    if(!container) return;
+
+    const sakura = document.createElement('div');
+    sakura.classList.add('sakura');
+
+    // 随机大小 (10px 到 20px 之间)
+    const size = Math.random() * 10 + 10; 
+    sakura.style.width = size + 'px';
+    sakura.style.height = size + 'px';
+
+    // 随机水平起始位置
+    sakura.style.left = Math.random() * 100 + 'vw';
+
+    // 随机动画持续时间 (下落速度，5s 到 10s 之间)
+    const fallDuration = Math.random() * 5 + 5;
+    const swayDuration = Math.random() * 2 + 2;
+    sakura.style.animationDuration = `${fallDuration}s, ${swayDuration}s`;
+
+    container.appendChild(sakura);
+
+    // 等花瓣落到底部后将其移除，防止内存泄漏
+    setTimeout(() => {
+        sakura.remove();
+    }, fallDuration * 1000);
+}
+
+// 每隔 300 毫秒生成一片新的小樱花
+setInterval(createSakura, 300);
+
+// =========================================
+// 3. 页面切换与交互逻辑
+// =========================================
 function showPage(pageId) {
     var pages = document.getElementsByClassName('sub-page');
     for (var i = 0; i < pages.length; i++) {
@@ -13,7 +60,6 @@ function showPage(pageId) {
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // 手机端：点击菜单项后自动收起菜单
     const topNav = document.getElementById('top-nav-menu');
     if (topNav.classList.contains('active')) {
         topNav.classList.remove('active');
