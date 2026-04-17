@@ -29,7 +29,7 @@ h1, h2, h3, .sp-title, strong {
 ::-webkit-scrollbar-thumb:hover { background: #ff9cbd; }
 
 /* =========================================
-   ✨ 导航栏 (智能吸顶消失) ✨
+   ✨ 导航栏 (智能吸顶消失特效) ✨
    ========================================= */
 .nav-wrapper { 
     position: sticky; top: 0; z-index: 100;
@@ -55,7 +55,7 @@ h1, h2, h3, .sp-title, strong {
 .lang-btn.active { color: #d87093; background-color: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 
 /* =========================================
-   ✨ 主容器 & 排版 ✨
+   ✨ 主容器 (变宽 1000px，无框框设计) ✨
    ========================================= */
 .page-container { 
     width: 95%; max-width: 1000px; margin: 20px auto 60px auto; 
@@ -71,6 +71,7 @@ h1, h2, h3, .sp-title, strong {
     padding: 20px 0; margin-bottom: 30px;
 }
 
+/* --- 列表与文本排版 --- */
 .header-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; border-bottom: 1px dashed rgba(216, 112, 147, 0.3); padding-bottom: 30px; }
 img.avatar { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; transition: 0.4s; }
 img.avatar:hover { transform: scale(1.05) rotate(3deg); }
@@ -88,7 +89,7 @@ img.avatar:hover { transform: scale(1.05) rotate(3deg); }
 
 .content-area h2 { color: #d87093; margin-bottom: 20px; font-size: 24px; font-weight: 800; border-left: 5px solid #d87093; padding-left: 15px; }
 .content-area p { margin-bottom: 12px; font-size: 15px; }
-
+        
 /* 🌟 百科文本列表排版 🌟 */
 .info-list { padding-left: 20px; color: #555; font-size: 15px; line-height: 1.8; }
 .info-list li { margin-bottom: 12px; }
@@ -103,11 +104,12 @@ img.avatar:hover { transform: scale(1.05) rotate(3deg); }
 .sp-btn { display: inline-block; background-color: #fff; color: #4a5568 !important; padding: 12px 35px; font-size: 15px; font-weight: 700; border-radius: 25px; margin: 8px 5px; text-decoration: none; transition: 0.2s; border: 2px solid #e2e8f0; }
 .sp-btn:hover { background-color: #4a5568; color: #fff !important; border-color: #4a5568; transform: translateY(-3px); }
 .sp-desc { color: #777; font-size: 14px; margin-top: 10px; margin-bottom: 40px; }
-
+        
 .rules-banner { background-color: #fff; color: #d87093; padding: 15px 20px; border-radius: 12px; font-size: 16px; font-weight: 800; border-left: 5px solid #d87093; margin: 0 auto 15px auto; width: 100%; box-sizing: border-box; text-align: left; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
 .rules-list { text-align: left; width: 95%; margin: 0 auto 40px auto; color: #555; font-size: 15px; line-height: 1.9; }
 .disclaimer-box { background-color: #fff; padding: 20px; border-radius: 12px; border-top: 4px solid #ff9cbd; font-size: 14px; color: #666; margin-top: 30px; line-height: 1.8; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
 
+/* --- 手机端适配 --- */
 @media (max-width: 768px) {
     .nav-wrapper { flex-direction: column; padding: 15px 5%; align-items: center; gap: 5px; }
     .site-logo { height: 50px; margin-bottom: 5px; } 
