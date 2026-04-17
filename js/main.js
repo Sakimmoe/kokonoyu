@@ -40,9 +40,11 @@ const langDict = {
 
 // 切换语言功能
 function changeLang(lang, element) {
+    // 切换按钮高亮状态
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     if(element) element.classList.add('active');
     
+    // 遍历并替换所有带有 data-key 的文本
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (langDict[lang][key]) {
