@@ -2,26 +2,30 @@
    ✨ 鼠标指针美化 (软萌胖箭头 + 小爱心) ✨
    ========================================= */
 body, html {
+    /* 默认：可爱的粉色胖箭头，标准的左上角指向 */
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'><path d='M4 3l15 9-6.5 1.5 3.5 6-3 2-3.5-6.5L4 20Z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 4 3, auto;
 }
 
 a, button, .site-logo, .top-nav span, .menu-toggle, .design-link {
+    /* 悬停：粉色胖爱心 */
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 12 12, pointer !important;
 }
 
 /* =========================================
-   ✨ 基础设定 & 人物背景图层 ✨
+   ✨ 基础设定 & 引入可爱字体 & 人物背景 ✨
    ========================================= */
 body {
     background-color: #fdf8f9; 
     background-image: linear-gradient(-45deg, #fff0f5, #ffe4e1, #ffd1df, #fff0f5); 
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite; 
+    /* 将 ZCOOL KuaiLe (站酷快乐体) 设为首选字体，全局默认细体 */
     font-family: 'ZCOOL KuaiLe', 'Nunito', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
+    font-weight: normal; 
     margin: 0; padding: 0; color: #4a4a4a; min-height: 100vh; line-height: 1.8; overflow-x: hidden;
 }
 
-/* 新增：人物背景图，固定在右下角 */
+/* ✨ 新增：人物背景图，固定在右下角 ✨ */
 .background-image {
     position: fixed; 
     top: 0; left: 0; 
@@ -44,11 +48,10 @@ body {
     pointer-events: none;
 }
 
-/* 字体变细：取消所有加粗，让快乐体显得更清秀 */
 h1, h2, h3, strong {
     font-family: 'ZCOOL KuaiLe', 'Nunito', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
     color: #2c2c2c; 
-    font-weight: 500; /* 把原来的粗体调成正常/略微偏细 */
+    font-weight: normal; /* 全局取消粗体 */
     letter-spacing: 1px;
 }
 
@@ -69,7 +72,7 @@ h1, h2, h3, strong {
     z-index: 9999;
     transition: opacity 0.6s ease, visibility 0.6s ease;
 }
-.loader-content { text-align: center; color: #d87093; font-weight: normal; font-size: 1.2rem;}
+.loader-content { text-align: center; color: #d87093; font-weight: bold; font-size: 1.2rem;}
 .bounce-ball {
     width: 20px; height: 20px; background-color: #d87093; border-radius: 50%;
     margin: 0 auto 15px auto;
@@ -86,7 +89,7 @@ h1, h2, h3, strong {
 }
 .sakura {
     position: absolute; top: -10%; background: #ffd1df;
-    border-radius: 150% 0 150% 0; 
+    border-radius: 150% 0 150% 0; /* 让它看起来像个花瓣 */
     animation: fall linear infinite, sway ease-in-out infinite alternate;
     opacity: 0.8;
 }
@@ -116,12 +119,16 @@ h1, h2, h3, strong {
 .menu-toggle .bar { width: 25px; height: 3px; background-color: #d87093; transition: 0.3s; border-radius: 2px; }
 
 /* =========================================
-   ✨ 主容器 & 圆润卡片气泡设计 ✨
+   ✨ 主容器 (终极万无一失居中方案) ✨
    ========================================= */
 .page-container { 
-    width: 95%; max-width: 900px; margin: 20px auto 60px auto; padding: 0;
+    width: 95%; max-width: 900px; 
+    margin: 20px auto 60px auto; 
+    padding: 0;
+    /* 终极居中解决方案，防止视觉偏差 */
+    display: flex; flex-direction: column; align-items: center;
 }
-.sub-page { display: none; opacity: 0; }
+.sub-page { display: none; opacity: 0; width: 100%;} /* 确保子页面撑满卡片 */
 .active-page { display: block; animation: fadeUpIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
 @keyframes fadeUpIn { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
@@ -133,22 +140,22 @@ h1, h2, h3, strong {
     padding: 35px 40px; 
     margin-bottom: 30px;
     border: 1px solid rgba(255, 255, 255, 0.5); 
+    width: 100%; /* 卡片宽度铺满父级容器 */
+    box-sizing: border-box;
 }
 
 .header-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
 img.avatar { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(216, 112, 147, 0.3); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .header-name { margin: 0 0 10px 0; font-size: 34px; font-weight: normal; } /* 名字变细一点 */
-.header-subname { font-size: 18px; color: #d87093; margin-left: 8px; font-weight: normal; }
+.header-subname { font-weight: 700; font-size: 18px; color: #d87093; margin-left: 8px; }
 .header-intro { color: #555; max-width: 800px; font-size: 15px; margin-top: 15px;}
 
 /* =========================================
-   ✨ 果冻弹簧动效按钮 (变小、变细、一行排布) ✨
+   ✨ 果冻弹簧动效按钮 (全面瘦身、一行排布) ✨
    ========================================= */
 .site-links { 
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: center; 
+    display: flex; flex-wrap: wrap; justify-content: center; 
     gap: 8px; /* 减小按钮之间的间隙 */
     margin-bottom: 20px; 
 }
@@ -156,7 +163,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     background-color: #fff; color: #d87093; 
     padding: 6px 14px; /* 减小内边距，让按钮变小 */
     font-size: 13px; /* 字体改小 */
-    font-weight: normal; /* 字体变细 */
+    font-weight: normal; /* 取消粗体 */
     border-radius: 20px; text-decoration: none; 
     border: 1px solid rgba(216,112,147,0.3);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -190,6 +197,6 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     .top-nav.active { display: flex; }
     .content-area { padding: 25px 20px; border-radius: 20px;}
     
-    /* 手机端背景图稍微缩小或调整位置以免被挡得太死 */
+    /* 手机端背景图稍微缩小或调整位置以免把内容挡得太死 */
     .background-image { background-position: right 20%; background-size: auto 60%; opacity: 0.6; }
 }
