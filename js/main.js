@@ -1,16 +1,19 @@
 // =========================================
-// 1. 全屏加载动画逻辑 (Loading)
+// 1. 全屏加载动画逻辑 (带超时强制解锁保险机制)
 // =========================================
-window.addEventListener('load', function() {
+function hideLoader() {
     const loader = document.getElementById('loader');
     if(loader) {
-        // 给一点点延迟，让用户能看清可爱的加载动画
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            loader.style.visibility = 'hidden';
-        }, 500); 
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
     }
-});
+}
+
+// 当所有资源(包括图片)加载完毕时隐藏遮罩
+window.addEventListener('load', hideLoader);
+
+// 保险机制：如果网络不好超过 1.5 秒还没加载完，强制隐藏遮罩，防止整个页面卡死变白屏
+setTimeout(hideLoader, 1500);
 
 // =========================================
 // 2. 樱花飘落生成器 (Sakura Falling)
