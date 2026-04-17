@@ -13,7 +13,7 @@ body {
 /* 🌟 背景蒙版，增加高级感 🌟 */
 .bg-mask {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(255, 255, 255, 0.45); /* 半透明白色蒙版过滤掉过艳的颜色 */
+    background-color: rgba(255, 255, 255, 0.45); 
     z-index: -1;
     pointer-events: none;
 }
@@ -31,7 +31,7 @@ h1, h2, h3, .sp-title, strong {
 ::-webkit-scrollbar-thumb:hover { background: #ff9cbd; }
 
 /* =========================================
-   ✨ 导航栏 (Logo 放左边、强制放小) ✨
+   ✨ 导航栏 (Logo 放左边，加入向下滑动隐藏动画) ✨
    ========================================= */
 .nav-wrapper { 
     position: sticky; top: 0; z-index: 100;
@@ -39,13 +39,20 @@ h1, h2, h3, .sp-title, strong {
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     padding: 10px 5%; 
     display: flex; 
-    justify-content: space-between; /* 确保一边在左，一边在右 */
+    justify-content: space-between; 
     align-items: center; 
     border-bottom: 1px solid rgba(216, 112, 147, 0.1);
+    /* 🌟 控制导航栏滑动速度（0.4秒，缓慢而优雅） 🌟 */
+    transition: transform 0.4s cubic-bezier(0.3, 0, 0.2, 1);
+}
+
+/* 🌟 被 JS 触发后，向上滑动隐藏的样式 🌟 */
+.nav-hidden {
+    transform: translateY(-100%);
 }
 
 .site-logo { 
-    height: 55px; /* 🌟 强制将 Logo 放小 🌟 */
+    height: 55px; /* 强制将 Logo 放小 */
     object-fit: contain; cursor: pointer; transition: transform 0.3s ease; 
 }
 .site-logo:hover { transform: scale(1.05); }
@@ -66,7 +73,6 @@ h1, h2, h3, .sp-title, strong {
     width: 95%; 
     max-width: 1000px; /* 变宽 */
     margin: 20px auto 60px auto; 
-    /* 去掉背景、边框、阴影，只排版文字 */
     background: transparent; box-shadow: none; border: none; padding: 0;
 }
 
@@ -117,10 +123,7 @@ img.avatar:hover { transform: scale(1.05) rotate(3deg); }
 /* --- 手机端排版调整 --- */
 @media (max-width: 768px) {
     .nav-wrapper { flex-direction: column; padding: 15px 5%; align-items: center; gap: 5px; }
-    .site-logo { 
-        height: 50px; /* 🌟 手机端也放小 🌟 */
-        margin-bottom: 5px; 
-    }
+    .site-logo { height: 50px; margin-bottom: 5px; } 
     .top-nav { justify-content: center; gap: 10px; }
     .top-nav span { padding: 4px 5px; font-size: 14px; }
     .lang-switch { margin-left: 0; margin-top: 8px; }
