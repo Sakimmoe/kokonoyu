@@ -5,95 +5,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>九重紫 -Jiuchong Zi- 个人主页</title>
     
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <style>
-        /* =========================================
-           ✨ 基础设定 & 背景 ✨
-           ========================================= */
-        body {
-            /* 极简的浅粉灰背景 */
-            background-color: #fdf8f9; 
-            font-family: 'Nunito', 'TsukuBRdGothic-Regular', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
-            margin: 0; 
-            padding: 0;
-            color: #4a4a4a; 
-            min-height: 100vh;
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-        h1, h2, h3, .sp-title, strong {
-            font-family: 'Nunito', 'TsukuBRdGothic-Regular', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
-            color: #2c2c2c; 
-        }
+    <div class="bg-mask"></div>
 
-        /* 粉色滚动条 */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #ffb8d1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #ff9cbd; }
+    <div class="nav-wrapper">
+        <img src="images/logo.png" class="site-logo" onclick="showPage('home-page')" title="Home">
+        
+        <div class="top-nav">
+            <span onclick="showPage('home-page')" data-key="nav_home">首页 / HOME</span>
+            <span onclick="showPage('sponsor-page')" data-key="nav_gift">赞助 / GIFT</span>
+            <span onclick="showPage('commission-page')" data-key="nav_comm">COMMISSION</span>
+            <span onclick="showPage('about-work-page')" data-key="nav_work">关于委托工作</span>
+            <span onclick="showPage('contact-page')" data-key="nav_contact">联系我</span>
+            <span onclick="showPage('about-site-page')" data-key="nav_site">关于本站</span> 
+            
+            <div class="lang-switch">
+                <span class="lang-btn active" onclick="changeLang('cn', this)">CN</span>
+                <span class="lang-btn" onclick="changeLang('jp', this)">JP</span>
+                <span class="lang-btn" onclick="changeLang('en', this)">EN</span>
+            </div>
+        </div>
+    </div>
 
-        /* =========================================
-           ✨ 导航栏 (Logo 在左上角) ✨
-           ========================================= */
-        .nav-wrapper { 
-            position: sticky; 
-            top: 0;
-            z-index: 100;
-            background: rgba(253, 248, 249, 0.9); /* 配合背景颜色的半透明 */
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px);
-            padding: 10px 5%; 
-            display: flex; 
-            justify-content: space-between; /* 魔法：Logo在左，菜单在右 */
-            align-items: center; 
-            border-bottom: 1px solid rgba(216, 112, 147, 0.1);
-        }
+    <div class="page-container">
 
-        /* 🌟 放大 Logo 🌟 */
-        .site-logo { 
-            height: 110px; /* Logo 高度大幅提升 */
-            object-fit: contain;
-            cursor: pointer; 
-            transition: transform 0.3s ease; 
-        }
-        .site-logo:hover { transform: scale(1.05); }
+        <div id="home-page" class="sub-page active-page">
+            
+            <div class="header-content">
+                <img src="images/avatar.jpg" class="avatar">
+                <h1 class="header-name"><span data-key="name">九重紫</span> <span class="header-subname">-Jiuchong Zi-</span></h1>
+                
+                <div class="site-links">
+                    <a href="https://space.bilibili.com/225347042" target="_blank">bilibili</a>
+                    <a href="https://live.bilibili.com/9162799?broadcast_type=0&is_room_feed=1&spm_id_from=333.1387.to_liveroom.0.click&live_from=86002" target="_blank">bilibili/LIVE</a> 
+                    <a href="https://www.youtube.com/@KokonoeYukari" target="_blank">YouTube</a>
+                    <a href="https://twitter.com/Kokonoe_Yukari" target="_blank">X (Twitter)</a>
+                    <a href="https://kokonoe-yukari.fanbox.cc" target="_blank">FANBOX</a>
+                    <a href="https://fantia.jp/fanclubs/246651" target="_blank">Fantia</a>
+                    <a href="https://kokonoeyukari.booth.pm" target="_blank">BOOTH</a>
+                </div>
 
-        .top-nav { display: flex; align-items: center; gap: 25px; flex-wrap: wrap; justify-content: flex-end; }
-        .top-nav span { color: #666; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.2s; position: relative; }
-        .top-nav span:hover { color: #d87093; }
+                <p class="header-intro" data-key="bio">
+                    自2020年开始在国内外活动活动的虚拟主播（VUP）。<br>
+                    自称向往和平的“动画女孩巫女”。除联动，商品介绍，企划参与外，还承接Live2D建模的工作。如果有什么需求请随时联系我。
+                </p>
+            </div>
 
-        /* 语言切换器 */
-        .lang-switch { background-color: #f0eaec; border-radius: 12px; padding: 4px; display: inline-flex; align-items: center; gap: 2px; margin-left: 15px; }
-        .lang-btn { font-size: 12px; color: #888; cursor: pointer; padding: 6px 14px; border-radius: 10px; font-weight: 700; transition: 0.3s; }
-        .lang-btn:hover { color: #d87093; }
-        .lang-btn.active { color: #d87093; background-color: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+            <div class="content-area">
+                <h2 data-key="title_profile">个人档案</h2>
+                <p data-key="p_nick"><strong>昵称：</strong> ここのゆ、のゆ、ゆ</p>
+                <p data-key="p_height"><strong>身高：</strong> 152cm</p>
+                <p data-key="p_zodiac"><strong>星座：</strong> 巨蟹座</p>
+                <p data-key="p_birth"><strong>生日：</strong> 7月22日</p>
+                <p data-key="p_nature"><strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”</p>
+                <p data-key="p_moe"><strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇</p>
+                <p data-key="p_fans"><strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑</p>
+                <p data-key="p_treasure"><strong>最珍视的事物：</strong> 家人与粉丝（听众）</p>
+                <p data-key="p_role"><strong>喜欢的角色：</strong> sirotan</p>
+                <p data-key="p_tag"><strong>主标签：</strong> #ここのゆ</p>
+                <p data-key="p_fanart"><strong>同人图标签：</strong> #ここのゆああと</p>
+                <p class="illustrator-links">
+                    <strong data-key="p_mama">画师妈妈：</strong> 
+                    <a href="https://twitter.com/zo3mie" target="_blank">犬山ななみ</a> / 
+                    <a href="#" target="_blank">ココナツ</a> / 
+                    <a href="#" target="_blank">雲雀ひな</a> / 
+                    <a href="https://twitter.com/kuno_on" target="_blank">クノオ</a> / 
+                    <a href="#" target="_blank">燕小酱</a>
+                </p>
+                <p style="margin-top: 20px;"><strong data-key="p_design">🎨 艺术设计：</strong> <span class="design-link" onclick="showPage('design-page')">点击查看 Design</span></p>
+            </div>
+            
+            <div class="content-area">
+                <h2 data-key="title_story">角色设定</h2>
+                <p data-key="p_story1">几年前因为被来自冥王星的光直击，从人类变成了亚人。现在一边作为 VUP 活动，一边以“代替梦的主人去追寻那些未能实现或被遗忘的梦并予以供养”为生。</p>
+                <p data-key="p_story2">我的梦想是：<strong>能够变得更加闪耀光芒！</strong></p>
+            </div>
 
-        /* =========================================
-           ✨ 主容器 (变宽、去框框) ✨
-           ========================================= */
-        .page-container { 
-            width: 95%; 
-            max-width: 1000px; /* 🌟 整体布局拉宽到 1000px 🌟 */
-            margin: 40px auto 60px auto; 
-            background: transparent; /* 去掉大白框 */
-            box-shadow: none; /* 去掉阴影 */
-            border: none;
-        }
+            <div class="content-area">
+                <h2 data-key="title_intro">主播轶事</h2>
+                <p data-key="val_intro1">直播内容以游戏直播和杂谈为主，偶尔会唱歌和画画。虽然游戏力不高，特别不擅长FPS还会晕3D，但总是非常努力！</p>
+                <p data-key="val_intro2">因为懂得很多本土梗被粉丝称为“整活大师”，还因为能熟练吹奏各种神曲的口哨被弹幕赐号“天哨星”~</p>
+                <p data-key="val_intro3">虽然是个常常发烧的“病弱”体质，但总是坚持带病为大家直播，是个非常宠粉、温柔纯情的“豆腐心”小娘紫哦！</p>
+            </div>
+        </div>
 
-        .sub-page { display: none; opacity: 0; }
-        .active-page { display: block; animation: fadeUpIn 0.5s ease forwards; }
-        @keyframes fadeUpIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        <div id="design-page" class="sub-page content-area">
+            <h2 style="border:none;" data-key="title_design">Character Design</h2>
+            <img src="images/design.jpg" class="design-full-img" alt="Design">
+            <p style="margin-top:30px;">
+                <span class="design-link" onclick="showPage('home-page')" data-key="btn_back">← 返回上一页</span>
+            </p>
+        </div>
 
-        /* 🌟 去掉所有内部卡片的框框 🌟 */
-        .content-area, .header-content, .sponsor-section {
-            background: transparent;
-            box-shadow: none;
-            border: none;
-            padding: 20px 0;
-            margin-bottom: 30px;
-        }
+        <div id="sponsor-page" class="sub-page content-area sponsor-section">
+            <div class="sp-title">Subscription</div><br>
+            <a href="https://kokonoe-yukari.fanbox.cc" target="_blank" class="sp-btn">PIXIVFANBOX / JP</a>
+            <a href="https://afdian.net/" target="_blank" class="sp-btn">爱发电 / CN</a>
+            <p class="sp-desc" data-key="sp_desc1">每月更新一次，发布绘画日记和个人拍摄的照片等。</p>
+            
+            <div class="sp-title">Gift</div><br>
+            <a href="https://fansfer.p-d-l.com/" target="_blank" class="sp-btn">fansfer</a>
+            <a href="https://gipt.net/" target="_blank" class="sp-btn">Gipt</a>
+            <p class="sp-desc" data-key="sp_desc2">可以通过fansfer寄送信件，或通过Gipt赠送愿望清单物品，支持海外与PayPal。</p>
 
-        /* --- 头部排版 --- */
-        .header-content { display: flex; flex-direction: column; align-items: center; text-align: center; border-bottom: 1px dashed rgba(216, 112, 147,
+            <div class="sp-title">Goods</div><br>
+            <a href="https://suzuri.jp/" target="_blank" class="sp-btn">SUZURI</a>
+            <a href="https://skeb.jp/" target="_blank" class="sp-btn">Skeb</a>
+            <a href="https://kokonoeyukari.booth.pm/" target="_blank" class="sp-btn">BOOTH</a>
+            <p class="sp-desc" data-key="sp_desc4">手绘周边、简单插图委托（目前仅接原创角色）以及音频文件出售。</p>
+
+            <div class="sp-title" style="margin-top: 40px;">Guidelines</div>
+            <div class="rules-banner" data-key="rb1">制作和发布九重紫的直播剪辑视频：可以</div>
+            <ul class="rules-list" data-key="rl1">
+                <li>恶意编辑和剪辑禁止。</li>
+                <li>禁止篡改视频发言的意图或表达，造成误解的编辑。</li>
+                <li>禁止任何损害九重紫名誉、人格或信誉的编辑。</li>
+                <li>禁止剪辑YouTube的限定公开直播档案。</li>
+            </ul>
+
+            <div class="rules-banner" data-key="rb2">向插画师委托九重紫的粉丝艺术作品：可以</div>
+            <ul class="rules-list" data-key="rl2">
+                <li>请告知版权拥有者和插图的使用范围（如是否允许商用等）。</li>
+                <li>如果作品包含过度的色情或暴力等敏感内容，可能无法公开或使用。</li>
+                <li>创作者的业绩展示是允许的，请尽量避免给创作者带来困扰。</li>
+            </ul>
+        </div>
+
+        <div id="commission-page" class="sub-page content-area">
+            <h2 data-key="nav_comm">委托工作 (COMMISSION)</h2>
+            <p data-key="p_coming1">模块构建中...</p>
+        </div>
+
+        <div id="about-work-page" class="sub-page content-area">
+            <h2 data-key="nav_work">关于委托工作</h2>
+            <p data-key="p_coming2">模块构建中...</p>
+        </div>
+
+        <div id="contact-page" class="sub-page content-area">
+            <h2 data-key="nav_contact">联系我</h2>
+            <p data-key="p_coming3">模块构建中...</p>
+        </div>
+
+        <div id="about-site-page" class="sub-page content-area">
+            <h2 data-key="nav_site">关于本站</h2>
+            <p data-key="site_p1">你好！欢迎来到这里。这是一个由粉丝用爱发电、自发搭建的<strong>非官方个人主页</strong>。</p>
+            <h3 data-key="site_h1">搭建初衷</h3>
+            <p data-key="site_p2">作为一名一直关注着九重紫（のゆ）的粉丝，我被她温柔的声音、可爱的性格以及向往和平的“豆腐心”深深打动。为了能让更多人方便地了解她、找到她的各种官方社交媒体和支持渠道，我制作了这个简单的网页。希望能尽自己的一份绵薄之力，让更多人看到正在闪耀光芒的她！</p>
+            <h3 data-key="site_h2">关于我</h3>
+            <p data-key="site_p3">我只是一名普通的粉丝，如果你也喜欢九重紫，或者对这个网页的排版有什么建议，欢迎来 B站 找我玩：<br>👉 <a href="https://space.bilibili.com/17276?spm_id_from=333.976.0.0" target="_blank" class="design-link" style="border:none;">点击访问我的 Bilibili 个人主页</a></p>
+            <div class="disclaimer-box" data-key="site_box">
+                <strong>⚠️ 版权与免责声明</strong><br><br>1. 本网站内所使用的<strong>所有美术素材、图片、Logo、背景故事及设定等内容，版权均归主播 <a href="https://kokonoeyukari.my.canva.site/" target="_blank">九重紫（Kokonoe Yukari）</a> 及其合作画师所有。</strong><br>2. 本站仅作粉丝安利与导航整理用途，没有任何商业盈利目的。<br>3. 如果本站的内容有任何侵权或不妥之处，请随时通过上方 B 站链接私信联系我，我会在第一时间配合修改或删除。
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>
