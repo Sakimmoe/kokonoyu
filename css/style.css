@@ -1,142 +1,125 @@
 /* =========================================
-   ✨ Laplace Style: Modern Minimalist UI
+   ✨ 基础设定 & 蒙版背景 ✨
    ========================================= */
-
-/* --- 🌟 背景蒙版 🌟 --- */
-.background-mask {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.03); /* 柔和、带有纹理的半透明蒙版 */
-    z-index: -1; /* 保证在所有内容之下 */
-}
-
 body {
-    background-color: #fbf9fa; /* 极度清爽的浅灰粉背景，护眼且现代 */
-    font-family: 'Nunito', 'TsukuBRdGothic-Regular', 'Yuanti SC', 'YouYuan', 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
-    margin: 0; 
-    padding: 0;
-    color: #4a4a4a; /* 文字采用柔和的深灰色 */
-    text-align: left; 
-    min-height: 100vh;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden; /* 防止樱花飘落产生横向滚动条 */
+    background-color: #fdf8f9; 
+    background-image: linear-gradient(-45deg, #fff0f5, #ffe4e1, #ffd1df, #fff0f5); 
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite; 
+    font-family: 'Nunito', 'TsukuBRdGothic-Regular', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
+    margin: 0; padding: 0; color: #4a4a4a; min-height: 100vh; line-height: 1.8; overflow-x: hidden;
 }
 
-h1, h2, h3, .sp-title, .header-name, .design-link, strong {
-    font-family: 'Nunito', 'TsukuBRdGothic-Regular', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
-    color: #2c2c2c; /* 标题颜色更深，增加对比度 */
+/* 🌟 背景蒙版，增加高级感 🌟 */
+.bg-mask {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(255, 255, 255, 0.45); /* 半透明白色蒙版过滤掉过艳的颜色 */
+    z-index: -1;
+    pointer-events: none;
 }
+
+h1, h2, h3, .sp-title, strong {
+    font-family: 'Nunito', 'TsukuBRdGothic-Regular', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
+    color: #2c2c2c; 
+}
+
+@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
-::-webkit-scrollbar-thumb { background: #d87093; border-radius: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ffb8d1; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: #ff9cbd; }
 
-/* --- 🌟 悬浮吸顶导航栏 (Sticky Header) & 突出LOGO 🌟 --- */
+/* =========================================
+   ✨ 导航栏 (Logo 放左边、变大) ✨
+   ========================================= */
 .nav-wrapper { 
-    position: sticky; 
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.85); 
-    backdrop-filter: blur(12px); 
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0,0,0,0.05); 
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(253, 248, 249, 0.85); 
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     padding: 10px 5%; 
     display: flex; 
-    flex-direction: column; /* 将LOGO和导航垂直排列 */
-    align-items: center; /* 居中对齐所有内容 */
-    gap: 10px; /* 增加LOGO和导航之间的间距 */
-}
-
-.nav-brand {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    justify-content: space-between; /* 确保一边在左，一边在右 */
+    align-items: center; 
+    border-bottom: 1px solid rgba(216, 112, 147, 0.1);
 }
 
 .site-logo { 
-    height: 70px; /* 在功能描述中强调使LOGO更突出 */
-    cursor: pointer; 
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-    filter: drop-shadow(0 4px 6px rgba(216, 112, 147, 0.15)); /* 增加LOGO阴影使其更立体 */
+    height: 110px; /* 🌟 强制放大 Logo 🌟 */
+    object-fit: contain; cursor: pointer; transition: transform 0.3s ease; 
 }
-.site-logo:hover { transform: scale(1.08) rotate(-2deg); } 
+.site-logo:hover { transform: scale(1.05); }
 
-.top-nav { 
-    display: flex; 
-    align-items: center; 
-    gap: 15px; /* 减小导航链接之间的间距 */
-    flex-wrap: wrap; /* 允许在小屏幕上换行 */
-    justify-content: center; /* 居中对齐所有内容 */
-    width: 100%;
-}
-
-.top-nav span { 
-    color: #666; 
-    font-size: 14px; 
-    font-weight: 700; 
-    cursor: pointer; 
-    transition: color 0.2s ease; 
-    position: relative; 
-    padding: 5px 0; /* 增加点击区域 */
-}
+.top-nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: flex-end; }
+.top-nav span { color: #666; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.2s; position: relative; }
 .top-nav span:hover { color: #d87093; }
 
-/* 突出“首页”链接 */
-.nav-home-link {
-    color: #d87093 !important; /* 使其具有视觉强调 */
-    font-weight: 800 !important;
-}
-
-.top-nav span::after { 
-    content: ''; 
-    position: absolute; 
-    width: 0; 
-    height: 2px; 
-    bottom: -2px; 
-    left: 0; 
-    background-color: #ff9cbd; 
-    transition: width 0.3s ease; 
-}
-.top-nav span:hover::after { width: 100%; }
-
-/* --- 胶囊式语言切换器 (Segmented Control) --- */
-.lang-switch { 
-    background-color: #f0f0f0; 
-    border-radius: 12px; 
-    padding: 4px; 
-    display: inline-flex; 
-    align-items: center;
-    gap: 2px;
-}
-.lang-btn { 
-    font-size: 12px; color: #888; cursor: pointer; padding: 6px 14px; border-radius: 10px; font-weight: 700; transition: all 0.3s ease; 
-}
+.lang-switch { background-color: #f0eaec; border-radius: 12px; padding: 4px; display: inline-flex; align-items: center; gap: 2px; margin-left: 10px; }
+.lang-btn { font-size: 12px; color: #888; cursor: pointer; padding: 6px 14px; border-radius: 10px; font-weight: 700; transition: 0.3s; }
 .lang-btn:hover { color: #d87093; }
-.lang-btn.active { color: #d87093; background-color: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.lang-btn.active { color: #d87093; background-color: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 
-/* --- 3. 页面主容器 --- */
-.page-container { width: 92%; max-width: 800px; margin: 40px auto 60px auto; }
+/* =========================================
+   ✨ 主容器 (整体变宽、去白框) ✨
+   ========================================= */
+.page-container { 
+    width: 95%; 
+    max-width: 1000px; /* 🌟 变宽 🌟 */
+    margin: 20px auto 60px auto; 
+    /* 🌟 去掉背景、边框、阴影 🌟 */
+    background: transparent; box-shadow: none; border: none; padding: 0;
+}
 
 .sub-page { display: none; opacity: 0; }
-.active-page { display: block; animation: fadeUpIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-@keyframes fadeUpIn { 0% { opacity: 0; transform: translateY(25px); } 100% { opacity: 1; transform: translateY(0); } }
+.active-page { display: block; animation: fadeUpIn 0.5s ease forwards; }
+@keyframes fadeUpIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
-/* --- 4. 核心：模块化卡片 (Card UI) --- */
-.card {
-    background-color: #ffffff; 
-    border-radius: 20px; 
-    padding: 35px 40px; 
-    margin-bottom: 25px; 
-    box-shadow: 0 4px 24px rgba(0,0,0,0.03); /* 极其柔和的高级阴影 */
-    border: 1px solid rgba(0,0,0,0.015);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* 去掉内部多余的框框限制 */
+.content-area, .header-content, .sponsor-section {
+    background: transparent; box-shadow: none; border: none;
+    padding: 20px 0; margin-bottom: 30px;
 }
 
-.card:hover { transform: translateY(-3px); box-shadow: 0 10px 35px rgba(216,112,147,0.08); }
+/* --- 内容排版细节 --- */
+.header-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; border-bottom: 1px dashed rgba(216, 112, 147, 0.3); padding-bottom: 30px; }
+img.avatar { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; transition: 0.4s; }
+img.avatar:hover { transform: scale(1.05) rotate(3deg); }
+.header-name { margin: 0 0 10px 0; font-size: 36px; font-weight: 900; }
+.header-subname { font-weight: 700; font-size: 18px; color: #d87093; margin-left: 8px; }
+.header-intro { color: #555; max-width: 800px; font-size: 15px; }
 
-.header-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
-img.avatar { 
-    width: 130px; height: 130px; border-radius: 50%; object-fit: cover; 
-    box-shadow:
+.site-links { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px; margin-bottom: 20px; }
+.site-links a { 
+    background-color: #fff; color: #d87093; padding: 8px 20px; 
+    font-size: 14px; font-weight: 700; border-radius: 25px; 
+    transition: 0.2s; text-decoration: none; 
+    border: 1px solid rgba(216,112,147,0.2);
+}
+.site-links a:hover { background-color: #d87093; color: white; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(216, 112, 147, 0.2); }
+
+.content-area h2 { color: #d87093; margin-bottom: 20px; font-size: 24px; font-weight: 800; border-left: 5px solid #d87093; padding-left: 15px; }
+.content-area p { margin-bottom: 12px; font-size: 15px; }
+        
+.design-link { color: #d87093; font-weight: 800; cursor: pointer; text-decoration: none; border-bottom: 2px solid #ffb8d1; transition: 0.2s; padding-bottom: 2px; }
+.design-link:hover { color: #ff8fb8; border-bottom-color: #ff8fb8; }
+.design-full-img { width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: block; margin: 0 auto; }
+
+/* --- 赞助页 --- */
+.sp-title { font-size: 26px; color: #333; font-weight: 900; margin-top: 30px; margin-bottom: 20px; text-transform: uppercase; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; display: inline-block;}
+.sp-btn { display: inline-block; background-color: #fff; color: #4a5568 !important; padding: 12px 35px; font-size: 15px; font-weight: 700; border-radius: 25px; margin: 8px 5px; text-decoration: none; transition: 0.2s; border: 2px solid #e2e8f0; }
+.sp-btn:hover { background-color: #4a5568; color: #fff !important; border-color: #4a5568; transform: translateY(-3px); }
+.sp-desc { color: #777; font-size: 14px; margin-top: 10px; margin-bottom: 40px; }
+        
+.rules-banner { background-color: #fff; color: #d87093; padding: 15px 20px; border-radius: 12px; font-size: 16px; font-weight: 800; border-left: 5px solid #d87093; margin: 0 auto 15px auto; width: 100%; box-sizing: border-box; text-align: left; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.rules-list { text-align: left; width: 95%; margin: 0 auto 40px auto; color: #555; font-size: 15px; line-height: 1.9; }
+.disclaimer-box { background-color: #fff; padding: 20px; border-radius: 12px; border-top: 4px solid #ff9cbd; font-size: 14px; color: #666; margin-top: 30px; line-height: 1.8; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+
+@media (max-width: 768px) {
+    .nav-wrapper { flex-direction: column; padding: 15px 5%; align-items: center; }
+    .site-logo { height: 90px; margin-bottom: 10px; }
+    .top-nav { justify-content: center; }
+    .lang-switch { margin-left: 0; margin-top: 10px; }
+    .header-content { align-items: center; text-align: center; }
+    .site-links { justify-content: center; }
+    .sp-btn { width: 80%; box-sizing: border-box; }
+}
