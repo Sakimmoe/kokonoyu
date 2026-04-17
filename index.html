@@ -8,9 +8,18 @@
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div id="loader">
+        <div class="loader-content">
+            <div class="bounce-ball"></div>
+            <p>Kokonoyu 正在努力加载中...</p>
+        </div>
+    </div>
+
+    <div id="sakura-container"></div>
 
     <div class="bg-mask"></div>
 
@@ -33,7 +42,7 @@
 
         <div id="home-page" class="sub-page active-page">
             
-            <div class="header-content">
+            <div class="content-area header-content">
                 <img src="images/avatar.jpg" class="avatar" alt="Avatar">
                 <h1 class="header-name">九重紫 <span class="header-subname">-Jiuchong Zi-</span></h1>
                 
@@ -71,7 +80,7 @@
                     <a href="https://x.com/faitescoco" target="_blank" class="design-link" style="border:none;">ココナツ</a> / 
                     <a href="https://www.pixiv.net/users/2783388?_gl=1*j66of9*_ga*MTU3NDgyMzA4Ny4xNjg4MDU3NjM1*_ga_D9TLP3EFER*MTY5MzIzODM5OC4xOS4xLjE2OTMyMzk2MjQuNjAuMC4w" target="_blank" class="design-link" style="border:none;">雲雀ひな</a> / 
                     <a href="https://x.com/kuno_on" target="_blank" class="design-link" style="border:none;">クノオ</a> / 
-                    <a href="https://www.mihuashi.com/profiles/248757?role=painter" target="_blank" class="design-link" style="border:none;">燕小酱</a>
+                    <a href="#" target="_blank" class="design-link" style="border:none;">燕小酱</a>
                 </p>
                 <p style="margin-top: 20px;"><strong>🎨 艺术设计：</strong> <span class="design-link" onclick="showPage('design-page')">点击查看 Design</span></p>
             </div>
@@ -140,7 +149,7 @@
 
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
