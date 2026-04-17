@@ -1,20 +1,16 @@
-// =========================================
-// 🌐 中日英多语言大词典 🌐
-// =========================================
 const langDict = {
     cn: {
         nav_home: "首页 / HOME", nav_gift: "赞助 / GIFT", nav_comm: "COMMISSION", nav_work: "关于委托工作", nav_contact: "联系我", nav_site: "关于本站", name: "九重紫",
-        bio: "自2020年开始在国内外活动活动的虚拟主播（VUP）。<br>自称向往和平的“动画女孩巫女”。除联动，商品介绍，企划参与外，还承接Live2D建模的工作。如果有什么需求请随时联系我。",
+        bio: "通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。",
         title_profile: "个人档案",
         p_nick: "<strong>昵称：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身高：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 巨蟹座", p_birth: "<strong>生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”", p_moe: "<strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇", p_fans: "<strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑", p_treasure: "<strong>最珍视的事物：</strong> 家人与粉丝（听众）", p_role: "<strong>喜欢的角色：</strong> sirotan", p_tag: "<strong>主标签：</strong> #ここのゆ", p_fanart: "<strong>同人图标签：</strong> #ここのゆああと", p_mama: "画师妈妈：",
         p_design: "<strong>🎨 艺术设计：</strong> <span class='design-link' onclick=\"showPage('design-page')\">点击查看 Design</span>",
-        title_story: "角色设定",
-        p_story1: "几年前因为被来自冥王星的光直击，从人类变成了亚人。现在一边作为 VUP 活动，一边以“代替梦的主人去追寻那些未能实现或被遗忘的梦并予以供养”为生。",
-        p_story2: "我的梦想是：<strong>能够变得更加闪耀光芒！</strong>",
-        title_intro: "主播轶事",
-        val_intro1: "直播内容以游戏直播和杂谈为主，偶尔会唱歌和画画。虽然游戏力不高，特别不擅长FPS还会晕3D，但总是非常努力！",
-        val_intro2: "因为懂得很多本土梗被粉丝称为“整活大师”，还因为能熟练吹奏各种神曲的口哨被弹幕赐号“天哨星”~",
-        val_intro3: "虽然是个常常发烧的“病弱”体质，但总是坚持带病为大家直播，是个非常宠粉、温柔纯情的“豆腐心”小娘紫哦！",
+        title_activity: "直播内容 - 活动内容",
+        val_activity: "<p>基本是游戏直播和杂谈，有时候会唱歌和画画。</p><p>游戏直播以RPG为主，不过会尝试各种不同类型的游戏。</p><p>游戏力水平比较低，含有杀戮，犯罪，欺骗的游戏基本都不擅长。特别不擅长FPS，会晕3D。</p><p>没有字幕组，自己制作视频和整活（现已成立自己的字幕组）。</p>",
+        title_personal: "个人相关",
+        val_personal: "<ul class='info-list'><li><strong>啊加嘛似嘛似：</strong>紫老师常用“啊加嘛似嘛似（あじゃますます）”表达感谢。完整的表达通常会在后面加上“ありがとうにゃん 谢谢”。</li><li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常是发烧。目前带病直播几乎是常态。</li><li><strong>简称：</strong>紫老师全名 ここのえゆかり ⇒ ここのゆ ⇒ のゆ ⇒ ゆ。一般简称到ここのゆ，直播待机结束画面说的也是ここのゆ。</li><li><strong>整活大师：</strong>熟悉本土各种梗，经常会做视频将梗运用到极致，常整得一手好活。自称所有的梗都是从萌娘百科看明白的。很多视频鉴赏回当场一脸懵逼，但第二天就玩得66的。可怕的吸收能力。</li><li><strong>天哨星：</strong>紫老师直播吹得一手好口哨，能熟练吹出《好汉歌》、《Never Gonna Give You Up》等歌曲，弹幕曾在水浒回赐号：天哨星。紫老师便是这108将的第109人。</li><li><strong>字幕组校对：</strong>紫老师曾在oto字幕组当校对。你永远不知道自己推的女人在干什么。</li><li><strong>理工男气质：</strong>紫老师礼貌、努力、懂事，做事一板一眼，颇有理工男气质。</li></ul>",
+        title_meme: "相关梗",
+        val_meme: "<ul class='info-list'><li><strong>秦始皇/兵马俑：</strong>首次出现在《三句话把我骗到了bilibili》。原梗为早期电信诈骗：“我是秦始皇，现在给我打钱，我起势了封你做大官”。因为视频中出现了“秦始皇让兵马俑给我点了158000次赞”，所以阿紫的粉丝玩此梗时便自称为兵马俑。</li><li><strong>紫细胞：</strong>在直播中抓获某位粉丝的DD行为时，该粉丝自称：推其他人都是我的细胞自己分裂出去的，我是阿紫的单推人。因为此行为类似细胞分裂，所以粉丝玩此梗时会自称是紫细胞。</li><li><strong>平和族/变态族：</strong>粉丝名称一开始为和平族，后因为觉得比起世界和平，更希望粉丝们能内心平和，因此改名为平和族。但是经常会有粉丝做出一些hentai的发言/行为，这部分粉丝被称为变态族。</li><li><strong>男孩紫：</strong>出现于《日本小巫女看王迅找茬》。其中的白发紫在被找茬后，反怼对方说自己是男孩子。DD狂喜：那不是更好。</li><li><strong>粉丝握手会：</strong>在粉丝握手会的直播中，玩起了VR打僵尸（DD）游戏。僵尸（DD）们前来和阿紫握手，被阿紫热烈款待（DD爆头）。</li><li><strong>×重紫：</strong>直播间的当前人气排名是第几名就是几重紫（如当前排名第一就是一重紫）。此梗出自修仙小说体系中表示修仙者能力的层数。</li><li><strong>旧重紫：</strong>通常指初代模型，也可用于形容阿紫比较老的直播内容或动态。</li></ul>",
         title_design: "Character Design", btn_back: "← 返回上一页",
         sp_desc1: "每月更新一次，发布绘画日记和个人拍摄的照片等。", sp_desc2: "可以通过fansfer寄送信件，或通过Gipt赠送愿望清单物品，支持海外与PayPal。", sp_desc4: "手绘周边、简单插图委托（目前仅接原创角色）以及音频文件出售。",
         rb1: "制作和发布九重紫的直播剪辑视频：可以", rl1: "<li>恶意编辑和剪辑禁止。</li><li>禁止篡改视频发言的意图或表达，造成误解的编辑。</li><li>禁止任何损害九重紫名誉、人格或信誉的编辑。</li><li>禁止剪辑YouTube的限定公开直播档案。</li>",
@@ -24,17 +20,16 @@ const langDict = {
     },
     jp: {
         nav_home: "ホーム / HOME", nav_gift: "支援 / GIFT", nav_comm: "依頼", nav_work: "お仕事について", nav_contact: "連絡先", nav_site: "このサイトについて", name: "ここのえゆかり",
-        bio: "2020年からVTuber（VUP）として国内外で活動中。<br>平和を愛する自称「アニメガール巫女」。コラボや商品紹介のほか、Live2Dモデリングも承っております。お気軽にお問い合わせください。",
+        bio: "誰かが生前に叶えられなかった夢を追体験して供養し、自身の寿命を延ばしている亜人。<br>数年前までは人間だったが、現在は亜人の姿で存在している。<br>自称「最も清楚な平和族」。皆が平和に過ごし、誰もが同じ世界で幸せに暮らせることを夢見ている。<br>その目標のために日々活動を頑張っている。",
         title_profile: "プロフィール",
         p_nick: "<strong>ニックネーム：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身長：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 蟹座", p_birth: "<strong>誕生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 物腰が柔らかく真面目、少し臆病で素直な「豆腐メンタル」", p_moe: "<strong>萌え属性：</strong> 癒やし系、巫女、亜人、病弱、ツンデレ", p_fans: "<strong>ファンネーム：</strong> 平和族 / 一家紫 / 紫細胞 / 兵馬俑", p_treasure: "<strong>大切にしているもの：</strong> 家族、ファン（リスナー様）", p_role: "<strong>好きなキャラ：</strong> しろたん", p_tag: "<strong>メインタグ：</strong> #ここのゆ", p_fanart: "<strong>ファンアートタグ：</strong> #ここのゆああと", p_mama: "絵師ママ：",
         p_design: "<strong>🎨 キャラクターデザイン：</strong> <span class='design-link' onclick=\"showPage('design-page')\">Designを見る</span>",
-        title_story: "キャラクター設定",
-        p_story1: "数年前に冥王星からの光が直撃したことで人間から亜人になりました。現在はVUPとして活動しながら、叶えられなかった夢や忘れられた夢を代わりに追体験し、供養する仕事をしています。",
-        p_story2: "私の夢は：<strong>もっと大きく光り輝くこと！</strong>",
-        title_intro: "配信エピソード",
-        val_intro1: "配信はゲームと雑談がメインで、たまに歌やイラストも。FPSや3D酔いには弱いですが、いつも一生懸命です！",
-        val_intro2: "ネットミームに詳しく「ネタ職人」と呼ばれたり、口笛が上手で「天哨星」の異名を持ったりします。",
-        val_intro3: "よく熱を出す「病弱」体質ですが、リスナー想いで純情な優しい「豆腐メンタル」です！",
+        title_activity: "配信内容",
+        val_activity: "<p>基本はゲーム配信と雑談、たまに歌枠やお絵描き。</p><p>ゲームはRPGを中心に、様々なジャンルに挑戦する。</p><p>ゲームスキルは低めで、殺戮、犯罪、騙し合いのあるゲームは苦手。特にFPSは苦手で3D酔いしやすい。</p><p>以前は字幕組がなく、自ら動画制作やネタ作りを行っていた（現在は公式字幕組が設立されている）。</p>",
+        title_personal: "パーソナル情報",
+        val_personal: "<ul class='info-list'><li><strong>あじゃますます：</strong>感謝を伝える際によく使う言葉。後に「ありがとうにゃん」を続けることが多い。</li><li><strong>病弱：</strong>1〜2ヶ月に一度体調を崩し、よく熱を出す。現在では病み上がり配信がほぼ日常茶飯事。</li><li><strong>略称：</strong>ここのえゆかり ⇒ ここのゆ ⇒ のゆ ⇒ ゆ。一般的には「ここのゆ」と呼ばれ、待機画面でもそう名乗っている。</li><li><strong>ネタ職人（整活大師）：</strong>中国のネットミームに精通しており、動画でよく使いこなす。吸収力が凄まじい。</li><li><strong>天哨星：</strong>配信で口笛を吹くのが上手く、「天哨星」というあだ名が付けられた。</li><li><strong>字幕組校対：</strong>かつてoto字幕組で校正を担当していた。</li><li><strong>理系男子気質：</strong>礼儀正しく、努力家で物事をきっちりこなす理系男子のような一面がある。</li></ul>",
+        title_meme: "関連ミーム",
+        val_meme: "<ul class='info-list'><li><strong>始皇帝/兵馬俑：</strong>詐欺ミームが元ネタ。動画で「始皇帝が兵馬俑にいいねを押させた」と言ったことから、ファンが兵馬俑を自称するように。</li><li><strong>紫細胞：</strong>DD（複数推し）行為がバレたファンが「他の推しは自分の細胞が分裂したもの」と言い訳したことから。</li><li><strong>平和族/変態族：</strong>ファンネームは平和族だが、変態的な発言をするファンは「変態族」と呼ばれる。</li><li><strong>男の子紫：</strong>動画内で「僕は男の子だよ」と反論したことから。DD歓喜。</li><li><strong>ファン握手会：</strong>VRゾンビゲームで近づいてくるゾンビ（DD）をヘッドショットすること（熱烈な歓迎）。</li><li><strong>×重紫：</strong>配信の現在人気ランキング順位＝×重紫（1位なら一重紫）。</li><li><strong>旧重紫：</strong>初期モデルや、昔の配信コンテンツを指す言葉。</li></ul>",
         title_design: "Character Design", btn_back: "← 戻る",
         sp_desc1: "毎月更新。お絵描き日記や限定写真などを公開しています。", sp_desc2: "fansferを通じてプレゼントを送れます。PayPalやクレジットカード決済に対応しています。", sp_desc4: "描き下ろしグッズ、Skebアイコン依頼（現在は一次創作のみ）、ボイスデータの販売。",
         rb1: "切り抜き動画の制作・投稿：許可", rl1: "<li>悪意のある編集や切り抜きは禁止です。</li><li>発言の意図を歪める編集は禁止です。</li><li>名誉や信用を損なう編集は禁止です。</li><li>YouTubeの限定公開アーカイブの切り抜きは禁止です。</li>",
@@ -44,17 +39,16 @@ const langDict = {
     },
     en: {
         nav_home: "Home", nav_gift: "Support/GIFT", nav_comm: "COMMISSION", nav_work: "About Work", nav_contact: "Contact", nav_site: "About Site", name: "Kokonoe Yukari",
-        bio: "Active globally as a VTuber (VUP) since 2020.<br>A self-proclaimed peace-loving 'Anime Girl Miko'. I do collabs, promotions, and Live2D modeling. Please feel free to contact me for work.",
+        bio: "A demi-human who extends her own lifespan by reliving and fulfilling the unachieved dreams of the deceased to help them rest in peace.<br>She was human a few years ago but now exists as a demi-human.<br>A self-proclaimed 'purest Peace Tribe member,' dreaming of a world where everyone can live together peacefully and happily.<br>She works hard towards this goal.",
         title_profile: "Profile",
         p_nick: "<strong>Nickname:</strong> Kokonoyu, Noyu, Yu", p_height: "<strong>Height:</strong> 152cm", p_zodiac: "<strong>Zodiac:</strong> Cancer", p_birth: "<strong>Birthday:</strong> July 22", p_nature: "<strong>Personality:</strong> Gentle, serious, slightly timid, honest 'Tofu Heart'.", p_moe: "<strong>Traits:</strong> Healing, Miko, Demi-human, Frail", p_fans: "<strong>Fan Name:</strong> Heiwa-zoku / Ikka-zi", p_treasure: "<strong>Treasure:</strong> Family & Fans", p_role: "<strong>Fav Character:</strong> Sirotan", p_tag: "<strong>Main Tag:</strong> #ここのゆ", p_fanart: "<strong>Fanart Tag:</strong> #ここのゆああと", p_mama: "Artist: ",
         p_design: "<strong>🎨 Character Design:</strong> <span class='design-link' onclick=\"showPage('design-page')\">View Design</span>",
-        title_story: "Character Lore",
-        p_story1: "Years ago, I turned from human to demi-human after being hit by a light from Pluto. Now working as a VUP, my job is to perform rituals for forgotten or unfulfilled dreams by reliving them.",
-        p_story2: "My dream is: <strong>To grow big and shine brightly!</strong>",
-        title_intro: "Stream Trivia",
-        val_intro1: "Streams mostly consist of chatting and games, with occasional singing and drawing. Weak against FPS games and 3D motion sickness, but always tries her best!",
-        val_intro2: "Known as a 'Meme Master' and earned the title 'Whistling Star' for her great whistling skills.",
-        val_intro3: "Despite her 'frail' constitution, she always insists on streaming for everyone, and deeply cares for her fans with her gentle 'Tofu Heart'!",
+        title_activity: "Stream Content",
+        val_activity: "<p>Mainly streams games and chatting, occasionally singing and drawing.</p><p>Game streams mostly focus on RPGs, but she tries various genres.</p><p>Her gaming skills are relatively low. She is bad at games involving killing, crime, or deception. She is especially bad at FPS games and gets 3D motion sickness.</p><p>Previously had no translation group and made her own meme videos (now has an official translation group).</p>",
+        title_personal: "Personal Trivia",
+        val_personal: "<ul class='info-list'><li><strong>Ajyamasumasu:</strong> Frequently uses this phrase to express thanks, often followed by 'Arigato Nyan'.</li><li><strong>Frail:</strong> Gets sick about every 1-2 months, usually with a fever. Streaming while recovering is almost the norm.</li><li><strong>Nickname:</strong> Kokonoe Yukari ⇒ Kokonoyu ⇒ Noyu ⇒ Yu. Generally shortened to Kokonoyu.</li><li><strong>Meme Master:</strong> Extremely familiar with local memes and uses them brilliantly in her videos. Learns scary fast.</li><li><strong>Whistling Star:</strong> Great at whistling during streams. Fans gave her the title 'Whistling Star' (Tian Shao Xing).</li><li><strong>Proofreader:</strong> Once worked as a proofreader for a translation group.</li><li><strong>STEM Boy Vibe:</strong> Polite, hardworking, sensible, and does things very systematically.</li></ul>",
+        title_meme: "Related Memes",
+        val_meme: "<ul class='info-list'><li><strong>Qin Shi Huang / Terracotta:</strong> From a scam meme. Fans call themselves Terracotta Warriors.</li><li><strong>Purple Cell:</strong> From a fan caught multi-tracking who claimed other fans were just their split cells.</li><li><strong>Peace Tribe / Hentai Tribe:</strong> Official fan name is Peace Tribe, but those who post unhinged comments are called Hentai Tribe.</li><li><strong>Boy Zi:</strong> Claimed to be a boy in a video. Fans rejoiced.</li><li><strong>Fan Handshake Event:</strong> Headshotting zombies (fans) in a VR game.</li><li><strong>× Chong Zi:</strong> Her current popularity rank determines her 'Chong' multiplier (e.g., Rank 1 = 1 Chong Zi).</li><li><strong>Old Chong Zi:</strong> Refers to her original Live2D model or older content.</li></ul>",
         title_design: "Character Design", btn_back: "← Back",
         sp_desc1: "Updated monthly. Drawing diaries and exclusive photos.", sp_desc2: "Send gifts/letters via fansfer or Gipt. Overseas shipping & PayPal accepted.", sp_desc4: "Selling hand-drawn merchandise, simple icons via Skeb, and Voice data.",
         rb1: "Making & posting clips: Allowed", rl1: "<li>Malicious editing is strictly prohibited.</li><li>Do not alter the intent of the speech.</li><li>No content that damages reputation.</li><li>Do not clip unlisted YouTube streams.</li>",
@@ -64,7 +58,6 @@ const langDict = {
     }
 };
 
-// 切换语言
 function changeLang(lang, element) {
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     if(element) element.classList.add('active');
@@ -77,7 +70,6 @@ function changeLang(lang, element) {
     });
 }
 
-// 切换页面
 function showPage(pageId) {
     var pages = document.getElementsByClassName('sub-page');
     for (var i = 0; i < pages.length; i++) {
@@ -86,34 +78,23 @@ function showPage(pageId) {
     var targetPage = document.getElementById(pageId);
     void targetPage.offsetWidth; 
     targetPage.classList.add('active-page');
-    
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// =========================================
-// 🌟 智能导航栏：向下滑动缓慢消失，向上滑动出现 🌟
-// =========================================
+// 智能吸顶导航栏
 let lastScrollTop = 0; 
-
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.nav-wrapper');
-    if (!navbar) return; // 确保找到了导航栏
-    
+    if (!navbar) return;
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    // 如果滑到了最顶部，强制显示导航栏
     if (scrollTop <= 0) {
         navbar.classList.remove('nav-hidden');
         return;
     }
-
-    // 向下滑动超过80px时，缓慢隐藏
     if (scrollTop > lastScrollTop && scrollTop > 80) {
         navbar.classList.add('nav-hidden');
     } else {
-        // 向上滑动，立刻重新显示
         navbar.classList.remove('nav-hidden');
     }
-    
     lastScrollTop = scrollTop;
 });
