@@ -80,7 +80,7 @@ h1, h2, h3, strong {
    ========================================= */
 .nav-wrapper { 
     position: sticky; top: 0; z-index: 100; background: rgba(253, 248, 249, 0.85); 
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); /* 兼容移动端 */
     padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; 
     border-bottom: 1px solid rgba(216, 112, 147, 0.1); transition: transform 0.4s cubic-bezier(0.3, 0, 0.2, 1);
 }
@@ -119,7 +119,10 @@ h1, h2, h3, strong {
 @keyframes fadeUpIn { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
 .content-area {
-    background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(8px); border-radius: 24px; 
+    background: rgba(255, 255, 255, 0.75); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); /* 兼容移动端毛玻璃效果 */
+    border-radius: 24px; 
     box-shadow: 0 10px 30px rgba(216, 112, 147, 0.15); padding: 35px 40px; margin-bottom: 30px;
     border: 1px solid rgba(255, 255, 255, 0.5); width: 100%; box-sizing: border-box;
 }
@@ -151,10 +154,11 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .design-link:hover { color: #ff8fb8; border-bottom-color: #ff8fb8; transform: translateY(-2px); }
 .design-full-img { width: 100%; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: block; margin: 0 auto; }
 
-/* 优化后的免责声明框：半透明背景 */
+/* 免责声明框：半透明背景 */
 .disclaimer-box { 
     background-color: rgba(255, 255, 255, 0.5); 
     backdrop-filter: blur(4px); 
+    -webkit-backdrop-filter: blur(4px); /* 兼容移动端毛玻璃效果 */
     padding: 20px; 
     border-radius: 16px; 
     border-top: 4px solid #ff9cbd; 
@@ -177,6 +181,9 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     }
     .top-nav.active { display: flex; }
     .content-area { padding: 25px 20px; border-radius: 20px;}
-    .background-image { background-position: center center; background-size: cover; opacity: 0.5; }
+    
+    /* 删除了之前的 opacity: 0.5，让手机端背景也能像电脑端一样清晰透出 */
+    .background-image { background-position: center center; background-size: cover; }
+    
     .lang-switch { margin-left: 0; justify-content: center;}
 }
