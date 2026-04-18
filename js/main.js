@@ -21,7 +21,7 @@ const langDict = {
     },
     jp: {
         nav_home: "ホーム / HOME", nav_site: "このサイトについて", name: "ここのえゆかり",
-        bio: "誰かが生前に叶えられなかった夢を追体験して供養し、自身の寿命を延ばしている亜人。<br>数年前までは人間だったが、現在は亜人の姿で存在している。<br>自称「最も清楚な平和族」。皆が平和に過ごし、誰もが同じ世界で幸せに暮らせることを夢見ている。<br>その目標のために日々活動を頑張っている。",
+        bio: "誰かが生前に叶えられなかった夢を追体験して供養し、自身の寿命を延ばしている亜人。<br>数年前までは人間だったが、惹現在は亜人の姿で存在している。<br>自称「最も清楚な平和族」。皆が平和に過ごし、誰もが同じ世界で幸せに暮らせることを夢見ている。<br>その目標のために日々活動を頑張っている。",
         title_profile: "プロフィール",
         p_nick: "<strong>ニックネーム：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身長：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 蟹座", p_birth: "<strong>誕生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 物腰が柔らかく真面目、少し臆病で素直な「豆腐メンタル」", p_moe: "<strong>萌え属性：</strong> 癒やし系、巫女、亜人、病弱、ツンデレ", p_fans: "<strong>ファンネーム：</strong> 平和族 / 一家紫 / 紫細胞 / 兵馬俑", p_treasure: "<strong>大切にしているもの：</strong> 家族、ファン（リスナー様）", p_role: "<strong>好きなキャラ：</strong> しろたん", p_tag: "<strong>メインタグ：</strong> #ここのゆ", p_fanart: "<strong>ファンアートタグ：</strong> #ここのゆああと", p_mama: "絵師ママ：",
         p_design: "<strong>🎨 キャラクターデザイン：</strong> <span class='design-link' onclick=\"showPage('design-page')\">Designを見る</span>",
