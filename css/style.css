@@ -113,19 +113,24 @@ h1, h2, h3, strong {
    ✨ 主容器 (居中布局) ✨
    ========================================= */
 .page-container { width: 95%; max-width: 900px; margin: 20px auto 60px auto; padding: 0; display: flex; flex-direction: column; align-items: center; }
-.sub-page { display: none; opacity: 0; width: 100%;}
+
+/* 将 will-change 放入子页面，提醒浏览器提前准备GPU加速 */
+.sub-page { display: none; opacity: 0; width: 100%; will-change: transform, opacity; }
 .active-page { display: block; animation: fadeUpIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
 
-/* 🔥 重点修复：在100%时去除transform，防止手机端iOS滤镜失效冲突 🔥 */
+/* 🔥 终极修复方案：100% 时保留 translateY(0)，防止降级渲染导致的闪白 🔥 */
 @keyframes fadeUpIn { 
-    0% { opacity: 0; transform: translateY(30px); } 
-    100% { opacity: 1; transform: none; } 
+    0% { opacity: 0; transform: translateY(30px); -webkit-transform: translateY(30px); } 
+    100% { opacity: 1; transform: translateY(0); -webkit-transform: translateY(0); } 
 }
 
 .content-area {
     background: rgba(255, 255, 255, 0.75); 
     backdrop-filter: blur(8px); 
     -webkit-backdrop-filter: blur(8px); 
+    /* 强制开启独立的 3D 渲染层，锁死毛玻璃效果，防闪烁 */
+    transform: translateZ(0); 
+    -webkit-transform: translateZ(0);
     border-radius: 24px; 
     box-shadow: 0 10px 30px rgba(216, 112, 147, 0.15); padding: 35px 40px; margin-bottom: 30px;
     border: 1px solid rgba(255, 255, 255, 0.5); width: 100%; box-sizing: border-box;
@@ -158,7 +163,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .design-link:hover { color: #ff8fb8; border-bottom-color: #ff8fb8; transform: translateY(-2px); }
 .design-full-img { width: 100%; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: block; margin: 0 auto; }
 
-/* 免责声明框：半透明背景 */
+/* 免责声明框 */
 .disclaimer-box { 
     background-color: rgba(255, 255, 255, 0.5); 
     backdrop-filter: blur(4px); 
@@ -174,7 +179,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 }
 
 /* =========================================
-   📱 手机端专属适配 (解决手机透视感不足)
+   📱 手机端专属适配
    ========================================= */
 @media (max-width: 768px) {
     .nav-wrapper { padding: 15px 5%; flex-direction: row; }
@@ -187,14 +192,9 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     }
     .top-nav.active { display: flex; }
     
-    /* 🔥 重点修复：手机端降低白底浓度，提升通透感 🔥 */
     .content-area { 
         padding: 25px 20px; 
         border-radius: 20px;
-        background: rgba(255, 255, 255, 0.65); /* 从 0.75 降至 0.65 */
-    }
-    .disclaimer-box {
-        background-color: rgba(255, 255, 255, 0.35); /* 同步降低子框透明度 */
     }
     
     .background-image { background-position: center center; background-size: cover; }
