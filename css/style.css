@@ -114,11 +114,9 @@ h1, h2, h3, strong {
    ========================================= */
 .page-container { width: 95%; max-width: 900px; margin: 20px auto 60px auto; padding: 0; display: flex; flex-direction: column; align-items: center; }
 
-/* 将 will-change 放入子页面，提醒浏览器提前准备GPU加速 */
 .sub-page { display: none; opacity: 0; width: 100%; will-change: transform, opacity; }
 .active-page { display: block; animation: fadeUpIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
 
-/* 🔥 终极修复方案：100% 时保留 translateY(0)，防止降级渲染导致的闪白 🔥 */
 @keyframes fadeUpIn { 
     0% { opacity: 0; transform: translateY(30px); -webkit-transform: translateY(30px); } 
     100% { opacity: 1; transform: translateY(0); -webkit-transform: translateY(0); } 
@@ -128,7 +126,6 @@ h1, h2, h3, strong {
     background: rgba(255, 255, 255, 0.75); 
     backdrop-filter: blur(8px); 
     -webkit-backdrop-filter: blur(8px); 
-    /* 强制开启独立的 3D 渲染层，锁死毛玻璃效果，防闪烁 */
     transform: translateZ(0); 
     -webkit-transform: translateZ(0);
     border-radius: 24px; 
@@ -197,6 +194,12 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
         border-radius: 20px;
     }
     
-    .background-image { background-position: center center; background-size: cover; }
+    /* 替换手机端专属背景图 */
+    .background-image { 
+        background-image: url('../images/cbg-character.png'); 
+        background-position: center center; 
+        background-size: cover; 
+    }
+    
     .lang-switch { margin-left: 0; justify-content: center;}
 }
