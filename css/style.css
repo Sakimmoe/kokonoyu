@@ -194,11 +194,15 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
         border-radius: 20px;
     }
     
-    /* 替换手机端专属背景图 */
+    /* 🔥 重点修复：手机端背景图严格居中填充，适配动态视口高度 🔥 */
     .background-image { 
         background-image: url('../images/cbg-character.png'); 
         background-position: center center; 
         background-size: cover; 
+        background-repeat: no-repeat;
+        width: 100vw;
+        height: 100vh; /* 旧版浏览器降级 */
+        height: 100dvh; /* 修复手机端浏览器上下导航栏导致的高度计算错误 */
     }
     
     .lang-switch { margin-left: 0; justify-content: center;}
