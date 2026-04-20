@@ -15,8 +15,8 @@ setTimeout(function() {
 // =========================================
 try {
     Bmob.initialize(
-        "这里填你的Secret Key", 
-        "这里填你的API安全码"
+        "6c39dac0aff82e8c", 
+        "开欧控油056.Y"
     );
 } catch (e) {
     console.error("Bmob 初始化失败：", e);
