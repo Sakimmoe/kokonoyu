@@ -41,15 +41,15 @@ const worksData = [
             // ⚠️ 重要提醒：请务必去B站找到这9个视频的真实网址！
             // 把每个网址里的 BV 号（例如 BV1aB4y1C7xyz）复制过来，替换掉下面这些 BV1xxxxxxx！
             // 不然点击播放的时候一定会显示“该视频已被删除”。
-            { title: '第一集', bvid: 'BV1xxxxxxx', cover: 'images/vlog1.jpg' },
-            { title: '第二集', bvid: 'BV1xxxxxxx', cover: 'images/vlog2.jpg' },
-            { title: '第三集', bvid: 'BV1xxxxxxx', cover: 'images/vlog3.jpg' },
-            { title: '第四集', bvid: 'BV1xxxxxxx', cover: 'images/vlog4.jpg' },
-            { title: '第五集', bvid: 'BV1xxxxxxx', cover: 'images/vlog5.jpg' },
-            { title: '第六集', bvid: 'BV1xxxxxxx', cover: 'images/vlog6.jpg' },
-            { title: '第七集', bvid: 'BV1xxxxxxx', cover: 'images/vlog7.jpg' },
-            { title: '第八集', bvid: 'BV1xxxxxxx', cover: 'images/vlog8.jpg' },
-            { title: '第九集', bvid: 'BV1xxxxxxx', cover: 'images/vlog9.jpg' }
+            { title: '第一集', bvid: 'BV1MH4y1a7wA', cover: 'images/vlog1.jpg' },
+            { title: '第二集', bvid: 'BV1Rm411U791', cover: 'images/vlog2.jpg' },
+            { title: '第三集', bvid: 'BV1ox421k7QZ', cover: 'images/vlog3.jpg' },
+            { title: '第四集', bvid: 'BV1rt42137xK', cover: 'images/vlog4.jpg' },
+            { title: '第五集', bvid: 'BV1Q1421q7ce', cover: 'images/vlog5.jpg' },
+            { title: '第六集', bvid: 'BV1Jz421z75g', cover: 'images/vlog6.jpg' },
+            { title: '第七集', bvid: 'BV1hwkwYBEy8', cover: 'images/vlog7.jpg' },
+            { title: '第八集', bvid: 'BV1vCL1zyEgm', cover: 'images/vlog8.jpg' },
+            { title: '第九集', bvid: 'BV1asuxzeEhS', cover: 'images/vlog9.jpg' }
         ]
     }
     // 如果以后想加别的合集，可以在这里继续加 { id: 'music', title:... }
