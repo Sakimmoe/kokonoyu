@@ -4,6 +4,7 @@
 const langDict = {
     cn: {
         nav_home: "首页 / HOME", nav_site: "关于本站", name: "九重紫",
+        nav_gallery: "美图 / GALLERY",
         bio: "通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。",
         title_profile: "个人档案",
         p_nick: "<strong>昵称：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身高：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 巨蟹座", p_birth: "<strong>生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”", p_moe: "<strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇", p_fans: "<strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑", p_treasure: "<strong>最珍视的事物：</strong> 家人与粉丝（听众）", p_role: "<strong>喜欢的角色：</strong> sirotan", p_tag: "<strong>主标签：</strong> #ここのゆ", p_fanart: "<strong>同人图标签：</strong> #ここのゆああと", p_mama: "画师妈妈：",
@@ -21,6 +22,7 @@ const langDict = {
     },
     jp: {
         nav_home: "ホーム / HOME", nav_site: "このサイトについて", name: "ここのえゆかり",
+        nav_gallery: "ギャラリー / GALLERY",
         bio: "誰かが生前に叶えられなかった夢を追体験して供養し、自身の寿命を延ばしている亜人。<br>数年前までは人間だったが、現在は亜人の姿で存在している。<br>自称「最も清楚な平和族」。皆が平和に過ごし、誰もが同じ世界で幸せに暮らせることを夢見ている。<br>その目標のために日々活動を頑張っている。",
         title_profile: "プロフィール",
         p_nick: "<strong>ニックネーム：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身長：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 蟹座", p_birth: "<strong>誕生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 物腰が柔らかく真面目、少し臆病で素直な「豆腐メンタル」", p_moe: "<strong>萌え属性：</strong> 癒やし系、巫女、亜人、病弱、ツンデレ", p_fans: "<strong>ファンネーム：</strong> 平和族 / 一家紫 / 紫細胞 / 兵馬俑", p_treasure: "<strong>大切にしているもの：</strong> 家族、ファン（リスナー様）", p_role: "<strong>好きなキャラ：</strong> しろたん", p_tag: "<strong>メインタグ：</strong> #ここのゆ", p_fanart: "<strong>ファンアートタグ：</strong> #ここのゆああと", p_mama: "絵師ママ：",
@@ -40,11 +42,9 @@ const langDict = {
 
 // 切换语言功能
 function changeLang(lang, element) {
-    // 切换按钮高亮状态
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     if(element) element.classList.add('active');
     
-    // 遍历并替换所有带有 data-key 的文本
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (langDict[lang][key]) {
@@ -53,9 +53,7 @@ function changeLang(lang, element) {
     });
 }
 
-// =========================================
-// 全屏加载动画逻辑 (Loading)
-// =========================================
+// 全屏加载动画
 window.addEventListener('load', function() {
     const loader = document.getElementById('loader');
     if(loader) {
@@ -71,9 +69,7 @@ setTimeout(function() {
     }
 }, 1500);
 
-// =========================================
-// 樱花飘落生成器 (Sakura Falling)
-// =========================================
+// 樱花飘落
 function createSakura() {
     const container = document.getElementById('sakura-container');
     if(!container) return;
@@ -92,7 +88,110 @@ function createSakura() {
 setInterval(createSakura, 300);
 
 // =========================================
-// 页面切换与交互逻辑
+// ✨ 画廊加载与弹窗逻辑 (增强版) ✨
+// =========================================
+let galleryInitialized = false;
+let currentLightboxIndex = 0; // 记录当前弹窗里显示的是第几张图
+let galleryImagesList = [];   // 用来存所有加载成功的图片地址
+
+function initGallery() {
+    if (galleryInitialized) return;
+    galleryInitialized = true;
+
+    const galleryContainer = document.getElementById('vtuber-gallery');
+    const loadingText = document.getElementById('gallery-loading-text');
+    loadingText.style.display = 'block';
+
+    let currentImgIndex = 1;
+
+    function loadNextImage() {
+        const img = new Image();
+        img.src = `images/${currentImgIndex}.jpg`;
+        
+        img.onload = function() {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'gallery-item';
+            
+            const realImg = document.createElement('img');
+            realImg.src = img.src;
+            realImg.alt = "紫老师美图 " + currentImgIndex;
+            
+            itemDiv.appendChild(realImg);
+            galleryContainer.appendChild(itemDiv);
+
+            // 点击图片时，把它的地址传给打开弹窗的方法
+            itemDiv.onclick = function() {
+                openLightbox(img.src);
+            };
+
+            currentImgIndex++;
+            loadNextImage();
+        };
+
+        img.onerror = function() {
+            loadingText.style.display = 'none';
+            console.log("图片自动加载完成，共加载了 " + (currentImgIndex - 1) + " 张图片。");
+        };
+    }
+
+    loadNextImage();
+}
+
+// ✨ 打开弹窗 ✨
+function openLightbox(clickedSrc) {
+    // 每次打开时，重新获取当前网页上所有的图片地址（放入数组）
+    const imgs = document.querySelectorAll('#vtuber-gallery .gallery-item img');
+    galleryImagesList = Array.from(imgs).map(img => img.src);
+    
+    // 找到你刚刚点击的那张图，在数组里排第几个
+    currentLightboxIndex = galleryImagesList.indexOf(clickedSrc);
+    
+    updateLightboxImage(); // 把图片贴上去
+    
+    const modal = document.getElementById("lightbox-modal");
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden'; // 防止背后网页乱滚
+}
+
+// ✨ 真正把图片塞进弹窗的函数 ✨
+function updateLightboxImage() {
+    const modalImg = document.getElementById("lightbox-img");
+    modalImg.src = galleryImagesList[currentLightboxIndex];
+}
+
+// ✨ 左右切换按钮逻辑 ✨
+function navigateLightbox(direction, event) {
+    if (event) event.stopPropagation(); // 阻止点击事件乱跑，导致弹窗关闭
+    
+    // direction 为 -1 就是上一张，1 就是下一张
+    currentLightboxIndex += direction;
+    
+    // 如果一直点下一张，点到底了，就回到第一张（循环）
+    if (currentLightboxIndex >= galleryImagesList.length) {
+        currentLightboxIndex = 0;
+    } 
+    // 如果在第一张点上一张，就跳到最后一张
+    else if (currentLightboxIndex < 0) {
+        currentLightboxIndex = galleryImagesList.length - 1;
+    }
+    
+    updateLightboxImage();
+}
+
+// ✨ 关闭弹窗 ✨
+function closeLightbox(event) {
+    // 只有当你点击半透明背景，或者右上角的 X 时，才关闭弹窗。
+    // 点击中间的图片和左右按钮时，不能关闭！
+    if (event && event.target.id !== 'lightbox-modal' && !event.target.classList.contains('lightbox-close')) {
+        return; 
+    }
+    const modal = document.getElementById("lightbox-modal");
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto'; // 恢复背后网页滚动
+}
+
+// =========================================
+// 页面切换与导航逻辑
 // =========================================
 function showPage(pageId) {
     var pages = document.getElementsByClassName('sub-page');
@@ -101,8 +200,13 @@ function showPage(pageId) {
     void targetPage.offsetWidth; 
     targetPage.classList.add('active-page');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
     const topNav = document.getElementById('top-nav-menu');
     if (topNav.classList.contains('active')) { topNav.classList.remove('active'); }
+
+    if (pageId === 'gallery-page') {
+        initGallery();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
