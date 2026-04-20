@@ -119,8 +119,11 @@ function changeLang(lang, element) {
 }
 
 // =========================================
-// ✨ 视频与作品逻辑 (新增动态抓取封面) ✨
+// ✨ 视频与作品逻辑 (新增封面记忆字典) ✨
 // =========================================
+
+// 专门用来存储已经抓取过的封面图片地址
+const coverCache = {};
 
 function fetchBiliCover(bvid) {
     if (window['bili_fetch_' + bvid]) return; 
@@ -128,9 +131,13 @@ function fetchBiliCover(bvid) {
 
     window['setBiliCover_' + bvid] = function(res) {
         if (res && res.data && res.data.pic) {
+            const secureUrl = res.data.pic.replace('http://', 'https://');
+            // ✨ 重点：存进字典里！
+            coverCache[bvid] = secureUrl; 
+            
             const img = document.getElementById('cover-' + bvid);
             if (img) {
-                img.src = res.data.pic.replace('http://', 'https://');
+                img.src = secureUrl;
             }
         }
         delete window['setBiliCover_' + bvid];
@@ -149,7 +156,6 @@ function renderCollections() {
     if(!grid) return;
     const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
     
-    // ⚠️ 这里的 img 标签加上了 referrerpolicy="no-referrer"
     grid.innerHTML = worksData.map(collection => `
         <div class="collection-card" onclick="openCollection('${collection.id}')">
             <img src="${collection.cover}" class="card-cover" referrerpolicy="no-referrer" alt="cover">
@@ -171,12 +177,16 @@ function openCollection(id) {
     document.getElementById('videos-view').style.display = 'block';
     document.getElementById('current-collection-title').innerText = collection.title[currentLang];
     
-    // ⚠️ 这里的 img 标签也加上了 referrerpolicy="no-referrer"
     const vGrid = document.getElementById('videos-grid');
-    vGrid.innerHTML = collection.videos.map(video => `
+    vGrid.innerHTML = collection.videos.map(video => {
+        // ✨ 重点：看看字典里有没有存过，有就直接拿出来用，没有再用粉色占位图
+        const cachedCover = coverCache[video.bvid];
+        const imgSrc = cachedCover ? cachedCover : "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+        
+        return `
         <div class="video-card" onclick="playVideo('${video.bvid}')">
             <div style="position:relative;">
-                <img id="cover-${video.bvid}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="card-cover" style="background-color: #ffd1df;" referrerpolicy="no-referrer" alt="cover">
+                <img id="cover-${video.bvid}" src="${imgSrc}" class="card-cover" style="background-color: #ffd1df;" referrerpolicy="no-referrer" alt="cover">
                 <div class="play-overlay">
                     <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
                 </div>
@@ -185,10 +195,14 @@ function openCollection(id) {
                 <div class="card-title">${video.title}</div>
             </div>
         </div>
-    `).join('');
+        `;
+    }).join('');
 
+    // 如果字典里没有，再去 B 站抓取
     collection.videos.forEach(video => {
-        fetchBiliCover(video.bvid);
+        if (!coverCache[video.bvid]) {
+            fetchBiliCover(video.bvid);
+        }
     });
 
     if (typeof AOS !== 'undefined') AOS.refresh();
@@ -204,7 +218,6 @@ function backToCollections() {
 function playVideo(bvid) {
     const modal = document.getElementById('video-modal');
     const iframe = document.getElementById('bili-iframe');
-    // ⚠️ 强制使用 https:// 并设置 autoplay=0，彻底解决手机端黑屏卡死问题
     iframe.src = `https://player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1&danmaku=0&autoplay=0`;
     modal.classList.add('show');
     document.body.style.overflow = 'hidden'; 
