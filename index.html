@@ -7,6 +7,7 @@
     
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -49,7 +50,7 @@
 
         <div id="home-page" class="sub-page active-page">
             
-            <div class="content-area header-content">
+            <div class="content-area header-content" data-aos="fade-up">
                 <img src="images/avatar.jpg" class="avatar" alt="Avatar">
                 <h1 class="header-name"><span data-key="name">九重紫</span> <span class="header-subname">-Jiuchong Zi-</span></h1>
                 
@@ -68,7 +69,7 @@
                 </p>
             </div>
 
-            <div class="content-area">
+            <div class="content-area" data-aos="fade-up">
                 <h2 data-key="title_profile">个人档案</h2>
                 <p data-key="p_nick"><strong>昵称：</strong> ここのゆ、のゆ、ゆ</p>
                 <p data-key="p_height"><strong>身高：</strong> 152cm</p>
@@ -92,7 +93,7 @@
                 <p style="margin-top: 20px;" data-key="p_design"><strong>🎨 艺术设计：</strong> <span class="design-link" onclick="showPage('design-page')">点击查看 Design</span></p>
             </div>
             
-            <div class="content-area">
+            <div class="content-area" data-aos="fade-up">
                 <h2 data-key="title_activity">直播内容 - 活动内容</h2>
                 <div data-key="val_activity">
                     <p>基本是游戏直播和杂谈，有时候会唱歌和画画。</p>
@@ -102,7 +103,7 @@
                 </div>
             </div>
 
-            <div class="content-area">
+            <div class="content-area" data-aos="fade-up">
                 <h2 data-key="title_personal">个人相关</h2>
                 <div data-key="val_personal">
                     <ul class="info-list">
@@ -117,7 +118,7 @@
                 </div>
             </div>
 
-            <div class="content-area">
+            <div class="content-area" data-aos="fade-up">
                 <h2 data-key="title_meme">相关梗</h2>
                 <div data-key="val_meme">
                     <ul class="info-list">
@@ -145,7 +146,7 @@
         </div>
 
         <div id="gallery-page" class="sub-page">
-            <div class="content-area" style="background: transparent; border: none; box-shadow: none; padding: 10px;">
+            <div class="content-area" style="background: transparent; border: none; box-shadow: none; padding: 10px;" data-aos="fade-up">
                 <h2 data-key="nav_gallery" style="text-align: center; border: none; margin-bottom: 30px;">画廊 / GALLERY</h2>
                 <div class="gallery" id="vtuber-gallery"></div>
                 <div id="gallery-loading-text" style="text-align: center; color: #d87093; margin-top: 20px; display: none;">加载中...</div>
@@ -153,7 +154,7 @@
         </div>
 
         <div id="guestbook-page" class="sub-page">
-            <div class="content-area">
+            <div class="content-area" data-aos="fade-up">
                 <h2 data-key="nav_guestbook" style="text-align: center; border: none; margin-bottom: 20px;">留言板 / GUESTBOOK</h2>
                 
                 <div class="guestbook-form">
@@ -192,7 +193,7 @@
         </div>
 
         <div id="about-site-page" class="sub-page">
-            <div class="content-area">
+            <div class="content-area" data-aos="fade-up">
                 <h2 data-key="nav_site">关于本站</h2>
                 <p data-key="site_p1">你好！欢迎来到这里。这是一个由粉丝用爱发电、自发搭建的<strong>非官方个人主页</strong>。</p>
                 
@@ -217,6 +218,12 @@
         <div class="lightbox-next" onclick="navigateLightbox(1, event)">&#10095;</div>
     </div>
 
+    <div class="fab-container" id="fab-group">
+        <a href="https://live.bilibili.com/9162799" target="_blank" class="fab-btn" title="B站直播间">📺</a>
+        <button class="fab-btn" onclick="sharePage()" title="分享本站">🐦</button>
+        <button class="fab-btn" onclick="scrollToTop()" title="回到顶部">👆</button>
+    </div>
+
     <script src="https://unpkg.com/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"></script>
     <script>
         // 如果第一个节点被魔法拦截，自动秒切国内极速备用节点
@@ -224,6 +231,8 @@
             document.write('<script src="https://npm.elemecdn.com/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"><\/script>');
         }
     </script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/main.js"></script>
 
 </body>
