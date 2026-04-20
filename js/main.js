@@ -34,20 +34,22 @@ try {
 const worksData = [
     {
         id: 'vlog',
-        title: { cn: 'Vlog (日常记录)', jp: 'Vlog (日常の記録)' },
-        // 整个合集的封面图
-        cover: 'https://api.dicebear.com/7.x/shapes/svg?seed=vlog&backgroundColor=ffd1df', 
+        title: { cn: '一个人来中国玩一个月', jp: '一人で中国に一ヶ月遊びに行く' },
+        // 这里把合集封面换成了 vlog1.jpg
+        cover: 'images/vlog1.jpg', 
         videos: [
-            // 👇请把这里的 BV1xxxxxxx 换成B站真实的视频BV号。封面图片也可以替换真实的。
-            { title: 'Vlog 01', bvid: 'BV1xxxxxxx', cover: 'https://api.dicebear.com/7.x/shapes/svg?seed=v1&backgroundColor=ffd1df' },
-            { title: 'Vlog 02', bvid: 'BV1xxxxxxx', cover: 'https://api.dicebear.com/7.x/shapes/svg?seed=v2&backgroundColor=ffd1df' },
-            { title: 'Vlog 03', bvid: 'BV1xxxxxxx', cover: 'https://api.dicebear.com/7.x/shapes/svg?seed=v3&backgroundColor=ffd1df' },
-            { title: 'Vlog 04', bvid: 'BV1xxxxxxx', cover: 'https://api.dicebear.com/7.x/shapes/svg?seed=v4&backgroundColor=ffd1df' },
-            { title: 'Vlog 05', bvid: 'BV1xxxxxxx', cover: 'https://api.dicebear.com/7.x/shapes/svg?seed=v5&backgroundColor=ffd1df' },
-            { title: 'Vlog 06', bvid: 'BV1xxxxxxx', cover: 'https://api.dicebear.com/7.x/shapes/svg?seed=v6&backgroundColor=ffd1df' },
-            { title: 'Vlog 07', bvid: 'BV1xxxxxxx', cover: 'https://api.dicebear.com/7.x/shapes/svg?seed=v7&backgroundColor=ffd1df' },
-            { title: 'Vlog 08', bvid: 'BV1xxxxxxx', cover: 'https://api.dicebear.com/7.x/shapes/svg?seed=v8&backgroundColor=ffd1df' },
-            { title: 'Vlog 09', bvid: 'BV1xxxxxxx', cover: 'https://api.dicebear.com/7.x/shapes/svg?seed=v9&backgroundColor=ffd1df' }
+            // ⚠️ 重要提醒：请务必去B站找到这9个视频的真实网址！
+            // 把每个网址里的 BV 号（例如 BV1aB4y1C7xyz）复制过来，替换掉下面这些 BV1xxxxxxx！
+            // 不然点击播放的时候一定会显示“该视频已被删除”。
+            { title: '第一集', bvid: 'BV1xxxxxxx', cover: 'images/vlog1.jpg' },
+            { title: '第二集', bvid: 'BV1xxxxxxx', cover: 'images/vlog2.jpg' },
+            { title: '第三集', bvid: 'BV1xxxxxxx', cover: 'images/vlog3.jpg' },
+            { title: '第四集', bvid: 'BV1xxxxxxx', cover: 'images/vlog4.jpg' },
+            { title: '第五集', bvid: 'BV1xxxxxxx', cover: 'images/vlog5.jpg' },
+            { title: '第六集', bvid: 'BV1xxxxxxx', cover: 'images/vlog6.jpg' },
+            { title: '第七集', bvid: 'BV1xxxxxxx', cover: 'images/vlog7.jpg' },
+            { title: '第八集', bvid: 'BV1xxxxxxx', cover: 'images/vlog8.jpg' },
+            { title: '第九集', bvid: 'BV1xxxxxxx', cover: 'images/vlog9.jpg' }
         ]
     }
     // 如果以后想加别的合集，可以在这里继续加 { id: 'music', title:... }
