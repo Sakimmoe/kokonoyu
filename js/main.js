@@ -31,7 +31,7 @@ const langDict = {
     cn: {
         nav_home: "首页 / HOME", nav_site: "关于本站", name: "九重紫",
         nav_gallery: "画廊 / GALLERY",
-        nav_guestbook: "留言板 / GUESTBOOK",
+        nav_guestbook: "留言板 / GUESTBOOK", 
         bio: "通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。",
         title_profile: "个人档案",
         p_nick: "<strong>昵称：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身高：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 巨蟹座", p_birth: "<strong>生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”", p_moe: "<strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇", p_fans: "<strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑", p_treasure: "<strong>最珍视的事物：</strong> 家人与粉丝（听众）", p_role: "<strong>喜欢的角色：</strong> sirotan", p_tag: "<strong>主标签：</strong> #ここのゆ", p_fanart: "<strong>同人图标签：</strong> #ここのゆああと", p_mama: "画师妈妈：",
@@ -81,9 +81,7 @@ function changeLang(lang, element) {
     });
 }
 
-// =========================================
-// 樱花飘落生成器
-// =========================================
+// 樱花飘落
 function createSakura() {
     const container = document.getElementById('sakura-container');
     if(!container) return;
@@ -196,7 +194,7 @@ function closeLightbox(event) {
 // =========================================
 let isAdmin = false;
 
-// 从 Bmob 云端拉取留言
+// 1. 从 Bmob 云端拉取留言
 async function loadComments() {
     const list = document.getElementById('guestbook-list');
     if(!list) return;
@@ -242,11 +240,11 @@ async function loadComments() {
         });
     } catch (error) {
         console.error('加载留言失败:', error);
-        list.innerHTML = '<p style="text-align:center; color:red; margin-top:30px;">连接云端数据库失败，可能由于网络原因组件未加载。刷新页面再试一下！</p>';
+        list.innerHTML = '<p style="text-align:center; color:red; margin-top:30px;">连接云端数据库失败，请关掉代理或魔法，刷新页面再试一下！</p>';
     }
 }
 
-// 发送留言到 Bmob
+// 2. 发送留言到 Bmob
 async function submitComment() {
     const btn = document.querySelector('.gb-submit-btn');
     const nameInput = document.getElementById('gb-name').value.trim() || '匿名兵马俑';
@@ -279,7 +277,7 @@ async function submitComment() {
     }
 }
 
-// 开启前端管理员模式
+// 3. 开启前端管理员模式
 function toggleAdmin() {
     if(isAdmin) {
         isAdmin = false;
@@ -297,7 +295,7 @@ function toggleAdmin() {
     }
 }
 
-// 从云端彻底删除留言
+// 4. 从云端彻底删除留言
 async function deleteComment(id) {
     if(confirm('警告：确定要从全网数据库中彻底删除这条留言吗？')) {
         try {
