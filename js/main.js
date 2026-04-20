@@ -1,7 +1,6 @@
 // =========================================
 // 🚀 救命神药：最先执行，防卡死加载动画保险 🚀
 // =========================================
-// 无论后面的数据库连不连得上，保证 1.5 秒后强行关掉加载动画，让你能进网站！
 window.addEventListener('load', function() {
     const loader = document.getElementById('loader');
     if(loader) { loader.style.opacity = '0'; loader.style.visibility = 'hidden'; }
@@ -14,7 +13,6 @@ setTimeout(function() {
 // =========================================
 // 🌐 数据库配置区 (Bmob 密钥) 🌐
 // =========================================
-// 加上了防错保护罩(try/catch)，一旦连不上不会导致网页崩溃
 try {
     Bmob.initialize(
         "6c39dac0aff82e8c", 
@@ -32,6 +30,17 @@ const langDict = {
         nav_home: "首页 / HOME", nav_site: "关于本站", name: "九重紫",
         nav_gallery: "画廊 / GALLERY",
         nav_guestbook: "留言板 / GUESTBOOK", 
+        // ✨ 新增的留言板词条 ✨
+        gb_avatar_text: "请选择你的头像：",
+        gb_name_placeholder: "你的昵称 (选填，默认匿名)",
+        gb_content_placeholder: "在这里写下想对紫老师说的话吧...",
+        gb_submit: "发送留言 ✨",
+        gb_admin: "🛠️ 管理员入口",
+        gb_loading: "努力向云端拉取留言中...",
+        gb_no_comment: "还没有人留言哦，快来抢沙发！",
+        gb_fail: "连接云端数据库失败，可能由于网络原因组件未加载。刷新页面再试一下！",
+        gb_delete: "🗑️ 强制删除",
+        // 原有词条
         bio: "通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。",
         title_profile: "个人档案",
         p_nick: "<strong>昵称：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身高：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 巨蟹座", p_birth: "<strong>生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”", p_moe: "<strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇", p_fans: "<strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑", p_treasure: "<strong>最珍视的事物：</strong> 家人与粉丝（听众）", p_role: "<strong>喜欢的角色：</strong> sirotan", p_tag: "<strong>主标签：</strong> #ここのゆ", p_fanart: "<strong>同人图标签：</strong> #ここのゆああと", p_mama: "画师妈妈：",
@@ -51,6 +60,17 @@ const langDict = {
         nav_home: "ホーム / HOME", nav_site: "このサイトについて", name: "ここのえゆかり",
         nav_gallery: "ギャラリー / GALLERY",
         nav_guestbook: "掲示板 / GUESTBOOK", 
+        // ✨ 新增的留言板日文词条 ✨
+        gb_avatar_text: "アイコンを選択してください：",
+        gb_name_placeholder: "ニックネーム（任意、デフォルトは匿名）",
+        gb_content_placeholder: "ここに紫先生へのメッセージを書いてください...",
+        gb_submit: "送信する ✨",
+        gb_admin: "🛠️ 管理者入口",
+        gb_loading: "コメントを読み込み中...",
+        gb_no_comment: "まだコメントはありません。最初のコメントを書きましょう！",
+        gb_fail: "データベースの接続に失敗しました。ページをリロードしてください。",
+        gb_delete: "🗑️ 削除",
+        // 原有词条
         bio: "誰かが生前に叶えられなかった夢を追体験して供養し、自身の寿命を延ばしている亜人。<br>数年前までは人間だったが、現在は亜人の姿で存在している。<br>自称「最も清楚な平和族」。皆が平和に過ごし、誰もが同じ世界で幸せに暮らせることを夢見ている。<br>その目標のために日々活動を頑張っている。",
         title_profile: "プロフィール",
         p_nick: "<strong>ニックネーム：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身長：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 蟹座", p_birth: "<strong>誕生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 物腰が柔らかく真面目、少し臆病で素直な「豆腐メンタル」", p_moe: "<strong>萌え属性：</strong> 癒やし系、巫女、亜人、病弱、ツンデレ", p_fans: "<strong>ファンネーム：</strong> 平和族 / 一家紫 / 紫細胞 / 兵馬俑", p_treasure: "<strong>大切にしているもの：</strong> 家族、ファン（リスナー様）", p_role: "<strong>好きなキャラ：</strong> しろたん", p_tag: "<strong>メインタグ：</strong> #ここのゆ", p_fanart: "<strong>ファンアートタグ：</strong> #ここのゆああと", p_mama: "絵師ママ：",
@@ -73,10 +93,19 @@ function changeLang(lang, element) {
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     if(element) element.classList.add('active');
     
+    // ✨ 替换普通文本元素
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (langDict[lang][key]) {
             el.innerHTML = langDict[lang][key];
+        }
+    });
+
+    // ✨ 替换输入框的灰色提示词
+    document.querySelectorAll('[data-placeholder-key]').forEach(el => {
+        const key = el.getAttribute('data-placeholder-key');
+        if (langDict[lang][key]) {
+            el.setAttribute('placeholder', langDict[lang][key]);
         }
     });
 }
@@ -199,7 +228,8 @@ async function loadComments() {
     const list = document.getElementById('guestbook-list');
     if(!list) return;
     
-    list.innerHTML = '<p style="text-align:center; color:#d87093; font-size:15px; margin-top:30px;">努力向云端拉取留言中...</p>';
+    const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
+    list.innerHTML = `<p style="text-align:center; color:#d87093; font-size:15px; margin-top:30px;" data-key="gb_loading">${langDict[currentLang].gb_loading}</p>`;
 
     try {
         if(typeof Bmob === 'undefined') throw new Error("Bmob 没有成功加载");
@@ -210,7 +240,7 @@ async function loadComments() {
 
         list.innerHTML = '';
         if (comments.length === 0) {
-            list.innerHTML = '<p style="text-align:center; color:#999; font-size:15px; margin-top:30px;">还没有人留言哦，快来抢沙发！</p>';
+            list.innerHTML = `<p style="text-align:center; color:#999; font-size:15px; margin-top:30px;" data-key="gb_no_comment">${langDict[currentLang].gb_no_comment}</p>`;
             return;
         }
 
@@ -231,7 +261,7 @@ async function loadComments() {
                             <span class="comment-name">${escapeHTML(name)}</span>
                             <span class="comment-time">${timeStr}</span>
                         </div>
-                        ${isAdmin ? `<button class="comment-delete" style="display:block;" onclick="deleteComment('${id}')">🗑️ 强制删除</button>` : ''}
+                        ${isAdmin ? `<button class="comment-delete" style="display:block;" onclick="deleteComment('${id}')" data-key="gb_delete">${langDict[currentLang].gb_delete}</button>` : ''}
                     </div>
                     <div class="comment-content">${escapeHTML(content)}</div>
                 </div>
@@ -240,20 +270,26 @@ async function loadComments() {
         });
     } catch (error) {
         console.error('加载留言失败:', error);
-        list.innerHTML = '<p style="text-align:center; color:red; margin-top:30px;">连接云端数据库失败，请关掉代理或魔法，刷新页面再试一下！</p>';
+        list.innerHTML = `<p style="text-align:center; color:red; margin-top:30px;" data-key="gb_fail">${langDict[currentLang].gb_fail}</p>`;
     }
 }
 
 // 2. 发送留言到 Bmob
 async function submitComment() {
     const btn = document.querySelector('.gb-submit-btn');
-    const nameInput = document.getElementById('gb-name').value.trim() || '匿名兵马俑';
+    const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
+    
+    const defaultName = currentLang === 'jp' ? '匿名の兵馬俑' : '匿名兵马俑';
+    const nameInput = document.getElementById('gb-name').value.trim() || defaultName;
     const contentInput = document.getElementById('gb-content').value.trim();
     const avatarInput = document.querySelector('input[name="gb-avatar"]:checked').value;
 
-    if(!contentInput) { alert('不能发送空白留言哦！'); return; }
+    if(!contentInput) { 
+        alert(currentLang === 'jp' ? '空白のメッセージは送信できません！' : '不能发送空白留言哦！'); 
+        return; 
+    }
 
-    btn.innerText = "上传云端中...";
+    btn.innerText = currentLang === 'jp' ? "送信中..." : "上传云端中...";
     btn.disabled = true;
 
     try {
@@ -270,9 +306,9 @@ async function submitComment() {
         loadComments(); 
     } catch (error) {
         console.error('发送失败:', error);
-        alert('发送失败了，可能是网络原因，请刷新重试！');
+        alert(currentLang === 'jp' ? '送信に失敗しました。再試行してください！' : '发送失败了，可能是网络原因，请刷新重试！');
     } finally {
-        btn.innerText = "发送留言 ✨";
+        btn.innerText = langDict[currentLang].gb_submit;
         btn.disabled = false;
     }
 }
