@@ -5,8 +5,8 @@ body, html {
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'><path d='M4 3l15 9-6.5 1.5 3.5 6-3 2-3.5-6.5L4 20Z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 4 3, auto;
 }
 
-/* 将左右按钮也加入可爱鼠标的生效范围 */
-a, button, .site-logo, .top-nav span, .menu-toggle, .design-link, .lang-btn, .gallery-item, .lightbox-close, .lightbox-prev, .lightbox-next, label {
+/* 将左右按钮及悬浮按钮也加入可爱鼠标的生效范围 */
+a, button, .site-logo, .top-nav span, .menu-toggle, .design-link, .lang-btn, .gallery-item, .lightbox-close, .lightbox-prev, .lightbox-next, label, .fab-btn {
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 12 12, pointer !important;
 }
 
@@ -259,7 +259,6 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     transform: scale(1.2) rotate(90deg); 
 }
 
-/* 左右切换按钮样式 */
 .lightbox-prev, .lightbox-next {
     position: absolute;
     top: 50%;
@@ -276,7 +275,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 1000000;
-    user-select: none; /* 防止双击选中文字 */
+    user-select: none;
 }
 
 .lightbox-prev { left: 30px; }
@@ -318,6 +317,58 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .comment-content { color: #555; font-size: 15px; line-height: 1.6; white-space: pre-wrap; word-break: break-all; }
 .comment-delete { background-color: #ff6b81; color: white; border: none; padding: 4px 10px; border-radius: 8px; font-size: 12px; cursor: pointer; display: none; transition: 0.3s; }
 .comment-delete:hover { transform: scale(1.05); background-color: #ff4757; }
+
+/* =========================================
+   ✨ 新增：悬浮气泡按钮组 (FAB) ✨
+   ========================================= */
+.fab-container {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none; /* 防止隐藏时被点击 */
+}
+
+.fab-container.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.fab-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #d87093;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    box-shadow: 0 4px 15px rgba(216, 112, 147, 0.2);
+    border: 2px solid #ffd1df;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 0;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.fab-btn:hover {
+    background-color: #d87093;
+    color: #fff;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(216, 112, 147, 0.4);
+    border-color: #d87093;
+}
 
 /* =========================================
    📱 手机端专属适配
@@ -362,6 +413,18 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     
     /* 手机端留言板优化 */
     .comment-item { flex-direction: column; gap: 10px;}
+
+    /* ✨ 手机端 FAB 缩小并调整边距，防止阻碍阅读 ✨ */
+    .fab-container {
+        bottom: 20px;
+        right: 20px;
+        gap: 10px;
+    }
+    .fab-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 500px) {
