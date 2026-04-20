@@ -322,7 +322,7 @@ function toggleAdmin() {
         return;
     }
     const pwd = prompt('请输入管理员密码：');
-    if(pwd === 'kokonoyu') { 
+    if(pwd === 'kokonoyu471056.Y') { 
         isAdmin = true;
         alert('✅ 身份确认！管理员模式已开启，你可以看到强制删除按钮了。');
         loadComments();
