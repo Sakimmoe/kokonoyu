@@ -35,7 +35,7 @@ const worksData = [
     {
         id: 'vlog',
         title: { cn: '一个人来中国玩一个月', jp: '一人で中国に一ヶ月遊びに行く' },
-        cover: 'images/vlog1.jpg', // 合集封面最好保留一张本地图片，避免网络波动导致不显示
+        cover: 'images/vlog1.jpg', 
         videos: [
             { title: '第一集', bvid: 'BV1MH4y1a7wA' },
             { title: '第二集', bvid: 'BV1Rm411U791' },
@@ -122,27 +122,22 @@ function changeLang(lang, element) {
 // ✨ 视频与作品逻辑 (新增动态抓取封面) ✨
 // =========================================
 
-// 通过 JSONP 动态请求 B站 API 获取视频真实封面
 function fetchBiliCover(bvid) {
-    if (window['bili_fetch_' + bvid]) return; // 避免重复请求
+    if (window['bili_fetch_' + bvid]) return; 
     window['bili_fetch_' + bvid] = true;
 
-    // 定义 JSONP 回调函数
     window['setBiliCover_' + bvid] = function(res) {
         if (res && res.data && res.data.pic) {
             const img = document.getElementById('cover-' + bvid);
             if (img) {
-                // 将 http 替换为 https 防止产生混合内容警告
                 img.src = res.data.pic.replace('http://', 'https://');
             }
         }
-        // 清理用完的脚本节点和回调，保持页面干净
         delete window['setBiliCover_' + bvid];
         const script = document.getElementById('script_' + bvid);
         if (script) script.remove();
     };
 
-    // 注入跨域脚本
     const script = document.createElement('script');
     script.id = 'script_' + bvid;
     script.src = `https://api.bilibili.com/x/web-interface/view?bvid=${bvid}&jsonp=jsonp&callback=setBiliCover_${bvid}`;
@@ -154,9 +149,10 @@ function renderCollections() {
     if(!grid) return;
     const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
     
+    // ⚠️ 这里的 img 标签加上了 referrerpolicy="no-referrer"
     grid.innerHTML = worksData.map(collection => `
         <div class="collection-card" onclick="openCollection('${collection.id}')">
-            <img src="${collection.cover}" class="card-cover" alt="cover">
+            <img src="${collection.cover}" class="card-cover" referrerpolicy="no-referrer" alt="cover">
             <div class="card-info">
                 <div class="card-title">${collection.title[currentLang]}</div>
                 <div class="card-meta">${collection.videos.length} ${langDict[currentLang].video_count}</div>
@@ -175,12 +171,12 @@ function openCollection(id) {
     document.getElementById('videos-view').style.display = 'block';
     document.getElementById('current-collection-title').innerText = collection.title[currentLang];
     
-    // 生成视频卡片，封面先使用一个粉色的纯色占位符（一闪而过的加载底色）
+    // ⚠️ 这里的 img 标签也加上了 referrerpolicy="no-referrer"
     const vGrid = document.getElementById('videos-grid');
     vGrid.innerHTML = collection.videos.map(video => `
         <div class="video-card" onclick="playVideo('${video.bvid}')">
             <div style="position:relative;">
-                <img id="cover-${video.bvid}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="card-cover" style="background-color: #ffd1df;" alt="cover">
+                <img id="cover-${video.bvid}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="card-cover" style="background-color: #ffd1df;" referrerpolicy="no-referrer" alt="cover">
                 <div class="play-overlay">
                     <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
                 </div>
@@ -191,7 +187,6 @@ function openCollection(id) {
         </div>
     `).join('');
 
-    // ✨ 核心：开始触发自动抓取封面的函数 ✨
     collection.videos.forEach(video => {
         fetchBiliCover(video.bvid);
     });
@@ -209,7 +204,8 @@ function backToCollections() {
 function playVideo(bvid) {
     const modal = document.getElementById('video-modal');
     const iframe = document.getElementById('bili-iframe');
-    iframe.src = `//player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1&danmaku=0&autoplay=1`;
+    // ⚠️ 强制使用 https:// 并设置 autoplay=0，彻底解决手机端黑屏卡死问题
+    iframe.src = `https://player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1&danmaku=0&autoplay=0`;
     modal.classList.add('show');
     document.body.style.overflow = 'hidden'; 
 }
