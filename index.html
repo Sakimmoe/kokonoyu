@@ -35,6 +35,7 @@
 
         <div class="top-nav" id="top-nav-menu">
             <span onclick="showPage('home-page')" data-key="nav_home">首页 / HOME</span>
+            <span onclick="showPage('works-page')" data-key="nav_works">作品 / WORKS</span>
             <span onclick="showPage('gallery-page')" data-key="nav_gallery">画廊 / GALLERY</span>
             <span onclick="showPage('guestbook-page')" data-key="nav_guestbook">留言板 / GUESTBOOK</span>
             <span onclick="showPage('about-site-page')" data-key="nav_site">关于本站</span> 
@@ -145,6 +146,22 @@
             </div>
         </div>
 
+        <div id="works-page" class="sub-page">
+            <div class="content-area" style="background: transparent; border: none; box-shadow: none; padding: 10px;" data-aos="fade-up">
+                <h2 data-key="nav_works" style="text-align: center; border: none; margin-bottom: 30px;">作品 / WORKS</h2>
+                
+                <div id="collections-view" class="collections-grid"></div>
+
+                <div id="videos-view" style="display: none;">
+                    <div style="margin-bottom: 25px; text-align: center;">
+                        <span class="design-link" onclick="backToCollections()" data-key="works_back" style="cursor: pointer; font-size: 15px;">← 返回合集列表</span>
+                    </div>
+                    <h3 id="current-collection-title" style="text-align:center; color:#d87093; margin-bottom:20px;"></h3>
+                    <div id="videos-grid" class="videos-grid"></div>
+                </div>
+            </div>
+        </div>
+
         <div id="gallery-page" class="sub-page">
             <div class="content-area" style="background: transparent; border: none; box-shadow: none; padding: 10px;" data-aos="fade-up">
                 <h2 data-key="nav_gallery" style="text-align: center; border: none; margin-bottom: 30px;">画廊 / GALLERY</h2>
@@ -209,6 +226,13 @@
             </div>
         </div>
 
+    </div>
+
+    <div id="video-modal" class="video-modal" onclick="closeVideoModal(event)">
+        <span class="video-close" onclick="closeVideoModal(event)">&times;</span>
+        <div class="video-container" onclick="event.stopPropagation()">
+            <iframe id="bili-iframe" src="" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+        </div>
     </div>
 
     <div id="lightbox-modal" class="lightbox" onclick="closeLightbox(event)">
