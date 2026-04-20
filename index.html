@@ -35,6 +35,7 @@
         <div class="top-nav" id="top-nav-menu">
             <span onclick="showPage('home-page')" data-key="nav_home">首页 / HOME</span>
             <span onclick="showPage('gallery-page')" data-key="nav_gallery">画廊 / GALLERY</span>
+            <span onclick="showPage('feeds-page')" data-key="nav_feeds">动态 / FEEDS</span>
             <span onclick="showPage('guestbook-page')" data-key="nav_guestbook">留言板 / GUESTBOOK</span>
             <span onclick="showPage('about-site-page')" data-key="nav_site">关于本站</span> 
             
@@ -48,7 +49,6 @@
     <div class="page-container">
 
         <div id="home-page" class="sub-page active-page">
-            
             <div class="content-area header-content">
                 <img src="images/avatar.jpg" class="avatar" alt="Avatar">
                 <h1 class="header-name"><span data-key="name">九重紫</span> <span class="header-subname">-Jiuchong Zi-</span></h1>
@@ -131,7 +131,6 @@
                     </ul>
                 </div>
             </div>
-
         </div>
 
         <div id="design-page" class="sub-page">
@@ -152,42 +151,39 @@
             </div>
         </div>
 
+        <div id="feeds-page" class="sub-page">
+            <div class="content-area">
+                <h2 data-key="nav_feeds" style="text-align: center; border: none; margin-bottom: 20px;">最新动态 / UPDATES</h2>
+                
+                <div class="feed-tabs">
+                    <button onclick="switchFeed('bili')" class="feed-btn active" id="btn-bili">哔哩哔哩</button>
+                    <button onclick="switchFeed('twitter')" class="feed-btn" id="btn-twitter">X (Twitter)</button>
+                </div>
+
+                <div id="bili-feed" style="display: block;">
+                    <p style="text-align:center; color:#d87093; margin-top:30px;" id="bili-loading">📡 正在接收 B 站电波信号，拉取最新动态中...</p>
+                    <div id="bili-list"></div>
+                </div>
+
+                <div id="twitter-feed" style="display: none; justify-content: center;">
+                    <a class="twitter-timeline" 
+                       data-lang="zh-cn" 
+                       data-theme="light" 
+                       data-tweet-limit="20" 
+                       data-chrome="noheader nofooter noborders transparent"
+                       href="https://twitter.com/Kokonoe_Yukari?ref_src=twsrc%5Etfw">
+                       正在加载来自 X (Twitter) 的动态...
+                    </a> 
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+
+            </div>
+        </div>
+
         <div id="guestbook-page" class="sub-page">
             <div class="content-area">
                 <h2 data-key="nav_guestbook" style="text-align: center; border: none; margin-bottom: 20px;">留言板 / GUESTBOOK</h2>
-                
-                <div class="guestbook-form">
-                    <p style="text-align:center; font-size:14px; color:#666; margin-bottom:5px;" data-key="gb_avatar_text">请选择你的头像：</p>
-                    <div class="avatar-selector">
-                        <label>
-                            <input type="radio" name="gb-avatar" value="images/favicon.png" checked>
-                            <img src="images/favicon.png" alt="小樱桃">
-                        </label>
-                        <label>
-                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/notionists/svg?seed=Felix&backgroundColor=ffd1df">
-                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Felix&backgroundColor=ffd1df" alt="粉丝1">
-                        </label>
-                        <label>
-                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/notionists/svg?seed=Luna&backgroundColor=ffd1df">
-                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Luna&backgroundColor=ffd1df" alt="粉丝2">
-                        </label>
-                        <label>
-                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/notionists/svg?seed=Max&backgroundColor=ffd1df">
-                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Max&backgroundColor=ffd1df" alt="粉丝3">
-                        </label>
-                    </div>
-
-                    <input type="text" id="gb-name" data-placeholder-key="gb_name_placeholder" placeholder="你的昵称 (选填，默认匿名)" maxlength="20">
-                    <textarea id="gb-content" data-placeholder-key="gb_content_placeholder" placeholder="在这里写下想对紫老师说的话吧..." rows="4"></textarea>
-                    
-                    <button onclick="submitComment()" class="gb-submit-btn" data-key="gb_submit">发送留言 ✨</button>
-                </div>
-
-                <div id="guestbook-list" class="guestbook-list"></div>
-
-                <div style="text-align: right; margin-top: 30px;">
-                    <span onclick="toggleAdmin()" data-key="gb_admin" style="font-size: 12px; color: #bbb; cursor: pointer;">🛠️ 管理员入口</span>
-                </div>
+                <div id="tcomment"></div>
             </div>
         </div>
 
@@ -217,13 +213,7 @@
         <div class="lightbox-next" onclick="navigateLightbox(1, event)">&#10095;</div>
     </div>
 
-    <script src="https://unpkg.com/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"></script>
-    <script>
-        // 如果第一个节点被魔法拦截，自动秒切国内极速备用节点
-        if (typeof Bmob === 'undefined') {
-            document.write('<script src="https://npm.elemecdn.com/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"><\/script>');
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js"></script>
     <script src="js/main.js"></script>
 
 </body>
