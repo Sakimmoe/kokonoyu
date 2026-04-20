@@ -34,6 +34,7 @@
 
         <div class="top-nav" id="top-nav-menu">
             <span onclick="showPage('home-page')" data-key="nav_home">首页 / HOME</span>
+            <span onclick="showPage('gallery-page')" data-key="nav_gallery">美图 / GALLERY</span>
             <span onclick="showPage('about-site-page')" data-key="nav_site">关于本站</span> 
             
             <div class="lang-switch">
@@ -142,6 +143,14 @@
             </div>
         </div>
 
+        <div id="gallery-page" class="sub-page">
+            <div class="content-area" style="background: transparent; border: none; box-shadow: none; padding: 10px;">
+                <h2 data-key="nav_gallery" style="text-align: center; border: none; margin-bottom: 30px;">美图 / GALLERY</h2>
+                <div class="gallery" id="vtuber-gallery"></div>
+                <div id="gallery-loading-text" style="text-align: center; color: #d87093; margin-top: 20px; display: none;">加载中...</div>
+            </div>
+        </div>
+
         <div id="about-site-page" class="sub-page">
             <div class="content-area">
                 <h2 data-key="nav_site">关于本站</h2>
@@ -159,6 +168,13 @@
             </div>
         </div>
 
+    </div>
+
+    <div id="lightbox-modal" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <div class="lightbox-prev" onclick="navigateLightbox(-1, event)">&#10094;</div>
+        <img class="lightbox-content" id="lightbox-img" onclick="event.stopPropagation()">
+        <div class="lightbox-next" onclick="navigateLightbox(1, event)">&#10095;</div>
     </div>
 
     <script src="js/main.js"></script>
