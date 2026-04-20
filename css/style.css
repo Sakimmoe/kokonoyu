@@ -259,6 +259,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     transform: scale(1.2) rotate(90deg); 
 }
 
+/* 左右切换按钮样式 */
 .lightbox-prev, .lightbox-next {
     position: absolute;
     top: 50%;
@@ -275,7 +276,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 1000000;
-    user-select: none;
+    user-select: none; /* 防止双击选中文字 */
 }
 
 .lightbox-prev { left: 30px; }
@@ -360,6 +361,12 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     padding: 0;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+}
+
+/* ✨ 新增：让新的 SVG 图标在圆圈内大小合适 ✨ */
+.fab-btn svg {
+    width: 60%;
+    height: 60%;
 }
 
 .fab-btn:hover {
