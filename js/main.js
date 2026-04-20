@@ -1,5 +1,5 @@
 // =========================================
-// 🚀 救命神药：最先执行，防卡死加载动画保险 🚀
+// 🚀 防卡死加载动画保险 🚀
 // =========================================
 window.addEventListener('load', function() {
     const loader = document.getElementById('loader');
@@ -11,36 +11,14 @@ setTimeout(function() {
 }, 1500);
 
 // =========================================
-// 🌐 数据库配置区 (Bmob 密钥) 🌐
-// =========================================
-try {
-    Bmob.initialize(
-        "6c39dac0aff82e8c", 
-        "kokonoyu471056.Y"
-    );
-} catch (e) {
-    console.error("Bmob 初始化失败，可能是网络拦截了组件库：", e);
-}
-
-// =========================================
 // 🌐 中日双语字典 🌐
 // =========================================
 const langDict = {
     cn: {
         nav_home: "首页 / HOME", nav_site: "关于本站", name: "九重紫",
         nav_gallery: "画廊 / GALLERY",
-        nav_guestbook: "留言板 / GUESTBOOK", 
-        // ✨ 新增的留言板词条 ✨
-        gb_avatar_text: "请选择你的头像：",
-        gb_name_placeholder: "你的昵称 (选填，默认匿名)",
-        gb_content_placeholder: "在这里写下想对紫老师说的话吧...",
-        gb_submit: "发送留言 ✨",
-        gb_admin: "🛠️ 管理员入口",
-        gb_loading: "努力向云端拉取留言中...",
-        gb_no_comment: "还没有人留言哦，快来抢沙发！",
-        gb_fail: "连接云端数据库失败，可能由于网络原因组件未加载。刷新页面再试一下！",
-        gb_delete: "🗑️ 强制删除",
-        // 原有词条
+        nav_guestbook: "留言板 / GUESTBOOK",
+        nav_feeds: "动态 / FEEDS", // ✨ 动态墙菜单翻译
         bio: "通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。",
         title_profile: "个人档案",
         p_nick: "<strong>昵称：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身高：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 巨蟹座", p_birth: "<strong>生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”", p_moe: "<strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇", p_fans: "<strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑", p_treasure: "<strong>最珍视的事物：</strong> 家人与粉丝（听众）", p_role: "<strong>喜欢的角色：</strong> sirotan", p_tag: "<strong>主标签：</strong> #ここのゆ", p_fanart: "<strong>同人图标签：</strong> #ここのゆああと", p_mama: "画师妈妈：",
@@ -60,17 +38,7 @@ const langDict = {
         nav_home: "ホーム / HOME", nav_site: "このサイトについて", name: "ここのえゆかり",
         nav_gallery: "ギャラリー / GALLERY",
         nav_guestbook: "掲示板 / GUESTBOOK", 
-        // ✨ 新增的留言板日文词条 ✨
-        gb_avatar_text: "アイコンを選択してください：",
-        gb_name_placeholder: "ニックネーム（任意、デフォルトは匿名）",
-        gb_content_placeholder: "ここに紫先生へのメッセージを書いてください...",
-        gb_submit: "送信する ✨",
-        gb_admin: "🛠️ 管理者入口",
-        gb_loading: "コメントを読み込み中...",
-        gb_no_comment: "まだコメントはありません。最初のコメントを書きましょう！",
-        gb_fail: "データベースの接続に失敗しました。ページをリロードしてください。",
-        gb_delete: "🗑️ 削除",
-        // 原有词条
+        nav_feeds: "タイムライン / FEEDS", // ✨ 动态墙菜单翻译
         bio: "誰かが生前に叶えられなかった夢を追体験して供養し、自身の寿命を延ばしている亜人。<br>数年前までは人間だったが、現在は亜人の姿で存在している。<br>自称「最も清楚な平和族」。皆が平和に過ごし、誰もが同じ世界で幸せに暮らせることを夢見ている。<br>その目標のために日々活動を頑張っている。",
         title_profile: "プロフィール",
         p_nick: "<strong>ニックネーム：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身長：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 蟹座", p_birth: "<strong>誕生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 物腰が柔らかく真面目、少し臆病で素直な「豆腐メンタル」", p_moe: "<strong>萌え属性：</strong> 癒やし系、巫女、亜人、病弱、ツンデレ", p_fans: "<strong>ファンネーム：</strong> 平和族 / 一家紫 / 紫細胞 / 兵馬俑", p_treasure: "<strong>大切にしているもの：</strong> 家族、ファン（リスナー様）", p_role: "<strong>好きなキャラ：</strong> しろたん", p_tag: "<strong>メインタグ：</strong> #ここのゆ", p_fanart: "<strong>ファンアートタグ：</strong> #ここのゆああと", p_mama: "絵師ママ：",
@@ -93,7 +61,6 @@ function changeLang(lang, element) {
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     if(element) element.classList.add('active');
     
-    // ✨ 替换普通文本元素
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (langDict[lang][key]) {
@@ -101,13 +68,14 @@ function changeLang(lang, element) {
         }
     });
 
-    // ✨ 替换输入框的灰色提示词
-    document.querySelectorAll('[data-placeholder-key]').forEach(el => {
-        const key = el.getAttribute('data-placeholder-key');
-        if (langDict[lang][key]) {
-            el.setAttribute('placeholder', langDict[lang][key]);
-        }
-    });
+    // Twikoo 切换语言 (如果 Twikoo 已经加载)
+    if (typeof twikoo !== 'undefined' && document.getElementById('tcomment').innerHTML !== '') {
+        const twikooLang = lang === 'jp' ? 'ja' : 'zh-CN';
+        // 重新初始化以改变语言
+        twikooInitialized = false;
+        document.getElementById('tcomment').innerHTML = '';
+        initTwikoo();
+    }
 }
 
 // 樱花飘落
@@ -129,7 +97,7 @@ function createSakura() {
 setInterval(createSakura, 300);
 
 // =========================================
-// ✨ 画廊加载与弹窗逻辑 (增强版) ✨
+// ✨ 画廊加载与弹窗逻辑 ✨
 // =========================================
 let galleryInitialized = false;
 let currentLightboxIndex = 0; 
@@ -160,9 +128,7 @@ function initGallery() {
             itemDiv.appendChild(realImg);
             galleryContainer.appendChild(itemDiv);
 
-            itemDiv.onclick = function() {
-                openLightbox(img.src);
-            };
+            itemDiv.onclick = function() { openLightbox(img.src); };
 
             currentImgIndex++;
             loadNextImage();
@@ -170,184 +136,128 @@ function initGallery() {
 
         img.onerror = function() {
             loadingText.style.display = 'none';
-            console.log("图片自动加载完成，共加载了 " + (currentImgIndex - 1) + " 张图片。");
         };
     }
-
     loadNextImage();
 }
 
 function openLightbox(clickedSrc) {
     const imgs = document.querySelectorAll('#vtuber-gallery .gallery-item img');
     galleryImagesList = Array.from(imgs).map(img => img.src);
-    
     currentLightboxIndex = galleryImagesList.indexOf(clickedSrc);
-    
     updateLightboxImage(); 
-    
-    const modal = document.getElementById("lightbox-modal");
-    modal.classList.add('show');
+    document.getElementById("lightbox-modal").classList.add('show');
     document.body.style.overflow = 'hidden'; 
 }
 
 function updateLightboxImage() {
-    const modalImg = document.getElementById("lightbox-img");
-    modalImg.src = galleryImagesList[currentLightboxIndex];
+    document.getElementById("lightbox-img").src = galleryImagesList[currentLightboxIndex];
 }
 
 function navigateLightbox(direction, event) {
     if (event) event.stopPropagation(); 
     currentLightboxIndex += direction;
-    
-    if (currentLightboxIndex >= galleryImagesList.length) {
-        currentLightboxIndex = 0;
-    } 
-    else if (currentLightboxIndex < 0) {
-        currentLightboxIndex = galleryImagesList.length - 1;
-    }
-    
+    if (currentLightboxIndex >= galleryImagesList.length) { currentLightboxIndex = 0; } 
+    else if (currentLightboxIndex < 0) { currentLightboxIndex = galleryImagesList.length - 1; }
     updateLightboxImage();
 }
 
 function closeLightbox(event) {
-    if (event && event.target.id !== 'lightbox-modal' && !event.target.classList.contains('lightbox-close')) {
-        return; 
-    }
-    const modal = document.getElementById("lightbox-modal");
-    modal.classList.remove('show');
+    if (event && event.target.id !== 'lightbox-modal' && !event.target.classList.contains('lightbox-close')) { return; }
+    document.getElementById("lightbox-modal").classList.remove('show');
     document.body.style.overflow = 'auto'; 
 }
 
 // =========================================
-// ✨ 全网云端留言板逻辑 (Bmob 后端云) ✨
+// ✨ Twikoo 全球留言板初始化逻辑 ✨
 // =========================================
-let isAdmin = false;
+let twikooInitialized = false;
 
-// 1. 从 Bmob 云端拉取留言
-async function loadComments() {
-    const list = document.getElementById('guestbook-list');
-    if(!list) return;
-    
-    const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
-    list.innerHTML = `<p style="text-align:center; color:#d87093; font-size:15px; margin-top:30px;" data-key="gb_loading">${langDict[currentLang].gb_loading}</p>`;
-
+function initTwikoo() {
+    if (twikooInitialized) return;
     try {
-        if(typeof Bmob === 'undefined') throw new Error("Bmob 没有成功加载");
+        const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'ja' : 'zh-CN';
         
-        const query = Bmob.Query("Guestbook");
-        query.order("-createdAt"); // 按照时间倒序
-        const comments = await query.find();
-
-        list.innerHTML = '';
-        if (comments.length === 0) {
-            list.innerHTML = `<p style="text-align:center; color:#999; font-size:15px; margin-top:30px;" data-key="gb_no_comment">${langDict[currentLang].gb_no_comment}</p>`;
-            return;
-        }
-
-        comments.forEach((c) => {
-            const id = c.objectId;
-            const name = c.name;
-            const content = c.content;
-            const avatar = c.avatar;
-            const timeStr = c.createdAt;
-
-            const div = document.createElement('div');
-            div.className = 'comment-item';
-            div.innerHTML = `
-                <img src="${avatar}" class="comment-avatar" alt="Avatar">
-                <div class="comment-body">
-                    <div class="comment-header">
-                        <div>
-                            <span class="comment-name">${escapeHTML(name)}</span>
-                            <span class="comment-time">${timeStr}</span>
-                        </div>
-                        ${isAdmin ? `<button class="comment-delete" style="display:block;" onclick="deleteComment('${id}')" data-key="gb_delete">${langDict[currentLang].gb_delete}</button>` : ''}
-                    </div>
-                    <div class="comment-content">${escapeHTML(content)}</div>
-                </div>
-            `;
-            list.appendChild(div);
+        twikoo.init({
+            // ⚠️ 重点：将下面的链接替换为你部署好的 Vercel 后端地址 ⚠️
+            envId: 'https://你的地址填在这里', 
+            el: '#tcomment', 
+            lang: currentLang
         });
-    } catch (error) {
-        console.error('加载留言失败:', error);
-        list.innerHTML = `<p style="text-align:center; color:red; margin-top:30px;" data-key="gb_fail">${langDict[currentLang].gb_fail}</p>`;
+        twikooInitialized = true;
+    } catch (e) {
+        console.error("Twikoo 加载失败：", e);
     }
 }
 
-// 2. 发送留言到 Bmob
-async function submitComment() {
-    const btn = document.querySelector('.gb-submit-btn');
-    const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
-    
-    const defaultName = currentLang === 'jp' ? '匿名の兵馬俑' : '匿名兵马俑';
-    const nameInput = document.getElementById('gb-name').value.trim() || defaultName;
-    const contentInput = document.getElementById('gb-content').value.trim();
-    const avatarInput = document.querySelector('input[name="gb-avatar"]:checked').value;
+// =========================================
+// ✨ 动态墙引擎 (B站 RSS + Twitter) ✨
+// =========================================
+function switchFeed(type) {
+    const btnBili = document.getElementById('btn-bili');
+    const btnTwitter = document.getElementById('btn-twitter');
+    const feedBili = document.getElementById('bili-feed');
+    const feedTwitter = document.getElementById('twitter-feed');
 
-    if(!contentInput) { 
-        alert(currentLang === 'jp' ? '空白のメッセージは送信できません！' : '不能发送空白留言哦！'); 
-        return; 
+    if (type === 'bili') {
+        btnBili.classList.add('active');
+        btnTwitter.classList.remove('active');
+        feedBili.style.display = 'block';
+        feedTwitter.style.display = 'none';
+    } else {
+        btnTwitter.classList.add('active');
+        btnBili.classList.remove('active');
+        feedTwitter.style.display = 'flex'; 
+        feedBili.style.display = 'none';
     }
+}
 
-    btn.innerText = currentLang === 'jp' ? "送信中..." : "上传云端中...";
-    btn.disabled = true;
+let isBiliLoaded = false;
+async function loadBiliFeeds() {
+    if (isBiliLoaded) return; 
+
+    const listDiv = document.getElementById('bili-list');
+    const loadingText = document.getElementById('bili-loading');
+    
+    // 使用 rss2json 将 B站动态 转换为网页可读数据 (225347042 是紫老师的 UID)
+    const rssUrl = encodeURIComponent('https://rsshub.app/bilibili/user/dynamic/225347042');
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
 
     try {
-        if(typeof Bmob === 'undefined') throw new Error("Bmob 没有成功加载");
-        
-        const query = Bmob.Query('Guestbook');
-        query.set("name", nameInput);
-        query.set("content", contentInput);
-        query.set("avatar", avatarInput);
-        
-        await query.save();
+        const response = await fetch(apiUrl);
+        const data = await response.json();
 
-        document.getElementById('gb-content').value = ''; 
-        loadComments(); 
-    } catch (error) {
-        console.error('发送失败:', error);
-        alert(currentLang === 'jp' ? '送信に失敗しました。再試行してください！' : '发送失败了，可能是网络原因，请刷新重试！');
-    } finally {
-        btn.innerText = langDict[currentLang].gb_submit;
-        btn.disabled = false;
-    }
-}
-
-// 3. 开启前端管理员模式
-function toggleAdmin() {
-    if(isAdmin) {
-        isAdmin = false;
-        alert('已退出管理员模式。');
-        loadComments();
-        return;
-    }
-    const pwd = prompt('请输入管理员密码：');
-    if(pwd === 'kokonoyu471056.Y') { 
-        isAdmin = true;
-        alert('✅ 身份确认！管理员模式已开启，你可以看到强制删除按钮了。');
-        loadComments();
-    } else if (pwd !== null) {
-        alert('❌ 密码错误！');
-    }
-}
-
-// 4. 从云端彻底删除留言
-async function deleteComment(id) {
-    if(confirm('警告：确定要从全网数据库中彻底删除这条留言吗？')) {
-        try {
-            const query = Bmob.Query('Guestbook');
-            await query.destroy(id);
-            loadComments(); 
-        } catch (error) {
-            console.error('删除失败:', error);
-            alert('删除失败！可能是后台配置限制了删除权限，你可以直接登录 Bmob 官网后台去删除。');
+        if (data.status === 'ok') {
+            let html = '';
+            // 只要最新的 20 条
+            const items = data.items.slice(0, 20);
+            
+            items.forEach(item => {
+                const title = item.title || "发布了一条新动态";
+                const pubDate = new Date(item.pubDate.replace(/-/g, '/')).toLocaleString();
+                
+                html += `
+                    <div class="feed-card">
+                        <div class="feed-time">🕒 ${pubDate}</div>
+                        <div class="feed-content">
+                            <strong>${title}</strong><br>
+                            ${item.description}
+                        </div>
+                        <a href="${item.link}" target="_blank" class="feed-link-btn">👉 前往 Bilibili 查看</a>
+                    </div>
+                `;
+            });
+            
+            listDiv.innerHTML = html;
+            loadingText.style.display = 'none';
+            isBiliLoaded = true;
+        } else {
+            loadingText.innerHTML = '❌ B 站动态拉取失败，源节点可能正在抽风，请稍后再试。';
         }
+    } catch (error) {
+        console.error("拉取动态出错:", error);
+        loadingText.innerHTML = '❌ 网络开小差了，无法连接到 B 站电波。';
     }
-}
-
-// 防XSS代码注入
-function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
 }
 
 // =========================================
@@ -366,7 +276,11 @@ function showPage(pageId) {
 
     if (pageId === 'gallery-page') { initGallery(); }
     
-    if (pageId === 'guestbook-page') { loadComments(); }
+    // ✨ 触发加载留言板
+    if (pageId === 'guestbook-page') { initTwikoo(); }
+    
+    // ✨ 触发加载 B 站动态
+    if (pageId === 'feeds-page') { loadBiliFeeds(); }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
