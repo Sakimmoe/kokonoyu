@@ -107,7 +107,7 @@
                 <div data-key="val_personal">
                     <ul class="info-list">
                         <li><strong>啊加嘛似嘛似：</strong>紫老师常用“啊加嘛似嘛似（あじゃますます）”表达感谢。完整的表达通常会在后面加上“ありがとうにゃん 谢谢”。</li>
-                        <li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常是发烧。目前带病直播几乎是常态。</li>
+                        <li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常发烧。目前带病直播几乎是常态。</li>
                         <li><strong>简称：</strong>紫老师全名 ここのえゆかり ⇒ こ这个のゆ ⇒ のゆ ⇒ ゆ。一般简称到ここのゆ，直播待机结束画面说的也是ここのゆ。</li>
                         <li><strong>整活大师：</strong>熟悉本土各种梗，经常会做视频将梗运用到极致，常整得一手好活。自称所有的梗都是从萌娘百科看明白的。很多视频鉴赏回当场一脸懵逼，但第二天就玩得66的。可怕的吸收能力。</li>
                         <li><strong>天哨星：</strong>紫老师直播吹得一手好口哨，能熟练吹出《好汉歌》、《Never Gonna Give You Up》等歌曲，弹幕曾在水浒回赐号：天哨星。紫老师便是这108将的第109人。</li>
@@ -216,7 +216,13 @@
         <div class="lightbox-next" onclick="navigateLightbox(1, event)">&#10095;</div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"></script>
+    <script src="https://unpkg.com/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"></script>
+    <script>
+        // 如果第一个节点被魔法拦截，自动秒切国内极速备用节点
+        if (typeof Bmob === 'undefined') {
+            document.write('<script src="https://npm.elemecdn.com/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"><\/script>');
+        }
+    </script>
     <script src="js/main.js"></script>
 
 </body>
