@@ -1,4 +1,12 @@
 // =========================================
+// 🌐 数据库配置区 (请填入你的 Bmob 密钥) 🌐
+// =========================================
+Bmob.initialize(
+    "6c39dac0aff82e8c", 
+    "kokonoyu471056.Y"
+);
+
+// =========================================
 // 🌐 中日双语字典 🌐
 // =========================================
 const langDict = {
@@ -89,7 +97,9 @@ function createSakura() {
 }
 setInterval(createSakura, 300);
 
-// 画廊加载与弹窗逻辑
+// =========================================
+// ✨ 画廊加载与弹窗逻辑 (增强版) ✨
+// =========================================
 let galleryInitialized = false;
 let currentLightboxIndex = 0; 
 let galleryImagesList = [];   
@@ -178,25 +188,130 @@ function closeLightbox(event) {
 }
 
 // =========================================
-// ✨ Twikoo 留言板初始化逻辑 ✨
+// ✨ 全网云端留言板逻辑 (Bmob 后端云) ✨
 // =========================================
-let twikooInitialized = false;
+let isAdmin = false;
 
-function initTwikoo() {
-    if (twikooInitialized) return;
+// 1. 从 Bmob 云端拉取留言
+async function loadComments() {
+    const list = document.getElementById('guestbook-list');
+    if(!list) return;
+    
+    list.innerHTML = '<p style="text-align:center; color:#d87093; font-size:15px; margin-top:30px;">努力向云端拉取留言中...</p>';
+
     try {
-        twikoo.init({
-            // ⚠️ 重要：将下方的地址替换为你将来弄好的后端地址 ⚠️
-            envId: 'https://你的后端地址填在这里', 
-            el: '#tcomment', 
+        const query = Bmob.Query("Guestbook");
+        query.order("-createdAt"); // 按照时间倒序
+        const comments = await query.find();
+
+        list.innerHTML = '';
+        if (comments.length === 0) {
+            list.innerHTML = '<p style="text-align:center; color:#999; font-size:15px; margin-top:30px;">还没有人留言哦，快来抢沙发！</p>';
+            return;
+        }
+
+        comments.forEach((c) => {
+            const id = c.objectId;
+            const name = c.name;
+            const content = c.content;
+            const avatar = c.avatar;
+            const timeStr = c.createdAt; // Bmob 自动返回可读的时间格式
+
+            const div = document.createElement('div');
+            div.className = 'comment-item';
+            div.innerHTML = `
+                <img src="${avatar}" class="comment-avatar" alt="Avatar">
+                <div class="comment-body">
+                    <div class="comment-header">
+                        <div>
+                            <span class="comment-name">${escapeHTML(name)}</span>
+                            <span class="comment-time">${timeStr}</span>
+                        </div>
+                        ${isAdmin ? `<button class="comment-delete" style="display:block;" onclick="deleteComment('${id}')">🗑️ 强制删除</button>` : ''}
+                    </div>
+                    <div class="comment-content">${escapeHTML(content)}</div>
+                </div>
+            `;
+            list.appendChild(div);
         });
-        twikooInitialized = true;
-    } catch (e) {
-        console.error("Twikoo 加载失败：", e);
+    } catch (error) {
+        console.error('加载留言失败:', error);
+        list.innerHTML = '<p style="text-align:center; color:red; margin-top:30px;">连接云端数据库失败... 请检查配置密钥是否正确</p>';
     }
 }
 
+// 2. 发送留言到 Bmob
+async function submitComment() {
+    const btn = document.querySelector('.gb-submit-btn');
+    const nameInput = document.getElementById('gb-name').value.trim() || '匿名兵马俑';
+    const contentInput = document.getElementById('gb-content').value.trim();
+    const avatarInput = document.querySelector('input[name="gb-avatar"]:checked').value;
+
+    if(!contentInput) { alert('不能发送空白留言哦！'); return; }
+
+    btn.innerText = "上传云端中...";
+    btn.disabled = true;
+
+    try {
+        // Bmob 会自动帮你创建 Guestbook 这个表，并把数据存进去
+        const query = Bmob.Query('Guestbook');
+        query.set("name", nameInput);
+        query.set("content", contentInput);
+        query.set("avatar", avatarInput);
+        
+        await query.save();
+
+        document.getElementById('gb-content').value = ''; // 清空输入框
+        loadComments(); // 重新加载列表，让新留言显示出来
+    } catch (error) {
+        console.error('发送失败:', error);
+        alert('发送失败了，请稍后再试！');
+    } finally {
+        btn.innerText = "发送留言 ✨";
+        btn.disabled = false;
+    }
+}
+
+// 3. 开启前端管理员模式
+function toggleAdmin() {
+    if(isAdmin) {
+        isAdmin = false;
+        alert('已退出管理员模式。');
+        loadComments();
+        return;
+    }
+    const pwd = prompt('请输入管理员密码：');
+    if(pwd === 'kokonoyu') { 
+        isAdmin = true;
+        alert('✅ 身份确认！管理员模式已开启，你可以看到强制删除按钮了。');
+        loadComments();
+    } else if (pwd !== null) {
+        alert('❌ 密码错误！');
+    }
+}
+
+// 4. 从云端彻底删除留言
+async function deleteComment(id) {
+    if(confirm('警告：确定要从全网数据库中彻底删除这条留言吗？')) {
+        try {
+            const query = Bmob.Query('Guestbook');
+            await query.destroy(id);
+            loadComments(); // 刷新列表
+        } catch (error) {
+            console.error('删除失败:', error);
+            alert('删除失败！可能是后台配置限制了删除权限，你可以直接登录 Bmob 官网后台去删除。');
+        }
+    }
+}
+
+// 防XSS代码注入
+function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+}
+
+// =========================================
 // 页面切换与导航逻辑
+// =========================================
 function showPage(pageId) {
     var pages = document.getElementsByClassName('sub-page');
     for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active-page'); }
@@ -208,13 +323,10 @@ function showPage(pageId) {
     const topNav = document.getElementById('top-nav-menu');
     if (topNav.classList.contains('active')) { topNav.classList.remove('active'); }
 
-    if (pageId === 'gallery-page') {
-        initGallery();
-    }
-    // ✨ 当点击到留言板页面时，触发 Twikoo 初始化 ✨
-    if (pageId === 'guestbook-page') {
-        initTwikoo();
-    }
+    if (pageId === 'gallery-page') { initGallery(); }
+    
+    // ✨ 当用户点击进入留言板页面时，自动去云端拉取最新的数据
+    if (pageId === 'guestbook-page') { loadComments(); }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
