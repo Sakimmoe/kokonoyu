@@ -35,6 +35,7 @@
         <div class="top-nav" id="top-nav-menu">
             <span onclick="showPage('home-page')" data-key="nav_home">首页 / HOME</span>
             <span onclick="showPage('gallery-page')" data-key="nav_gallery">画廊 / GALLERY</span>
+            <span onclick="showPage('guestbook-page')" data-key="nav_guestbook">留言板 / GUESTBOOK</span>
             <span onclick="showPage('about-site-page')" data-key="nav_site">关于本站</span> 
             
             <div class="lang-switch">
@@ -151,6 +152,13 @@
             </div>
         </div>
 
+        <div id="guestbook-page" class="sub-page">
+            <div class="content-area">
+                <h2 data-key="nav_guestbook" style="text-align: center; border: none; margin-bottom: 20px;">留言板 / GUESTBOOK</h2>
+                <div id="tcomment"></div>
+            </div>
+        </div>
+
         <div id="about-site-page" class="sub-page">
             <div class="content-area">
                 <h2 data-key="nav_site">关于本站</h2>
@@ -177,6 +185,7 @@
         <div class="lightbox-next" onclick="navigateLightbox(1, event)">&#10095;</div>
     </div>
 
+    <script src="https://cdn.staticfile.net/twikoo/1.6.39/twikoo.all.min.js"></script>
     <script src="js/main.js"></script>
 
 </body>
