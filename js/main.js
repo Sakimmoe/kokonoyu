@@ -29,33 +29,28 @@ try {
 }
 
 // =========================================
-// ✨ 视频配置区 (请在此处修改真实的BV号) ✨
+// ✨ 视频配置区 (直接填入 BVID，无需再填 cover) ✨
 // =========================================
 const worksData = [
     {
         id: 'vlog',
         title: { cn: '一个人来中国玩一个月', jp: '一人で中国に一ヶ月遊びに行く' },
-        // 这里把合集封面换成了 vlog1.jpg
-        cover: 'images/vlog1.jpg', 
+        cover: 'images/vlog1.jpg', // 合集封面最好保留一张本地图片，避免网络波动导致不显示
         videos: [
-            // ⚠️ 重要提醒：请务必去B站找到这9个视频的真实网址！
-            // 把每个网址里的 BV 号（例如 BV1aB4y1C7xyz）复制过来，替换掉下面这些 BV1xxxxxxx！
-            // 不然点击播放的时候一定会显示“该视频已被删除”。
-            { title: '第一集', bvid: 'BV1MH4y1a7wA', cover: 'images/vlog1.jpg' },
-            { title: '第二集', bvid: 'BV1Rm411U791', cover: 'images/vlog2.jpg' },
-            { title: '第三集', bvid: 'BV1ox421k7QZ', cover: 'images/vlog3.jpg' },
-            { title: '第四集', bvid: 'BV1rt42137xK', cover: 'images/vlog4.jpg' },
-            { title: '第五集', bvid: 'BV1Q1421q7ce', cover: 'images/vlog5.jpg' },
-            { title: '第六集', bvid: 'BV1Jz421z75g', cover: 'images/vlog6.jpg' },
-            { title: '第七集', bvid: 'BV1hwkwYBEy8', cover: 'images/vlog7.jpg' },
-            { title: '第八集', bvid: 'BV1vCL1zyEgm', cover: 'images/vlog8.jpg' },
-            { title: '第九集', bvid: 'BV1asuxzeEhS', cover: 'images/vlog9.jpg' }
+            { title: '第一集', bvid: 'BV1MH4y1a7wA' },
+            { title: '第二集', bvid: 'BV1Rm411U791' },
+            { title: '第三集', bvid: 'BV1ox421k7QZ' },
+            { title: '第四集', bvid: 'BV1rt42137xK' },
+            { title: '第五集', bvid: 'BV1Q1421q7ce' },
+            { title: '第六集', bvid: 'BV1Jz421z75g' },
+            { title: '第七集', bvid: 'BV1hwkwYBEy8' },
+            { title: '第八集', bvid: 'BV1vCL1zyEgm' },
+            { title: '第九集', bvid: 'BV1asuxzeEhS' }
         ]
     }
-    // 如果以后想加别的合集，可以在这里继续加 { id: 'music', title:... }
 ];
 
-let currentCollectionId = null; // 记录当前点开的合集
+let currentCollectionId = null;
 
 // =========================================
 // 🌐 中日双语字典 🌐
@@ -114,10 +109,8 @@ function changeLang(lang, element) {
         if (langDict[lang][key]) el.setAttribute('placeholder', langDict[lang][key]);
     });
 
-    // 重新渲染作品合集列表以适配语言
     if(document.getElementById('collections-view')) {
         renderCollections();
-        // 如果目前正在看某个具体的合集，更新合集标题
         if(currentCollectionId) {
             const collection = worksData.find(c => c.id === currentCollectionId);
             document.getElementById('current-collection-title').innerText = collection.title[lang];
@@ -126,8 +119,36 @@ function changeLang(lang, element) {
 }
 
 // =========================================
-// ✨ 视频与作品逻辑 ✨
+// ✨ 视频与作品逻辑 (新增动态抓取封面) ✨
 // =========================================
+
+// 通过 JSONP 动态请求 B站 API 获取视频真实封面
+function fetchBiliCover(bvid) {
+    if (window['bili_fetch_' + bvid]) return; // 避免重复请求
+    window['bili_fetch_' + bvid] = true;
+
+    // 定义 JSONP 回调函数
+    window['setBiliCover_' + bvid] = function(res) {
+        if (res && res.data && res.data.pic) {
+            const img = document.getElementById('cover-' + bvid);
+            if (img) {
+                // 将 http 替换为 https 防止产生混合内容警告
+                img.src = res.data.pic.replace('http://', 'https://');
+            }
+        }
+        // 清理用完的脚本节点和回调，保持页面干净
+        delete window['setBiliCover_' + bvid];
+        const script = document.getElementById('script_' + bvid);
+        if (script) script.remove();
+    };
+
+    // 注入跨域脚本
+    const script = document.createElement('script');
+    script.id = 'script_' + bvid;
+    script.src = `https://api.bilibili.com/x/web-interface/view?bvid=${bvid}&jsonp=jsonp&callback=setBiliCover_${bvid}`;
+    document.body.appendChild(script);
+}
+
 function renderCollections() {
     const grid = document.getElementById('collections-view');
     if(!grid) return;
@@ -154,11 +175,12 @@ function openCollection(id) {
     document.getElementById('videos-view').style.display = 'block';
     document.getElementById('current-collection-title').innerText = collection.title[currentLang];
     
+    // 生成视频卡片，封面先使用一个粉色的纯色占位符（一闪而过的加载底色）
     const vGrid = document.getElementById('videos-grid');
     vGrid.innerHTML = collection.videos.map(video => `
         <div class="video-card" onclick="playVideo('${video.bvid}')">
             <div style="position:relative;">
-                <img src="${video.cover}" class="card-cover" alt="cover">
+                <img id="cover-${video.bvid}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="card-cover" style="background-color: #ffd1df;" alt="cover">
                 <div class="play-overlay">
                     <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
                 </div>
@@ -168,6 +190,11 @@ function openCollection(id) {
             </div>
         </div>
     `).join('');
+
+    // ✨ 核心：开始触发自动抓取封面的函数 ✨
+    collection.videos.forEach(video => {
+        fetchBiliCover(video.bvid);
+    });
 
     if (typeof AOS !== 'undefined') AOS.refresh();
 }
@@ -182,7 +209,6 @@ function backToCollections() {
 function playVideo(bvid) {
     const modal = document.getElementById('video-modal');
     const iframe = document.getElementById('bili-iframe');
-    // B站iframe，设置自动播放与高质量
     iframe.src = `//player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1&danmaku=0&autoplay=1`;
     modal.classList.add('show');
     document.body.style.overflow = 'hidden'; 
@@ -193,11 +219,13 @@ function closeVideoModal(event) {
     const modal = document.getElementById('video-modal');
     const iframe = document.getElementById('bili-iframe');
     modal.classList.remove('show');
-    iframe.src = ''; // 清空src可以立刻停止播放声音
+    iframe.src = ''; 
     document.body.style.overflow = 'auto';
 }
 
+// =========================================
 // 樱花飘落
+// =========================================
 function createSakura() {
     const container = document.getElementById('sakura-container');
     if(!container) return;
@@ -393,10 +421,8 @@ function showPage(pageId) {
     const topNav = document.getElementById('top-nav-menu');
     if (topNav.classList.contains('active')) { topNav.classList.remove('active'); }
 
-    // 触发各类页面的特定渲染
     if (pageId === 'works-page') { 
         renderCollections(); 
-        // 确保每次切到作品页时，都重置为合集列表视角
         backToCollections();
     }
     if (pageId === 'gallery-page') { initGallery(); }
