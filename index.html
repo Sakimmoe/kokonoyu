@@ -155,7 +155,38 @@
         <div id="guestbook-page" class="sub-page">
             <div class="content-area">
                 <h2 data-key="nav_guestbook" style="text-align: center; border: none; margin-bottom: 20px;">留言板 / GUESTBOOK</h2>
-                <div id="tcomment"></div>
+                
+                <div class="guestbook-form">
+                    <p style="text-align:center; font-size:14px; color:#666; margin-bottom:5px;">请选择你的头像：</p>
+                    <div class="avatar-selector">
+                        <label>
+                            <input type="radio" name="gb-avatar" value="images/favicon.png" checked>
+                            <img src="images/favicon.png" alt="小樱桃">
+                        </label>
+                        <label>
+                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/notionists/svg?seed=Felix&backgroundColor=ffd1df">
+                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Felix&backgroundColor=ffd1df" alt="粉丝1">
+                        </label>
+                        <label>
+                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/notionists/svg?seed=Luna&backgroundColor=ffd1df">
+                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Luna&backgroundColor=ffd1df" alt="粉丝2">
+                        </label>
+                        <label>
+                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/notionists/svg?seed=Max&backgroundColor=ffd1df">
+                            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Max&backgroundColor=ffd1df" alt="粉丝3">
+                        </label>
+                    </div>
+
+                    <input type="text" id="gb-name" placeholder="你的昵称 (选填，默认匿名)" maxlength="20">
+                    <textarea id="gb-content" placeholder="在这里写下想对紫老师说的话吧..." rows="4"></textarea>
+                    <button onclick="submitComment()" class="gb-submit-btn">发送留言 ✨</button>
+                </div>
+
+                <div id="guestbook-list" class="guestbook-list"></div>
+
+                <div style="text-align: right; margin-top: 30px;">
+                    <span onclick="toggleAdmin()" style="font-size: 12px; color: #bbb; cursor: pointer;">🛠️ 管理员入口</span>
+                </div>
             </div>
         </div>
 
@@ -185,7 +216,7 @@
         <div class="lightbox-next" onclick="navigateLightbox(1, event)">&#10095;</div>
     </div>
 
-    <script src="https://cdn.staticfile.net/twikoo/1.6.39/twikoo.all.min.js"></script>
+    <script src="https://cdn.staticfile.net/hydrogen-js-sdk/2.2.3/Bmob-2.2.3.min.js"></script>
     <script src="js/main.js"></script>
 
 </body>
