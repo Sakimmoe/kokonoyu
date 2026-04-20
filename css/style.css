@@ -6,7 +6,7 @@ body, html {
 }
 
 /* 将左右按钮及悬浮按钮也加入可爱鼠标的生效范围 */
-a, button, .site-logo, .top-nav span, .menu-toggle, .design-link, .lang-btn, .gallery-item, .lightbox-close, .lightbox-prev, .lightbox-next, label, .fab-btn {
+a, button, .site-logo, .top-nav span, .menu-toggle, .design-link, .lang-btn, .gallery-item, .lightbox-close, .lightbox-prev, .lightbox-next, label, .fab-btn, .collection-card, .video-card, .video-close {
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 12 12, pointer !important;
 }
 
@@ -176,6 +176,105 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 }
 
 /* =========================================
+   ✨ 新增：作品合集 & 视频列表样式 ✨
+   ========================================= */
+.collections-grid, .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.collection-card, .video-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(216, 112, 147, 0.15);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(216, 112, 147, 0.1);
+}
+
+.collection-card:hover, .video-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(216, 112, 147, 0.3);
+}
+
+.card-cover {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    background-color: #ffd1df;
+}
+
+.card-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-title {
+    color: #d87093;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-meta {
+    font-size: 12px;
+    color: #888;
+}
+
+/* 视频悬浮播放小图标 */
+.play-overlay {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: rgba(216,112,147,0.85); border-radius: 50%; width: 45px; height: 45px;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: 0.3s;
+}
+.video-card:hover .play-overlay {
+    opacity: 1; transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* =========================================
+   ✨ 新增：B站直连视频播放弹窗 ✨
+   ========================================= */
+.video-modal {
+    display: none; position: fixed; z-index: 999999;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(255, 240, 245, 0.85);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s ease;
+}
+
+.video-modal.show { display: flex; opacity: 1; }
+
+.video-container {
+    width: 90vw; max-width: 850px; aspect-ratio: 16/9;
+    background: #000; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 15px 40px rgba(216, 112, 147, 0.4);
+    animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.video-container iframe {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; border: none;
+}
+
+.video-close {
+    position: absolute; top: 20px; right: 40px;
+    color: #d87093; font-size: 50px; font-weight: bold;
+    transition: 0.3s; z-index: 1000000;
+}
+
+.video-close:hover {
+    color: #ff9cbd; text-decoration: none; transform: scale(1.2) rotate(90deg); 
+}
+
+/* =========================================
    ✨ 相册瀑布流样式 ✨
    ========================================= */
 .gallery {
@@ -276,7 +375,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 1000000;
-    user-select: none; /* 防止双击选中文字 */
+    user-select: none;
 }
 
 .lightbox-prev { left: 30px; }
@@ -320,61 +419,33 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .comment-delete:hover { transform: scale(1.05); background-color: #ff4757; }
 
 /* =========================================
-   ✨ 新增：悬浮气泡按钮组 (FAB) ✨
+   ✨ 悬浮气泡按钮组 (FAB) ✨
    ========================================= */
 .fab-container {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: none; /* 防止隐藏时被点击 */
+    position: fixed; bottom: 40px; right: 40px;
+    display: flex; flex-direction: column; gap: 15px;
+    z-index: 1000; opacity: 0; visibility: hidden;
+    transform: translateY(20px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none; 
 }
 
-.fab-container.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-}
+.fab-container.show { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
 
 .fab-btn {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    width: 48px; height: 48px; border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.9);
-    color: #d87093;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-    box-shadow: 0 4px 15px rgba(216, 112, 147, 0.2);
-    border: 2px solid #ffd1df;
-    text-decoration: none;
+    color: #d87093; display: flex; justify-content: center; align-items: center;
+    font-size: 22px; box-shadow: 0 4px 15px rgba(216, 112, 147, 0.2);
+    border: 2px solid #ffd1df; text-decoration: none;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    padding: 0;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    padding: 0; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
 }
 
-/* ✨ 新增：让新的 SVG 图标在圆圈内大小合适 ✨ */
-.fab-btn svg {
-    width: 60%;
-    height: 60%;
-}
+.fab-btn svg { width: 60%; height: 60%; }
 
 .fab-btn:hover {
-    background-color: #d87093;
-    color: #fff;
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 8px 20px rgba(216, 112, 147, 0.4);
-    border-color: #d87093;
+    background-color: #d87093; color: #fff;
+    transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 20px rgba(216, 112, 147, 0.4); border-color: #d87093;
 }
 
 /* =========================================
@@ -391,47 +462,34 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     }
     .top-nav.active { display: flex; }
     
-    .content-area { 
-        padding: 25px 20px; 
-        border-radius: 20px;
-    }
+    .content-area { padding: 25px 20px; border-radius: 20px; }
     
     .background-image { 
         background-image: url('../images/cbg-character.png'); 
-        background-position: center center; 
-        background-size: cover; 
-        background-repeat: no-repeat;
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh; 
+        background-position: center center; background-size: cover; background-repeat: no-repeat;
+        width: 100vw; height: 100vh; height: 100dvh; 
     }
     
     .lang-switch { margin-left: 0; justify-content: center;}
 
-    /* 手机端优化图片列表与弹窗 */
+    /* 手机端画廊 & 作品列表调整，使用完美2列 */
     .gallery { column-count: 2; column-gap: 15px; }
     .gallery-item { margin-bottom: 15px; }
+    .collections-grid, .videos-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .card-title { font-size: 13px; }
+    .play-overlay { width: 35px; height: 35px; opacity: 1; }
+    .play-overlay svg { width: 18px; height: 18px; }
     
-    /* 手机端按钮缩小，防止遮挡图片 */
+    /* 手机端视频弹窗缩小关闭按钮 */
     .lightbox-prev, .lightbox-next { width: 40px; height: 40px; font-size: 20px; }
-    .lightbox-prev { left: 10px; }
-    .lightbox-next { right: 10px; }
-    .lightbox-close { right: 20px; top: 10px; font-size: 40px; }
+    .lightbox-prev { left: 10px; } .lightbox-next { right: 10px; }
+    .lightbox-close, .video-close { right: 15px; top: 10px; font-size: 40px; }
+    .video-container { width: 95vw; border-radius: 12px; }
     
-    /* 手机端留言板优化 */
     .comment-item { flex-direction: column; gap: 10px;}
 
-    /* ✨ 手机端 FAB 缩小并调整边距，防止阻碍阅读 ✨ */
-    .fab-container {
-        bottom: 20px;
-        right: 20px;
-        gap: 10px;
-    }
-    .fab-btn {
-        width: 42px;
-        height: 42px;
-        font-size: 18px;
-    }
+    .fab-container { bottom: 20px; right: 20px; gap: 10px; }
+    .fab-btn { width: 42px; height: 42px; font-size: 18px; }
 }
 
 @media (max-width: 500px) {
