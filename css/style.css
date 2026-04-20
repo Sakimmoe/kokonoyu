@@ -367,3 +367,31 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 @media (max-width: 500px) {
     .gallery { column-count: 1; }
 }
+/* =========================================
+   ✨ 动态墙 (Feeds) 专属美化 ✨
+   ========================================= */
+.feed-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.feed-btn { 
+    padding: 8px 25px; border-radius: 20px; border: 2px solid #d87093; 
+    background: transparent; color: #d87093; font-size: 15px; font-weight: bold; 
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+.feed-btn.active, .feed-btn:hover { 
+    background: #d87093; color: #fff; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(216, 112, 147, 0.3); 
+}
+
+.feed-card { 
+    background: rgba(255, 255, 255, 0.8); border-radius: 16px; padding: 20px; 
+    margin-bottom: 20px; border: 1px solid rgba(216, 112, 147, 0.15); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: transform 0.3s;
+}
+.feed-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(216, 112, 147, 0.15); }
+.feed-time { font-size: 12px; color: #999; margin-bottom: 10px; font-weight: bold; border-bottom: 1px dashed #eee; padding-bottom: 5px;}
+.feed-content { font-size: 14px; color: #555; line-height: 1.6; word-break: break-word; }
+.feed-content img { max-width: 100%; border-radius: 12px; margin-top: 10px; max-height: 400px; object-fit: cover;}
+.feed-link-btn { 
+    display: inline-block; margin-top: 15px; font-size: 13px; color: #fff; 
+    background-color: #ff9cbd; padding: 5px 15px; border-radius: 15px; 
+    text-decoration: none; transition: 0.3s; 
+}
+.feed-link-btn:hover { background-color: #d87093; text-decoration: none; color:#fff;}
