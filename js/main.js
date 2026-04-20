@@ -1,10 +1,28 @@
 // =========================================
-// 🌐 数据库配置区 (请填入你的 Bmob 密钥) 🌐
+// 🚀 救命神药：最先执行，防卡死加载动画保险 🚀
 // =========================================
-Bmob.initialize(
-    "6c39dac0aff82e8c", 
-    "kokonoyu471056.Y"
-);
+// 无论后面的数据库连不连得上，保证 1.5 秒后强行关掉加载动画，让你能进网站！
+window.addEventListener('load', function() {
+    const loader = document.getElementById('loader');
+    if(loader) { loader.style.opacity = '0'; loader.style.visibility = 'hidden'; }
+});
+setTimeout(function() {
+    const loader = document.getElementById('loader');
+    if(loader) { loader.style.opacity = '0'; loader.style.visibility = 'hidden'; }
+}, 1500);
+
+// =========================================
+// 🌐 数据库配置区 (Bmob 密钥) 🌐
+// =========================================
+// 加上了防错保护罩(try/catch)，一旦连不上不会导致网页崩溃
+try {
+    Bmob.initialize(
+        "6c39dac0aff82e8c", 
+        "kokonoyu471056.Y"
+    );
+} catch (e) {
+    console.error("Bmob 初始化失败，可能是网络拦截了组件库：", e);
+}
 
 // =========================================
 // 🌐 中日双语字典 🌐
@@ -13,7 +31,7 @@ const langDict = {
     cn: {
         nav_home: "首页 / HOME", nav_site: "关于本站", name: "九重紫",
         nav_gallery: "画廊 / GALLERY",
-        nav_guestbook: "留言板 / GUESTBOOK", // ✨ 新增了留言板翻译
+        nav_guestbook: "留言板 / GUESTBOOK",
         bio: "通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。",
         title_profile: "个人档案",
         p_nick: "<strong>昵称：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身高：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 巨蟹座", p_birth: "<strong>生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”", p_moe: "<strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇", p_fans: "<strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑", p_treasure: "<strong>最珍视的事物：</strong> 家人与粉丝（听众）", p_role: "<strong>喜欢的角色：</strong> sirotan", p_tag: "<strong>主标签：</strong> #ここのゆ", p_fanart: "<strong>同人图标签：</strong> #ここのゆああと", p_mama: "画师妈妈：",
@@ -32,7 +50,7 @@ const langDict = {
     jp: {
         nav_home: "ホーム / HOME", nav_site: "このサイトについて", name: "ここのえゆかり",
         nav_gallery: "ギャラリー / GALLERY",
-        nav_guestbook: "掲示板 / GUESTBOOK", // ✨ 新增了留言板翻译
+        nav_guestbook: "掲示板 / GUESTBOOK", 
         bio: "誰かが生前に叶えられなかった夢を追体験して供養し、自身の寿命を延ばしている亜人。<br>数年前までは人間だったが、現在は亜人の姿で存在している。<br>自称「最も清楚な平和族」。皆が平和に過ごし、誰もが同じ世界で幸せに暮らせることを夢見ている。<br>その目標のために日々活動を頑張っている。",
         title_profile: "プロフィール",
         p_nick: "<strong>ニックネーム：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身長：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 蟹座", p_birth: "<strong>誕生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 物腰が柔らかく真面目、少し臆病で素直な「豆腐メンタル」", p_moe: "<strong>萌え属性：</strong> 癒やし系、巫女、亜人、病弱、ツンデレ", p_fans: "<strong>ファンネーム：</strong> 平和族 / 一家紫 / 紫細胞 / 兵馬俑", p_treasure: "<strong>大切にしているもの：</strong> 家族、ファン（リスナー様）", p_role: "<strong>好きなキャラ：</strong> しろたん", p_tag: "<strong>メインタグ：</strong> #ここのゆ", p_fanart: "<strong>ファンアートタグ：</strong> #ここのゆああと", p_mama: "絵師ママ：",
@@ -63,23 +81,9 @@ function changeLang(lang, element) {
     });
 }
 
-// 全屏加载动画
-window.addEventListener('load', function() {
-    const loader = document.getElementById('loader');
-    if(loader) {
-        loader.style.opacity = '0';
-        loader.style.visibility = 'hidden';
-    }
-});
-setTimeout(function() {
-    const loader = document.getElementById('loader');
-    if(loader) {
-        loader.style.opacity = '0';
-        loader.style.visibility = 'hidden';
-    }
-}, 1500);
-
-// 樱花飘落
+// =========================================
+// 樱花飘落生成器
+// =========================================
 function createSakura() {
     const container = document.getElementById('sakura-container');
     if(!container) return;
@@ -192,7 +196,7 @@ function closeLightbox(event) {
 // =========================================
 let isAdmin = false;
 
-// 1. 从 Bmob 云端拉取留言
+// 从 Bmob 云端拉取留言
 async function loadComments() {
     const list = document.getElementById('guestbook-list');
     if(!list) return;
@@ -200,6 +204,8 @@ async function loadComments() {
     list.innerHTML = '<p style="text-align:center; color:#d87093; font-size:15px; margin-top:30px;">努力向云端拉取留言中...</p>';
 
     try {
+        if(typeof Bmob === 'undefined') throw new Error("Bmob 没有成功加载");
+        
         const query = Bmob.Query("Guestbook");
         query.order("-createdAt"); // 按照时间倒序
         const comments = await query.find();
@@ -215,7 +221,7 @@ async function loadComments() {
             const name = c.name;
             const content = c.content;
             const avatar = c.avatar;
-            const timeStr = c.createdAt; // Bmob 自动返回可读的时间格式
+            const timeStr = c.createdAt;
 
             const div = document.createElement('div');
             div.className = 'comment-item';
@@ -236,11 +242,11 @@ async function loadComments() {
         });
     } catch (error) {
         console.error('加载留言失败:', error);
-        list.innerHTML = '<p style="text-align:center; color:red; margin-top:30px;">连接云端数据库失败... 请检查配置密钥是否正确</p>';
+        list.innerHTML = '<p style="text-align:center; color:red; margin-top:30px;">连接云端数据库失败，可能由于网络原因组件未加载。刷新页面再试一下！</p>';
     }
 }
 
-// 2. 发送留言到 Bmob
+// 发送留言到 Bmob
 async function submitComment() {
     const btn = document.querySelector('.gb-submit-btn');
     const nameInput = document.getElementById('gb-name').value.trim() || '匿名兵马俑';
@@ -253,7 +259,8 @@ async function submitComment() {
     btn.disabled = true;
 
     try {
-        // Bmob 会自动帮你创建 Guestbook 这个表，并把数据存进去
+        if(typeof Bmob === 'undefined') throw new Error("Bmob 没有成功加载");
+        
         const query = Bmob.Query('Guestbook');
         query.set("name", nameInput);
         query.set("content", contentInput);
@@ -261,18 +268,18 @@ async function submitComment() {
         
         await query.save();
 
-        document.getElementById('gb-content').value = ''; // 清空输入框
-        loadComments(); // 重新加载列表，让新留言显示出来
+        document.getElementById('gb-content').value = ''; 
+        loadComments(); 
     } catch (error) {
         console.error('发送失败:', error);
-        alert('发送失败了，请稍后再试！');
+        alert('发送失败了，可能是网络原因，请刷新重试！');
     } finally {
         btn.innerText = "发送留言 ✨";
         btn.disabled = false;
     }
 }
 
-// 3. 开启前端管理员模式
+// 开启前端管理员模式
 function toggleAdmin() {
     if(isAdmin) {
         isAdmin = false;
@@ -290,13 +297,13 @@ function toggleAdmin() {
     }
 }
 
-// 4. 从云端彻底删除留言
+// 从云端彻底删除留言
 async function deleteComment(id) {
     if(confirm('警告：确定要从全网数据库中彻底删除这条留言吗？')) {
         try {
             const query = Bmob.Query('Guestbook');
             await query.destroy(id);
-            loadComments(); // 刷新列表
+            loadComments(); 
         } catch (error) {
             console.error('删除失败:', error);
             alert('删除失败！可能是后台配置限制了删除权限，你可以直接登录 Bmob 官网后台去删除。');
@@ -325,7 +332,6 @@ function showPage(pageId) {
 
     if (pageId === 'gallery-page') { initGallery(); }
     
-    // ✨ 当用户点击进入留言板页面时，自动去云端拉取最新的数据
     if (pageId === 'guestbook-page') { loadComments(); }
 }
 
