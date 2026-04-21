@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -8,277 +9,318 @@
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* =========================================
+           ✨ 基础设定 & 引入可爱字体 & 人物背景 ✨
+           ========================================= */
+        body {
+            background-color: #fdf8f9; 
+            background-image: linear-gradient(-45deg, #fff0f5, #ffe4e1, #ffd1df, #fff0f5); 
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite; 
+            font-family: 'ZCOOL KuaiLe', 'Nunito', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
+            font-weight: normal; 
+            margin: 0; padding: 0; color: #4a4a4a; min-height: 100vh; line-height: 1.8; overflow-x: hidden;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+
+        .background-image {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('images/bg-character.png'); 
+            background-size: cover; 
+            background-position: center center; 
+            background-repeat: no-repeat;
+            z-index: -3; pointer-events: none; opacity: 0.75; 
+        }
+
+        .bg-mask {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(255, 255, 255, 0.45); 
+            z-index: -2; pointer-events: none;
+        }
+
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        /* =========================================
+           ✨ 主容器 (居中布局) ✨
+           ========================================= */
+        .content-area {
+            background: rgba(255, 255, 255, 0.75); 
+            backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px); 
+            border-radius: 24px; 
+            box-shadow: 0 10px 30px rgba(216, 112, 147, 0.15); padding: 35px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5); width: 95%; max-width: 900px; box-sizing: border-box;
+            position: relative;
+        }
+
+        h2 { 
+            color: #d87093; margin-bottom: 20px; font-size: 28px; text-align: center; border-left: none; padding-left: 0; font-weight: normal; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        /* =========================================
+           🎉 历程渲染与天数计算逻辑 🎉
+           ========================================= */
+        .milestone-counter {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 209, 223, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px dashed #ff9cbd;
+        }
+
+        .milestone-counter p {
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .days-display {
+            color: #d87093;
+            font-size: 50px;
+            font-family: 'ZCOOL KuaiLe', sans-serif;
+            text-shadow: 2px 2px 5px rgba(216, 112, 147, 0.2);
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 50px; /* 增加左侧内边距，为自定义图标留出空间 */
+            border-left: 4px solid #ffd1df;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(216, 112, 147, 0.1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(216, 112, 147, 0.1);
+            display: flex; flex-direction: column; align-items: flex-start;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(216, 112, 147, 0.3);
+            border-color: #ff9cbd;
+        }
+
+        /* 自定义历程图标：替换丑陋的圆点/星星 ⭐ */
+        .timeline-icon {
+            position: absolute;
+            left: -65px; /* 图标中心对齐时间轴线 */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border: 4px solid #d87093;
+            border-radius: 50%; /* 保持原型，但中间放高质量图标 */
+            box-shadow: 0 0 15px rgba(216, 112, 147, 0.4);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* 裁剪超出部分 */
+        }
+
+        /* 这里是你可以放置具体图标的地方。
+           为了兼容性，我默认使用 SVG 图标占位。
+           你可以将 data:image/svg+xml 替换为具体图标的图片路径，例如：
+           background-image: url('images/icons/debut.png');
+        */
+        .timeline-icon::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* 默认占位图标，你可以根据不同节点更换样式 */
+        .timeline-item .timeline-icon::after { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d87093'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/></svg>"); }
+
+        /* 特殊节点更换特定图标示例 */
+        .timeline-item[data-icon="debut"] .timeline-icon::after { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d87093'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z'/></svg>"); }
+        .timeline-item[data-icon="follower"] .timeline-icon::after { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d87093'><path d='M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z'/></svg>"); }
+        .timeline-item[data-icon="3d"] .timeline-icon::after { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d87093'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11h-2v2h2v-2zm-1.5-6.5l-3 3-1.5-1.5L8.5 7l2.5 2.5 4-4 1.5 1.5zm-2.5 11h-2v2h2v-2zm3-3h-2v2h2v-2z'/></svg>"); }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #d87093;
+            margin-bottom: 8px;
+            font-size: 18px;
+            border-bottom: 1px dashed #ffd1df;
+            display: inline-block;
+            padding-bottom: 3px;
+        }
+
+        .timeline-content {
+            color: #4a4a4a;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .timeline-detail {
+            display: block;
+            font-size: 14px;
+            color: #888;
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        /* GUESTBOOK 按钮在内容区域右下角 */
+        .guestbook-link-container {
+            text-align: right;
+            margin-top: 30px;
+        }
+        .guestbook-btn {
+            background-color: #d87093;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(216, 112, 147, 0.2);
+        }
+        .guestbook-btn:hover {
+            background-color: #ff9cbd;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .content-area { padding: 25px 20px; border-radius: 20px; }
+            .timeline { padding-left: 30px; }
+            .timeline-item { padding: 15px; }
+            .timeline-icon { left: -45px; width: 40px; height: 40px; border-width: 3px; }
+            .timeline-icon::after { width: 22px; height: 22px; }
+        }
+    </style>
 </head>
 <body>
-
-    <div id="loader">
-        <div class="loader-content">
-            <div class="bounce-ball"></div>
-            <p>Kokonoyu 正在努力加载中...</p>
-        </div>
-    </div>
-
-    <div id="sakura-container"></div>
 
     <div class="background-image"></div>
     <div class="bg-mask"></div>
 
-    <div class="nav-wrapper">
-        <img src="images/logo.png" class="site-logo" onclick="showPage('home-page')" title="Home" alt="Logo">
-        
-        <div class="menu-toggle" id="mobile-menu-btn">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-
-        <div class="top-nav" id="top-nav-menu">
-            <span onclick="showPage('home-page')" data-key="nav_home">首页 / HOME</span>
-            <span onclick="showPage('works-page')" data-key="nav_works">作品 / WORKS</span>
-            <span onclick="showPage('gallery-page')" data-key="nav_gallery">画廊 / GALLERY</span>
-            <span onclick="showPage('milestone-page')" data-key="nav_milestone">历程 / MILESTONES</span>
-            <span onclick="showPage('guestbook-page')" data-key="nav_guestbook">留言板 / GUESTBOOK</span>
-            <span onclick="showPage('about-site-page')" data-key="nav_site">关于本站</span> 
-            
-            <div class="lang-switch">
-                <span class="lang-btn active" onclick="changeLang('cn', this)">CN</span>
-                <span class="lang-btn" onclick="changeLang('jp', this)">JP</span>
-            </div>
-        </div>
-    </div>
-
     <div class="page-container">
-
-        <div id="home-page" class="sub-page active-page">
+        <div class="content-area" data-aos="fade-up">
+            <h2 data-key="nav_milestone">历程 / MILESTONES</h2>
             
-            <div class="content-area header-content" data-aos="fade-up">
-                <img src="images/avatar.jpg" class="avatar" alt="Avatar">
-                <h1 class="header-name"><span data-key="name">九重紫</span> <span class="header-subname">-Jiuchong Zi-</span></h1>
-                
-                <div class="site-links">
-                    <a href="https://space.bilibili.com/225347042" target="_blank">bilibili</a>
-                    <a href="https://live.bilibili.com/9162799?broadcast_type=0&is_room_feed=1&spm_id_from=333.1387.to_liveroom.0.click&live_from=86002" target="_blank">bilibili/LIVE</a> 
-                    <a href="https://www.youtube.com/@KokonoeYukari" target="_blank">YouTube</a>
-                    <a href="https://twitter.com/Kokonoe_Yukari" target="_blank">X (Twitter)</a>
-                    <a href="https://kokonoe-yukari.fanbox.cc" target="_blank">FANBOX</a>
-                    <a href="https://fantia.jp/fanclubs/246651" target="_blank">Fantia</a>
-                    <a href="https://kokonoeyukari.booth.pm" target="_blank">BOOTH</a>
+            <div class="milestone-counter">
+                <p data-key="ms_counter_prefix">紫老师已活跃</p>
+                <div class="days-display"><span id="live-days">...</span> <span style="font-size: 20px;" data-key="ms_days">天</span></div>
+            </div>
+
+            <div class="timeline" id="milestone-timeline">
                 </div>
 
-                <p class="header-intro" data-key="bio">
-                    通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。
-                </p>
+            <div class="guestbook-link-container">
+                <a href="#guestbook" class="guestbook-btn" data-key="nav_guestbook">GUESTBOOK</a>
             </div>
-
-            <div class="content-area" data-aos="fade-up">
-                <h2 data-key="title_profile">个人档案</h2>
-                <p data-key="p_nick"><strong>昵称：</strong> ここのゆ、のゆ、ゆ</p>
-                <p data-key="p_height"><strong>身高：</strong> 152cm</p>
-                <p data-key="p_zodiac"><strong>星座：</strong> 巨蟹座</p>
-                <p data-key="p_birth"><strong>生日：</strong> 7月22日</p>
-                <p data-key="p_nature"><strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”</p>
-                <p data-key="p_moe"><strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇</p>
-                <p data-key="p_fans"><strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑</p>
-                <p data-key="p_treasure"><strong>最珍视的事物：</strong> 家人与粉丝（听众）</p>
-                <p data-key="p_role"><strong>喜欢的角色：</strong> sirotan</p>
-                <p data-key="p_tag"><strong>主标签：</strong> #こ这个のゆ</p>
-                <p data-key="p_fanart"><strong>同人图标签：</strong> #こ这个のゆああと</p>
-                <p class="illustrator-links">
-                    <strong data-key="p_mama">画师妈妈：</strong> 
-                    <a href="https://twitter.com/zo3mie" target="_blank" class="design-link" style="border:none;">犬山ななみ</a> / 
-                    <a href="https://x.com/faitescoco" target="_blank" class="design-link" style="border:none;">ココナツ</a> / 
-                    <a href="https://www.pixiv.net/users/2783388" target="_blank" class="design-link" style="border:none;">雲雀ひな</a> / 
-                    <a href="https://x.com/kuno_on" target="_blank" class="design-link" style="border:none;">クノオ</a> / 
-                    <a href="https://www.mihuashi.com/profiles/248757?role=painter" target="_blank" class="design-link" style="border:none;"> 燕小酱</a>
-                </p>
-                <p style="margin-top: 20px;" data-key="p_design"><strong>🎨 艺术设计：</strong> <span class="design-link" onclick="showPage('design-page')">点击查看 Design</span></p>
-            </div>
-            
-            <div class="content-area" data-aos="fade-up">
-                <h2 data-key="title_activity">直播内容 - 活动内容</h2>
-                <div data-key="val_activity">
-                    <p>基本是游戏直播和杂谈，有时候会唱歌和画画。</p>
-                    <p>游戏直播以RPG为主，不过会尝试各种不同类型的游戏。</p>
-                    <p>游戏力水平比较低，含有杀戮，犯罪，欺骗的游戏基本都不擅长。特别不擅长FPS，会晕3D。</p>
-                    <p>没有字幕组，自己制作视频和整活（现已成立自己的字幕组）。</p>
-                </div>
-            </div>
-
-            <div class="content-area" data-aos="fade-up">
-                <h2 data-key="title_personal">个人相关</h2>
-                <div data-key="val_personal">
-                    <ul class="info-list">
-                        <li><strong>啊加嘛似嘛似：</strong>紫老师常用“啊加嘛似嘛似（あじゃますます）”表达感谢。完整的表达通常会在后面加上“ありがとうにゃん 谢谢”。</li>
-                        <li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常是发烧。目前带病直播几乎是常态。</li>
-                        <li><strong>简称：</strong>紫老师全名 ここのえゆかり ⇒ こ这个のゆ ⇒ のゆ ⇒ ゆ。一般简称到こ这个のゆ，直播待机结束画面说的也是こ这个のゆ。</li>
-                        <li><strong>整活大师：</strong>熟悉本土各种梗，经常会做视频将梗运用到极致，常整得一手好活。自称所有的梗都是从萌娘百科看明白的。很多视频鉴赏回当场一脸懵逼，但第二天就玩得66的。可怕的吸收能力。</li>
-                        <li><strong>天哨星：</strong>紫老师直播吹得一手好口哨，能熟练吹出《好汉歌》、《Never Gonna Give You Up》等歌曲，弹幕曾在水浒回赐号：天哨星。紫老师便是这108将的第109人。</li>
-                        <li><strong>字幕组校对：</strong>紫老师曾在oto字幕组当校对。你永远不知道自己推的女人在干什么。</li>
-                        <li><strong>理工男气质：</strong>紫老师礼貌、努力、懂事，做事一板一眼，颇有理工男气质。</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="content-area" data-aos="fade-up">
-                <h2 data-key="title_meme">相关梗</h2>
-                <div data-key="val_meme">
-                    <ul class="info-list">
-                        <li><strong>秦始皇/兵马俑：</strong>首次出现在《三句话把我骗到了bilibili》。原梗为早期电信诈骗：“我是秦始皇，现在给我打钱，我起势了封你做大官”。因为视频中出现了“秦始皇让兵马俑给我点了赞”，所以阿紫的粉丝玩此梗时便自称为兵马俑。</li>
-                        <li><strong>紫细胞：</strong>在直播中抓获某位粉丝的DD行为时，该粉丝自称：推其他人都是我的细胞自己分裂出去的，我是阿紫的单推人。因为此行为类似细胞分裂，所以粉丝玩此梗时会自称是紫细胞。</li>
-                        <li><strong>平和族/变态族：</strong>粉丝名称一开始为和平族，后因为觉得比起世界和平，更希望粉丝们能内心平和，因此改名为平和族。但是经常会有粉丝做出一些hentai的发言/行为，这部分粉丝被称为变态族。</li>
-                        <li><strong>男孩紫：</strong>出现于《日本小巫女看王迅找茬》。其中的白发紫在被找茬后，反怼对方说自己是男孩子。DD狂喜：那不是更好。</li>
-                        <li><strong>粉丝握手会：</strong>在粉丝握手会的直播中，玩起了VR打僵尸（DD）游戏。僵尸（DD）们前来和阿紫握手，被阿紫热烈款待（DD爆头）。</li>
-                        <li><strong>×重紫：</strong>直播间的当前人气排名是第几名就是几重紫（如当前排名第一就是一重紫）。此梗出自修仙小说体系中表示修仙者能力的层数。</li>
-                        <li><strong>旧重紫：</strong>通常指初代模型，也可用于形容阿紫比较老的直播内容或动态。</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-        <div id="design-page" class="sub-page">
-            <div class="content-area">
-                <h2 style="border:none; text-align:center;">Character Design</h2>
-                <img src="images/design.jpg" class="design-full-img" alt="Design">
-                <p style="text-align:center; margin-top:30px;">
-                    <span class="design-link" onclick="showPage('home-page')" data-key="btn_back">← 返回上一页</span>
-                </p>
-            </div>
-        </div>
-
-        <div id="works-page" class="sub-page">
-            <div class="content-area" style="background: transparent; border: none; box-shadow: none; padding: 10px;" data-aos="fade-up">
-                <h2 data-key="nav_works" style="text-align: center; border: none; margin-bottom: 30px;">作品 / WORKS</h2>
-                
-                <div id="collections-view" class="collections-grid"></div>
-
-                <div id="videos-view" style="display: none;">
-                    <div style="margin-bottom: 25px; text-align: center;">
-                        <span class="design-link" onclick="backToCollections()" data-key="works_back" style="cursor: pointer; font-size: 15px;">← 返回合集列表</span>
-                    </div>
-                    <h3 id="current-collection-title" style="text-align:center; color:#d87093; margin-bottom:20px;"></h3>
-                    <div id="videos-grid" class="videos-grid"></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="gallery-page" class="sub-page">
-            <div class="content-area" style="background: transparent; border: none; box-shadow: none; padding: 10px;" data-aos="fade-up">
-                <h2 data-key="nav_gallery" style="text-align: center; border: none; margin-bottom: 30px;">画廊 / GALLERY</h2>
-                <div class="gallery" id="vtuber-gallery"></div>
-                <div id="gallery-loading-text" style="text-align: center; color: #d87093; margin-top: 20px; display: none;">加载中...</div>
-            </div>
-        </div>
-
-        <div id="milestone-page" class="sub-page">
-            <div class="content-area" data-aos="fade-up">
-                <h2 data-key="nav_milestone" style="text-align: center; border: none; margin-bottom: 20px;">历程 / MILESTONES</h2>
-                
-                <div class="milestone-counter">
-                    <p data-key="ms_counter_prefix">紫老师已活跃</p>
-                    <div class="days-display"><span id="live-days">...</span> <span style="font-size: 20px;" data-key="ms_days">天</span></div>
-                </div>
-
-                <div class="timeline" id="milestone-timeline">
-                    </div>
-            </div>
-        </div>
-
-        <div id="guestbook-page" class="sub-page">
-            <div class="content-area" data-aos="fade-up">
-                <h2 data-key="nav_guestbook" style="text-align: center; border: none; margin-bottom: 20px;">留言板 / GUESTBOOK</h2>
-                
-                <div class="guestbook-form">
-                    <p style="text-align:center; font-size:14px; color:#666; margin-bottom:5px;" data-key="gb_avatar_text">请选择你的头像：</p>
-                    <div class="avatar-selector">
-                        <label>
-                            <input type="radio" name="gb-avatar" value="images/favicon.png" checked>
-                            <img src="images/favicon.png" alt="小樱桃">
-                        </label>
-                        <label>
-                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Felix&backgroundColor=ffd1df">
-                            <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Felix&backgroundColor=ffd1df" alt="粉丝1">
-                        </label>
-                        <label>
-                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Luna&backgroundColor=ffd1df">
-                            <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Luna&backgroundColor=ffd1df" alt="粉丝2">
-                        </label>
-                        <label>
-                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Max&backgroundColor=ffd1df">
-                            <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Max&backgroundColor=ffd1df" alt="粉丝3">
-                        </label>
-                    </div>
-
-                    <input type="text" id="gb-name" data-placeholder-key="gb_name_placeholder" placeholder="你的昵称 (选填，默认匿名)" maxlength="20">
-                    <textarea id="gb-content" data-placeholder-key="gb_content_placeholder" placeholder="在这里写下想对紫老师说的话吧..." rows="4"></textarea>
-                    
-                    <button onclick="submitComment()" class="gb-submit-btn" data-key="gb_submit">发送留言 ✨</button>
-                </div>
-
-                <div id="guestbook-list" class="guestbook-list"></div>
-
-                <div style="text-align: right; margin-top: 30px;">
-                    <span onclick="toggleAdmin()" data-key="gb_admin" style="font-size: 12px; color: #bbb; cursor: pointer;">🛠️ 管理员入口</span>
-                </div>
-            </div>
-        </div>
-
-        <div id="about-site-page" class="sub-page">
-            <div class="content-area" data-aos="fade-up">
-                <h2 data-key="nav_site">关于本站</h2>
-                <p data-key="site_p1">你好！欢迎来到这里。这是一个由粉丝用爱发电、自发搭建的<strong>非官方个人主页</strong>。</p>
-                
-                <h3 data-key="site_h1">搭建初衷</h3>
-                <p data-key="site_p2">我是2026年1月13日开始关注紫老师的，当时紫老师正在看《爱情公寓》，我也跟着看了一两集，我发现一件让我觉得很奇怪的事：为什么这么大的一个主播连一毛钱的礼物都会很认真的感谢？后面就逐渐对紫老师的直播感兴趣了。<br><br>我觉得紫老师是一个对工作很认真、很负责的人，对粉丝也很用心、很真诚。后面了解到原来之前圣诞节还会上舰给舰长画头像的活动，我发现紫老师对每一个头像画的都很认真，没有一丝丝的敷衍（可惜我错过活动了呜呜）。<br><br>在那之后我就想给紫老师做点什么，正好发现紫老师kokonoyu.com这个域名还没有人注册，于是我就买了下来准备做点东西。<br><br>所以我首先做了紫老师的主页，后续可能还会做紫老师的作品导航、音乐站之类的（如果能得到紫老师授权的话）。</p>
-                
-                <h3 data-key="site_h2">内容来源与建议</h3>
-                <p data-key="site_p3">本站的部分内容资料摘自 <strong>萌娘百科</strong> 以及 <strong>九重紫的B站个人空间</strong>。我只是一名普通的粉丝，如果你也喜欢九重紫，或者对这个网页的排版与内容有什么建议，欢迎通过哔哩哔哩私信我：<br>👉 <a href="https://space.bilibili.com/17276?spm_id_from=333.976.0.0" target="_blank" class="design-link" style="border:none;">点击访问我的 Bilibili 个人主页</a></p>
-                
-                <div class="disclaimer-box" data-key="site_box">
-                    <strong>⚠️ 版权与免责声明</strong><br><br>1. 本网站内所使用的<strong>所有美术素材、图片、Logo、背景故事及设定等内容，版权均归主播 <a href="https://kokonoeyukari.my.canva.site/" target="_blank">九重紫（Kokonoe Yukari）</a> 及其合作画师所有。</strong><br>2. 本站仅作粉丝安利与导航整理用途，没有任何商业盈利目的。<br>3. 如果本站的内容有任何侵权或不妥之处，请随时通过上方 B 站链接私信联系我，我会在第一时间配合修改或删除。
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div id="video-modal" class="video-modal" onclick="closeVideoModal(event)">
-        <span class="video-close" onclick="closeVideoModal(event)">&times;</span>
-        <div class="video-container" onclick="event.stopPropagation()">
-            <iframe id="bili-iframe" src="" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" allow="autoplay; encrypted-media"></iframe>
         </div>
     </div>
 
-    <div id="lightbox-modal" class="lightbox" onclick="closeLightbox(event)">
-        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
-        <div class="lightbox-prev" onclick="navigateLightbox(-1, event)">&#10094;</div>
-        <img class="lightbox-content" id="lightbox-img" onclick="event.stopPropagation()">
-        <div class="lightbox-next" onclick="navigateLightbox(1, event)">&#10095;</div>
-    </div>
-
-    <div class="fab-container" id="fab-group">
-        <button class="fab-btn" onclick="sharePage()" title="分享本站">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
-            </svg>
-        </button>
-        <button class="fab-btn" onclick="scrollToTop()" title="回到顶部">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 20V4M5 11l7-7 7 7"></path>
-            </svg>
-        </button>
-    </div>
-
-    <script src="https://unpkg.com/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"></script>
-    <script>
-        if (typeof Bmob === 'undefined') {
-            document.write('<script src="https://npm.elemecdn.com/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"><\/script>');
-        }
-    </script>
-    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/main.js"></script>
+    <script>
+        // =========================================
+        // ✨ AOS 滚动加载动画初始化 ✨
+        // =========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ once: false, offset: 60, duration: 800, easing: 'ease-out-cubic' });
+            }
+        });
+
+        // =========================================
+        // ✨ 历程精选配置区 (数据精简提炼自萌娘百科) ✨
+        // =========================================
+        const milestonesData = [
+            { date: '2020年6月9日', icon: 'debut', cn: '在bilibili进行初次投稿 📺', jp: 'bilibili初投稿 📺' },
+            { date: '2020年11月10日', icon: 'debut', cn: '成功进行bilibili首次直播 🎙️', jp: '初のbilibili配信 🎙️' },
+            { date: '2020年11月18日', icon: 'follower', cn: 'bilibili粉丝数突破1万 🎉<br><span class="timeline-detail">因为一个整活视频，1天内粉丝从二三百暴涨到一万。</span>', jp: 'bilibiliフォロワー数1万人突破 🎉<br><span class="timeline-detail">ネタ動画が大ウケし、1日でフォロワーが数百人から1万人に急増。</span>' },
+            { date: '2021年8月21日', icon: 'debut', cn: '发布第二套正式形象 👗', jp: '2nd公式モデル発表 👗' },
+            { date: '2022年2月23日', icon: 'follower', cn: 'bilibili粉丝数突破20万 🎈', jp: 'bilibiliフォロワー数20万人突破 🎈' },
+            { date: '2022年4月1日', icon: 'debut', cn: '愚人节整活大危机 🐱<br><span class="timeline-detail">“猫猫”代播放出奇怪文件，造就了经典的一天。</span>', jp: 'エイプリルフール企画 🐱<br><span class="timeline-detail">「猫ちゃん」が配信を乗っ取り、色々とやばいファイルが流出するハプニングが発生。</span>' },
+            { date: '2022年7月23日', icon: 'debut', cn: '生日回首次达成10名提督成就 🚢', jp: '誕生日配信で初の提督10人達成 🚢' },
+            { date: '2022年9月16日', icon: 'debut', cn: '宣布开设官方字幕组 📝', jp: '公式字幕組の設立を発表 📝' },
+            { date: '2022年11月6日', icon: 'follower', cn: 'bilibili粉丝数突破30万 👑', jp: 'bilibiliフォロワー数30万人突破 👑' },
+            { date: '2024年5月28日', icon: 'follower', cn: 'bilibili粉丝数突破50万 🌟', jp: 'bilibiliフォロワー数50万人突破 🌟' },
+            { date: '2025年2月4日', icon: '3d', cn: '举办九重紫4周年＆3D化纪念会 🎊', jp: '九重紫4周年＆3D化記念配信 🎊' },
+            { date: '2025年12月25日', icon: 'debut', cn: '超美丽3D圣诞直播 🎄<br><span class="timeline-detail">开启漫无止境的圣诞节头像活动，共计绘制头像772张。</span>', jp: '超美麗3Dクリスマス配信 🎄<br><span class="timeline-detail">終わらないクリスマスアイコン描き企画がスタート（計772枚作成）。</span>' },
+            { date: '2026年2月1日', icon: 'debut', cn: '登顶全站热门 🔥<br><span class="timeline-detail">投稿视频《总有人看了点哔哩哔哩就以为自己会说中文了》大受好评。</span>', jp: '全休人気ランキング入り 🔥<br><span class="timeline-detail">中国語ネタ動画が大好評で、久々に全サイトのトレンド入り。</span>' },
+            { date: '2026年2月16日', icon: 'follower', cn: '除夕夜直播 & 突破60万粉 🧨<br><span class="timeline-detail">新年到来之际，戴上马年头饰迎来了60万粉丝的时刻。</span>', jp: '大晦日配信 & 60万人フォロワー突破 🧨<br><span class="timeline-detail">新年の訪れとともに、馬の髪飾りをつけて60万人突破の瞬間を迎えた。</span>' },
+            { date: '2026年2月23日', icon: 'follower', cn: '2222天纪念日 ✨<br><span class="timeline-detail">迎来以九重紫名义使用bilibili账号的第2222天。</span>', jp: '2222日記念日 ✨<br><span class="timeline-detail">九重紫としてbilibili活動2222日目を迎える。</span>' }
+        ];
+
+        // =========================================
+        // 🎉 历程渲染与天数计算逻辑 🎉
+        // =========================================
+        function renderMilestones() {
+            const timeline = document.getElementById('milestone-timeline');
+            if (!timeline) return;
+            const currentLang = 'cn'; // 默认语言
+            
+            timeline.innerHTML = milestonesData.map((item, index) => `
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="${Math.min(index * 50, 400)}" data-icon="${item.icon}">
+                    <div class="timeline-icon"></div>
+                    <div class="timeline-date">${item.date}</div>
+                    <div class="timeline-content">${item[currentLang]}</div>
+                </div>
+            `).join('');
+        }
+
+        function updateDaysCounter() {
+            const daysEl = document.getElementById('live-days');
+            if (!daysEl) return;
+
+            // 核心逻辑：以 2026年2月23日 作为 第2222天的锚点
+            const anchorDate = new Date('2026-02-23T00:00:00+08:00');
+            const today = new Date();
+            
+            // 计算时差并转为天数
+            const diffTime = today.getTime() - anchorDate.getTime();
+            const diffDays = Math.floor(diffTime / (1000 * 3600 * 24));
+            
+            // 基础锚点2222天 + 相差的天数
+            const targetDays = 2222 + diffDays;
+
+            // 跳动数字动画效果
+            let currentVal = 0;
+            const duration = 1500;
+            const interval = 30;
+            const step = Math.ceil(targetDays / (duration / interval));
+
+            const timer = setInterval(() => {
+                currentVal += step;
+                if (currentVal >= targetDays) {
+                    daysEl.innerText = targetDays;
+                    clearInterval(timer);
+                } else {
+                    daysEl.innerText = currentVal;
+                }
+            }, interval);
+        }
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMilestones();
+            updateDaysCounter();
+        });
+    </script>
 
 </body>
 </html>
+```
