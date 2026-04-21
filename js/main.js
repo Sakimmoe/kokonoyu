@@ -93,16 +93,16 @@ const langDict = {
         ms_counter_prefix: "紫老师在哔哩哔哩已活跃", ms_days: "天",
         gb_avatar_text: "请选择你的头像：", gb_name_placeholder: "你的昵称 (选填，默认匿名)", 
         gb_content_placeholder: "在这里写下想对紫老师说的话吧...", gb_submit: "发送留言 ✨", 
-        gb_admin: "🛠️ 管理员入口", gb_loading: "努力向云端拉取留言中...", 
+        gb_loading: "努力向云端拉取留言中...", 
         gb_no_comment: "还没有人留言哦，快来抢沙发！", 
-        gb_fail: "连接云端数据库失败，可能由于网络原因组件未加载。刷新页面再试一下！", gb_delete: "🗑️ 强制删除",
+        gb_fail: "连接云端数据库失败，可能由于网络原因组件未加载。刷新页面再试一下！",
         bio: "通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。",
-        title_profile: "个人档案", p_nick: "<strong>昵称：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身高：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 巨蟹座", p_birth: "<strong>生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”", p_moe: "<strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇", p_fans: "<strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑", p_treasure: "<strong>最珍视的事物：</strong> 家人与粉丝（听众）", p_role: "<strong>喜欢的角色：</strong> sirotan", p_tag: "<strong>主标签：</strong> #こ这个のゆ", p_fanart: "<strong>同人图标签：</strong> #こ这个のゆああと", p_mama: "画师妈妈：",
+        title_profile: "个人档案", p_nick: "<strong>昵称：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身高：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 巨蟹座", p_birth: "<strong>生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”", p_moe: "<strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇", p_fans: "<strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑", p_treasure: "<strong>最珍视的事物：</strong> 家人与粉丝（听众）", p_role: "<strong>喜欢的角色：</strong> sirotan", p_tag: "<strong>主标签：</strong> #ここのゆ", p_fanart: "<strong>同人图标签：</strong> #ここのゆああと", p_mama: "画师妈妈：",
         p_design: "<strong>🎨 艺术设计：</strong> <span class='design-link' onclick=\"showPage('design-page')\">点击查看 Design</span>",
         title_activity: "直播内容 - 活动内容", 
         val_activity: "<p>基本是游戏直播和杂谈，有时候会唱歌和画画。</p><p>游戏直播以RPG为主，不过会尝试各种不同类型的游戏。</p><p>游戏力水平比较低，含有杀戮，犯罪，欺骗的游戏基本都不擅长。特别不擅长FPS，会晕3D。</p><p>没有字幕组，自己制作视频和整活（现已成立自己的字幕组）。</p>",
         title_personal: "个人相关", 
-        val_personal: "<ul class='info-list'><li><strong>啊加嘛似嘛似：</strong>紫老师常用“啊加嘛似嘛似（あじゃますます）”表达感谢。完整的表达通常会在后面加上“ありがとうにゃん 谢谢”。</li><li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常是发烧。目前带病直播几乎是常态。</li><li><strong>简称：</strong>紫老师全名 ここのえゆかり ⇒ こ这个のゆ ⇒ のゆ ⇒ ゆ。一般简称到こ这个のゆ，直播待机结束画面说的也是こ这个のゆ。</li><li><strong>整活大师：</strong>熟悉本土各种梗，经常会做视频将梗运用到极致，常整得一手好活。自称所有的梗都是从萌娘百科看明白的。很多视频鉴赏回当场一脸懵逼，但第二天就玩得66的。可怕的吸收能力。</li><li><strong>天哨星：</strong>紫老师直播吹得一手好口哨，能熟练吹出《好汉歌》、《Never Gonna Give You Up》等歌曲，弹幕曾在水浒回赐号：天哨星。紫老师便是这108将的第109人。</li><li><strong>字幕组校对：</strong>紫老师曾在oto字幕组当校对。你永远不知道自己推的女人在干什么。</li><li><strong>理工男气质：</strong>紫老师礼貌、努力、懂事，做事一板一眼，颇有理工男气质。</li></ul>",
+        val_personal: "<ul class='info-list'><li><strong>啊加嘛似嘛似：</strong>紫老师常用“啊加嘛似嘛似（あじゃますます）”表达感谢。完整的表达通常会在后面加上“ありがとうにゃん 谢谢”。</li><li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常是发烧。目前带病直播几乎是常态。</li><li><strong>简称：</strong>紫老师全名 ここのえ　ゆかり（kokonoe yukari） ⇒ここのゆ（kokonoyu）⇒のゆ（noyu)⇒ゆ(yu)。一般简称到ここのゆ，直播待机结束画面说得也是ここのゆ。</li><li><strong>整活大师：</strong>熟悉本土各种梗，经常会做视频将梗运用到极致，常整得一手好活。自称所有的梗都是从萌娘百科看明白的。很多视频鉴赏回当场一脸懵逼，但第二天就玩得66的。可怕的吸收能力。</li><li><strong>天哨星：</strong>紫老师直播吹得一手好口哨，能熟练吹出《好汉歌》、《Never Gonna Give You Up》等歌曲，弹幕曾在水浒回赐号：天哨星。紫老师便是这108将的第109人。</li><li><strong>字幕组校对：</strong>紫老师曾在oto字幕组当校对。你永远不知道自己推的女人在干什么。</li><li><strong>理工男气质：</strong>紫老师礼貌、努力、懂事，做事一板一眼，颇有理工男气质。</li></ul>",
         title_meme: "相关梗", 
         val_meme: "<ul class='info-list'><li><strong>秦始皇/兵马俑：</strong>首次出现在《三句话把我骗到了bilibili》。原梗为早期电信诈骗：“我是秦始皇，现在给我打钱，我起势了封你做大官”。因为视频中出现了“秦始皇让兵马俑给我点了赞”，所以阿紫的粉丝玩此梗时便自称为兵马俑。</li><li><strong>紫细胞：</strong>在直播中抓获某位粉丝的DD行为时，该粉丝自称：推其他人都是我的细胞自己分裂出去的，我是阿紫的单推人。因为此行为类似细胞分裂，所以粉丝玩此梗时会自称是紫细胞。</li><li><strong>平和族/变态族：</strong>粉丝名称一开始为和平族，后因为觉得比起世界和平，更希望粉丝们能内心平和，因此改名为平和族。但是经常会有粉丝做出一些hentai的发言/行为，这部分粉丝被称为变态族。</li><li><strong>男孩紫：</strong>出现于《日本小巫女看王迅找茬》。其中的白发紫在被找茬后，反怼对方说自己是男孩子。DD狂喜：那不是更好。</li><li><strong>粉丝握手会：</strong>在粉丝握手会的直播中，玩起了VR打僵尸（DD）游戏。僵尸（DD）们前来和阿紫握手，被阿紫热烈款待（DD爆头）。</li><li><strong>×重紫：</strong>直播间的当前人气排名是第几名就是几重紫（如当前排名第一就是一重紫）。此梗出自修仙小说体系中表示修仙者能力的层数。</li><li><strong>旧重紫：</strong>通常指初代模型，也可用于形容阿紫比较老的直播内容或动态。</li></ul>",
         btn_back: "← 返回上一页",
@@ -120,9 +120,9 @@ const langDict = {
         ms_counter_prefix: "紫先生がbilibiliで活動を始めてから", ms_days: "日",
         gb_avatar_text: "アイコンを選択してください：", gb_name_placeholder: "ニックネーム（任意、デフォルトは匿名）", 
         gb_content_placeholder: "ここに紫先生へのメッセージを書いてください...", gb_submit: "送信する ✨", 
-        gb_admin: "🛠️ 管理者入口", gb_loading: "コメントを読み込み中...", 
+        gb_loading: "コメントを読み込み中...", 
         gb_no_comment: "まだコメントはありません。最初のコメントを書きましょう！", 
-        gb_fail: "データベースの接続に失敗しました。ページをリロードしてください。", gb_delete: "🗑️ 削除",
+        gb_fail: "データベースの接続に失敗しました。ページをリロードしてください。",
         bio: "誰かが生前に叶えられなかった夢を追体験して供養し、自身の寿命を延ばしている亜人。<br>数年前までは人間だったが、現在は亜人の姿で存在している。<br>自称「最も清楚な平和族」。皆が平和に過ごし、誰もが同じ世界で幸せに暮らせることを夢見ている。<br>その目標のために日々活動を頑張っている。",
         title_profile: "プロフィール", p_nick: "<strong>ニックネーム：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身長：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 蟹座", p_birth: "<strong>誕生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 物腰が柔らかく真面目、少し臆病で素直な「豆腐メンタル」", p_moe: "<strong>萌え属性：</strong> 癒やし系、巫女、亜人、病弱、ツンデレ", p_fans: "<strong>ファンネーム：</strong> 平和族（変態族） / 一家紫 / 紫細胞 / 兵馬俑", p_treasure: "<strong>大切にしているもの：</strong> 家族、ファン（リスナー様）", p_role: "<strong>好きなキャラ：</strong> しろたん", p_tag: "<strong>メインタグ：</strong> #ここのゆ", p_fanart: "<strong>ファンアートタグ：</strong> #ここのゆああと", p_mama: "絵師ママ：",
         p_design: "<strong>🎨 キャラクターデザイン：</strong> <span class='design-link' onclick=\"showPage('design-page')\">Designを見る</span>",
@@ -352,8 +352,6 @@ function closeLightbox(event) {
 // =========================================
 // 全网云端留言板逻辑 (Bmob)
 // =========================================
-let isAdmin = false;
-
 async function loadComments() {
     const list = document.getElementById('guestbook-list');
     if(!list) return;
@@ -383,7 +381,6 @@ async function loadComments() {
                             <span class="comment-name">${escapeHTML(c.name)}</span>
                             <span class="comment-time">${c.createdAt}</span>
                         </div>
-                        ${isAdmin ? `<button class="comment-delete" style="display:block;" onclick="deleteComment('${c.objectId}')">${langDict[currentLang].gb_delete}</button>` : ''}
                     </div>
                     <div class="comment-content">${escapeHTML(c.content)}</div>
                 </div>
@@ -424,23 +421,6 @@ async function submitComment() {
     } finally {
         btn.innerText = langDict[currentLang].gb_submit;
         btn.disabled = false;
-    }
-}
-
-function toggleAdmin() {
-    if(isAdmin) { isAdmin = false; alert('已退出管理员模式。'); loadComments(); return; }
-    const pwd = prompt('请输入管理员密码：');
-    if(pwd === 'kokonoyu471056.Y') { isAdmin = true; alert('✅ 身份确认！管理员模式已开启。'); loadComments(); } 
-    else if (pwd !== null) { alert('❌ 密码错误！'); }
-}
-
-async function deleteComment(id) {
-    if(confirm('警告：确定要从全网数据库中彻底删除这条留言吗？')) {
-        try {
-            const query = Bmob.Query('Guestbook');
-            await query.destroy(id);
-            loadComments(); 
-        } catch (error) { alert('删除失败！'); }
     }
 }
 
