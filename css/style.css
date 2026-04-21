@@ -5,6 +5,7 @@ body, html {
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'><path d='M4 3l15 9-6.5 1.5 3.5 6-3 2-3.5-6.5L4 20Z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 4 3, auto;
 }
 
+/* 将左右按钮及悬浮按钮也加入可爱鼠标的生效范围 */
 a, button, .site-logo, .top-nav span, .menu-toggle, .design-link, .lang-btn, .gallery-item, .lightbox-close, .lightbox-prev, .lightbox-next, label, .fab-btn, .collection-card, .video-card, .video-close {
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 12 12, pointer !important;
 }
@@ -144,15 +145,15 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .header-intro { color: #555; max-width: 800px; font-size: 15px; margin-top: 15px;}
 
 /* =========================================
-   ✨ 极简线条动效按钮 (优化版) ✨
+   ✨ 果冻弹簧动效按钮 ✨
    ========================================= */
-.site-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 20px; }
+.site-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px; }
 .site-links a { 
-    background-color: transparent; color: #d87093; padding: 4px 10px; font-size: 14px; font-weight: bold; 
-    border: none; border-bottom: 3px solid rgba(216,112,147,0.3); border-radius: 0; text-decoration: none;
-    transition: all 0.3s ease;
+    background-color: #fff; color: #d87093; padding: 6px 14px; font-size: 13px; font-weight: normal; 
+    border-radius: 20px; text-decoration: none; border: 1px solid rgba(216,112,147,0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.site-links a:hover { border-bottom-color: #d87093; transform: translateY(-2px); }
+.site-links a:hover { background-color: #d87093; color: white; transform: translateY(-4px) scale(1.05); box-shadow: 0 6px 15px rgba(216, 112, 147, 0.3); }
 
 .content-area h2, .content-area h3 { color: #d87093; margin-bottom: 20px; font-size: 22px; border-left: 5px solid #d87093; padding-left: 15px; border-radius: 3px; font-weight: normal;}
 .content-area p { margin-bottom: 12px; font-size: 15px; }
@@ -487,7 +488,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 }
 
 /* =========================================
-   ✨ 留言板功能样式 (极简优化版) ✨
+   ✨ 留言板功能样式 ✨
    ========================================= */
 .guestbook-form { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; }
 .avatar-selector { display: flex; gap: 15px; justify-content: center; margin-bottom: 10px; flex-wrap: wrap; }
@@ -496,15 +497,9 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .avatar-selector input:checked + img { border-color: #d87093; opacity: 1; transform: scale(1.1); box-shadow: 0 4px 10px rgba(216, 112, 147, 0.3); }
 .guestbook-form input, .guestbook-form textarea { width: 100%; padding: 15px; border: 2px solid rgba(216, 112, 147, 0.2); border-radius: 12px; font-family: inherit; font-size: 15px; box-sizing: border-box; outline: none; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.7); resize: vertical; }
 .guestbook-form input:focus, .guestbook-form textarea:focus { border-color: #d87093; box-shadow: 0 0 15px rgba(216, 112, 147, 0.15); background: rgba(255, 255, 255, 1); }
-
-/* 极简留言按钮 */
-.gb-submit-btn { 
-    align-self: flex-end; background-color: transparent; color: #d87093; border: none;
-    border-bottom: 4px solid #d87093; padding: 8px 24px; border-radius: 0; font-size: 16px; font-weight: bold;
-    transition: all 0.3s ease; cursor: pointer; box-shadow: none; 
-}
-.gb-submit-btn:disabled { color: #ccc; border-bottom-color: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
-.gb-submit-btn:hover:not(:disabled) { color: #ff6b81; border-bottom-color: #ff6b81; transform: translateY(-2px); }
+.gb-submit-btn { align-self: flex-end; background-color: #d87093; color: white; border: none; padding: 10px 28px; border-radius: 25px; font-size: 15px; font-weight: bold; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 5px 15px rgba(216, 112, 147, 0.3); cursor: pointer; }
+.gb-submit-btn:disabled { background-color: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+.gb-submit-btn:hover:not(:disabled) { background-color: #ff6b81; transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(216, 112, 147, 0.4); }
 
 .comment-item { display: flex; gap: 15px; background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(216, 112, 147, 0.15); border-radius: 16px; padding: 20px; margin-bottom: 15px; position: relative; transition: all 0.3s ease; }
 .comment-item:hover { transform: translateX(5px); background: rgba(255, 255, 255, 0.95); box-shadow: 0 5px 15px rgba(216, 112, 147, 0.1); }
