@@ -55,23 +55,22 @@ let currentCollectionId = null;
 // =========================================
 // ✨ 历程精选配置区 (数据精简提炼自萌娘百科) ✨
 // =========================================
-// 注意这里新增了 icon 字段，对应 css 里的 data-icon 样式渲染不同的 SVG
 const milestonesData = [
-    { date: '2020年6月9日', icon: 'debut', cn: '在bilibili进行初次投稿 📺', jp: 'bilibili初投稿 📺' },
-    { date: '2020年11月10日', icon: 'debut', cn: '成功进行bilibili首次直播 🎙️', jp: '初のbilibili配信 🎙️' },
-    { date: '2020年11月18日', icon: 'follower', cn: 'bilibili粉丝数突破1万 🎉<br><span class="timeline-detail">因为一个整活视频，1天内粉丝从二三百暴涨到一万。</span>', jp: 'bilibiliフォロワー数1万人突破 🎉<br><span class="timeline-detail">ネタ動画が大ウケし、1日でフォロワーが数百人から1万人に急増。</span>' },
-    { date: '2021年8月21日', icon: 'debut', cn: '发布第二套正式形象 👗', jp: '2nd公式モデル発表 👗' },
-    { date: '2022年2月23日', icon: 'follower', cn: 'bilibili粉丝数突破20万 🎈', jp: 'bilibiliフォロワー数20万人突破 🎈' },
-    { date: '2022年4月1日', icon: 'debut', cn: '愚人节整活大危机 🐱<br><span class="timeline-detail">“猫猫”代播放出奇怪文件，造就了经典的一天。</span>', jp: 'エイプリルフール企画 🐱<br><span class="timeline-detail">「猫ちゃん」が配信を乗っ取り、色々とやばいファイルが流出するハプニングが発生。</span>' },
-    { date: '2022年7月23日', icon: 'debut', cn: '生日回首次达成10名提督成就 🚢', jp: '誕生日配信で初の提督10人達成 🚢' },
-    { date: '2022年9月16日', icon: 'debut', cn: '宣布开设官方字幕组 📝', jp: '公式字幕組の設立を発表 📝' },
-    { date: '2022年11月6日', icon: 'follower', cn: 'bilibili粉丝数突破30万 👑', jp: 'bilibiliフォロワー数30万人突破 👑' },
-    { date: '2024年5月28日', icon: 'follower', cn: 'bilibili粉丝数突破50万 🌟', jp: 'bilibiliフォロワー数50万人突破 🌟' },
-    { date: '2025年2月4日', icon: '3d', cn: '举办九重紫4周年＆3D化纪念会 🎊', jp: '九重紫4周年＆3D化記念配信 🎊' },
-    { date: '2025年12月25日', icon: 'debut', cn: '超美丽3D圣诞直播 🎄<br><span class="timeline-detail">开启漫无止境的圣诞节头像活动，共计绘制头像772张。</span>', jp: '超美麗3Dクリスマス配信 🎄<br><span class="timeline-detail">終わらないクリスマスアイコン描き企画がスタート（計772枚作成）。</span>' },
-    { date: '2026年2月1日', icon: 'debut', cn: '登顶全站热门 🔥<br><span class="timeline-detail">投稿视频《总有人看了点哔哩哔哩就以为自己会说中文了》大受好评。</span>', jp: '全休人気ランキング入り 🔥<br><span class="timeline-detail">中国語ネタ動画が大好評で、久々に全サイトのトレンド入り。</span>' },
-    { date: '2026年2月16日', icon: 'follower', cn: '除夕夜直播 & 突破60万粉 🧨<br><span class="timeline-detail">新年到来之际，戴上马年头饰迎来了60万粉丝的时刻。</span>', jp: '大晦日配信 & 60万人フォロワー突破 🧨<br><span class="timeline-detail">新年の訪れとともに、馬の髪飾りをつけて60万人突破の瞬間を迎えた。</span>' },
-    { date: '2026年2月23日', icon: 'follower', cn: '2222天纪念日 ✨<br><span class="timeline-detail">迎来以九重紫名义使用bilibili账号的第2222天。</span>', jp: '2222日記念日 ✨<br><span class="timeline-detail">九重紫としてbilibili活動2222日目を迎える。</span>' }
+    { date: '2020年6月9日', cn: '在bilibili进行初次投稿 📺', jp: 'bilibili初投稿 📺' },
+    { date: '2020年11月10日', cn: '成功进行bilibili首次直播 🎙️', jp: '初のbilibili配信 🎙️' },
+    { date: '2020年11月18日', cn: 'bilibili粉丝数突破1万 🎉<br><span class="timeline-detail">因为一个整活视频，1天内粉丝从二三百暴涨到一万。</span>', jp: 'bilibiliフォロワー数1万人突破 🎉<br><span class="timeline-detail">ネタ動画が大ウケし、1日でフォロワーが数百人から1万人に急増。</span>' },
+    { date: '2021年8月21日', cn: '发布第二套正式形象 👗', jp: '2nd公式モデル発表 👗' },
+    { date: '2022年2月23日', cn: 'bilibili粉丝数突破20万 🎈', jp: 'bilibiliフォロワー数20万人突破 🎈' },
+    { date: '2022年4月1日', cn: '愚人节整活大危机 🐱<br><span class="timeline-detail">“猫猫”代播放出奇怪文件，造就了经典的一天。</span>', jp: 'エイプリルフール企画 🐱<br><span class="timeline-detail">「猫ちゃん」が配信を乗っ取り、色々とやばいファイルが流出するハプニングが発生。</span>' },
+    { date: '2022年7月23日', cn: '生日回首次达成10名提督成就 🚢', jp: '誕生日配信で初の提督10人達成 🚢' },
+    { date: '2022年9月16日', cn: '宣布开设官方字幕组 📝', jp: '公式字幕組の設立を発表 📝' },
+    { date: '2022年11月6日', cn: 'bilibili粉丝数突破30万 👑', jp: 'bilibiliフォロワー数30万人突破 👑' },
+    { date: '2024年5月28日', cn: 'bilibili粉丝数突破50万 🌟', jp: 'bilibiliフォロワー数50万人突破 🌟' },
+    { date: '2025年2月4日', cn: '举办九重紫4周年＆3D化纪念会 🎊', jp: '九重紫4周年＆3D化記念配信 🎊' },
+    { date: '2025年12月25日', cn: '超美丽3D圣诞直播 🎄<br><span class="timeline-detail">开启漫无止境的圣诞节头像活动，共计绘制头像772张。</span>', jp: '超美麗3Dクリスマス配信 🎄<br><span class="timeline-detail">終わらないクリスマスアイコン描き企画がスタート（計772枚作成）。</span>' },
+    { date: '2026年2月1日', cn: '登顶全站热门 🔥<br><span class="timeline-detail">投稿视频《总有人看了点哔哩哔哩就以为自己会说中文了》大受好评。</span>', jp: '全休人気ランキング入り 🔥<br><span class="timeline-detail">中国語ネタ動画が大好評で、久々に全サイトのトレンド入り。</span>' },
+    { date: '2026年2月16日', cn: '除夕夜直播 & 突破60万粉 🧨<br><span class="timeline-detail">新年到来之际，戴上马年头饰迎来了60万粉丝的时刻。</span>', jp: '大晦日配信 & 60万人フォロワー突破 🧨<br><span class="timeline-detail">新年の訪れとともに、馬の髪飾りをつけて60万人突破の瞬間を迎えた。</span>' },
+    { date: '2026年2月23日', cn: '2222天纪念日 ✨<br><span class="timeline-detail">迎来以九重紫名义使用bilibili账号的第2222天。</span>', jp: '2222日記念日 ✨<br><span class="timeline-detail">九重紫としてbilibili活動2222日目を迎える。</span>' }
 ];
 
 // =========================================
@@ -86,14 +85,14 @@ const langDict = {
         nav_milestone: "历程 / MILESTONES",
         works_back: "← 返回合集列表",
         video_count: "个视频",
-        ms_counter_prefix: "紫老师已活跃",
+        ms_counter_prefix: "紫老师作为九重紫已活动了",
         ms_days: "天",
         gb_avatar_text: "请选择你的头像：", gb_name_placeholder: "你的昵称 (选填，默认匿名)", gb_content_placeholder: "在这里写下想对紫老师说的话吧...", gb_submit: "发送留言 ✨", gb_admin: "🛠️ 管理员入口", gb_loading: "努力向云端拉取留言中...", gb_no_comment: "还没有人留言哦，快来抢沙发！", gb_fail: "连接云端数据库失败，可能由于网络原因组件未加载。刷新页面再试一下！", gb_delete: "🗑️ 强制删除",
         bio: "通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。",
-        title_profile: "个人档案", p_nick: "<strong>昵称：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身高：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 巨蟹座", p_birth: "<strong>生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”", p_moe: "<strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇", p_fans: "<strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑", p_treasure: "<strong>最珍视的事物：</strong> 家人与粉丝（听众）", p_role: "<strong>喜欢的角色：</strong> sirotan", p_tag: "<strong>主标签：</strong> #ここのゆ", p_fanart: "<strong>同人图标签：</strong> #ここのゆああと", p_mama: "画师妈妈：",
+        title_profile: "个人档案", p_nick: "<strong>昵称：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身高：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 巨蟹座", p_birth: "<strong>生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 待人柔和、认真、有些胆小、直率的“豆腐心”", p_moe: "<strong>萌点：</strong> 治愈系、巫女、亚人、病弱、傲娇", p_fans: "<strong>粉丝名：</strong> 平和族（变态族） / 一家紫 / 紫细胞 / 兵马俑", p_treasure: "<strong>最珍视的事物：</strong> 家人与粉丝（听众）", p_role: "<strong>喜欢的角色：</strong> sirotan", p_tag: "<strong>主标签：</strong> #こ这个のゆ", p_fanart: "<strong>同人图标签：</strong> #こ这个のゆああと", p_mama: "画师妈妈：",
         p_design: "<strong>🎨 艺术设计：</strong> <span class='design-link' onclick=\"showPage('design-page')\">点击查看 Design</span>",
         title_activity: "直播内容 - 活动内容", val_activity: "<p>基本是游戏直播和杂谈，有时候会唱歌和画画。</p><p>游戏直播以RPG为主，不过会尝试各种不同类型的游戏。</p><p>游戏力水平比较低，含有杀戮，犯罪，欺骗的游戏基本都不擅长. 特别不擅长FPS，会晕3D.</p><p>没有字幕组，自己制作视频和整活（现已成立自己的字幕组）.</p>",
-        title_personal: "个人相关", val_personal: "<ul class='info-list'><li><strong>啊加嘛似嘛似：</strong>紫老师常用“啊加嘛似嘛似（あじゃますます）”表达感谢. 完整的表达通常会在后面加上“ありがとうにゃん 谢谢”.</li><li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常是发烧. 目前带病直播几乎是常态.</li><li><strong>简称：</strong>紫老师全名 ここのえゆかり ⇒ ここのゆ ⇒ のゆ ⇒ ゆ. 一般简称到ここのゆ，直播待机结束画面说的也是ここのゆ.</li><li><strong>整活大师：</strong>熟悉本土各种梗，经常会做视频将梗运用到极致，常整得一手好活. 自称所有的梗都是从萌娘百科看明白的. 很多视频鉴赏回当场一脸懵逼，但第二天就玩得66的. 可怕的吸收能力.</li><li><strong>天哨星：</strong>紫老师直播吹得一手好口哨，能熟练吹出《好汉歌》、《Never Gonna Give You Up》等歌曲，弹幕曾在水浒回赐号：天哨星. 紫老师便是这108将的第109人.</li><li><strong>字幕组校对：</strong>紫老师曾在oto字幕组当校对. 你永远不知道自己推的女人在干什么.</li><li><strong>理工男气质：</strong>紫老师礼貌、努力、懂事，做事一板一眼，颇有理工男气质.</li></ul>",
+        title_personal: "个人相关", val_personal: "<ul class='info-list'><li><strong>啊加嘛似嘛似：</strong>紫老师常用“啊加嘛似嘛似（あじゃますます）”表达感谢. 完整的表达通常会在后面加上“ありがとうにゃん 谢谢”.</li><li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常是发烧. 目前带病直播几乎是常态.</li><li><strong>简称：</strong>紫老师全名 ここのえゆかり ⇒ こ这个のゆ ⇒ のゆ ⇒ ゆ. 一般简称到こ这个のゆ，直播待机结束画面说的也是こ这个のゆ.</li><li><strong>整活大师：</strong>熟悉本土各种梗，经常会做视频将梗运用到极致，常整得一手好活. 自称所有的梗都是从萌娘百科看明白的. 很多视频鉴赏回当场一脸懵逼，但第二天就玩得66的. 可放的吸收能力.</li><li><strong>天哨星：</strong>紫老师直播吹得一手好口哨，能熟练吹出《好汉歌》、《Never Gonna Give You Up》等歌曲，弹幕曾在水浒回赐号：天哨星. 紫老师便是这108将的第109人.</li><li><strong>字幕组校对：</strong>紫老师曾在oto字幕组当校对. 你永远不知道自己推的女人在干什么.</li><li><strong>理工男气质：</strong>紫老师礼貌、努力、懂事，做事一板一眼，颇有理工男气质.</li></ul>",
         title_meme: "相关梗", val_meme: "<ul class='info-list'><li><strong>秦始皇/兵马俑：</strong>首次出现在《三句话把我骗到了bilibili》. 原梗为早期电信诈骗：“我是秦始皇，现在给我打钱，我起势了封你做大官”. 因为视频中出现了“秦始皇让兵马俑给我点了赞”，所以阿紫的粉丝玩此梗时便自称为兵马俑.</li><li><strong>紫细胞：</strong>在直播中抓获某位粉丝的DD行为时，该粉丝自称：推其他人都是我的细胞自己分裂出去的，我是阿紫的单推人. 因为此行为类似细胞分裂，所以粉丝玩此梗时会自称是紫细胞.</li><li><strong>平和族/变态族：</strong>粉丝名称一开始为和平族，后因为觉得比起世界和平，更希望粉丝们能内心平和，因此改名为平和族. 但是经常会有粉丝做出一些hentai的发言/行为，这部分粉丝被称为变态族.</li><li><strong>男孩紫：</strong>出现于《日本小巫女看王迅找茬》. 其中的白发紫在被找茬后，反怼对方说自己是男孩子. DD狂喜：那不是更好.</li><li><strong>粉丝握手会：</strong>在粉丝握手会的直播中，玩起了VR打僵尸（DD）游戏. 僵尸（DD）们前来和阿紫握手，被阿紫热烈款待（DD爆头）.</li><li><strong>×重紫：</strong>直播间的当前人气排名是第几名就是几重紫（如当前排名第一就是一重紫）. 此梗出自修仙小说体系中表示修仙者能力的层数.</li><li><strong>旧重紫：</strong>通常指初代模型，也可用于形容阿紫比较老的直播内容或动态.</li></ul>",
         btn_back: "← 返回上一页",
         site_p1: "你好！欢迎来到这里. 这是一个由粉丝用爱发电、自发搭建的<strong>非官方个人主页</strong>.", site_h1: "搭建初衷", site_p2: "我是2026年1月13日开始关注紫老师的，当时紫老师正在看《爱情公寓》，我也跟着看了一两集，我发现一件让我觉得很奇怪的事：为什么这么大的一个主播连一毛钱的礼物都会很认真的感谢？后面就逐渐对紫老师的直播感兴趣了.<br><br>我觉得紫老师是一个对工作很认真、很负责的人，对粉丝也很用心、很真诚. 后面了解到原来之前圣诞节还会上舰给舰长画头像的活动，我发现紫老师对每一个头像画的都很认真，没有一丝丝的敷衍（可惜我错过活动了呜呜）.<br><br>在那之后我就想给紫老师做点什么，正好发现紫老师kokonoyu.com这个域名还没有人注册，于是我就买了下来准备做点东西.<br><br>所以我首先做了紫老师的主页，后续可能还会做紫老师的作品导航、音乐站之类的（如果能得到紫老师授权的话）.", site_h2: "内容来源与建议", site_p3: "本站的部分内容资料摘自 <strong>萌娘百科</strong> 以及 <strong>九重紫的B站个人空间</strong>. 我只是一名普通的粉丝，如果你也喜欢九重紫，或者对这个网页的排版与内容有什么建议，欢迎通过哔哩哔哩私信我：<br>👉 <a href='https://space.bilibili.com/17276?spm_id_from=333.976.0.0' target='_blank' class='design-link' style='border:none;'>点击访问我的 Bilibili 个人主页</a>", site_box: "<strong>⚠️ 版权与免责声明</strong><br><br>1. 本网站内所使用的<strong>所有美术素材、图片、Logo、背景故事及设定等内容，版权均归主播 <a href='https://kokonoeyukari.my.canva.site/' target='_blank'>九重紫（Kokonoe Yukari）</a> 及其合作画师所有.</strong><br>2. 本站仅作粉丝安利与导航整理用途，没有任何商业盈利目的.<br>3. 如果本站的内容有任何侵权或不妥之处，请随时通过上方 B 站链接私信联系我，我会在第一时间配合修改或删除."
@@ -106,7 +105,7 @@ const langDict = {
         nav_milestone: "軌跡 / MILESTONES",
         works_back: "← コレクション一覧に戻る",
         video_count: "本の動画",
-        ms_counter_prefix: "紫先生の活動開始から",
+        ms_counter_prefix: "紫先生が活動を始めてから",
         ms_days: "日",
         gb_avatar_text: "アイコンを選択してください：", gb_name_placeholder: "ニックネーム（任意、デフォルトは匿名）", gb_content_placeholder: "ここに紫先生へのメッセージを書いてください...", gb_submit: "送信する ✨", gb_admin: "🛠️ 管理者入口", gb_loading: "コメントを読み込み中...", gb_no_comment: "まだコメントはありません. 最初のコメントを書きましょう！", gb_fail: "データベースの接続に失敗しました. ページをリロードしてください.", gb_delete: "🗑️ 削除",
         bio: "誰かが生前に叶えられなかった夢を追体験して供養し、自身の寿命を延ばしている亜人.<br>数年前までは人間だったが、現在は亜人の姿で存在している.<br>自称「最も清楚な平和族」. 皆が平和に過ごし、誰もが同じ世界で幸せに暮らせることを夢見ている.<br>その目標のために日々活動を頑張っている.",
@@ -451,10 +450,9 @@ function renderMilestones() {
     if (!timeline) return;
     const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
     
-    // 注意这里我们从数据中读取 item.icon 给 CSS 的 data-icon 提供依据
     timeline.innerHTML = milestonesData.map((item, index) => `
-        <div class="timeline-item" data-aos="fade-up" data-aos-delay="${Math.min(index * 50, 400)}" data-icon="${item.icon}">
-            <div class="timeline-icon"></div>
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay="${Math.min(index * 50, 400)}">
+            <div class="timeline-dot"></div>
             <div class="timeline-date">${item.date}</div>
             <div class="timeline-content">${item[currentLang]}</div>
         </div>
@@ -497,23 +495,16 @@ function updateDaysCounter() {
 // 页面切换与导航逻辑
 // =========================================
 function showPage(pageId) {
-    // 隐藏所有页面
     var pages = document.getElementsByClassName('sub-page');
     for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active-page'); }
-    
-    // 显示目标页面
     var targetPage = document.getElementById(pageId);
-    if(targetPage) {
-        void targetPage.offsetWidth; // 触发回流，让动画重新生效
-        targetPage.classList.add('active-page');
-    }
-    
+    void targetPage.offsetWidth; 
+    targetPage.classList.add('active-page');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
     const topNav = document.getElementById('top-nav-menu');
     if (topNav.classList.contains('active')) { topNav.classList.remove('active'); }
 
-    // 处理特殊页面的初始化加载
     if (pageId === 'works-page') { 
         renderCollections(); 
         backToCollections();
