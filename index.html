@@ -37,6 +37,7 @@
             <span onclick="showPage('home-page')" data-key="nav_home">首页 / HOME</span>
             <span onclick="showPage('works-page')" data-key="nav_works">作品 / WORKS</span>
             <span onclick="showPage('gallery-page')" data-key="nav_gallery">画廊 / GALLERY</span>
+            <span onclick="showPage('milestone-page')" data-key="nav_milestone">历程 / MILESTONES</span>
             <span onclick="showPage('guestbook-page')" data-key="nav_guestbook">留言板 / GUESTBOOK</span>
             <span onclick="showPage('about-site-page')" data-key="nav_site">关于本站</span> 
             
@@ -110,7 +111,7 @@
                     <ul class="info-list">
                         <li><strong>啊加嘛似嘛似：</strong>紫老师常用“啊加嘛似嘛似（あじゃますます）”表达感谢。完整的表达通常会在后面加上“ありがとうにゃん 谢谢”。</li>
                         <li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常是发烧。目前带病直播几乎是常态。</li>
-                        <li><strong>简称：</strong>紫老师全名 ここのえゆかり ⇒ こ这个のゆ ⇒ のゆ ⇒ ゆ。一般简称到ここのゆ，直播待机结束画面说的也是ここのゆ。</li>
+                        <li><strong>简称：</strong>紫老师全名 ここのえゆかり ⇒ こ这个のゆ ⇒ のゆ ⇒ ゆ。一般简称到こ这个のゆ，直播待机结束画面说的也是こ这个のゆ。</li>
                         <li><strong>整活大师：</strong>熟悉本土各种梗，经常会做视频将梗运用到极致，常整得一手好活。自称所有的梗都是从萌娘百科看明白的。很多视频鉴赏回当场一脸懵逼，但第二天就玩得66的。可怕的吸收能力。</li>
                         <li><strong>天哨星：</strong>紫老师直播吹得一手好口哨，能熟练吹出《好汉歌》、《Never Gonna Give You Up》等歌曲，弹幕曾在水浒回赐号：天哨星。紫老师便是这108将的第109人。</li>
                         <li><strong>字幕组校对：</strong>紫老师曾在oto字幕组当校对。你永远不知道自己推的女人在干什么。</li>
@@ -167,6 +168,20 @@
                 <h2 data-key="nav_gallery" style="text-align: center; border: none; margin-bottom: 30px;">画廊 / GALLERY</h2>
                 <div class="gallery" id="vtuber-gallery"></div>
                 <div id="gallery-loading-text" style="text-align: center; color: #d87093; margin-top: 20px; display: none;">加载中...</div>
+            </div>
+        </div>
+
+        <div id="milestone-page" class="sub-page">
+            <div class="content-area" data-aos="fade-up">
+                <h2 data-key="nav_milestone" style="text-align: center; border: none; margin-bottom: 20px;">历程 / MILESTONES</h2>
+                
+                <div class="milestone-counter">
+                    <p data-key="ms_counter_prefix">距离紫老师以九重紫名义使用bilibili账号已经过去了</p>
+                    <div class="days-display"><span id="live-days">...</span> <span style="font-size: 20px;" data-key="ms_days">天</span></div>
+                </div>
+
+                <div class="timeline" id="milestone-timeline">
+                    </div>
             </div>
         </div>
 
