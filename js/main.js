@@ -79,7 +79,7 @@ const milestonesData = [
     { date: '2026年2月1日', cn: '登顶全站热门 🔥<br><span class="timeline-detail">投稿视频《总有人看了点哔哩哔哩就以为自己会说中文了》大受好评。</span>', jp: '全休人気ランキング入り 🔥<br><span class="timeline-detail">中国語ネタ動画が大好評でトレンド入り。</span>' },
     { date: '2026年2月16日', cn: '突破60万粉 & 除夕夜直播 🧨<br><span class="timeline-detail">新年到来之际，戴上马年头饰迎来了60万粉丝的时刻。</span>', jp: '60万人突破 & 大晦日配信 🧨<br><span class="timeline-detail">新年の訪れとともに、馬の髪飾りをつけて60万人突破の瞬間を迎えた。</span>' },
     { date: '2026年2月23日', cn: '2222天纪念日 📆<br><span class="timeline-detail">迎来以九重紫名义使用bilibili账号的第2222天。</span>', jp: '2222日記念日 📆<br><span class="timeline-detail">九重紫としてbilibili活動2222日目を迎える。</span>' },
-    { date: '2026年4月20日', cn: '中国行最终回直播 🇨🇳<br><span class="timeline-detail">紫老师来中国工作旅游的最后一次直播。</span>', jp: '中国旅行最終配信 🇨🇳<br><span class="timeline-detail">紫先生が中国での仕事と旅行を終える最後の配信。</span>' }
+    { date: '2026年4月20日', cn: '中国行二周目前夕 🇨🇳<br><span class="timeline-detail">紫老师来中国工作旅游前的最后一次直播。</span>', jp: '中国旅行最終配信 🇨🇳<br><span class="timeline-detail">紫先生が中国での仕事と旅行を終える最後の配信。</span>' }
 ];
 
 // =========================================
