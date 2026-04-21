@@ -437,6 +437,10 @@ async function submitComment() {
         query.set("name", nameInput);
         query.set("content", contentInput);
         query.set("avatar", avatarInput);
+        
+        // 【关键防御】新增的 ACL 权限控制代码：所有人均可看，但不可修改和删除
+        query.set("ACL", {"*":{"read":true}}); 
+        
         await query.save();
 
         document.getElementById('gb-content').value = ''; 
