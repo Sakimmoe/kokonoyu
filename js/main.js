@@ -53,21 +53,24 @@ const worksData = [
 let currentCollectionId = null;
 
 // =========================================
-// ✨ 历程配置区 (数据来源于萌娘百科) ✨
+// ✨ 历程精选配置区 (数据精简提炼自萌娘百科) ✨
 // =========================================
 const milestonesData = [
-    { date: '2020年11月18日', cn: 'bilibili粉丝数突破1万 🎉', jp: 'bilibiliフォロワー数1万人突破 🎉' },
-    { date: '2020年11月22日', cn: '进行首次B限直播 📺', jp: '初のB限（bilibili限定）配信 📺' },
-    { date: '2021年7月23日', cn: '于生日回首次达成“百人舰队”成就 🚢', jp: '誕生日配信で初の「艦隊100人」達成 🚢' },
-    { date: '2021年8月3日', cn: 'bilibili粉丝数突破10万 🌟', jp: 'bilibiliフォロワー数10万人突破 🌟' },
+    { date: '2020年6月9日', cn: '在bilibili进行初次投稿 📺', jp: 'bilibili初投稿 📺' },
+    { date: '2020年11月10日', cn: '成功进行bilibili首次直播 🎙️', jp: '初のbilibili配信 🎙️' },
+    { date: '2020年11月18日', cn: 'bilibili粉丝数突破1万 🎉<br><span class="timeline-detail">因为一个整活视频，1天内粉丝从二三百暴涨到一万。</span>', jp: 'bilibiliフォロワー数1万人突破 🎉<br><span class="timeline-detail">ネタ動画が大ウケし、1日でフォロワーが数百人から1万人に急増。</span>' },
     { date: '2021年8月21日', cn: '发布第二套正式形象 👗', jp: '2nd公式モデル発表 👗' },
-    { date: '2021年12月5日', cn: 'bilibili进行一周年纪念回直播 🎂', jp: 'bilibili1周年記念配信 🎂' },
-    { date: '2022年1月3日', cn: '发布第三套正式形象（和服） 👘', jp: '3rd公式モデル（和服）発表 👘' },
-    { date: '2022年1月9日', cn: 'bilibili粉丝数突破158000 ✨', jp: 'bilibiliフォロワー数158,000人突破 ✨' },
     { date: '2022年2月23日', cn: 'bilibili粉丝数突破20万 🎈', jp: 'bilibiliフォロワー数20万人突破 🎈' },
-    { date: '2022年4月29日', cn: '举办158000粉丝纪念回 🎊', jp: '158,000人フォロワー記念配信 🎊' },
+    { date: '2022年4月1日', cn: '愚人节整活大危机 🐱<br><span class="timeline-detail">“猫猫”代播放出奇怪文件，造就了经典的一天。</span>', jp: 'エイプリルフール企画 🐱<br><span class="timeline-detail">「猫ちゃん」が配信を乗っ取り、色々とやばいファイルが流出するハプニングが発生。</span>' },
+    { date: '2022年7月23日', cn: '生日回首次达成10名提督成就 🚢', jp: '誕生日配信で初の提督10人達成 🚢' },
+    { date: '2022年9月16日', cn: '宣布开设官方字幕组 📝', jp: '公式字幕組の設立を発表 📝' },
     { date: '2022年11月6日', cn: 'bilibili粉丝数突破30万 👑', jp: 'bilibiliフォロワー数30万人突破 👑' },
-    { date: '2024年2月18日', cn: 'bilibili粉丝数突破40万 🏆', jp: 'bilibiliフォロワー数40万人突破 🏆' }
+    { date: '2024年5月28日', cn: 'bilibili粉丝数突破50万 🌟', jp: 'bilibiliフォロワー数50万人突破 🌟' },
+    { date: '2025年2月4日', cn: '举办九重紫4周年＆3D化纪念会 🎊', jp: '九重紫4周年＆3D化記念配信 🎊' },
+    { date: '2025年12月25日', cn: '超美丽3D圣诞直播 🎄<br><span class="timeline-detail">开启漫无止境的圣诞节头像活动，共计绘制头像772张。</span>', jp: '超美麗3Dクリスマス配信 🎄<br><span class="timeline-detail">終わらないクリスマスアイコン描き企画がスタート（計772枚作成）。</span>' },
+    { date: '2026年2月1日', cn: '登顶全站热门 🔥<br><span class="timeline-detail">投稿视频《总有人看了点哔哩哔哩就以为自己会说中文了》大受好评。</span>', jp: '全休人気ランキング入り 🔥<br><span class="timeline-detail">中国語ネタ動画が大好評で、久々に全サイトのトレンド入り。</span>' },
+    { date: '2026年2月16日', cn: '除夕夜直播 & 突破60万粉 🧨<br><span class="timeline-detail">新年到来之际，戴上马年头饰迎来了60万粉丝的时刻。</span>', jp: '大晦日配信 & 60万人フォロワー突破 🧨<br><span class="timeline-detail">新年の訪れとともに、馬の髪飾りをつけて60万人突破の瞬間を迎えた。</span>' },
+    { date: '2026年2月23日', cn: '2222天纪念日 ✨<br><span class="timeline-detail">迎来以九重紫名义使用bilibili账号的第2222天。</span>', jp: '2222日記念日 ✨<br><span class="timeline-detail">九重紫としてbilibili活動2222日目を迎える。</span>' }
 ];
 
 // =========================================
@@ -82,7 +85,7 @@ const langDict = {
         nav_milestone: "历程 / MILESTONES",
         works_back: "← 返回合集列表",
         video_count: "个视频",
-        ms_counter_prefix: "距离紫老师以九重紫名义使用bilibili账号已经过去了",
+        ms_counter_prefix: "紫老师作为九重紫已活动了",
         ms_days: "天",
         gb_avatar_text: "请选择你的头像：", gb_name_placeholder: "你的昵称 (选填，默认匿名)", gb_content_placeholder: "在这里写下想对紫老师说的话吧...", gb_submit: "发送留言 ✨", gb_admin: "🛠️ 管理员入口", gb_loading: "努力向云端拉取留言中...", gb_no_comment: "还没有人留言哦，快来抢沙发！", gb_fail: "连接云端数据库失败，可能由于网络原因组件未加载。刷新页面再试一下！", gb_delete: "🗑️ 强制删除",
         bio: "通过体验实现某人生前无法达成的梦想来超度他们，以延续自己寿命的亚人。<br>在几年前还是人类，但现在以亚人的姿态存在。<br>自称最清楚的平和族，梦想大家能和平相处，每一个人都幸福地在同一个世界生活。<br>为了这个目标而努力进行活动。",
@@ -102,7 +105,7 @@ const langDict = {
         nav_milestone: "軌跡 / MILESTONES",
         works_back: "← コレクション一覧に戻る",
         video_count: "本の動画",
-        ms_counter_prefix: "紫先生が九重紫としてbilibiliを使い始めてから",
+        ms_counter_prefix: "紫先生が活動を始めてから",
         ms_days: "日",
         gb_avatar_text: "アイコンを選択してください：", gb_name_placeholder: "ニックネーム（任意、デフォルトは匿名）", gb_content_placeholder: "ここに紫先生へのメッセージを書いてください...", gb_submit: "送信する ✨", gb_admin: "🛠️ 管理者入口", gb_loading: "コメントを読み込み中...", gb_no_comment: "まだコメントはありません. 最初のコメントを書きましょう！", gb_fail: "データベースの接続に失敗しました. ページをリロードしてください.", gb_delete: "🗑️ 削除",
         bio: "誰かが生前に叶えられなかった夢を追体験して供養し、自身の寿命を延ばしている亜人.<br>数年前までは人間だったが、現在は亜人の姿で存在している.<br>自称「最も清楚な平和族」. 皆が平和に過ごし、誰もが同じ世界で幸せに暮らせることを夢見ている.<br>その目標のために日々活動を頑張っている.",
@@ -440,7 +443,7 @@ function escapeHTML(str) {
 }
 
 // =========================================
-// 🎉 新增：历程渲染与天数计算逻辑 🎉
+// 🎉 历程渲染与天数计算逻辑 🎉
 // =========================================
 function renderMilestones() {
     const timeline = document.getElementById('milestone-timeline');
@@ -460,7 +463,7 @@ function updateDaysCounter() {
     const daysEl = document.getElementById('live-days');
     if (!daysEl) return;
 
-    // 核心逻辑：以 2026年2月23日 作为 第2222天的锚点（完美贴合你的需求逻辑）
+    // 核心逻辑：以 2026年2月23日 作为 第2222天的锚点
     const anchorDate = new Date('2026-02-23T00:00:00+08:00');
     const today = new Date();
     
