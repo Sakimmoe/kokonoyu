@@ -1,46 +1,46 @@
 /* =========================================
-   ✨ 鼠标指针美化 (软萌胖箭头 + 小爱心) ✨
-   ========================================= */
+   ✨ 鼠标指针美化 (软萌胖箭头 + 小爱心) ✨
+   ========================================= */
 body, html {
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'><path d='M4 3l15 9-6.5 1.5 3.5 6-3 2-3.5-6.5L4 20Z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 4 3, auto;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'><path d='M4 3l15 9-6.5 1.5 3.5 6-3 2-3.5-6.5L4 20Z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 4 3, auto;
 }
 
 /* 将左右按钮及悬浮按钮也加入可爱鼠标的生效范围 */
 a, button, .site-logo, .top-nav span, .menu-toggle, .design-link, .lang-btn, .gallery-item, .lightbox-close, .lightbox-prev, .lightbox-next, label, .fab-btn, .collection-card, .video-card, .video-close {
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 12 12, pointer !important;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 12 12, pointer !important;
 }
 
 /* =========================================
-   ✨ 基础设定 & 引入可爱字体 & 人物背景 ✨
-   ========================================= */
+   ✨ 基础设定 & 引入可爱字体 & 人物背景 ✨
+   ========================================= */
 body {
-    background-color: #fdf8f9; 
-    background-image: linear-gradient(-45deg, #fff0f5, #ffe4e1, #ffd1df, #fff0f5); 
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite; 
-    font-family: 'ZCOOL KuaiLe', 'Nunito', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
-    font-weight: normal; 
-    margin: 0; padding: 0; color: #4a4a4a; min-height: 100vh; line-height: 1.8; overflow-x: hidden;
+    background-color: #fdf8f9; 
+    background-image: linear-gradient(-45deg, #fff0f5, #ffe4e1, #ffd1df, #fff0f5); 
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite; 
+    font-family: 'ZCOOL KuaiLe', 'Nunito', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
+    font-weight: normal; 
+    margin: 0; padding: 0; color: #4a4a4a; min-height: 100vh; line-height: 1.8; overflow-x: hidden;
 }
 
 .background-image {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('../images/bg-character.png'); 
-    background-size: cover; 
-    background-position: center center; 
-    background-repeat: no-repeat;
-    z-index: -3; pointer-events: none; opacity: 0.75; 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('../images/bg-character.png'); 
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat;
+    z-index: -3; pointer-events: none; opacity: 0.75; 
 }
 
 .bg-mask {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(255, 255, 255, 0.45); 
-    z-index: -2; pointer-events: none;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(255, 255, 255, 0.45); 
+    z-index: -2; pointer-events: none;
 }
 
 h1, h2, h3, strong {
-    font-family: 'ZCOOL KuaiLe', 'Nunito', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
-    color: #2c2c2c; font-weight: normal; letter-spacing: 1px;
+    font-family: 'ZCOOL KuaiLe', 'Nunito', 'Yuanti SC', 'YouYuan', 'PingFang SC', sans-serif;
+    color: #2c2c2c; font-weight: normal; letter-spacing: 1px;
 }
 
 @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
@@ -51,39 +51,39 @@ h1, h2, h3, strong {
 ::-webkit-scrollbar-thumb:hover { background: #ff9cbd; }
 
 /* =========================================
-   ✨ 全屏加载动画 (Loading) ✨
-   ========================================= */
+   ✨ 全屏加载动画 (Loading) ✨
+   ========================================= */
 #loader {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: #fff0f5; display: flex; justify-content: center; align-items: center;
-    z-index: 9999; transition: opacity 0.6s ease, visibility 0.6s ease;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #fff0f5; display: flex; justify-content: center; align-items: center;
+    z-index: 9999; transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 .loader-content { text-align: center; color: #d87093; font-weight: bold; font-size: 1.2rem;}
 .bounce-ball {
-    width: 20px; height: 20px; background-color: #d87093; border-radius: 50%;
-    margin: 0 auto 15px auto; animation: bounce 0.5s alternate infinite ease-in-out;
+    width: 20px; height: 20px; background-color: #d87093; border-radius: 50%;
+    margin: 0 auto 15px auto; animation: bounce 0.5s alternate infinite ease-in-out;
 }
 @keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-30px); } }
 
 /* =========================================
-   ✨ 樱花飘落容器 ✨
-   ========================================= */
+   ✨ 樱花飘落容器 ✨
+   ========================================= */
 #sakura-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden; }
 .sakura {
-    position: absolute; top: -10%; background: #ffd1df; border-radius: 150% 0 150% 0; 
-    animation: fall linear infinite, sway ease-in-out infinite alternate; opacity: 0.8;
+    position: absolute; top: -10%; background: #ffd1df; border-radius: 150% 0 150% 0; 
+    animation: fall linear infinite, sway ease-in-out infinite alternate; opacity: 0.8;
 }
 @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
 @keyframes sway { 0% { transform: translateX(0) rotate(0deg); } 100% { transform: translateX(50px) rotate(45deg); } }
 
 /* =========================================
-   ✨ 导航栏 & 语言切换按钮 ✨
-   ========================================= */
-.nav-wrapper { 
-    position: sticky; top: 0; z-index: 100; background: rgba(253, 248, 249, 0.85); 
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
-    padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; 
-    border-bottom: 1px solid rgba(216, 112, 147, 0.1); transition: transform 0.4s cubic-bezier(0.3, 0, 0.2, 1);
+   ✨ 导航栏 & 语言切换按钮 ✨
+   ========================================= */
+.nav-wrapper { 
+    position: sticky; top: 0; z-index: 100; background: rgba(253, 248, 249, 0.85); 
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
+    padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; 
+    border-bottom: 1px solid rgba(216, 112, 147, 0.1); transition: transform 0.4s cubic-bezier(0.3, 0, 0.2, 1);
 }
 .nav-hidden { transform: translateY(-100%); }
 .site-logo { height: 55px; object-fit: contain; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
@@ -94,44 +94,44 @@ h1, h2, h3, strong {
 .top-nav span:hover { color: #d87093; }
 
 .lang-switch {
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 20px; padding: 4px; display: inline-flex; align-items: center; gap: 2px;
-    margin-left: 10px; border: 1px solid rgba(216, 112, 147, 0.15);
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px; padding: 4px; display: inline-flex; align-items: center; gap: 2px;
+    margin-left: 10px; border: 1px solid rgba(216, 112, 147, 0.15);
 }
 .lang-btn {
-    font-size: 13px !important; color: #888 !important; padding: 4px 12px; border-radius: 16px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 13px !important; color: #888 !important; padding: 4px 12px; border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .lang-btn.active {
-    color: #d87093 !important; background-color: #fff;
-    box-shadow: 0 2px 8px rgba(216, 112, 147, 0.2); font-weight: normal;
+    color: #d87093 !important; background-color: #fff;
+    box-shadow: 0 2px 8px rgba(216, 112, 147, 0.2); font-weight: normal;
 }
 
 .menu-toggle { display: none; flex-direction: column; gap: 5px; }
 .menu-toggle .bar { width: 25px; height: 3px; background-color: #d87093; transition: 0.3s; border-radius: 2px; }
 
 /* =========================================
-   ✨ 主容器 (居中布局) ✨
-   ========================================= */
+   ✨ 主容器 (居中布局) ✨
+   ========================================= */
 .page-container { width: 95%; max-width: 900px; margin: 20px auto 60px auto; padding: 0; display: flex; flex-direction: column; align-items: center; }
 
 .sub-page { display: none; opacity: 0; width: 100%; will-change: transform, opacity; }
 .active-page { display: block; animation: fadeUpIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
 
-@keyframes fadeUpIn { 
-    0% { opacity: 0; transform: translateY(30px); -webkit-transform: translateY(30px); } 
-    100% { opacity: 1; transform: translateY(0); -webkit-transform: translateY(0); } 
+@keyframes fadeUpIn { 
+    0% { opacity: 0; transform: translateY(30px); -webkit-transform: translateY(30px); } 
+    100% { opacity: 1; transform: translateY(0); -webkit-transform: translateY(0); } 
 }
 
 .content-area {
-    background: rgba(255, 255, 255, 0.75); 
-    backdrop-filter: blur(8px); 
-    -webkit-backdrop-filter: blur(8px); 
-    transform: translateZ(0); 
-    -webkit-transform: translateZ(0);
-    border-radius: 24px; 
-    box-shadow: 0 10px 30px rgba(216, 112, 147, 0.15); padding: 35px 40px; margin-bottom: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.5); width: 100%; box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.75); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
+    transform: translateZ(0); 
+    -webkit-transform: translateZ(0);
+    border-radius: 24px; 
+    box-shadow: 0 10px 30px rgba(216, 112, 147, 0.15); padding: 35px 40px; margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.5); width: 100%; box-sizing: border-box;
 }
 
 .transparent-area { background: transparent; box-shadow: none; border: none; padding: 10px; }
@@ -140,18 +140,18 @@ h1, h2, h3, strong {
 .header-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
 img.avatar { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(216, 112, 147, 0.3); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 img.avatar:hover { transform: scale(1.1) rotate(5deg); }
-.header-name { margin: 0 0 10px 0; font-size: 34px; font-weight: normal; } 
+.header-name { margin: 0 0 10px 0; font-size: 34px; font-weight: normal; } 
 .header-subname { font-weight: 700; font-size: 18px; color: #d87093; margin-left: 8px; }
 .header-intro { color: #555; max-width: 800px; font-size: 15px; margin-top: 15px;}
 
 /* =========================================
-   ✨ 果冻弹簧动效按钮 ✨
-   ========================================= */
+   ✨ 果冻弹簧动效按钮 ✨
+   ========================================= */
 .site-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px; }
-.site-links a { 
-    background-color: #fff; color: #d87093; padding: 6px 14px; font-size: 13px; font-weight: normal; 
-    border-radius: 20px; text-decoration: none; border: 1px solid rgba(216,112,147,0.3);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.site-links a { 
+    background-color: #fff; color: #d87093; padding: 6px 14px; font-size: 13px; font-weight: normal; 
+    border-radius: 20px; text-decoration: none; border: 1px solid rgba(216,112,147,0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .site-links a:hover { background-color: #d87093; color: white; transform: translateY(-4px) scale(1.05); box-shadow: 0 6px 15px rgba(216, 112, 147, 0.3); }
 
@@ -164,333 +164,333 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .design-link:hover { color: #ff8fb8; border-bottom-color: #ff8fb8; transform: translateY(-2px); }
 .design-full-img { width: 100%; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: block; margin: 0 auto; }
 
-.disclaimer-box { 
-    background-color: rgba(255, 255, 255, 0.5); 
-    backdrop-filter: blur(4px); 
-    -webkit-backdrop-filter: blur(4px); 
-    padding: 20px; 
-    border-radius: 16px; 
-    border-top: 4px solid #ff9cbd; 
-    font-size: 14px; 
-    color: #666; 
-    margin-top: 30px; 
-    line-height: 1.8; 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.02); 
+.disclaimer-box { 
+    background-color: rgba(255, 255, 255, 0.5); 
+    backdrop-filter: blur(4px); 
+    -webkit-backdrop-filter: blur(4px); 
+    padding: 20px; 
+    border-radius: 16px; 
+    border-top: 4px solid #ff9cbd; 
+    font-size: 14px; 
+    color: #666; 
+    margin-top: 30px; 
+    line-height: 1.8; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02); 
 }
 
 /* =========================================
-   ✨ 历程时间轴样式 (Timeline) ✨
-   ========================================= */
+   ✨ 历程时间轴样式 (Timeline) ✨
+   ========================================= */
 .milestone-counter {
-    text-align: center;
-    margin-bottom: 40px;
-    background: rgba(255, 209, 223, 0.3);
-    border-radius: 20px;
-    padding: 20px;
-    border: 2px dashed #ff9cbd;
+    text-align: center;
+    margin-bottom: 40px;
+    background: rgba(255, 209, 223, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    border: 2px dashed #ff9cbd;
 }
 
 .milestone-counter p {
-    color: #666;
-    margin-bottom: 10px;
-    font-weight: bold;
+    color: #666;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .days-display {
-    color: #d87093;
-    font-size: 50px;
-    font-family: 'ZCOOL KuaiLe', sans-serif;
-    text-shadow: 2px 2px 5px rgba(216, 112, 147, 0.2);
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 8px;
+    color: #d87093;
+    font-size: 50px;
+    font-family: 'ZCOOL KuaiLe', sans-serif;
+    text-shadow: 2px 2px 5px rgba(216, 112, 147, 0.2);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
 }
 
 .timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding-left: 30px;
-    border-left: 4px solid #ffd1df;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 30px;
+    border-left: 4px solid #ffd1df;
 }
 
 .timeline-item {
-    position: relative;
-    margin-bottom: 30px;
-    padding-left: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 15px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(216, 112, 147, 0.1);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(216, 112, 147, 0.1);
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(216, 112, 147, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(216, 112, 147, 0.1);
 }
 
 .timeline-item:hover {
-    transform: translateX(5px) scale(1.02);
-    box-shadow: 0 8px 20px rgba(216, 112, 147, 0.2);
-    border-color: #ff9cbd;
+    transform: translateX(5px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(216, 112, 147, 0.2);
+    border-color: #ff9cbd;
 }
 
 /* 修复圆点对齐问题：调整 left 数值 */
 .timeline-dot {
-    position: absolute;
-    left: -44px; /* <--- 这里修复了对齐偏移 */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 16px;
-    height: 16px;
-    background-color: #fff;
-    border: 4px solid #d87093;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(216, 112, 147, 0.3);
-    z-index: 1;
+    position: absolute;
+    left: -44px; /* <--- 这里修复了对齐偏移 */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border: 4px solid #d87093;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(216, 112, 147, 0.3);
+    z-index: 1;
 }
 
 .timeline-date {
-    font-weight: bold;
-    color: #d87093;
-    margin-bottom: 5px;
-    font-size: 16px;
-    border-bottom: 1px dashed #ffd1df;
-    display: inline-block;
-    padding-bottom: 3px;
+    font-weight: bold;
+    color: #d87093;
+    margin-bottom: 5px;
+    font-size: 16px;
+    border-bottom: 1px dashed #ffd1df;
+    display: inline-block;
+    padding-bottom: 3px;
 }
 
 .timeline-content {
-    color: #4a4a4a;
-    font-size: 15px;
-    margin-top: 8px;
+    color: #4a4a4a;
+    font-size: 15px;
+    margin-top: 8px;
 }
 
 .timeline-detail {
-    display: block;
-    font-size: 13px;
-    color: #888;
-    margin-top: 5px;
-    line-height: 1.6;
+    display: block;
+    font-size: 13px;
+    color: #888;
+    margin-top: 5px;
+    line-height: 1.6;
 }
 
 /* =========================================
-   ✨ 作品合集 & 视频列表样式 ✨
-   ========================================= */
+   ✨ 作品合集 & 视频列表样式 ✨
+   ========================================= */
 .collections-grid, .videos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
 }
 
 .collection-card, .video-card {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(216, 112, 147, 0.15);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(216, 112, 147, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(216, 112, 147, 0.15);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(216, 112, 147, 0.1);
 }
 
 .collection-card:hover, .video-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 25px rgba(216, 112, 147, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(216, 112, 147, 0.3);
 }
 
 .card-cover {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    display: block;
-    background-color: #ffd1df;
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    background-color: #ffd1df;
 }
 
 .card-info {
-    padding: 15px;
-    text-align: center;
+    padding: 15px;
+    text-align: center;
 }
 
 .card-title {
-    color: #d87093;
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: #d87093;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-meta {
-    font-size: 12px;
-    color: #888;
+    font-size: 12px;
+    color: #888;
 }
 
 .play-overlay {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    background: rgba(216,112,147,0.85); border-radius: 50%; width: 45px; height: 45px;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: 0.3s;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: rgba(216,112,147,0.85); border-radius: 50%; width: 45px; height: 45px;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: 0.3s;
 }
 .video-card:hover .play-overlay {
-    opacity: 1; transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1; transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* =========================================
-   ✨ B站直连视频播放弹窗 ✨
-   ========================================= */
+   ✨ B站直连视频播放弹窗 ✨
+   ========================================= */
 .video-modal {
-    display: none; position: fixed; z-index: 999999;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(255, 240, 245, 0.85);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    align-items: center; justify-content: center;
-    opacity: 0; transition: opacity 0.3s ease;
+    display: none; position: fixed; z-index: 999999;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(255, 240, 245, 0.85);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s ease;
 }
 
 .video-modal.show { display: flex; opacity: 1; }
 
 .video-container {
-    width: 90vw; max-width: 850px; aspect-ratio: 16/9;
-    background: #000; border-radius: 16px; overflow: hidden;
-    box-shadow: 0 15px 40px rgba(216, 112, 147, 0.4);
-    animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
+    width: 90vw; max-width: 850px; aspect-ratio: 16/9;
+    background: #000; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 15px 40px rgba(216, 112, 147, 0.4);
+    animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
 }
 
 .video-container iframe {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%; border: none;
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; border: none;
 }
 
 .video-close {
-    position: absolute; top: 20px; right: 40px;
-    color: #d87093; font-size: 50px; font-weight: bold;
-    transition: 0.3s; z-index: 1000000;
+    position: absolute; top: 20px; right: 40px;
+    color: #d87093; font-size: 50px; font-weight: bold;
+    transition: 0.3s; z-index: 1000000;
 }
 
 .video-close:hover {
-    color: #ff9cbd; text-decoration: none; transform: scale(1.2) rotate(90deg); 
+    color: #ff9cbd; text-decoration: none; transform: scale(1.2) rotate(90deg); 
 }
 
 /* =========================================
-   ✨ 相册瀑布流样式 ✨
-   ========================================= */
+   ✨ 相册瀑布流样式 ✨
+   ========================================= */
 .gallery {
-    column-count: 3; 
-    column-gap: 20px;
-    width: 100%;
-    margin: 0 auto;
+    column-count: 3; 
+    column-gap: 20px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .gallery-item {
-    margin-bottom: 20px;
-    break-inside: avoid; 
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(216, 112, 147, 0.2);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-    background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    break-inside: avoid; 
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(216, 112, 147, 0.2);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .gallery-item:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 25px rgba(216, 112, 147, 0.4);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(216, 112, 147, 0.4);
 }
 
 .gallery-item img {
-    width: 100%;
-    display: block; 
-    object-fit: cover;
+    width: 100%;
+    display: block; 
+    object-fit: cover;
 }
 
 /* =========================================
-   ✨ 图片预览弹窗 (Lightbox) ✨
-   ========================================= */
+   ✨ 图片预览弹窗 (Lightbox) ✨
+   ========================================= */
 .lightbox {
-    display: none; 
-    position: fixed;
-    z-index: 999999; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 240, 245, 0.85); 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    display: none; 
+    position: fixed;
+    z-index: 999999; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 240, 245, 0.85); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .lightbox.show {
-    display: flex;
-    opacity: 1;
+    display: flex;
+    opacity: 1;
 }
 
 .lightbox-content {
-    margin: auto;
-    display: block;
-    max-width: 90vw; 
-    max-height: 90vh; 
-    border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(216, 112, 147, 0.4);
-    animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    object-fit: contain; 
+    margin: auto;
+    display: block;
+    max-width: 90vw; 
+    max-height: 90vh; 
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(216, 112, 147, 0.4);
+    animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    object-fit: contain; 
 }
 
 .lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    color: #d87093;
-    font-size: 50px;
-    font-weight: bold;
-    transition: 0.3s;
-    z-index: 1000000;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #d87093;
+    font-size: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 1000000;
 }
 
 .lightbox-close:hover {
-    color: #ff9cbd;
-    text-decoration: none;
-    transform: scale(1.2) rotate(90deg); 
+    color: #ff9cbd;
+    text-decoration: none;
+    transform: scale(1.2) rotate(90deg); 
 }
 
 .lightbox-prev, .lightbox-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
-    background-color: rgba(255, 255, 255, 0.6);
-    color: #d87093;
-    font-size: 30px;
-    font-weight: bold;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 1000000;
-    user-select: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.6);
+    color: #d87093;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000000;
+    user-select: none;
 }
 
 .lightbox-prev { left: 30px; }
 .lightbox-next { right: 30px; }
 
 .lightbox-prev:hover, .lightbox-next:hover {
-    background-color: #d87093;
-    color: #fff;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 5px 15px rgba(216, 112, 147, 0.4);
+    background-color: #d87093;
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 5px 15px rgba(216, 112, 147, 0.4);
 }
 
 @keyframes zoomIn {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 /* =========================================
-   ✨ 留言板功能样式 ✨
-   ========================================= */
+   ✨ 留言板功能样式 ✨
+   ========================================= */
 .guestbook-form { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; }
 .avatar-selector { display: flex; gap: 15px; justify-content: center; margin-bottom: 10px; flex-wrap: wrap; }
 .avatar-selector input { display: none; }
@@ -517,81 +517,81 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .admin-link:hover { color: var(--primary-color); }
 
 /* =========================================
-   ✨ 悬浮气泡按钮组 (FAB) ✨
-   ========================================= */
+   ✨ 悬浮气泡按钮组 (FAB) ✨
+   ========================================= */
 .fab-container {
-    position: fixed; bottom: 40px; right: 40px;
-    display: flex; flex-direction: column; gap: 15px;
-    z-index: 1000; opacity: 0; visibility: hidden;
-    transform: translateY(20px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: none; 
+    position: fixed; bottom: 40px; right: 40px;
+    display: flex; flex-direction: column; gap: 15px;
+    z-index: 1000; opacity: 0; visibility: hidden;
+    transform: translateY(20px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none; 
 }
 
 .fab-container.show { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
 
 .fab-btn {
-    width: 48px; height: 48px; border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #d87093; display: flex; justify-content: center; align-items: center;
-    font-size: 22px; box-shadow: 0 4px 15px rgba(216, 112, 147, 0.2);
-    border: 2px solid #ffd1df; text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    padding: 0; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    width: 48px; height: 48px; border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #d87093; display: flex; justify-content: center; align-items: center;
+    font-size: 22px; box-shadow: 0 4px 15px rgba(216, 112, 147, 0.2);
+    border: 2px solid #ffd1df; text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 0; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
 }
 
 .fab-btn svg { width: 60%; height: 60%; }
 
 .fab-btn:hover {
-    background-color: #d87093; color: #fff;
-    transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 20px rgba(216, 112, 147, 0.4); border-color: #d87093;
+    background-color: #d87093; color: #fff;
+    transform: translateY(-5px) scale(1.1); box-shadow: 0 8px 20px rgba(216, 112, 147, 0.4); border-color: #d87093;
 }
 
 /* =========================================
-   📱 手机端专属适配
-   ========================================= */
+   📱 手机端专属适配
+   ========================================= */
 @media (max-width: 768px) {
-    .nav-wrapper { padding: 15px 5%; flex-direction: row; }
-    .site-logo { height: 45px; } 
-    .menu-toggle { display: flex; }
-    .top-nav { 
-        display: none; flex-direction: column; position: absolute; top: 75px; right: 5%;
-        background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 12px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1); gap: 15px; text-align: center; border: 1px solid rgba(216, 112, 147, 0.1);
-    }
-    .top-nav.active { display: flex; }
-    
-    .content-area { padding: 25px 20px; border-radius: 20px; }
-    
-    .background-image { 
-        background-image: url('../images/cbg-character.png'); 
-        background-position: center center; background-size: cover; background-repeat: no-repeat;
-        width: 100vw; height: 100vh; height: 100dvh; 
-    }
-    
-    .lang-switch { margin-left: 0; justify-content: center;}
+    .nav-wrapper { padding: 15px 5%; flex-direction: row; }
+    .site-logo { height: 45px; } 
+    .menu-toggle { display: flex; }
+    .top-nav { 
+        display: none; flex-direction: column; position: absolute; top: 75px; right: 5%;
+        background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1); gap: 15px; text-align: center; border: 1px solid rgba(216, 112, 147, 0.1);
+    }
+    .top-nav.active { display: flex; }
+    
+    .content-area { padding: 25px 20px; border-radius: 20px; }
+    
+    .background-image { 
+        background-image: url('../images/cbg-character.png'); 
+        background-position: center center; background-size: cover; background-repeat: no-repeat;
+        width: 100vw; height: 100vh; height: 100dvh; 
+    }
+    
+    .lang-switch { margin-left: 0; justify-content: center;}
 
-    .gallery { column-count: 2; column-gap: 15px; }
-    .gallery-item { margin-bottom: 15px; }
-    .collections-grid, .videos-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-    .card-title { font-size: 13px; }
-    .play-overlay { width: 35px; height: 35px; opacity: 1; }
-    .play-overlay svg { width: 18px; height: 18px; }
-    
-    .lightbox-prev, .lightbox-next { width: 40px; height: 40px; font-size: 20px; }
-    .lightbox-prev { left: 10px; } .lightbox-next { right: 10px; }
-    .lightbox-close, .video-close { right: 15px; top: 10px; font-size: 40px; }
-    .video-container { width: 95vw; border-radius: 12px; }
-    
-    .comment-item { flex-direction: column; gap: 10px;}
+    .gallery { column-count: 2; column-gap: 15px; }
+    .gallery-item { margin-bottom: 15px; }
+    .collections-grid, .videos-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .card-title { font-size: 13px; }
+    .play-overlay { width: 35px; height: 35px; opacity: 1; }
+    .play-overlay svg { width: 18px; height: 18px; }
+    
+    .lightbox-prev, .lightbox-next { width: 40px; height: 40px; font-size: 20px; }
+    .lightbox-prev { left: 10px; } .lightbox-next { right: 10px; }
+    .lightbox-close, .video-close { right: 15px; top: 10px; font-size: 40px; }
+    .video-container { width: 95vw; border-radius: 12px; }
+    
+    .comment-item { flex-direction: column; gap: 10px;}
 
-    /* 手机端历程轴适配 - 修复圆点对齐偏移 */
-    .timeline { padding-left: 20px; }
-    .timeline-dot { left: -31px; width: 12px; height: 12px; border-width: 3px; }
+    /* 手机端历程轴适配 - 修复圆点对齐偏移 */
+    .timeline { padding-left: 20px; }
+    .timeline-dot { left: -31px; width: 12px; height: 12px; border-width: 3px; }
 
-    .fab-container { bottom: 20px; right: 20px; gap: 10px; }
-    .fab-btn { width: 42px; height: 42px; font-size: 18px; }
+    .fab-container { bottom: 20px; right: 20px; gap: 10px; }
+    .fab-btn { width: 42px; height: 42px; font-size: 18px; }
 }
 
 @media (max-width: 500px) {
-    .gallery { column-count: 1; }
+    .gallery { column-count: 1; }
 }
