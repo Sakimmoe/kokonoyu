@@ -20,11 +20,12 @@
     </div>
 
     <div id="sakura-container"></div>
+
     <div class="background-image"></div>
     <div class="bg-mask"></div>
 
     <div class="nav-wrapper">
-        <img src="images/logo.png" class="site-logo" onclick="showPage('home-page')" title="Home" alt="Logo" onerror="this.src='https://api.dicebear.com/7.x/lorelei/svg?seed=Kokonoyu'">
+        <img src="images/logo.png" class="site-logo" onclick="showPage('home-page')" title="Home" alt="Logo">
         
         <div class="menu-toggle" id="mobile-menu-btn">
             <span class="bar"></span>
@@ -50,13 +51,14 @@
     <div class="page-container">
 
         <div id="home-page" class="sub-page active-page">
+            
             <div class="content-area header-content" data-aos="fade-up">
-                <img src="images/avatar.jpg" class="avatar" alt="Avatar" onerror="this.src='https://api.dicebear.com/7.x/lorelei/svg?seed=Yukari'">
+                <img src="images/avatar.jpg" class="avatar" alt="Avatar">
                 <h1 class="header-name"><span data-key="name">九重紫</span> <span class="header-subname">-Jiuchong Zi-</span></h1>
                 
                 <div class="site-links">
                     <a href="https://space.bilibili.com/225347042" target="_blank">bilibili</a>
-                    <a href="https://live.bilibili.com/9162799" target="_blank">bilibili/LIVE</a> 
+                    <a href="https://live.bilibili.com/9162799?broadcast_type=0&is_room_feed=1&spm_id_from=333.1387.to_liveroom.0.click&live_from=86002" target="_blank">bilibili/LIVE</a> 
                     <a href="https://www.youtube.com/@KokonoeYukari" target="_blank">YouTube</a>
                     <a href="https://twitter.com/Kokonoe_Yukari" target="_blank">X (Twitter)</a>
                     <a href="https://kokonoe-yukari.fanbox.cc" target="_blank">FANBOX</a>
@@ -82,15 +84,15 @@
                 <p data-key="p_role"><strong>喜欢的角色：</strong> sirotan</p>
                 <p data-key="p_tag"><strong>主标签：</strong> #こ这个のゆ</p>
                 <p data-key="p_fanart"><strong>同人图标签：</strong> #こ这个のゆああと</p>
-                <p class="illustrator-links" style="margin-bottom: 12px; font-size: 15px;">
+                <p class="illustrator-links">
                     <strong data-key="p_mama">画师妈妈：</strong> 
                     <a href="https://twitter.com/zo3mie" target="_blank" class="design-link" style="border:none;">犬山ななみ</a> / 
                     <a href="https://x.com/faitescoco" target="_blank" class="design-link" style="border:none;">ココナツ</a> / 
                     <a href="https://www.pixiv.net/users/2783388" target="_blank" class="design-link" style="border:none;">雲雀ひな</a> / 
                     <a href="https://x.com/kuno_on" target="_blank" class="design-link" style="border:none;">クノオ</a> / 
-                    <a href="https://www.mihuashi.com/profiles/248757" target="_blank" class="design-link" style="border:none;"> 燕小酱</a>
+                    <a href="https://www.mihuashi.com/profiles/248757?role=painter" target="_blank" class="design-link" style="border:none;"> 燕小酱</a>
                 </p>
-                <p style="margin-top: 20px; font-size: 15px;" data-key="p_design"><strong>🎨 艺术设计：</strong> <span class="design-link" onclick="showPage('design-page')">点击查看 Design</span></p>
+                <p style="margin-top: 20px;" data-key="p_design"><strong>🎨 艺术设计：</strong> <span class="design-link" onclick="showPage('design-page')">点击查看 Design</span></p>
             </div>
             
             <div class="content-area" data-aos="fade-up">
@@ -132,12 +134,13 @@
                     </ul>
                 </div>
             </div>
+
         </div>
 
         <div id="design-page" class="sub-page">
             <div class="content-area">
                 <h2 style="border:none; text-align:center;">Character Design</h2>
-                <img src="images/design.jpg" class="design-full-img" alt="Design" onerror="this.src='https://api.dicebear.com/7.x/lorelei/svg?seed=Design'">
+                <img src="images/design.jpg" class="design-full-img" alt="Design">
                 <p style="text-align:center; margin-top:30px;">
                     <span class="design-link" onclick="showPage('home-page')" data-key="btn_back">← 返回上一页</span>
                 </p>
@@ -145,8 +148,8 @@
         </div>
 
         <div id="works-page" class="sub-page">
-            <div class="content-area transparent-area" data-aos="fade-up">
-                <h2 data-key="nav_works" class="center-title">作品</h2>
+            <div class="content-area" style="background: transparent; border: none; box-shadow: none; padding: 10px;" data-aos="fade-up">
+                <h2 data-key="nav_works" style="text-align: center; border: none; margin-bottom: 30px;">作品</h2>
                 
                 <div id="collections-view" class="collections-grid"></div>
 
@@ -154,65 +157,68 @@
                     <div style="margin-bottom: 25px; text-align: center;">
                         <span class="design-link" onclick="backToCollections()" data-key="works_back" style="cursor: pointer; font-size: 15px;">← 返回合集列表</span>
                     </div>
-                    <h3 id="current-collection-title" class="collection-title"></h3>
+                    <h3 id="current-collection-title" style="text-align:center; color:#d87093; margin-bottom:20px;"></h3>
                     <div id="videos-grid" class="videos-grid"></div>
                 </div>
             </div>
         </div>
 
         <div id="gallery-page" class="sub-page">
-            <div class="content-area transparent-area" data-aos="fade-up">
-                <h2 data-key="nav_gallery" class="center-title">画廊</h2>
+            <div class="content-area" style="background: transparent; border: none; box-shadow: none; padding: 10px;" data-aos="fade-up">
+                <h2 data-key="nav_gallery" style="text-align: center; border: none; margin-bottom: 30px;">画廊</h2>
                 <div class="gallery" id="vtuber-gallery"></div>
-                <div id="gallery-loading-text" class="loading-text" style="display: none;">加载中...</div>
+                <div id="gallery-loading-text" style="text-align: center; color: #d87093; margin-top: 20px; display: none;">加载中...</div>
             </div>
         </div>
 
         <div id="milestone-page" class="sub-page">
             <div class="content-area" data-aos="fade-up">
-                <h2 data-key="nav_milestone" class="center-title">历程</h2>
+                <h2 data-key="nav_milestone" style="text-align: center; border: none; margin-bottom: 20px;">历程</h2>
                 
                 <div class="milestone-counter">
                     <p data-key="ms_counter_prefix">紫老师在哔哩哔哩已活跃</p>
-                    <div class="days-display">
-                        <span id="live-days">...</span> <span style="font-size: 20px;" data-key="ms_days">天</span>
-                    </div>
+                    <div class="days-display"><span id="live-days">...</span> <span style="font-size: 20px;" data-key="ms_days">天</span></div>
                 </div>
 
-                <div class="timeline" id="milestone-timeline"></div>
+                <div class="timeline" id="milestone-timeline">
+                    </div>
             </div>
         </div>
 
         <div id="guestbook-page" class="sub-page">
             <div class="content-area" data-aos="fade-up">
-                <h2 data-key="nav_guestbook" class="center-title">留言板</h2>
+                <h2 data-key="nav_guestbook" style="text-align: center; border: none; margin-bottom: 20px;">留言板</h2>
                 
                 <div class="guestbook-form">
-                    <p class="avatar-prompt" data-key="gb_avatar_text">请选择你的头像：</p>
+                    <p style="text-align:center; font-size:14px; color:#666; margin-bottom:5px;" data-key="gb_avatar_text">请选择你的头像：</p>
                     <div class="avatar-selector">
                         <label>
-                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Mimi&backgroundColor=ffd1df" checked>
-                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Mimi&backgroundColor=ffd1df" alt="粉丝1">
+                            <input type="radio" name="gb-avatar" value="images/favicon.png" checked>
+                            <img src="images/favicon.png" alt="小樱桃">
+                        </label>
+                        <label>
+                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Mimi&backgroundColor=ffd1df">
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Mimi&backgroundColor=ffd1df" alt="粉丝2">
                         </label>
                         <label>
                             <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Coco&backgroundColor=ffb8d1">
-                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Coco&backgroundColor=ffb8d1" alt="粉丝2">
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Coco&backgroundColor=ffb8d1" alt="粉丝3">
                         </label>
                         <label>
                             <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Lala&backgroundColor=cbf0f8">
-                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Lala&backgroundColor=cbf0f8" alt="粉丝3">
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Lala&backgroundColor=cbf0f8" alt="粉丝4">
                         </label>
                         <label>
                             <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Kiki&backgroundColor=d7aefb">
-                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Kiki&backgroundColor=d7aefb" alt="粉丝4">
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Kiki&backgroundColor=d7aefb" alt="粉丝5">
                         </label>
                         <label>
                             <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Nana&backgroundColor=fef08a">
-                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Nana&backgroundColor=fef08a" alt="粉丝5">
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Nana&backgroundColor=fef08a" alt="粉丝6">
                         </label>
                         <label>
                             <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Yuyu&backgroundColor=fed7aa">
-                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Yuyu&backgroundColor=fed7aa" alt="粉丝6">
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Yuyu&backgroundColor=fed7aa" alt="粉丝7">
                         </label>
                     </div>
 
@@ -225,7 +231,7 @@
                 <div id="guestbook-list" class="guestbook-list"></div>
 
                 <div style="text-align: right; margin-top: 30px;">
-                    <span onclick="toggleAdmin()" data-key="gb_admin" class="admin-link">🛠️ 管理员入口</span>
+                    <span onclick="toggleAdmin()" data-key="gb_admin" style="font-size: 12px; color: #bbb; cursor: pointer;">🛠️ 管理员入口</span>
                 </div>
             </div>
         </div>
@@ -242,10 +248,7 @@
                 <p data-key="site_p3">本站的部分内容资料摘自 <strong>萌娘百科</strong> 以及 <strong>九重紫的B站个人空间</strong>。我只是一名普通的粉丝，如果你也喜欢九重紫，或者对这个网页的排版与内容有什么建议，欢迎通过哔哩哔哩私信我：<br>👉 <a href="https://space.bilibili.com/17276?spm_id_from=333.976.0.0" target="_blank" class="design-link" style="border:none;">点击访问我的 Bilibili 个人主页</a></p>
                 
                 <div class="disclaimer-box" data-key="site_box">
-                    <strong>⚠️ 版权与免责声明</strong><br><br>
-                    1. 本网站内所使用的<strong>所有美术素材、图片、Logo、背景故事及设定等内容，版权均归主播 九重紫 及其合作画师所有。</strong><br>
-                    2. 本站仅作粉丝安利与导航整理用途，没有任何商业盈利目的。<br>
-                    3. 如果本站的内容有任何侵权或不妥之处，请随时通过上方 B 站链接私信联系我，我会在第一时间配合修改或删除。
+                    <strong>⚠️ 版权与免责声明</strong><br><br>1. 本网站内所使用的<strong>所有美术素材、图片、Logo、背景故事及设定等内容，版权均归主播 <a href="https://kokonoeyukari.my.canva.site/" target="_blank">九重紫（Kokonoe Yukari）</a> 及其合作画师所有。</strong><br>2. 本站仅作粉丝安利与导航整理用途，没有任何商业盈利目的。<br>3. 如果本站的内容有任何侵权或不妥之处，请随时通过上方 B 站链接私信联系我，我会在第一时间配合修改或删除。
                 </div>
             </div>
         </div>
@@ -282,8 +285,14 @@
     </div>
 
     <script src="https://unpkg.com/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"></script>
+    <script>
+        if (typeof Bmob === 'undefined') {
+            document.write('<script src="https://npm.elemecdn.com/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"><\/script>');
+        }
+    </script>
+    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/main.js"></script>
 
 </body>
-</html>
+</html> 
