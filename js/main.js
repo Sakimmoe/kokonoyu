@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // 【注意】请务必登录Bmob后台，将Guestbook表的权限设为：只读、只加。禁止用户修改和删除。
 // =========================================
 try {
-    Bmob.initialize("6c39dac0aff82e8c", "kokonoyu471056.Y");
+    Bmob.initialize("6c39dac0aff82e8c", "kokonoyu");
 } catch (e) {
     console.error("Bmob 初始化失败：", e);
 }
