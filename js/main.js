@@ -3,14 +3,22 @@
 // =========================================
 window.addEventListener('load', function() {
     const loader = document.getElementById('loader');
-    if(loader) { loader.style.opacity = '0'; loader.style.visibility = 'hidden'; }
+    if (loader) { 
+        loader.style.opacity = '0'; 
+        loader.style.visibility = 'hidden'; 
+    }
+    
     if (window.location.hash) {
         window.history.replaceState(null, null, window.location.pathname);
     }
 });
+
 setTimeout(function() {
     const loader = document.getElementById('loader');
-    if(loader) { loader.style.opacity = '0'; loader.style.visibility = 'hidden'; }
+    if (loader) { 
+        loader.style.opacity = '0'; 
+        loader.style.visibility = 'hidden'; 
+    }
 }, 1500);
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -79,11 +87,11 @@ const milestonesData = [
     { date: '2026年2月1日', cn: '登顶全站热门 🔥<br><span class="timeline-detail">投稿视频《总有人看了点哔哩哔哩就以为自己会说中文了》大受好评。</span>', jp: '全休人気ランキング入り 🔥<br><span class="timeline-detail">中国語ネタ動画が大好評でトレンド入り。</span>' },
     { date: '2026年2月16日', cn: '突破60万粉 & 除夕夜直播 🧨<br><span class="timeline-detail">新年到来之际，戴上马年头饰迎来了60万粉丝的时刻。</span>', jp: '60万人突破 & 大晦日配信 🧨<br><span class="timeline-detail">新年の訪れとともに、馬の髪飾りをつけて60万人突破の瞬間を迎えた。</span>' },
     { date: '2026年2月23日', cn: '2222天纪念日 📆<br><span class="timeline-detail">迎来以九重紫名义使用bilibili账号的第2222天。</span>', jp: '2222日記念日 📆<br><span class="timeline-detail">九重紫としてbilibili活動2222日目を迎える。</span>' },
-    { date: '2026年4月20日', cn: '中国行最终回直播 🇨🇳<br><span class="timeline-detail">紫老师来中国工作旅游的最后一次直播。</span>', jp: '中国旅行最終配信 🇨🇳<br><span class="timeline-detail">紫先生が中国での仕事と旅行を終える最後の配信。</span>' }
+    { date: '2026年4月20日', cn: '来中国前的最后一次直播 🎤<br><span class="timeline-detail">紫老师来中国工作旅游前的最后一次直播。</span>', jp: '中国へ行く前の最後の配信 🎤<br><span class="timeline-detail">紫先生が中国での仕事と旅行に向かう前の最後の配信。</span>' }
 ];
 
 // =========================================
-// 中日双语字典
+// 🌐 中日双语字典
 // =========================================
 const langDict = {
     cn: {
@@ -147,26 +155,35 @@ const langDict = {
 // =========================================
 function changeLang(lang, element) {
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    if(element) element.classList.add('active');
+    if (element) {
+        element.classList.add('active');
+    }
     
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
-        if (langDict[lang][key]) el.innerHTML = langDict[lang][key];
+        if (langDict[lang][key]) {
+            el.innerHTML = langDict[lang][key];
+        }
     });
 
     document.querySelectorAll('[data-placeholder-key]').forEach(el => {
         const key = el.getAttribute('data-placeholder-key');
-        if (langDict[lang][key]) el.setAttribute('placeholder', langDict[lang][key]);
+        if (langDict[lang][key]) {
+            el.setAttribute('placeholder', langDict[lang][key]);
+        }
     });
 
-    if(document.getElementById('collections-view')) {
+    if (document.getElementById('collections-view')) {
         renderCollections();
-        if(currentCollectionId) {
+        if (currentCollectionId) {
             const collection = worksData.find(c => c.id === currentCollectionId);
             document.getElementById('current-collection-title').innerText = collection.title[lang];
         }
     }
-    if(document.getElementById('milestone-timeline')) renderMilestones();
+    
+    if (document.getElementById('milestone-timeline')) {
+        renderMilestones();
+    }
 }
 
 // =========================================
@@ -183,11 +200,15 @@ function fetchBiliCover(bvid) {
             const secureUrl = res.data.pic.replace('http://', 'https://');
             coverCache[bvid] = secureUrl; 
             const img = document.getElementById('cover-' + bvid);
-            if (img) img.src = secureUrl;
+            if (img) {
+                img.src = secureUrl;
+            }
         }
         delete window['setBiliCover_' + bvid];
         const script = document.getElementById('script_' + bvid);
-        if (script) script.remove();
+        if (script) {
+            script.remove();
+        }
     };
 
     const script = document.createElement('script');
@@ -198,7 +219,7 @@ function fetchBiliCover(bvid) {
 
 function renderCollections() {
     const grid = document.getElementById('collections-view');
-    if(!grid) return;
+    if (!grid) return;
     const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
     
     grid.innerHTML = worksData.map(collection => `
@@ -214,7 +235,7 @@ function renderCollections() {
 
 function openCollection(id) {
     const collection = worksData.find(c => c.id === id);
-    if(!collection) return;
+    if (!collection) return;
     currentCollectionId = id;
     const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
     
@@ -232,12 +253,16 @@ function openCollection(id) {
                 <img id="cover-${video.bvid}" src="${imgSrc}" class="card-cover" style="background-color: #ffd1df;" referrerpolicy="no-referrer" alt="cover">
                 <div class="play-overlay"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
             </div>
-            <div class="card-info"><div class="card-title">${video.title}</div></div>
+            <div class="card-info">
+                <div class="card-title">${video.title}</div>
+            </div>
         </div>`;
     }).join('');
 
     collection.videos.forEach(video => {
-        if (!coverCache[video.bvid]) fetchBiliCover(video.bvid);
+        if (!coverCache[video.bvid]) {
+            fetchBiliCover(video.bvid);
+        }
     });
     if (typeof AOS !== 'undefined') AOS.refresh();
 }
@@ -258,7 +283,9 @@ function playVideo(bvid) {
 }
 
 function closeVideoModal(event) {
-    if (event && event.target.id !== 'video-modal' && !event.target.classList.contains('video-close')) return;
+    if (event && event.target.id !== 'video-modal' && !event.target.classList.contains('video-close')) {
+        return;
+    }
     const modal = document.getElementById('video-modal');
     const iframe = document.getElementById('bili-iframe');
     modal.classList.remove('show');
@@ -271,7 +298,7 @@ function closeVideoModal(event) {
 // =========================================
 function createSakura() {
     const container = document.getElementById('sakura-container');
-    if(!container) return;
+    if (!container) return;
     const sakura = document.createElement('div');
     sakura.classList.add('sakura');
     const size = Math.random() * 10 + 10; 
@@ -282,7 +309,10 @@ function createSakura() {
     const swayDuration = Math.random() * 2 + 2;
     sakura.style.animationDuration = `${fallDuration}s, ${swayDuration}s`;
     container.appendChild(sakura);
-    setTimeout(() => { sakura.remove(); }, fallDuration * 1000);
+    
+    setTimeout(() => { 
+        sakura.remove(); 
+    }, fallDuration * 1000);
 }
 setInterval(createSakura, 300);
 
@@ -296,6 +326,7 @@ let galleryImagesList = [];
 function initGallery() {
     if (galleryInitialized) return;
     galleryInitialized = true;
+    
     const galleryContainer = document.getElementById('vtuber-gallery');
     const loadingText = document.getElementById('gallery-loading-text');
     loadingText.style.display = 'block';
@@ -310,16 +341,21 @@ function initGallery() {
             const realImg = document.createElement('img');
             realImg.src = img.src;
             realImg.alt = "紫老师美图 " + currentImgIndex;
+            
             itemDiv.appendChild(realImg);
             galleryContainer.appendChild(itemDiv);
 
-            itemDiv.onclick = function() { openLightbox(img.src); };
+            itemDiv.onclick = function() { 
+                openLightbox(img.src); 
+            };
 
             currentImgIndex++;
             loadNextImage();
             if (typeof AOS !== 'undefined') AOS.refresh();
         };
-        img.onerror = function() { loadingText.style.display = 'none'; };
+        img.onerror = function() { 
+            loadingText.style.display = 'none'; 
+        };
     }
     loadNextImage();
 }
@@ -333,19 +369,29 @@ function openLightbox(clickedSrc) {
     modal.classList.add('show');
     document.body.style.overflow = 'hidden'; 
 }
+
 function updateLightboxImage() {
     const modalImg = document.getElementById("lightbox-img");
     modalImg.src = galleryImagesList[currentLightboxIndex];
 }
+
 function navigateLightbox(direction, event) {
-    if (event) event.stopPropagation(); 
+    if (event) {
+        event.stopPropagation(); 
+    }
     currentLightboxIndex += direction;
-    if (currentLightboxIndex >= galleryImagesList.length) { currentLightboxIndex = 0; } 
-    else if (currentLightboxIndex < 0) { currentLightboxIndex = galleryImagesList.length - 1; }
+    if (currentLightboxIndex >= galleryImagesList.length) { 
+        currentLightboxIndex = 0; 
+    } else if (currentLightboxIndex < 0) { 
+        currentLightboxIndex = galleryImagesList.length - 1; 
+    }
     updateLightboxImage();
 }
+
 function closeLightbox(event) {
-    if (event && event.target.id !== 'lightbox-modal' && !event.target.classList.contains('lightbox-close')) return;
+    if (event && event.target.id !== 'lightbox-modal' && !event.target.classList.contains('lightbox-close')) {
+        return;
+    }
     const modal = document.getElementById("lightbox-modal");
     modal.classList.remove('show');
     document.body.style.overflow = 'auto'; 
@@ -358,12 +404,16 @@ let isAdmin = false;
 
 async function loadComments() {
     const list = document.getElementById('guestbook-list');
-    if(!list) return;
+    if (!list) return;
+    
     const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
     list.innerHTML = `<p style="text-align:center; color:#d87093; font-size:15px; margin-top:30px;">${langDict[currentLang].gb_loading}</p>`;
 
     try {
-        if(typeof Bmob === 'undefined') throw new Error("Bmob 没有成功加载");
+        if (typeof Bmob === 'undefined') {
+            throw new Error("Bmob 没有成功加载");
+        }
+        
         const query = Bmob.Query("Guestbook");
         query.order("-createdAt");
         const comments = await query.find();
@@ -392,6 +442,7 @@ async function loadComments() {
             `;
             list.appendChild(div);
         });
+        
         if (typeof AOS !== 'undefined') AOS.refresh();
     } catch (error) {
         list.innerHTML = `<p style="text-align:center; color:red; margin-top:30px;">${langDict[currentLang].gb_fail}</p>`;
@@ -402,17 +453,24 @@ async function submitComment() {
     const btn = document.querySelector('.gb-submit-btn');
     const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
     const defaultName = currentLang === 'jp' ? '匿名の兵马俑' : '匿名兵马俑';
+    
     const nameInput = document.getElementById('gb-name').value.trim() || defaultName;
     const contentInput = document.getElementById('gb-content').value.trim();
     const avatarInput = document.querySelector('input[name="gb-avatar"]:checked').value;
 
-    if(!contentInput) { alert(currentLang === 'jp' ? '空白のメッセージは送信できません！' : '不能发送空白留言哦！'); return; }
+    if (!contentInput) { 
+        alert(currentLang === 'jp' ? '空白のメッセージは送信できません！' : '不能发送空白留言哦！'); 
+        return; 
+    }
 
     btn.innerText = currentLang === 'jp' ? "送信中..." : "上传云端中...";
     btn.disabled = true;
 
     try {
-        if(typeof Bmob === 'undefined') throw new Error("Bmob 没有成功加载");
+        if (typeof Bmob === 'undefined') {
+            throw new Error("Bmob 没有成功加载");
+        }
+        
         const query = Bmob.Query('Guestbook');
         query.set("name", nameInput);
         query.set("content", contentInput);
@@ -430,24 +488,43 @@ async function submitComment() {
 }
 
 function toggleAdmin() {
-    if(isAdmin) { isAdmin = false; alert('已退出管理员模式。'); loadComments(); return; }
+    if (isAdmin) { 
+        isAdmin = false; 
+        alert('已退出管理员模式。'); 
+        loadComments(); 
+        return; 
+    }
+    
     const pwd = prompt('请输入管理员密码：');
-    if(pwd === 'kokonoyu471056.Y') { isAdmin = true; alert('✅ 身份确认！管理员模式已开启。'); loadComments(); } 
-    else if (pwd !== null) { alert('❌ 密码错误！'); }
+    if (pwd === 'kokonoyu471056.Y') { 
+        isAdmin = true; 
+        alert('✅ 身份确认！管理员模式已开启。'); 
+        loadComments(); 
+    } else if (pwd !== null) { 
+        alert('❌ 密码错误！'); 
+    }
 }
 
 async function deleteComment(id) {
-    if(confirm('警告：确定要从全网数据库中彻底删除这条留言吗？')) {
+    if (confirm('警告：确定要从全网数据库中彻底删除这条留言吗？')) {
         try {
             const query = Bmob.Query('Guestbook');
             await query.destroy(id);
             loadComments(); 
-        } catch (error) { alert('删除失败！'); }
+        } catch (error) { 
+            alert('删除失败！'); 
+        }
     }
 }
 
 function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+    return str.replace(/[&<>'"]/g, tag => ({ 
+        '&': '&amp;', 
+        '<': '&lt;', 
+        '>': '&gt;', 
+        "'": '&#39;', 
+        '"': '&quot;' 
+    }[tag] || tag));
 }
 
 // =========================================
@@ -456,6 +533,7 @@ function escapeHTML(str) {
 function renderMilestones() {
     const timeline = document.getElementById('milestone-timeline');
     if (!timeline) return;
+    
     const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
     
     timeline.innerHTML = milestonesData.map((item, index) => `
@@ -470,8 +548,10 @@ function renderMilestones() {
 function updateDaysCounter() {
     const daysEl = document.getElementById('live-days');
     if (!daysEl) return;
+    
     const anchorDate = new Date('2026-02-23T00:00:00+08:00');
     const today = new Date();
+    
     const diffTime = today.getTime() - anchorDate.getTime();
     const diffDays = Math.floor(diffTime / (1000 * 3600 * 24));
     const targetDays = 2222 + diffDays;
@@ -498,24 +578,43 @@ function showPage(pageId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
     const topNav = document.getElementById('top-nav-menu');
-    if (topNav.classList.contains('active')) topNav.classList.remove('active');
+    if (topNav.classList.contains('active')) {
+        topNav.classList.remove('active');
+    }
 
-    if (pageId === 'works-page') { renderCollections(); backToCollections(); }
-    if (pageId === 'gallery-page') initGallery();
-    if (pageId === 'guestbook-page') loadComments();
+    if (pageId === 'works-page') { 
+        renderCollections(); 
+        backToCollections(); 
+    }
+    
+    if (pageId === 'gallery-page') {
+        initGallery();
+    }
+    
+    if (pageId === 'guestbook-page') {
+        loadComments();
+    }
+    
     if (pageId === 'milestone-page') {
         renderMilestones();
         updateDaysCounter();
     }
     
-    setTimeout(() => { if (typeof AOS !== 'undefined') AOS.refresh(); }, 100);
+    setTimeout(() => { 
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
+    }, 100);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     const menuBtn = document.getElementById('mobile-menu-btn');
     const topNav = document.getElementById('top-nav-menu');
-    if(menuBtn && topNav) {
-        menuBtn.addEventListener('click', function() { topNav.classList.toggle('active'); });
+    
+    if (menuBtn && topNav) {
+        menuBtn.addEventListener('click', function() { 
+            topNav.classList.toggle('active'); 
+        });
     }
 });
 
@@ -523,34 +622,52 @@ let lastScrollTop = 0;
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.nav-wrapper');
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
     if (navbar) {
-        if (scrollTop <= 0) { navbar.classList.remove('nav-hidden'); }
-        else if (scrollTop > lastScrollTop && scrollTop > 80) { navbar.classList.add('nav-hidden'); } 
-        else { navbar.classList.remove('nav-hidden'); }
+        if (scrollTop <= 0) { 
+            navbar.classList.remove('nav-hidden'); 
+        } else if (scrollTop > lastScrollTop && scrollTop > 80) { 
+            navbar.classList.add('nav-hidden'); 
+        } else { 
+            navbar.classList.remove('nav-hidden'); 
+        }
     }
     lastScrollTop = scrollTop;
 
     const fabGroup = document.getElementById('fab-group');
     if (fabGroup) {
-        if (scrollTop > 300) { fabGroup.classList.add('show'); } 
-        else { fabGroup.classList.remove('show'); }
+        if (scrollTop > 300) { 
+            fabGroup.classList.add('show'); 
+        } else { 
+            fabGroup.classList.remove('show'); 
+        }
     }
 });
 
 // =========================================
 // 原生分享相关功能
 // =========================================
-function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function scrollToTop() { 
+    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+}
 
 async function sharePage() {
-    const shareData = { title: '九重紫 -Jiuchong Zi- 个人主页', text: '快来看看紫老师的非官方个人主页吧！', url: window.location.href };
+    const shareData = { 
+        title: '九重紫 -Jiuchong Zi- 个人主页', 
+        text: '快来看看紫老师的非官方个人主页吧！', 
+        url: window.location.href 
+    };
+    
     try {
-        if (navigator.share) { await navigator.share(shareData); } 
-        else {
+        if (navigator.share) { 
+            await navigator.share(shareData); 
+        } else {
             navigator.clipboard.writeText(shareData.url).then(() => {
                 const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
                 alert(currentLang === 'jp' ? 'リンクがクリップボードにコピーされました！' : '网址已复制到剪贴板，快去分享吧！');
             });
         }
-    } catch (err) { console.log('分享取消或失败:', err); }
+    } catch (err) { 
+        console.log('分享取消或失败:', err); 
+    }
 }
