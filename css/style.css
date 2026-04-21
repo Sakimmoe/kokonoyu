@@ -1,13 +1,13 @@
 /* =========================================
-   ✨ 鼠标指针美化 (软萌小箭头 + 可爱小手套) ✨
+   ✨ 鼠标指针美化 (软萌胖箭头 + 小爱心) ✨
    ========================================= */
 body, html {
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='%23ff9cbd' stroke='%23ffffff' stroke-width='2' d='M5.5 3.5L18.5 11L11.5 13L8 19.5z'/></svg>") 5 3, auto;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'><path d='M4 3l15 9-6.5 1.5 3.5 6-3 2-3.5-6.5L4 20Z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 4 3, auto;
 }
 
-/* 链接等可点击元素变成可爱小手套 */
+/* 将左右按钮及悬浮按钮也加入可爱鼠标的生效范围 */
 a, button, .site-logo, .top-nav span, .menu-toggle, .design-link, .lang-btn, .gallery-item, .lightbox-close, .lightbox-prev, .lightbox-next, label, .fab-btn, .collection-card, .video-card, .video-close {
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='%23ff9cbd' stroke='%23fff' stroke-width='2' d='M10 2a2 2 0 012 2v4h1a2 2 0 012 2v1h1a2 2 0 012 2v5a5 5 0 01-5 5H9a5 5 0 01-5-5v-6a2 2 0 012-2h1V4a2 2 0 012-2z'/></svg>") 8 2, pointer !important;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 12 12, pointer !important;
 }
 
 /* =========================================
@@ -176,7 +176,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 }
 
 /* =========================================
-   ✨ 历程时间轴样式 (Timeline - 带漂亮图标) ✨
+   ✨ 历程时间轴样式 (Timeline) ✨
    ========================================= */
 .milestone-counter {
     text-align: center;
@@ -208,7 +208,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    padding-left: 50px; /* 为大图标留出空间 */
+    padding-left: 30px;
     border-left: 4px solid #ffd1df;
 }
 
@@ -216,13 +216,12 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     position: relative;
     margin-bottom: 30px;
     padding-left: 20px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.8);
     padding: 15px 20px;
-    border-radius: 16px;
+    border-radius: 12px;
     box-shadow: 0 4px 15px rgba(216, 112, 147, 0.1);
     transition: all 0.3s ease;
     border: 1px solid rgba(216, 112, 147, 0.1);
-    display: flex; flex-direction: column; align-items: flex-start;
 }
 
 .timeline-item:hover {
@@ -231,48 +230,18 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     border-color: #ff9cbd;
 }
 
-/* 用精美的 SVG 替换以前的丑陋小圆点 */
-.timeline-icon {
+.timeline-dot {
     position: absolute;
-    left: -65px; /* 将圆圈中心对齐左侧的竖线 */
+    left: -40px;
     top: 50%;
     transform: translateY(-50%);
-    width: 46px;
-    height: 46px;
+    width: 16px;
+    height: 16px;
     background-color: #fff;
-    border: 3px solid #d87093;
+    border: 4px solid #d87093;
     border-radius: 50%;
-    box-shadow: 0 0 12px rgba(216, 112, 147, 0.3);
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.timeline-icon::after {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 24px;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* 根据 data-icon 渲染不同的小图标 (使用内联 SVG 保证加载极快且清晰) */
-.timeline-item[data-icon="debut"] .timeline-icon::after { 
-    /* 小电视/首播 图标 */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d87093'><path d='M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zm-5-6l-7 4V7z'/></svg>"); 
-}
-
-.timeline-item[data-icon="follower"] .timeline-icon::after { 
-    /* 粉丝/皇冠 图标 */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d87093'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>"); 
-}
-
-.timeline-item[data-icon="3d"] .timeline-icon::after { 
-    /* 3D/星星 图标 */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d87093'><path d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/></svg>"); 
+    box-shadow: 0 0 10px rgba(216, 112, 147, 0.3);
+    z-index: 1;
 }
 
 .timeline-date {
@@ -608,11 +577,9 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     
     .comment-item { flex-direction: column; gap: 10px;}
 
-    /* 手机端历程轴适配缩小 */
-    .timeline { padding-left: 35px; }
-    .timeline-item { padding: 12px 15px; }
-    .timeline-icon { left: -53px; width: 36px; height: 36px; border-width: 2px; }
-    .timeline-icon::after { width: 18px; height: 18px; }
+    /* 手机端历程轴适配 */
+    .timeline { padding-left: 20px; }
+    .timeline-dot { left: -26px; width: 12px; height: 12px; border-width: 3px; }
 
     .fab-container { bottom: 20px; right: 20px; gap: 10px; }
     .fab-btn { width: 42px; height: 42px; font-size: 18px; }
