@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // =========================================
 // 数据库配置区 (Bmob)
+// 【注意】请务必登录Bmob后台，将Guestbook表的权限设为：只读、只加。禁止用户修改和删除。
 // =========================================
 try {
     Bmob.initialize("6c39dac0aff82e8c", "kokonoyu471056.Y");
@@ -127,11 +128,11 @@ const langDict = {
         title_profile: "プロフィール", p_nick: "<strong>ニックネーム：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身長：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 蟹座", p_birth: "<strong>誕生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 物腰が柔らかく真面目、少し臆病で素直な「豆腐メンタル」", p_moe: "<strong>萌え属性：</strong> 癒やし系、巫女、亜人、病弱、ツンデレ", p_fans: "<strong>ファンネーム：</strong> 平和族（変態族） / 一家紫 / 紫細胞 / 兵馬俑", p_treasure: "<strong>大切にしているもの：</strong> 家族、ファン（リスナー様）", p_role: "<strong>好きなキャラ：</strong> しろたん", p_tag: "<strong>メインタグ：</strong> #ここのゆ", p_fanart: "<strong>ファンアートタグ：</strong> #ここのゆああと", p_mama: "絵師ママ：",
         p_design: "<strong>🎨 キャラクターデザイン：</strong> <span class='design-link' onclick=\"showPage('design-page')\">Designを見る</span>",
         title_activity: "配信内容", 
-        val_activity: "<p>基本はゲーム配信と雑談、たまに歌枠やお絵描き。</p><p>ゲームはRPGを中心に、様々なジャンルに挑戦します。</p><p>プレイスキルは低めで、殺戮、犯罪、騙し合いのあるゲームは苦手。特にFPSは苦手で3D酔いしやすい。</p><p>以前は字幕組がなく、自ら動画制作やネタ作りを行っていた（現在は専用の字幕組が設立されている）。</p>",
+        val_activity: "<p>基本はゲーム配信と雑談、たまに歌枠やお絵描き。</p><p>ゲームはRPGを中心に、様々なジャンルに挑戦します。</p><p>プレイスキルは低めで、殺戮、犯罪、騙し合いのあるゲームは苦手。特にFPSは苦手で3D酔いしやすい。</p><p>以前は字幕組がなく、自ら動画制作や切り抜き、ネタ作りを行っていた（現在は専用の字幕組が設立されている）。</p>",
         title_personal: "パーソナル情報", 
         val_personal: "<ul class='info-list'><li><strong>あじゃますます：</strong>「ありがとうございます」を崩した独特の挨拶。完全な表現は後ろに「ありがとうにゃん」がつく。</li><li><strong>病弱：</strong>1〜2ヶ月に一度体調を崩し、よく熱を出す。現在は病気を抱えながらの配信がほぼ日常化している。</li><li><strong>略称：</strong>フルネームのここのえゆかり ⇒ ここのゆ ⇒ のゆ ⇒ ゆ。一般的には「ここのゆ」と呼ばれ、配信の待機終了画面でも「ここのゆ」と言っている。</li><li><strong>ネタ職人：</strong>中国のネットミームに精通しており、それを最大限に活かした動画を作るのが得意。すべてのネタは「萌娘百科」を見て理解していると自称。配信でネタ動画を見た時はポカンとしていても、翌日には使いこなしている恐るべき吸収力。</li><li><strong>天哨星：</strong>配信で口笛を吹くのが上手く、『好漢歌』や『Never Gonna Give You Up』などを器用に吹けるため、コメント欄で「天哨星」という称号を与えられた。水滸伝108星の109人目。</li><li><strong>字幕組校正：</strong>かつてoto字幕組で校正を担当していた。推しの女が裏で何をしているかは誰にも分からない。</li><li><strong>理系男子気質：</strong>礼儀正しく、努力家で物分かりが良く、物事をきっちりこなす理系男子のような一面がある。</li></ul>",
         title_meme: "関連ミーム", 
-        val_meme: "<ul class='info-list'><li><strong>始皇帝/兵馬俑：</strong>『三言で私をbilibiliに騙した』で初登場。元ネタは初期の振り込め詐欺。動画内で「始皇帝が<ruby>兵馬俑<rt>へいばよう</rt></ruby>にいいねを押させた」というくだりがあったため、ファンがこのネタを使う時に「兵馬俑」を自称するようになった。</li><li><strong>紫細胞：</strong>配信で某ファンのDD（複数推し）行為を捕まえた際、そのファンが「他の人を推しているのは自分の細胞が分裂しただけで、私は紫の単推しです」と言い訳したことから。</li><li><strong>平和族/変態族：</strong>ファンネームは最初「和平族」だったが、世界平和よりもファンの心が穏やか（平和）であってほしいという願いから「平和族」に変更。しかし、よくhentai的な発言や行動をするファンがおり、彼らは「変態族」と呼ばれる。</li><li><strong>男の子紫：</strong>『日本の小さな巫女が王迅の粗探しを見る』で登場。動画内で相手に反論する際、自分が男の子だと言い放った。DD歓喜：「その方がいいじゃん」。</li><li><strong>ファン握手会：</strong>ファン握手会と称した配信で、VRのゾンビ（DD）撃退ゲームをプレイ。握手を求めて群がるゾンビ（DD）たちを熱烈に大歓迎（ヘッドショット）した。</li><li><strong>×重紫：</strong>配信の現在のアクティブ人気ランキングの順位がそのまま「○重紫」となる（1位なら一重紫）。修仙小説における修行の階層を表すシステムが元ネタ。</li><li><strong>旧重紫：</strong>通常は初期モデル（初代）を指すが、紫先生の古い配信内容や過去の投稿を形容する際にも使われる。</li></ul>",
+        val_meme: "<ul class='info-list'><li><strong>始皇帝/兵馬俑：</strong>『三言で私をbilibiliに騙した』で初登場。元ネタは初期の振り込め詐欺。動画内で「始皇帝が<ruby>兵馬俑<rt>へいばよう</rt></ruby>にいいねを押させた」というくだりがあったため、ファンがこのネタを使う時に「兵馬俑」を自称するようになった。</li><li><strong>紫細胞：</strong>配信で某ファンのDD（複数推し）行為を捕まえた際、そのファンが「他の人を推しているのは自分の細胞が分裂しただけで、私は紫の単推しです」と言い訳したことから。</li><li><strong>平和族/変態族：</strong>ファンネームは最初「和平族」だったが、世界平和よりもファンの心が穏やか（平和）であってほしいという願いから「平和族」に変更。しかし、よくhentai的な発言や行動をするファンがおり、彼らは「変態族」と呼ばれる。</li><li><strong>男の子紫：</strong>『日本の小さな巫女が王迅の粗探しを見る』で登場。動画内で相手に反論する際、自分が男の子だと言い放った。DD歓喜：「その方がいいじゃん」。</li><li><strong>ファン握手会：</strong>ファン握手会と称した配信で、VRのゾンビ（DD）撃退ゲームをプレイ。握手を求めて群がるゾンビ（DD）たちを熱烈に大歓迎（ヘッドショット）した。</li><li><strong>×重紫：</strong>配信の現在のアクティブ人気ランキングの順位がそのまま「○重紫」となる（1位なら一重紫）。修仙小説における修行の階層を表すシステムが元ネタ。</li><li><strong>旧重紫：</strong>通常は初期モデル（初代）を指すが、紫先生の古い配信内容やSNSの投稿、過去の動向を形容する際にも使われる。</li></ul>",
         site_h1: "制作のきっかけ", 
         site_p2: "私が紫先生を応援し始めたのは2026年1月13日のことです。当時、紫先生が『愛情公寓（iPartment）』を見ていて、私も一緒に1〜2話見たのですが、一つ不思議に思ったことがありました。「なぜこんなに大きな配信者が、1角（約2円）のギフトにもこれほど真剣に感謝するのだろう？」と。そこから次第に紫先生の配信に興味を持つようになりました。<br><br>紫先生は仕事に対してとても真面目で責任感があり、ファンに対してもとても思いやりがあり、誠実な人だと思います。後になって、以前のクリスマスに「艦長（スポンサー）」になってくれた人にアイコンを描く企画があったことを知りました。紫先生が描くアイコンはどれも本当に丁寧で、一切の妥協がないことに気づきました（その企画を見逃してしまって本当に残念です…涙）。<br><br>それから、私も紫先生のために何かしたいと思うようになりました。ちょうど「kokonoyu.com」というドメインがまだ誰にも登録されていないことに気づき、何か作ろうと思って購入しました。<br><br>まずは紫先生の個人ホームページを作成しましたが、今後（もし紫先生の許可が頂ければ）作品のナビゲーションサイトや音楽サイトなども作っていけたらと考えています。", 
         site_h2: "情報源とご意見について", 
@@ -189,13 +190,13 @@ function fetchBiliCover(bvid) {
     function cleanup() {
         delete window['setBiliCover_' + bvid];
         const script = document.getElementById('script_' + bvid);
-        if (script) script.remove();
+        if (script && script.parentNode) script.parentNode.removeChild(script); // 彻底移除节点，防内存泄漏
     }
 
     const script = document.createElement('script');
     script.id = 'script_' + bvid;
     script.src = `https://api.bilibili.com/x/web-interface/view?bvid=${bvid}&jsonp=jsonp&callback=setBiliCover_${bvid}`;
-    script.onerror = cleanup; // 网络失败时清理，防止内存泄漏
+    script.onerror = cleanup; 
     document.body.appendChild(script);
 }
 
@@ -295,7 +296,7 @@ setInterval(createSakura, 300);
 let galleryInitialized = false;
 let currentLightboxIndex = 0; 
 let galleryImagesList = [];    
-let galleryErrorCount = 0; // 新增：防止画廊断链
+let galleryErrorCount = 0; 
 const MAX_GALLERY_ERRORS = 3;
 
 function initGallery() {
@@ -310,7 +311,7 @@ function initGallery() {
         const img = new Image();
         img.src = `images/${currentImgIndex}.jpg`;
         img.onload = function() {
-            galleryErrorCount = 0; // 加载成功则重置错误计数
+            galleryErrorCount = 0; 
             const itemDiv = document.createElement('div');
             itemDiv.className = 'gallery-item';
             const realImg = document.createElement('img');
@@ -328,10 +329,10 @@ function initGallery() {
         img.onerror = function() { 
             galleryErrorCount++;
             if(galleryErrorCount >= MAX_GALLERY_ERRORS) {
-                loadingText.style.display = 'none'; // 连续失败3次才判定到底了
+                loadingText.style.display = 'none'; 
             } else {
                 currentImgIndex++;
-                loadNextImage(); // 容错，继续尝试下一张
+                loadNextImage(); 
             }
         };
     }
@@ -393,7 +394,6 @@ async function loadComments() {
         }
 
         comments.forEach((c) => {
-            // XSS 安全防御：只允许白名单内的头像被渲染
             const safeAvatar = ALLOWED_AVATARS.includes(c.avatar) ? c.avatar : 'images/avatar-01.png';
             
             const div = document.createElement('div');
@@ -421,7 +421,16 @@ async function loadComments() {
 async function submitComment() {
     const btn = document.querySelector('.gb-submit-btn');
     const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
-    const defaultName = currentLang === 'jp' ? '匿名の兵马俑' : '匿名兵马俑';
+    
+    // 【新增机制】：防刷屏保护，限制 60 秒内只能发送一条
+    const lastTime = localStorage.getItem('lastGBSbmit');
+    const now = Date.now();
+    if (lastTime && now - lastTime < 60000) {
+        alert(currentLang === 'jp' ? '送信が早すぎます。1分後にもう一度お試しください。' : '留言太快啦，请休息1分钟后再试！');
+        return;
+    }
+
+    const defaultName = currentLang === 'jp' ? '匿名の兵馬俑' : '匿名兵马俑';
     const nameInput = document.getElementById('gb-name').value.trim() || defaultName;
     const contentInput = document.getElementById('gb-content').value.trim();
     const avatarInput = document.querySelector('input[name="gb-avatar"]:checked').value;
@@ -438,10 +447,13 @@ async function submitComment() {
         query.set("content", contentInput);
         query.set("avatar", avatarInput);
         
-        // 【关键防御】新增的 ACL 权限控制代码：所有人均可看，但不可修改和删除
+        // 保留这行代码，但切记：必须配合Bmob后台表的 ACL 权限设置（只允许 Read 和 Add），否则前端控制是无效的
         query.set("ACL", {"*":{"read":true}}); 
         
         await query.save();
+
+        // 发送成功后记录时间戳
+        localStorage.setItem('lastGBSbmit', Date.now());
 
         document.getElementById('gb-content').value = ''; 
         loadComments(); 
@@ -453,8 +465,10 @@ async function submitComment() {
     }
 }
 
+// 【重要修复】：增强了判断机制，防止遇到 null 或 undefined 数据时导致页面白屏崩溃
 function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+    if (!str) return '';
+    return String(str).replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
 }
 
 // =========================================
@@ -518,7 +532,6 @@ function showPage(pageId) {
     setTimeout(() => { if (typeof AOS !== 'undefined') AOS.refresh(); }, 100);
 }
 
-// 新增：移动端点击导航栏外部空白区域时，自动收起菜单
 document.addEventListener('click', function(e) {
     const menuBtn = document.getElementById('mobile-menu-btn');
     const topNav = document.getElementById('top-nav-menu');
@@ -534,7 +547,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const topNav = document.getElementById('top-nav-menu');
     if(menuBtn && topNav) {
         menuBtn.addEventListener('click', function(e) { 
-            e.stopPropagation(); // 防止冒泡触发上面的全局 click 关闭
+            e.stopPropagation(); 
             topNav.classList.toggle('active'); 
         });
     }
