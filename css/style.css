@@ -1,13 +1,13 @@
 /* =========================================
-   ✨ 鼠标指针美化 (软萌胖箭头 + 小爱心) ✨
+   ✨ 鼠标指针美化 (软萌小箭头 + 可爱小手套) ✨
    ========================================= */
 body, html {
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'><path d='M4 3l15 9-6.5 1.5 3.5 6-3 2-3.5-6.5L4 20Z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 4 3, auto;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='%23ff9cbd' stroke='%23ffffff' stroke-width='2' d='M5.5 3.5L18.5 11L11.5 13L8 19.5z'/></svg>") 5 3, auto;
 }
 
-/* 将左右按钮及悬浮按钮也加入可爱鼠标的生效范围 */
+/* 链接等可点击元素变成可爱小手套 */
 a, button, .site-logo, .top-nav span, .menu-toggle, .design-link, .lang-btn, .gallery-item, .lightbox-close, .lightbox-prev, .lightbox-next, label, .fab-btn, .collection-card, .video-card, .video-close {
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23ff9cbd' stroke='%23ffffff' stroke-width='1.5' stroke-linejoin='round'/></svg>") 12 12, pointer !important;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='%23ff9cbd' stroke='%23fff' stroke-width='2' d='M10 2a2 2 0 012 2v4h1a2 2 0 012 2v1h1a2 2 0 012 2v5a5 5 0 01-5 5H9a5 5 0 01-5-5v-6a2 2 0 012-2h1V4a2 2 0 012-2z'/></svg>") 8 2, pointer !important;
 }
 
 /* =========================================
@@ -230,18 +230,28 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     border-color: #ff9cbd;
 }
 
+/* 历程轴圆点中间增加一颗小星星 ✨ */
 .timeline-dot {
     position: absolute;
     left: -40px;
     top: 50%;
     transform: translateY(-50%);
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     background-color: #fff;
-    border: 4px solid #d87093;
+    border: 3px solid #d87093;
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(216, 112, 147, 0.3);
     z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-dot::after {
+    content: "✦";
+    font-size: 12px;
+    color: #ff9cbd;
 }
 
 .timeline-date {
@@ -579,7 +589,8 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 
     /* 手机端历程轴适配 */
     .timeline { padding-left: 20px; }
-    .timeline-dot { left: -26px; width: 12px; height: 12px; border-width: 3px; }
+    .timeline-dot { left: -26px; width: 14px; height: 14px; border-width: 3px; }
+    .timeline-dot::after { font-size: 9px; }
 
     .fab-container { bottom: 20px; right: 20px; gap: 10px; }
     .fab-btn { width: 42px; height: 42px; font-size: 18px; }
