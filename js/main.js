@@ -1,9 +1,14 @@
 // =========================================
-// 🚀 救命神药：最先执行，防卡死加载动画保险 🚀
+// 🚀 救命神药：最先执行，防卡死加载动画保险及Hash修复 🚀
 // =========================================
 window.addEventListener('load', function() {
     const loader = document.getElementById('loader');
     if(loader) { loader.style.opacity = '0'; loader.style.visibility = 'hidden'; }
+    
+    // 强制清除导致错误跳转的 #guestbook 或其他 hash，确保每次打开都是首页
+    if (window.location.hash) {
+        window.history.replaceState(null, null, window.location.pathname);
+    }
 });
 setTimeout(function() {
     const loader = document.getElementById('loader');
@@ -17,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof AOS !== 'undefined') {
         AOS.init({ once: false, offset: 60, duration: 800, easing: 'ease-out-cubic' });
     }
+    
+    // 初始化确保永远展示首页
+    showPage('home-page');
 });
 
 // =========================================
