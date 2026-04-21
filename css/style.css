@@ -530,10 +530,10 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .fab-container.show { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
 
 .fab-btn {
-    width: 48px; height: 48px; border-radius: 50%;
+    width: 42px; height: 42px; border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.9);
     color: #d87093; display: flex; justify-content: center; align-items: center;
-    font-size: 22px; box-shadow: 0 4px 15px rgba(216, 112, 147, 0.2);
+    font-size: 20px; box-shadow: 0 4px 15px rgba(216, 112, 147, 0.2);
     border: 2px solid #ffd1df; text-decoration: none;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     padding: 0; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
