@@ -80,7 +80,7 @@ const milestonesData = [
     { date: '2026年2月1日', cn: '登顶全站热门 🔥<br><span class="timeline-detail">投稿视频《总有人看了点哔哩哔哩就以为自己会说中文了》大受好评。</span>', jp: 'bilibili総合人気ランキング入り 🔥<br><span class="timeline-detail">中国語ネタ動画が大好評でトレンド入り。</span>' },
     { date: '2026年2月16日', cn: '突破60万粉 & 除夕夜直播 🧨<br><span class="timeline-detail">新年到来之际，戴上马年头饰迎来了60万粉丝的时刻。</span>', jp: '60万人突破 & 春節前夜（大晦日）配信 🧨<br><span class="timeline-detail">新年の訪れとともに、馬の髪飾りをつけて60万人突破の瞬間を迎えた。</span>' },
     { date: '2026年2月23日', cn: '2222天纪念日 📆<br><span class="timeline-detail">迎来以九重紫名义使用bilibili账号的第2222天。</span>', jp: '2222日記念日 📆<br><span class="timeline-detail">九重紫としてbilibili活動2222日目を迎える。</span>' },
-    { date: '2026年4月20日', cn: '中国行二周目前夕 🇨🇳<br><span class="timeline-detail">紫老师来中国工作旅游前的最后一次直播。</span>', jp: '中国旅行2週目前夜 🇨🇳<br><span class="timeline-detail">紫先生が中国での仕事と旅行に向かう前の最後の配信。</span>' }
+    { date: '2026年4月20日', cn: '中国行二周目前夕 🇨🇳<br><span class="timeline-detail">紫老师来中国工作旅游前的最后一次直播。</span>', jp: '中国訪問2回目 前夜 🇨🇳<br><span class="timeline-detail">紫先生が中国での仕事と旅行に向かう前の最後の配信。</span>' }
 ];
 
 // =========================================
@@ -111,7 +111,7 @@ const langDict = {
         site_h1: "搭建初衷", 
         site_p2: "我是2026年1月13日开始关注紫老师的，当时紫老师正在看《爱情公寓》，我也跟着看了一两集，我发现一件让我觉得很奇怪的事：为什么这么大的一个主播连一毛钱的礼物都会很认真的感谢？后面就逐渐对紫老师的直播感兴趣了。<br><br>我觉得紫老师是一个对工作很认真、很负责的人，对粉丝也很用心、很真诚。后面了解到原来之前圣诞节还会上舰给舰长画头像的活动，我发现紫老师对每一个头像画的都很认真，没有一丝丝的敷衍（可惜我错过活动了呜呜）。<br><br>在那之后我就想给紫老师做点什么，正好发现紫老师kokonoyu.com这个域名还没有人注册，于是我就买了下来准备做点东西。<br><br>所以我首先做了紫老师的主页，后续可能还会做紫老师的作品导航、音乐站之类的（如果能得到紫老师授权的话）。", 
         site_h2: "内容来源与建议", 
-        site_p3: "本站的部分内容资料摘自 <strong>萌娘百科</strong> 以及 <strong>九重紫的B站个人空间</strong>。我只是一名普通的粉丝，如果你也喜欢九重紫，或者对这个网页的排版与内容有什么建议，欢迎通过哔哩哔哩私信我：<br>👉 <a href='https://space.bilibili.com/17276?spm_id_from=333.976.0.0' target='_blank' class='design-link' style='border:none;'>点击访问我的 Bilibili 个人主页</a>", 
+        site_p3: "本站的部分内容资料摘自 <strong>萌娘百科</strong> 以及 <strong>九重紫的B站个人空间</strong>。我只是一名普通的粉丝，如果你也喜欢九重紫，或者对这个网页的排版与内容有什么建议，欢迎通过哔哩哔哩私信我：<br>👉 <a href='https://space.bilibili.com/17276?spm_id_from=333.976.0.0' target='_blank' class='design-link' style='border:none;' rel='noopener noreferrer'>点击访问我的 Bilibili 个人主页</a>", 
         site_box: "<strong>⚠️ 版权与免责声明</strong><br><br>1. 本网站内所使用的<strong>所有美术素材、图片、Logo、背景故事及设定等内容，版权均归主播 九重紫 及其合作画师所有。</strong><br>2. 本站仅作粉丝安利与导航整理用途，没有任何商业盈利目的。<br>3. 如果本站的内容有任何侵权或不妥之处，请随时通过上方 B 站链接私信联系我，我会在第一时间配合修改或删除。"
     },
     jp: {
@@ -125,18 +125,18 @@ const langDict = {
         gb_no_comment: "まだコメントはありません。最初のコメントを書きましょう！", 
         gb_fail: "データベースの接続に失敗しました。ページをリロードしてください。",
         bio: "誰かが生前に叶えられなかった夢を追体験して供養し、自身の寿命を延ばしている亜人。<br>数年前までは人間だったが、現在は亜人の姿で存在している。<br>自称「最も清楚な平和族」。皆が平和に過ごし、誰もが同じ世界で幸せに暮らせることを夢見ている。<br>その目標のために日々活動を頑張っている。",
-        title_profile: "プロフィール", p_nick: "<strong>ニックネーム：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身長：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 蟹座", p_birth: "<strong>誕生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 物腰が柔らかく真面目、少し臆病で素直な「豆腐メンタル」", p_moe: "<strong>萌え属性：</strong> 癒やし系、巫女、亜人、病弱、ツンデレ", p_fans: "<strong>ファンネーム：</strong> 平和族（変態族） / 一家紫 / 紫細胞 / 兵馬俑", p_treasure: "<strong>大切にしているもの：</strong> 家族、ファン（リスナー様）", p_role: "<strong>好きなキャラ：</strong> しろたん", p_tag: "<strong>メインタグ：</strong> #ここのゆ", p_fanart: "<strong>ファンアートタグ：</strong> #ここのゆああと", p_mama: "絵師ママ：",
+        title_profile: "プロフィール", p_nick: "<strong>ニックネーム：</strong> ここのゆ、のゆ、ゆ", p_height: "<strong>身長：</strong> 152cm", p_zodiac: "<strong>星座：</strong> 蟹座", p_birth: "<strong>誕生日：</strong> 7月22日", p_nature: "<strong>性格：</strong> 物腰が柔らかく真面目、少し臆病で素直な「豆腐メンタル」", p_moe: "<strong>萌え属性：</strong> 癒やし系、巫女、亜人、病弱、ツンデレ", p_fans: "<strong>ファンネーム：</strong> 平和族（変態族） / 一家紫（いっかむらさき） / 紫細胞 / 兵馬俑", p_treasure: "<strong>大切にしているもの：</strong> 家族、ファン（リスナー様）", p_role: "<strong>好きなキャラ：</strong> しろたん", p_tag: "<strong>メインタグ：</strong> #ここのゆ", p_fanart: "<strong>ファンアートタグ：</strong> #ここのゆああと", p_mama: "絵師ママ：",
         p_design: "<strong>🎨 キャラクターデザイン：</strong> <span class='design-link' onclick=\"showPage('design-page')\">Designを見る</span>",
         title_activity: "配信内容", 
         val_activity: "<p>基本はゲーム配信と雑談、たまに歌枠やお絵描き。</p><p>ゲームはRPGを中心に、様々なジャンルに挑戦します。</p><p>プレイスキルは低めで、殺戮、犯罪、騙し合いのあるゲームは苦手。特にFPSは苦手で3D酔いしやすい。</p><p>以前は字幕組がなく、自ら動画制作や切り抜き、ネタ作りを行っていた（現在は専用の字幕組が設立されている）。</p>",
         title_personal: "パーソナル情報", 
-        val_personal: "<ul class='info-list'><li><strong>あじゃますます：</strong>「ありがとうございます」を崩した独特の挨拶。完全な表現は後ろに「ありがとうにゃん」がつく。</li><li><strong>病弱：</strong>1〜2ヶ月に一度体調を崩し、よく熱を出す。現在は病気を抱えながらの配信がほぼ日常化している。</li><li><strong>略称：</strong>フルネームのここのえゆかり ⇒ ここのゆ ⇒ のゆ ⇒ ゆ。一般的には「ここのゆ」と呼ばれ、配信の待機終了画面でも「ここのゆ」と言っている。</li><li><strong>ネタ職人：</strong>中国のネットミームに精通しており、それを最大限に活かした動画を作るのが得意。すべてのネタは「萌娘百科」を見て理解していると自称。配信でネタ動画を見た時はポカンとしていても、翌日には使いこなしている恐るべき吸収力。</li><li><strong>天哨星：</strong>配信で口笛を吹くのが上手く、『好漢歌』や『Never Gonna Give You Up』などを器用に吹けるため、コメント欄で「天哨星」という称号を与えられた。水滸伝108星の109人目。</li><li><strong>字幕組校正：</strong>かつてoto字幕組で校正を担当していた。推しの女が裏で何をしているかは誰にも分からない。</li><li><strong>理系男子気質：</strong>礼儀正しく、努力家で物分かりが良く、物事をきっちりこなす理系男子のような一面がある。</li></ul>",
+        val_personal: "<ul class='info-list'><li><strong>あじゃますます：</strong>「ありがとうございます」を可愛く崩した独特の挨拶。完全な表現は後ろに「ありがとうにゃん」がつく。</li><li><strong>病弱：</strong>1〜2ヶ月に一度体調を崩し、よく熱を出す。現在は病気を抱えながらの配信がほぼ日常化している。</li><li><strong>略称：</strong>フルネームのここのえゆかり ⇒ ここのゆ ⇒ のゆ ⇒ ゆ。一般的には「ここのゆ」と呼ばれ、配信の待機終了画面でも「ここのゆ」と言っている。</li><li><strong>ネタ職人：</strong>中国のネットミームに精通しており、それを最大限に活かした動画を作るのが得意。すべてのネタは「萌娘百科」を見て理解していると自称。配信でネタ動画を見た時はポカンとしていても、翌日には使いこなしている恐るべき吸収力。</li><li><strong>天哨星：</strong>配信で口笛を吹くのが上手く、『好漢歌』や『Never Gonna Give You Up』などを器用に吹けるため、コメント欄で「天哨星」という称号を与えられた。水滸伝108星の109人目。</li><li><strong>字幕組校正：</strong>かつてoto字幕組で校正を担当していた。推しの女が裏で何をしているかは誰にも分からない。</li><li><strong>理系男子気質：</strong>礼儀正しく、努力家で物分かりが良く、物事をきっちりこなす理系男子のような一面がある。</li></ul>",
         title_meme: "関連ミーム", 
         val_meme: "<ul class='info-list'><li><strong>始皇帝/兵馬俑：</strong>『三言で私をbilibiliに騙した』で初登場。元ネタは初期の振り込め詐欺。動画内で「始皇帝が<ruby>兵馬俑<rt>へいばよう</rt></ruby>にいいねを押させた」というくだりがあったため、ファンがこのネタを使う時に「兵馬俑」を自称するようになった。</li><li><strong>紫細胞：</strong>配信で某ファンのDD（複数推し）行為を捕まえた際、そのファンが「他の人を推しているのは自分の細胞が分裂しただけで、私は紫の単推しです」と言い訳したことから。</li><li><strong>平和族/変態族：</strong>ファンネームは最初「和平族」だったが、世界平和よりもファンの心が穏やか（平和）であってほしいという願いから「平和族」に変更。しかし、よくhentai的な発言や行動をするファンがおり、彼らは「変態族」と呼ばれる。</li><li><strong>男の子紫：</strong>『日本の小さな巫女が王迅の粗探しを見る』で登場。動画内で相手に反論する際、自分が男の子だと言い放った。DD歓喜：「その方がいいじゃん」。</li><li><strong>ファン握手会：</strong>ファン握手会と称した配信で、VRのゾンビ（DD）撃退ゲームをプレイ。握手を求めて群がるゾンビ（DD）たちを熱烈に大歓迎（ヘッドショット）した。</li><li><strong>×重紫：</strong>配信の現在のアクティブ人気ランキングの順位がそのまま「○重紫」となる（1位なら一重紫）。修仙小説における修行の階層を表すシステムが元ネタ。</li><li><strong>旧重紫：</strong>通常は初期モデル（初代）を指すが、紫先生の古い配信内容やSNSの投稿、過去の動向を形容する際にも使われる。</li></ul>",
         site_h1: "制作のきっかけ", 
         site_p2: "私が紫先生を応援し始めたのは2026年1月13日のことです。当時、紫先生が『愛情公寓（iPartment）』を見ていて、私も一緒に1〜2話見たのですが、一つ不思議に思ったことがありました。「なぜこんなに大きな配信者が、1角（約2円）のギフトにもこれほど真剣に感謝するのだろう？」と。そこから次第に紫先生の配信に興味を持つようになりました。<br><br>紫先生は仕事に対してとても真面目で責任感があり、ファンに対してもとても思いやりがあり、誠実な人だと思います。後になって、以前のクリスマスに「艦長（スポンサー）」になってくれた人にアイコンを描く企画があったことを知りました。紫先生が描くアイコンはどれも本当に丁寧で、一切の妥協がないことに気づきました（その企画を見逃してしまって本当に残念です…涙）。<br><br>それから、私も紫先生のために何かしたいと思うようになりました。ちょうど「kokonoyu.com」というドメインがまだ誰にも登録されていないことに気づき、何か作ろうと思って購入しました。<br><br>まずは紫先生の個人ホームページを作成しましたが、今後（もし紫先生の許可が頂ければ）作品のナビゲーションサイトや音楽サイトなども作っていけたらと考えています。", 
         site_h2: "情報源とご意見について", 
-        site_p3: "当サイトの一部コンテンツや資料は、<strong>萌娘百科</strong>および<strong>九重紫さんのBilibili個人ページ</strong>から引用しています。私はただの一ファンですが、もしあなたも九重紫さんが好きだったり、このウェブサイトのレイアウトやコンテンツについて何かアドバイスがあれば、ぜひBilibiliのDMで教えてください：<br>👉 <a href=\"https://space.bilibili.com/17276?spm_id_from=333.976.0.0\" target=\"_blank\" class=\"design-link\" style=\"border:none;\">私の Bilibili 個人ページはこちら</a>", 
+        site_p3: "当サイトの一部コンテンツや資料は、<strong>萌娘百科</strong>および<strong>九重紫さんのBilibili個人ページ</strong>から引用しています。私はただの一ファンですが、もしあなたも九重紫さんが好きだったり、このウェブサイトのレイアウトやコンテンツについて何かアドバイスがあれば、ぜひBilibiliのDMで教えてください：<br>👉 <a href=\"https://space.bilibili.com/17276?spm_id_from=333.976.0.0\" target=\"_blank\" class=\"design-link\" style=\"border:none;\" rel=\"noopener noreferrer\">私の Bilibili 個人ページはこちら</a>", 
         site_box: "<strong>⚠️ 著作権および免責事項</strong><br><br>1. 当サイトで使用している<strong>すべてのイラスト素材、画像、ロゴ、背景ストーリー、設定などの著作権は、配信者である九重紫様および提携絵師様に帰属します。</strong><br>2. 当サイトはファンの布教や情報整理を目的としたものであり、いかなる商業的な営利目的もありません。<br>3. もし当サイトのコンテンツに著作権侵害や不適切な箇所がございましたら、いつでも上記のBilibiliリンクからDMでご連絡ください。直ちに修正または削除の対応をいたします。"
     }
 };
@@ -207,7 +207,7 @@ function renderCollections() {
     
     grid.innerHTML = worksData.map(collection => `
         <div class="collection-card" onclick="openCollection('${collection.id}')">
-            <img src="${collection.cover}" class="card-cover" referrerpolicy="no-referrer" alt="cover" onerror="this.src='https://api.dicebear.com/7.x/lorelei/svg?seed=Video'">
+            <img src="${collection.cover}" class="card-cover" referrerpolicy="no-referrer" alt="cover" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/lorelei/svg?seed=Video'">
             <div class="card-info">
                 <div class="card-title">${collection.title[currentLang]}</div>
                 <div class="card-meta">${collection.videos.length} ${langDict[currentLang].video_count}</div>
@@ -423,7 +423,7 @@ async function submitComment() {
     const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
     
     // 【新增机制】：防刷屏保护，限制 60 秒内只能发送一条
-    const lastTime = localStorage.getItem('lastGBSbmit');
+    const lastTime = localStorage.getItem('lastGBSubmit');
     const now = Date.now();
     if (lastTime && now - lastTime < 60000) {
         alert(currentLang === 'jp' ? '送信が早すぎます。1分後にもう一度お試しください。' : '留言太快啦，请休息1分钟后再试！');
@@ -436,6 +436,21 @@ async function submitComment() {
     const avatarInput = document.querySelector('input[name="gb-avatar"]:checked').value;
 
     if(!contentInput) { alert(currentLang === 'jp' ? '空白のメッセージは送信できません！' : '不能发送空白留言哦！'); return; }
+
+    // ====== 新增：简单的数学验证码防机器刷屏 ======
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    const captchaMsg = currentLang === 'jp' 
+        ? `スパム防止のため、計算をお願いします： ${num1} + ${num2} = ?` 
+        : `防刷屏检测，请回答：${num1} + ${num2} = ?`;
+    
+    const answer = prompt(captchaMsg);
+    if (answer === null) return; // 用户点击了取消
+    if (parseInt(answer) !== (num1 + num2)) {
+        alert(currentLang === 'jp' ? '答えが間違っています！' : '计算错误，留言取消！');
+        return;
+    }
+    // ====== 验证码逻辑结束 ======
 
     btn.innerText = currentLang === 'jp' ? "送信中..." : "上传云端中...";
     btn.disabled = true;
@@ -453,7 +468,7 @@ async function submitComment() {
         await query.save();
 
         // 发送成功后记录时间戳
-        localStorage.setItem('lastGBSbmit', Date.now());
+        localStorage.setItem('lastGBSubmit', Date.now());
 
         document.getElementById('gb-content').value = ''; 
         loadComments(); 
