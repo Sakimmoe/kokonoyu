@@ -176,7 +176,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 }
 
 /* =========================================
-   ✨ 历程时间轴样式 (Timeline) ✨
+   ✨ 历程时间轴样式 (Timeline - 带漂亮图标) ✨
    ========================================= */
 .milestone-counter {
     text-align: center;
@@ -208,7 +208,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    padding-left: 30px;
+    padding-left: 50px; /* 为大图标留出空间 */
     border-left: 4px solid #ffd1df;
 }
 
@@ -216,12 +216,13 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     position: relative;
     margin-bottom: 30px;
     padding-left: 20px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     padding: 15px 20px;
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: 0 4px 15px rgba(216, 112, 147, 0.1);
     transition: all 0.3s ease;
     border: 1px solid rgba(216, 112, 147, 0.1);
+    display: flex; flex-direction: column; align-items: flex-start;
 }
 
 .timeline-item:hover {
@@ -230,28 +231,48 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     border-color: #ff9cbd;
 }
 
-/* 历程轴圆点中间增加一颗小星星 ✨ */
-.timeline-dot {
+/* 用精美的 SVG 替换以前的丑陋小圆点 */
+.timeline-icon {
     position: absolute;
-    left: -40px;
+    left: -65px; /* 将圆圈中心对齐左侧的竖线 */
     top: 50%;
     transform: translateY(-50%);
-    width: 18px;
-    height: 18px;
+    width: 46px;
+    height: 46px;
     background-color: #fff;
     border: 3px solid #d87093;
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(216, 112, 147, 0.3);
-    z-index: 1;
+    box-shadow: 0 0 12px rgba(216, 112, 147, 0.3);
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.timeline-dot::after {
-    content: "✦";
-    font-size: 12px;
-    color: #ff9cbd;
+.timeline-icon::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 根据 data-icon 渲染不同的小图标 (使用内联 SVG 保证加载极快且清晰) */
+.timeline-item[data-icon="debut"] .timeline-icon::after { 
+    /* 小电视/首播 图标 */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d87093'><path d='M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zm-5-6l-7 4V7z'/></svg>"); 
+}
+
+.timeline-item[data-icon="follower"] .timeline-icon::after { 
+    /* 粉丝/皇冠 图标 */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d87093'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>"); 
+}
+
+.timeline-item[data-icon="3d"] .timeline-icon::after { 
+    /* 3D/星星 图标 */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d87093'><path d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/></svg>"); 
 }
 
 .timeline-date {
@@ -587,10 +608,11 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     
     .comment-item { flex-direction: column; gap: 10px;}
 
-    /* 手机端历程轴适配 */
-    .timeline { padding-left: 20px; }
-    .timeline-dot { left: -26px; width: 14px; height: 14px; border-width: 3px; }
-    .timeline-dot::after { font-size: 9px; }
+    /* 手机端历程轴适配缩小 */
+    .timeline { padding-left: 35px; }
+    .timeline-item { padding: 12px 15px; }
+    .timeline-icon { left: -53px; width: 36px; height: 36px; border-width: 2px; }
+    .timeline-icon::after { width: 18px; height: 18px; }
 
     .fab-container { bottom: 20px; right: 20px; gap: 10px; }
     .fab-btn { width: 42px; height: 42px; font-size: 18px; }
