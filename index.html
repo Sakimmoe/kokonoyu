@@ -147,7 +147,9 @@
         <div id="works-page" class="sub-page">
             <div class="content-area transparent-area" data-aos="fade-up">
                 <h2 data-key="nav_works" class="center-title">作品</h2>
+                
                 <div id="collections-view" class="collections-grid"></div>
+
                 <div id="videos-view" style="display: none;">
                     <div style="margin-bottom: 25px; text-align: center;">
                         <span class="design-link" onclick="backToCollections()" data-key="works_back" style="cursor: pointer; font-size: 15px;">← 返回合集列表</span>
@@ -172,7 +174,9 @@
                 
                 <div class="milestone-counter">
                     <p data-key="ms_counter_prefix">紫老师在哔哩哔哩已活跃</p>
-                    <div class="days-display"><span id="live-days">...</span> <span style="font-size: 20px;" data-key="ms_days">天</span></div>
+                    <div class="days-display">
+                        <span id="live-days">...</span> <span style="font-size: 20px;" data-key="ms_days">天</span>
+                    </div>
                 </div>
 
                 <div class="timeline" id="milestone-timeline"></div>
@@ -186,12 +190,30 @@
                 <div class="guestbook-form">
                     <p class="avatar-prompt" data-key="gb_avatar_text">请选择你的头像：</p>
                     <div class="avatar-selector">
-                        <label><input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Mimi&backgroundColor=ffd1df" checked><img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Mimi&backgroundColor=ffd1df" alt="粉丝1"></label>
-                        <label><input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Coco&backgroundColor=ffb8d1"><img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Coco&backgroundColor=ffb8d1" alt="粉丝2"></label>
-                        <label><input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Lala&backgroundColor=cbf0f8"><img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Lala&backgroundColor=cbf0f8" alt="粉丝3"></label>
-                        <label><input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Kiki&backgroundColor=d7aefb"><img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Kiki&backgroundColor=d7aefb" alt="粉丝4"></label>
-                        <label><input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Nana&backgroundColor=fef08a"><img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Nana&backgroundColor=fef08a" alt="粉丝5"></label>
-                        <label><input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Yuyu&backgroundColor=fed7aa"><img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Yuyu&backgroundColor=fed7aa" alt="粉丝6"></label>
+                        <label>
+                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Mimi&backgroundColor=ffd1df" checked>
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Mimi&backgroundColor=ffd1df" alt="粉丝1">
+                        </label>
+                        <label>
+                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Coco&backgroundColor=ffb8d1">
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Coco&backgroundColor=ffb8d1" alt="粉丝2">
+                        </label>
+                        <label>
+                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Lala&backgroundColor=cbf0f8">
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Lala&backgroundColor=cbf0f8" alt="粉丝3">
+                        </label>
+                        <label>
+                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Kiki&backgroundColor=d7aefb">
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Kiki&backgroundColor=d7aefb" alt="粉丝4">
+                        </label>
+                        <label>
+                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Nana&backgroundColor=fef08a">
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Nana&backgroundColor=fef08a" alt="粉丝5">
+                        </label>
+                        <label>
+                            <input type="radio" name="gb-avatar" value="https://api.dicebear.com/7.x/lorelei/svg?seed=Yuyu&backgroundColor=fed7aa">
+                            <img src="https://api.dicebear.com/7.x/lorelei/svg?seed=Yuyu&backgroundColor=fed7aa" alt="粉丝6">
+                        </label>
                     </div>
 
                     <input type="text" id="gb-name" data-placeholder-key="gb_name_placeholder" placeholder="你的昵称 (选填，默认匿名)" maxlength="20">
@@ -212,12 +234,18 @@
             <div class="content-area" data-aos="fade-up">
                 <h2 data-key="nav_site">关于本站</h2>
                 <p data-key="site_p1">你好！欢迎来到这里。这是一个由粉丝用爱发电、自发搭建的<strong>非官方个人主页</strong>。</p>
+                
                 <h3 data-key="site_h1">搭建初衷</h3>
                 <p data-key="site_p2">我是2026年1月13日开始关注紫老师的，当时紫老师正在看《爱情公寓》，我也跟着看了一两集，我发现一件让我觉得很奇怪的事：为什么这么大的一个主播连一毛钱的礼物都会很认真的感谢？后面就逐渐对紫老师的直播感兴趣了。<br><br>我觉得紫老师是一个对工作很认真、很负责的人，对粉丝也很用心、很真诚。后面了解到原来之前圣诞节还会上舰给舰长画头像的活动，我发现紫老师对每一个头像画的都很认真，没有一丝丝的敷衍（可惜我错过活动了呜呜）。<br><br>在那之后我就想给紫老师做点什么，正好发现紫老师kokonoyu.com这个域名还没有人注册，于是我就买了下来准备做点东西。<br><br>所以我首先做了紫老师的主页，后续可能还会做紫老师的作品导航、音乐站之类的（如果能得到紫老师授权的话）。</p>
+                
                 <h3 data-key="site_h2">内容来源与建议</h3>
                 <p data-key="site_p3">本站的部分内容资料摘自 <strong>萌娘百科</strong> 以及 <strong>九重紫的B站个人空间</strong>。我只是一名普通的粉丝，如果你也喜欢九重紫，或者对这个网页的排版与内容有什么建议，欢迎通过哔哩哔哩私信我：<br>👉 <a href="https://space.bilibili.com/17276?spm_id_from=333.976.0.0" target="_blank" class="design-link" style="border:none;">点击访问我的 Bilibili 个人主页</a></p>
+                
                 <div class="disclaimer-box" data-key="site_box">
-                    <strong>⚠️ 版权与免责声明</strong><br><br>1. 本网站内所使用的<strong>所有美术素材、图片、Logo、背景故事及设定等内容，版权均归主播 九重紫 及其合作画师所有。</strong><br>2. 本站仅作粉丝安利与导航整理用途，没有任何商业盈利目的。<br>3. 如果本站的内容有任何侵权或不妥之处，请随时通过上方 B 站链接私信联系我，我会在第一时间配合修改或删除。
+                    <strong>⚠️ 版权与免责声明</strong><br><br>
+                    1. 本网站内所使用的<strong>所有美术素材、图片、Logo、背景故事及设定等内容，版权均归主播 九重紫 及其合作画师所有。</strong><br>
+                    2. 本站仅作粉丝安利与导航整理用途，没有任何商业盈利目的。<br>
+                    3. 如果本站的内容有任何侵权或不妥之处，请随时通过上方 B 站链接私信联系我，我会在第一时间配合修改或删除。
                 </div>
             </div>
         </div>
@@ -256,5 +284,6 @@
     <script src="https://unpkg.com/hydrogen-js-sdk@2.2.3/dist/Bmob-2.2.3.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/main.js"></script>
+
 </body>
 </html>
