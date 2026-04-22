@@ -236,7 +236,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 /* 修复圆点对齐问题：调整 left 数值 */
 .timeline-dot {
     position: absolute;
-    left: -44px; /* <--- 这里修复了对齐偏移 */
+    left: -45px; /* <--- 这里修复了对齐偏移 */
     top: 50%;
     transform: translateY(-50%);
     width: 16px;
@@ -586,7 +586,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 
     /* 手机端历程轴适配 - 修复圆点对齐偏移 */
     .timeline { padding-left: 20px; }
-    .timeline-dot { left: -31px; width: 12px; height: 12px; border-width: 3px; }
+    .timeline-dot { left: -32px; width: 12px; height: 12px; border-width: 3px; }
 
     .fab-container { bottom: 20px; right: 20px; gap: 10px; }
     .fab-btn { width: 36px; height: 36px; font-size: 16px; }
