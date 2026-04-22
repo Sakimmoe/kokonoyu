@@ -233,9 +233,10 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     border-color: #ff9cbd;
 }
 
+/* 修复圆点对齐问题：调整 left 数值 */
 .timeline-dot {
     position: absolute;
-    left: -40px; /* 👈 桌面端居中对齐修复 */
+    left: -44px; /* <--- 这里修复了对齐偏移 */
     top: 50%;
     transform: translateY(-50%);
     width: 16px;
@@ -509,6 +510,11 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .comment-name { font-weight: bold; color: #d87093; font-size: 15px; margin-right: 10px; }
 .comment-time { font-size: 12px; color: #999; }
 .comment-content { color: #555; font-size: 15px; line-height: 1.6; white-space: pre-wrap; word-break: break-all; }
+.comment-delete { background-color: #ff6b81; color: white; border: none; padding: 4px 10px; border-radius: 8px; font-size: 12px; cursor: pointer; display: none; transition: 0.3s; }
+.comment-delete:hover { transform: scale(1.05); background-color: #ff4757; }
+
+.admin-link { font-size: 12px; color: #bbb; cursor: pointer; transition: color 0.2s;}
+.admin-link:hover { color: var(--primary-color); }
 
 /* =========================================
    ✨ 悬浮气泡按钮组 (FAB) ✨
@@ -578,8 +584,9 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     
     .comment-item { flex-direction: column; gap: 10px;}
 
+    /* 手机端历程轴适配 - 修复圆点对齐偏移 */
     .timeline { padding-left: 20px; }
-    .timeline-dot { left: -28px; width: 12px; height: 12px; border-width: 3px; } /* 👈 手机端居中对齐修复 */
+    .timeline-dot { left: -31px; width: 12px; height: 12px; border-width: 3px; }
 
     .fab-container { bottom: 20px; right: 20px; gap: 10px; }
     .fab-btn { width: 36px; height: 36px; font-size: 16px; }
