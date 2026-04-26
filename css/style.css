@@ -588,6 +588,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 @media (max-width: 500px) {
     .gallery { column-count: 1; }
 }
+
 /* =========================================
    ✨ 专属音乐站追加样式 ✨
    ========================================= */
@@ -610,7 +611,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .music-song-name {
     margin: 10px 0 5px 0;
     font-size: 22px;
-    color: #a578d6; /* 恢复你喜欢的紫色主题 */
+    color: #a578d6;
     font-weight: 700;
     border: none !important;
     padding: 0 !important;
@@ -644,7 +645,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .fade-transition { transition: opacity 0.4s ease; }
 .fade-out { opacity: 0; }
 
-/* 音乐进度条 */
+/* 音乐进度条：加入了透明度过渡，完美解决 0 宽度的竖杠显示问题 */
 .music-progress-container {
     background: #f1ebf7;
     border-radius: 9999px;
@@ -659,8 +660,10 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     border-radius: 9999px;
     height: 100%;
     width: 0%;
-    transition: width 0.1s linear;
+    /* 🌟 核心修复在这里，增加了 opacity 过渡 🌟 */
+    transition: width 0.1s linear, opacity 0.2s ease;
     box-shadow: 0 3px 10px rgba(177, 139, 214, 0.5);
+    opacity: 0; /* 默认完全透明，防止在 width=0 时因为渲染阴影而露出竖条 */
 }
 
 /* 控制按钮组 */
