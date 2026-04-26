@@ -173,7 +173,6 @@
                 
                 <div class="music-card">
                     <img src="images/avatar.jpg" alt="封面" class="music-cover fade-transition" id="music-cover">
-                    
                     <h2 id="music-song-title" class="music-song-name fade-transition">准备播放</h2>
                     <p class="music-artist-name">九重紫 Kokonoe Yukari</p>
                     
@@ -183,13 +182,19 @@
                     
                     <div class="music-controls-main">
                         <button class="music-circle-btn" id="music-prev-btn"><i class="fa-solid fa-backward-step"></i></button>
-                        <button class="music-play-btn" id="music-play-btn"><i class="fa-solid fa-play"></i> 播放</button>
+                        <button class="music-play-btn" id="music-play-btn">
+                            <i class="fa-solid fa-play"></i> <span data-key="music_play">播放</span>
+                        </button>
                         <button class="music-circle-btn" id="music-next-btn"><i class="fa-solid fa-forward-step"></i></button>
                     </div>
 
                     <div class="music-controls-sub">
-                        <button class="music-sub-btn" id="music-mode-btn"><i class="fa-solid fa-repeat"></i> 列表循环</button>
-                        <button class="music-sub-btn" id="music-playlist-btn"><i class="fa-solid fa-list-ul"></i> 展开歌单</button>
+                        <button class="music-sub-btn" id="music-mode-btn">
+                            <i class="fa-solid fa-repeat"></i> <span data-key="music_mode_loop">列表循环</span>
+                        </button>
+                        <button class="music-sub-btn" id="music-playlist-btn">
+                            <i class="fa-solid fa-list-ul"></i> <span data-key="music_list_expand">展开歌单</span>
+                        </button>
                     </div>
 
                     <div class="music-playlist-wrapper" id="music-playlist-wrapper">
