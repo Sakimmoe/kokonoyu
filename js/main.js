@@ -109,7 +109,7 @@ const langDict = {
         title_personal: "个人相关", 
         val_personal: "<ul class='info-list'><li><strong>啊加嘛似嘛似：</strong>紫老师常用“啊加嘛似嘛似（あじゃますます）”表达感谢。完整的表达通常会在后面加上“ありがとうにゃん 谢谢”。</li><li><strong>病弱：</strong>紫老师大约一至两个月会有身体不佳的情况，通常是发烧。目前带病直播几乎是常态。</li><li><strong>简称：</strong>紫老师全名 ここのえ　ゆかり（kokonoe yukari） ⇒ここのゆ（kokonoyu）⇒のゆ（noyu)⇒ゆ(yu)。一般简称到ここのゆ，直播待机结束画面说得也是ここのゆ。</li><li><strong>整活大师：</strong>熟悉本土各种梗，经常会做视频将梗运用到极致，常整得一手好活。自称所有的梗都是从萌娘百科看明白的。很多视频鉴赏回当场一脸懵逼，但第二天就玩得66的。可怕的吸收能力。</li><li><strong>天哨星：</strong>紫老师直播吹得一手好口哨，能熟练吹出《好汉歌》、《Never Gonna Give You Up》等歌曲，弹幕曾在水浒回赐号：天哨星。紫老师便是这108将的第109人。</li><li><strong>字幕组校对：</strong>紫老师曾在oto字幕组当校对。你永远不知道自己推的女人在干什么。</li><li><strong>理工男气质：</strong>紫老师礼貌、努力、懂事，做事一板一眼，颇有理工男气质。</li></ul>",
         title_meme: "相关梗", 
-        val_meme: "<ul class='info-list'><li><strong>秦始皇/兵马俑：</strong>首次出现在《三句话把我骗到了bilibili》。原梗为早期电信诈骗：“我是秦始皇，现在给我打钱，我起势了封你做大官”。因为视频中出现了“秦始皇让兵马俑给我点了赞”，所以阿紫的粉丝玩此梗时便自称为兵马俑。</li><li><strong>紫细胞：</strong>在直播中抓获某位粉丝的DD行为时，该粉丝自称：推其他人都是我的细胞自己分裂出去的，我是阿紫的单推人。因为此行为类似细胞分裂，所以粉丝玩此梗时会自称是紫细胞。</li><li><strong>平和族/变态族：</strong>粉丝名称一开始为和平族，后因为觉得比起世界和平，更希望粉丝们能内心平和，因此改名为平和族。但是经常会有粉丝做出一些hentai的发言/行为，这部分粉丝被称为变态族。</li><li><strong>男孩紫：</strong>出现于《日本小巫女看王迅找茬》。其中的白发紫在被找茬后，反怼对方说自己是男孩子。DD狂喜：那不是更好。</li><li><strong>粉丝握手会：</strong>在粉丝握手会的直播中，玩起了VR打僵尸（DD）游戏。僵尸（DD）们前来和阿紫握手，被阿紫热烈款待（DD爆头）。</li><li><strong>×重紫：</strong>直播间的当前人气排名是第几名就是几重紫（如当前排名第一就是一重紫）。此梗出自修仙小说体系中表示修仙者能力的层数。</li><li><strong>旧重紫：</strong>通常指初代模型，也可用于形容阿紫比较老的直播内容或动态。</li></ul>",
+        val_meme: "<ul class='info-list'><li><strong>秦始皇/兵马俑：</strong>首次出现在《三句话把我骗到了bilibili》。原梗为早期电信诈骗：“我是秦始皇，现在给我打钱，我起势了封划做大官”。因为视频中出现了“秦始皇让兵马俑给我点了赞”，所以阿紫的粉丝玩此梗时便自称为兵马俑。</li><li><strong>紫细胞：</strong>在直播中抓获某位粉丝的DD行为时，该粉丝自称：推其他人都是我的细胞自己分裂出去的，我是阿紫的单推人。因为此行为类似细胞分裂，所以粉丝玩此梗时会自称是紫细胞。</li><li><strong>平和族/变态族：</strong>粉丝名称一开始为和平族，后因为觉得比起世界和平，更希望粉丝们能内心平和，因此改名为平和族。但是经常会有粉丝做出一些hentai的发言/行为，这部分粉丝被称为变态族。</li><li><strong>男孩紫：</strong>出现于《日本小巫女看王迅找茬》。其中的白发紫在被找茬后，反怼对方说自己是男孩子。DD狂喜：那不是更好。</li><li><strong>粉丝握手会：</strong>在粉丝握手会的直播中，玩起了VR打僵尸（DD）游戏。僵尸（DD）们前来和阿紫握手，被阿紫热烈款待（DD爆头）。</li><li><strong>×重紫：</strong>直播间的当前人气排名是第几名就是几重紫（如当前排名第一就是一重紫）。此梗出自修仙小说体系中表示修仙者能力的层数。</li><li><strong>旧重紫：</strong>通常指初代模型，也可用于形容阿紫比较老的直播内容或动态。</li></ul>",
         btn_back: "← 返回上一页",
         site_p1: "你好！欢迎来到这里。这是一个由粉丝用爱发电、自发搭建的<strong>非官方个人主页</strong>。", 
         site_h1: "搭建初衷", 
@@ -659,9 +659,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mCoverImg.classList.add('fade-out');
         mSongTitle.classList.add('fade-out');
         
-        // 🌟 切歌时将进度条设为透明，彻底防止露出竖杠
         mProgress.style.width = '0%';
-        mProgress.style.opacity = '0';
 
         setTimeout(() => {
             mSongTitle.removeAttribute('data-key'); 
@@ -708,6 +706,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             songIndex = randomIndex;
         } else if (playMode === 2) {
+            // 单曲循环逻辑
         } else {
             songIndex++;
             if (songIndex > songs.length - 1) { songIndex = 0; }
@@ -755,16 +754,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // 已经通过 CSS 的 overflow: hidden 解决了，这里回归最清爽的代码
     function updateProgress(e) {
         const { duration, currentTime } = e.srcElement;
         if (duration) {
             const progressPercent = (currentTime / duration) * 100;
             mProgress.style.width = `${progressPercent}%`;
-            
-            // 🌟 核心修复：只有当进度真的走起来了，才让阴影和颜色显示出来
-            if (progressPercent > 0) {
-                mProgress.style.opacity = '1';
-            }
         }
     }
     mAudioPlayer.addEventListener('timeupdate', updateProgress);
