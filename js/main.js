@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // =========================================
 // 数据库配置区 (Bmob)
-// 【注意】请务必登录Bmob后台，将Guestbook表的权限设为：只读、只加。禁止用户修改和删除。
 // =========================================
 try {
     Bmob.initialize("6c39dac0aff82e8c", "kokonoyu");
@@ -84,12 +83,17 @@ const milestonesData = [
 ];
 
 // =========================================
-// 中日双语字典
+// 中日双语字典 (已加入音乐播放器所有词汇)
 // =========================================
 const langDict = {
     cn: {
         nav_home: "首页", nav_site: "关于本站", name: "九重紫",
         nav_gallery: "画廊", nav_guestbook: "留言板", nav_works: "作品", nav_milestone: "历程",
+        nav_music: "音乐", // 音乐导航
+        music_play: "播放", music_pause: "暂停",
+        music_mode_loop: "列表循环", music_mode_random: "随机播放", music_mode_single: "单曲循环",
+        music_list_expand: "展开歌单", music_list_collapse: "收起歌单",
+        
         works_back: "← 返回合集列表", video_count: "个视频",
         ms_counter_prefix: "紫老师在哔哩哔哩已活跃", ms_days: "天",
         gb_avatar_text: "请选择你的头像：", gb_name_placeholder: "你的昵称 (选填，默认匿名)", 
@@ -117,6 +121,11 @@ const langDict = {
     jp: {
         nav_home: "ホーム", nav_site: "このサイトについて", name: "ここのえゆかり",
         nav_gallery: "ギャラリー", nav_guestbook: "掲示板", nav_works: "作品", nav_milestone: "軌跡",
+        nav_music: "音楽", // 音乐导航
+        music_play: "再生", music_pause: "一時停止",
+        music_mode_loop: "リストループ", music_mode_random: "シャッフル", music_mode_single: "1曲ループ",
+        music_list_expand: "リストを開く", music_list_collapse: "リストを閉じる",
+        
         works_back: "← コレクション一覧に戻る", video_count: "本の動画",
         ms_counter_prefix: "紫先生がbilibiliで活動を始めてから", ms_days: "日",
         gb_avatar_text: "アイコンを選択してください：", gb_name_placeholder: "ニックネーム（任意、デフォルトは匿名）", 
@@ -143,7 +152,7 @@ const langDict = {
 };
 
 // =========================================
-// 切换语言功能
+// 切换语言功能 (已优化，所有数据随之实时改变)
 // =========================================
 function changeLang(lang, element) {
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
@@ -169,6 +178,11 @@ function changeLang(lang, element) {
     if(document.getElementById('milestone-timeline')) renderMilestones();
 }
 
+// 供其他模块获取当前语言的小助手
+function getCurrentLang() {
+    return document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
+}
+
 // =========================================
 // 视频与作品逻辑
 // =========================================
@@ -191,7 +205,7 @@ function fetchBiliCover(bvid) {
     function cleanup() {
         delete window['setBiliCover_' + bvid];
         const script = document.getElementById('script_' + bvid);
-        if (script && script.parentNode) script.parentNode.removeChild(script); // 彻底移除节点，防内存泄漏
+        if (script && script.parentNode) script.parentNode.removeChild(script); 
     }
 
     const script = document.createElement('script');
@@ -204,7 +218,7 @@ function fetchBiliCover(bvid) {
 function renderCollections() {
     const grid = document.getElementById('collections-view');
     if(!grid) return;
-    const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
+    const currentLang = getCurrentLang();
     
     grid.innerHTML = worksData.map(collection => `
         <div class="collection-card" onclick="openCollection('${collection.id}')">
@@ -221,7 +235,7 @@ function openCollection(id) {
     const collection = worksData.find(c => c.id === id);
     if(!collection) return;
     currentCollectionId = id;
-    const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
+    const currentLang = getCurrentLang();
     
     document.getElementById('collections-view').style.display = 'none';
     document.getElementById('videos-view').style.display = 'block';
@@ -379,7 +393,7 @@ const ALLOWED_AVATARS = [
 async function loadComments() {
     const list = document.getElementById('guestbook-list');
     if(!list) return;
-    const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
+    const currentLang = getCurrentLang();
     list.innerHTML = `<p style="text-align:center; color:#d87093; font-size:15px; margin-top:30px;">${langDict[currentLang].gb_loading}</p>`;
 
     try {
@@ -421,9 +435,8 @@ async function loadComments() {
 
 async function submitComment() {
     const btn = document.querySelector('.gb-submit-btn');
-    const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
+    const currentLang = getCurrentLang();
     
-    // 【新增机制】：防刷屏保护，限制 60 秒内只能发送一条
     const lastTime = localStorage.getItem('lastGBSubmit');
     const now = Date.now();
     if (lastTime && now - lastTime < 60000) {
@@ -438,7 +451,6 @@ async function submitComment() {
 
     if(!contentInput) { alert(currentLang === 'jp' ? '空白のメッセージは送信できません！' : '不能发送空白留言哦！'); return; }
 
-    // ====== 新增：简单的数学验证码防机器刷屏 ======
     const num1 = Math.floor(Math.random() * 10) + 1;
     const num2 = Math.floor(Math.random() * 10) + 1;
     const captchaMsg = currentLang === 'jp' 
@@ -446,12 +458,11 @@ async function submitComment() {
         : `防刷屏检测，请回答：${num1} + ${num2} = ?`;
     
     const answer = prompt(captchaMsg);
-    if (answer === null) return; // 用户点击了取消
+    if (answer === null) return; 
     if (parseInt(answer) !== (num1 + num2)) {
         alert(currentLang === 'jp' ? '答えが間違っています！' : '计算错误，留言取消！');
         return;
     }
-    // ====== 验证码逻辑结束 ======
 
     btn.innerText = currentLang === 'jp' ? "送信中..." : "上传云端中...";
     btn.disabled = true;
@@ -462,13 +473,10 @@ async function submitComment() {
         query.set("name", nameInput);
         query.set("content", contentInput);
         query.set("avatar", avatarInput);
-        
-        // 保留这行代码，但切记：必须配合Bmob后台表的 ACL 权限设置（只允许 Read 和 Add），否则前端控制是无效的
         query.set("ACL", {"*":{"read":true}}); 
         
         await query.save();
 
-        // 发送成功后记录时间戳
         localStorage.setItem('lastGBSubmit', Date.now());
 
         document.getElementById('gb-content').value = ''; 
@@ -481,7 +489,6 @@ async function submitComment() {
     }
 }
 
-// 【重要修复】：增强了判断机制，防止遇到 null 或 undefined 数据时导致页面白屏崩溃
 function escapeHTML(str) {
     if (!str) return '';
     return String(str).replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
@@ -493,7 +500,7 @@ function escapeHTML(str) {
 function renderMilestones() {
     const timeline = document.getElementById('milestone-timeline');
     if (!timeline) return;
-    const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
+    const currentLang = getCurrentLang();
     
     timeline.innerHTML = milestonesData.map((item, index) => `
         <div class="timeline-item" data-aos="fade-up" data-aos-delay="${Math.min(index * 30, 300)}">
@@ -598,18 +605,19 @@ async function sharePage() {
         if (navigator.share) { await navigator.share(shareData); } 
         else {
             navigator.clipboard.writeText(shareData.url).then(() => {
-                const currentLang = document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
+                const currentLang = getCurrentLang();
                 alert(currentLang === 'jp' ? 'リンクがクリップボードにコピーされました！' : '网址已复制到剪贴板，快去分享吧！');
             });
         }
     } catch (err) { console.log('分享取消或失败:', err); }
 }
+
 // =========================================
-// 🌟 专属音乐站逻辑 (整合 R2 存储) 🌟
+// 🌟 专属音乐站逻辑 (已接入多语言双语引擎) 🌟
 // =========================================
 document.addEventListener('DOMContentLoaded', function() {
     const mPlayBtn = document.getElementById('music-play-btn');
-    if (!mPlayBtn) return; // 防错处理
+    if (!mPlayBtn) return;
 
     const mPrevBtn = document.getElementById('music-prev-btn');
     const mNextBtn = document.getElementById('music-next-btn');
@@ -641,10 +649,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let songIndex = 0;
     let playMode = 0; 
-    const modeIcons = [
-        '<i class="fa-solid fa-repeat"></i> 列表循环',
-        '<i class="fa-solid fa-shuffle"></i> 随机播放',
-        '<i class="fa-solid fa-rotate-right"></i> 单曲循环'
+    
+    // 模式键的字典对照
+    const modes = [
+        { icon: 'fa-repeat', key: 'music_mode_loop' },
+        { icon: 'fa-shuffle', key: 'music_mode_random' },
+        { icon: 'fa-rotate-right', key: 'music_mode_single' }
     ];
 
     function loadSong(song) {
@@ -652,6 +662,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mSongTitle.classList.add('fade-out');
 
         setTimeout(() => {
+            mSongTitle.removeAttribute('data-key'); // 移除准备播放的状态
             mSongTitle.innerText = song.name;
             mAudioPlayer.src = R2_BASE_URL + "music/" + song.file;
             mCoverImg.src = R2_BASE_URL + "images/" + song.cover;
@@ -661,20 +672,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 400); 
     }
 
+    // 网页加载时的默认处理
+    mSongTitle.removeAttribute('data-key');
     mSongTitle.innerText = songs[songIndex].name;
     mAudioPlayer.src = R2_BASE_URL + "music/" + songs[songIndex].file;
     mCoverImg.src = R2_BASE_URL + "images/" + songs[songIndex].cover;
 
     function playMusic() {
         setTimeout(() => { mAudioPlayer.play(); }, 400);
-        mPlayBtn.innerHTML = '<i class="fa-solid fa-pause"></i> 暂停';
+        // 只改换图标和标签标识，翻译让引擎自动去弄
+        mPlayBtn.querySelector('i').className = 'fa-solid fa-pause';
+        const span = mPlayBtn.querySelector('span');
+        span.setAttribute('data-key', 'music_pause');
+        span.innerText = langDict[getCurrentLang()].music_pause;
+        
         mCoverImg.classList.add('music-spin');
         mCoverImg.classList.remove('music-paused');
     }
 
     function pauseMusic() {
         mAudioPlayer.pause();
-        mPlayBtn.innerHTML = '<i class="fa-solid fa-play"></i> 播放';
+        mPlayBtn.querySelector('i').className = 'fa-solid fa-play';
+        const span = mPlayBtn.querySelector('span');
+        span.setAttribute('data-key', 'music_play');
+        span.innerText = langDict[getCurrentLang()].music_play;
+        
         mCoverImg.classList.add('music-paused');
     }
 
@@ -686,12 +708,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             songIndex = randomIndex;
         } else if (playMode === 2) {
+            // 单曲循环逻辑
         } else {
             songIndex++;
             if (songIndex > songs.length - 1) { songIndex = 0; }
         }
         loadSong(songs[songIndex]);
-        if (mPlayBtn.innerHTML.includes('暂停')) { playMusic(); }
+        if (!mAudioPlayer.paused) { playMusic(); }
     }
 
     function prevMusic() {
@@ -702,18 +725,35 @@ document.addEventListener('DOMContentLoaded', function() {
             if (songIndex < 0) { songIndex = songs.length - 1; }
         }
         loadSong(songs[songIndex]);
-        if (mPlayBtn.innerHTML.includes('暂停')) { playMusic(); }
+        if (!mAudioPlayer.paused) { playMusic(); }
     }
 
     mPlayBtn.addEventListener('click', () => {
-        if (mPlayBtn.innerHTML.includes('播放')) { playMusic(); } else { pauseMusic(); }
+        if (mAudioPlayer.paused) { playMusic(); } else { pauseMusic(); }
     });
     mPrevBtn.addEventListener('click', prevMusic);
     mNextBtn.addEventListener('click', nextMusic);
 
     mModeBtn.addEventListener('click', () => {
         playMode = (playMode + 1) % 3;
-        mModeBtn.innerHTML = modeIcons[playMode];
+        mModeBtn.querySelector('i').className = `fa-solid ${modes[playMode].icon}`;
+        const span = mModeBtn.querySelector('span');
+        span.setAttribute('data-key', modes[playMode].key);
+        span.innerText = langDict[getCurrentLang()][modes[playMode].key];
+    });
+
+    mPlaylistBtn.addEventListener('click', () => {
+        const isOpen = mPlaylistWrapper.style.maxHeight && mPlaylistWrapper.style.maxHeight !== '0px';
+        const span = mPlaylistBtn.querySelector('span');
+        if (isOpen) {
+            mPlaylistWrapper.style.maxHeight = '0';
+            span.setAttribute('data-key', 'music_list_expand');
+            span.innerText = langDict[getCurrentLang()].music_list_expand;
+        } else {
+            mPlaylistWrapper.style.maxHeight = '300px';
+            span.setAttribute('data-key', 'music_list_collapse');
+            span.innerText = langDict[getCurrentLang()].music_list_collapse;
+        }
     });
 
     function updateProgress(e) {
@@ -746,15 +786,5 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         mPlaylistList.appendChild(li);
-    });
-
-    mPlaylistBtn.addEventListener('click', () => {
-        if (mPlaylistWrapper.style.maxHeight && mPlaylistWrapper.style.maxHeight !== '0px') {
-            mPlaylistWrapper.style.maxHeight = '0';
-            mPlaylistBtn.innerHTML = '<i class="fa-solid fa-list-ul"></i> 展开歌单'; 
-        } else {
-            mPlaylistWrapper.style.maxHeight = '300px';
-            mPlaylistBtn.innerHTML = '<i class="fa-solid fa-list-ul"></i> 收起歌单'; 
-        }
     });
 });
