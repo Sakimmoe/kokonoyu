@@ -83,13 +83,13 @@ const milestonesData = [
 ];
 
 // =========================================
-// 中日双语字典 (已加入音乐播放器所有词汇)
+// 中日双语字典
 // =========================================
 const langDict = {
     cn: {
         nav_home: "首页", nav_site: "关于本站", name: "九重紫",
         nav_gallery: "画廊", nav_guestbook: "留言板", nav_works: "作品", nav_milestone: "历程",
-        nav_music: "音乐", // 音乐导航
+        nav_music: "音乐", 
         music_play: "播放", music_pause: "暂停",
         music_mode_loop: "列表循环", music_mode_random: "随机播放", music_mode_single: "单曲循环",
         music_list_expand: "展开歌单", music_list_collapse: "收起歌单",
@@ -121,7 +121,7 @@ const langDict = {
     jp: {
         nav_home: "ホーム", nav_site: "このサイトについて", name: "ここのえゆかり",
         nav_gallery: "ギャラリー", nav_guestbook: "掲示板", nav_works: "作品", nav_milestone: "軌跡",
-        nav_music: "音楽", // 音乐导航
+        nav_music: "音楽", 
         music_play: "再生", music_pause: "一時停止",
         music_mode_loop: "リストループ", music_mode_random: "シャッフル", music_mode_single: "1曲ループ",
         music_list_expand: "リストを開く", music_list_collapse: "リストを閉じる",
@@ -152,7 +152,7 @@ const langDict = {
 };
 
 // =========================================
-// 切换语言功能 (已优化，所有数据随之实时改变)
+// 切换语言功能 
 // =========================================
 function changeLang(lang, element) {
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
@@ -178,7 +178,6 @@ function changeLang(lang, element) {
     if(document.getElementById('milestone-timeline')) renderMilestones();
 }
 
-// 供其他模块获取当前语言的小助手
 function getCurrentLang() {
     return document.querySelector('.lang-btn.active').innerText.toLowerCase() === 'jp' ? 'jp' : 'cn';
 }
@@ -613,7 +612,7 @@ async function sharePage() {
 }
 
 // =========================================
-// 🌟 专属音乐站逻辑 (已接入多语言双语引擎) 🌟
+// 🌟 专属音乐站逻辑 🌟
 // =========================================
 document.addEventListener('DOMContentLoaded', function() {
     const mPlayBtn = document.getElementById('music-play-btn');
@@ -650,7 +649,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let songIndex = 0;
     let playMode = 0; 
     
-    // 模式键的字典对照
     const modes = [
         { icon: 'fa-repeat', key: 'music_mode_loop' },
         { icon: 'fa-shuffle', key: 'music_mode_random' },
@@ -660,9 +658,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadSong(song) {
         mCoverImg.classList.add('fade-out');
         mSongTitle.classList.add('fade-out');
+        
+        // 🌟 切歌时将进度条设为透明，彻底防止露出竖杠
+        mProgress.style.width = '0%';
+        mProgress.style.opacity = '0';
 
         setTimeout(() => {
-            mSongTitle.removeAttribute('data-key'); // 移除准备播放的状态
+            mSongTitle.removeAttribute('data-key'); 
             mSongTitle.innerText = song.name;
             mAudioPlayer.src = R2_BASE_URL + "music/" + song.file;
             mCoverImg.src = R2_BASE_URL + "images/" + song.cover;
@@ -672,7 +674,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 400); 
     }
 
-    // 网页加载时的默认处理
     mSongTitle.removeAttribute('data-key');
     mSongTitle.innerText = songs[songIndex].name;
     mAudioPlayer.src = R2_BASE_URL + "music/" + songs[songIndex].file;
@@ -680,7 +681,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function playMusic() {
         setTimeout(() => { mAudioPlayer.play(); }, 400);
-        // 只改换图标和标签标识，翻译让引擎自动去弄
         mPlayBtn.querySelector('i').className = 'fa-solid fa-pause';
         const span = mPlayBtn.querySelector('span');
         span.setAttribute('data-key', 'music_pause');
@@ -708,7 +708,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             songIndex = randomIndex;
         } else if (playMode === 2) {
-            // 单曲循环逻辑
         } else {
             songIndex++;
             if (songIndex > songs.length - 1) { songIndex = 0; }
@@ -761,6 +760,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (duration) {
             const progressPercent = (currentTime / duration) * 100;
             mProgress.style.width = `${progressPercent}%`;
+            
+            // 🌟 核心修复：只有当进度真的走起来了，才让阴影和颜色显示出来
+            if (progressPercent > 0) {
+                mProgress.style.opacity = '1';
+            }
         }
     }
     mAudioPlayer.addEventListener('timeupdate', updateProgress);
