@@ -604,3 +604,157 @@ async function sharePage() {
         }
     } catch (err) { console.log('分享取消或失败:', err); }
 }
+// =========================================
+// 🌟 专属音乐站逻辑 (整合 R2 存储) 🌟
+// =========================================
+document.addEventListener('DOMContentLoaded', function() {
+    const mPlayBtn = document.getElementById('music-play-btn');
+    if (!mPlayBtn) return; // 防错处理
+
+    const mPrevBtn = document.getElementById('music-prev-btn');
+    const mNextBtn = document.getElementById('music-next-btn');
+    const mModeBtn = document.getElementById('music-mode-btn');
+    const mPlaylistBtn = document.getElementById('music-playlist-btn');
+    const mAudioPlayer = document.getElementById('audio-player');
+    const mSongTitle = document.getElementById('music-song-title');
+    const mCoverImg = document.getElementById('music-cover');
+    const mProgressContainer = document.getElementById('music-progress-container');
+    const mProgress = document.getElementById('music-progress');
+    const mPlaylistWrapper = document.getElementById('music-playlist-wrapper');
+    const mPlaylistList = document.getElementById('music-playlist-list');
+
+    const R2_BASE_URL = "https://res.kokonoyu.com/"; 
+
+    const songs = [
+        { name: "中国话", file: "中国话.mp3", cover: "中国话.jpg" },
+        { name: "杀破狼", file: "杀破狼.mp3", cover: "杀破狼.jpg" },
+        { name: "恋は戦争", file: "恋は戦争.mp3", cover: "恋は戦争.jpg" },
+        { name: "想你的365天", file: "想你的365天.mp3", cover: "想你的365天.jpg" },
+        { name: "Uninstall", file: "Uninstall.mp3", cover: "Uninstall.jpg" },
+        { name: "⚡虚 拟 萨 日 朗！！！⚡", file: "⚡虚 拟 萨 日 朗！！！⚡.mp3", cover: "⚡虚 拟 萨 日 朗！！！⚡.jpg" },
+        { name: "青藏高原", file: "青藏高原.mp3", cover: "青藏高原.jpg" },
+        { name: "仙剑问情", file: "仙剑问情.mp3", cover: "仙剑问情.jpg" },
+        { name: "热爱105°C的拼音", file: "热爱105°C的拼音.mp3", cover: "热爱105°C的拼音.jpg" },
+        { name: "1 2 fan club", file: "1 2 fan club.mp3", cover: "1 2 fan club.jpg" },
+        { name: "梦想歌", file: "梦想歌.mp3", cover: "梦想歌.jpg" }
+    ];
+
+    let songIndex = 0;
+    let playMode = 0; 
+    const modeIcons = [
+        '<i class="fa-solid fa-repeat"></i> 列表循环',
+        '<i class="fa-solid fa-shuffle"></i> 随机播放',
+        '<i class="fa-solid fa-rotate-right"></i> 单曲循环'
+    ];
+
+    function loadSong(song) {
+        mCoverImg.classList.add('fade-out');
+        mSongTitle.classList.add('fade-out');
+
+        setTimeout(() => {
+            mSongTitle.innerText = song.name;
+            mAudioPlayer.src = R2_BASE_URL + "music/" + song.file;
+            mCoverImg.src = R2_BASE_URL + "images/" + song.cover;
+            
+            mCoverImg.classList.remove('fade-out');
+            mSongTitle.classList.remove('fade-out');
+        }, 400); 
+    }
+
+    mSongTitle.innerText = songs[songIndex].name;
+    mAudioPlayer.src = R2_BASE_URL + "music/" + songs[songIndex].file;
+    mCoverImg.src = R2_BASE_URL + "images/" + songs[songIndex].cover;
+
+    function playMusic() {
+        setTimeout(() => { mAudioPlayer.play(); }, 400);
+        mPlayBtn.innerHTML = '<i class="fa-solid fa-pause"></i> 暂停';
+        mCoverImg.classList.add('music-spin');
+        mCoverImg.classList.remove('music-paused');
+    }
+
+    function pauseMusic() {
+        mAudioPlayer.pause();
+        mPlayBtn.innerHTML = '<i class="fa-solid fa-play"></i> 播放';
+        mCoverImg.classList.add('music-paused');
+    }
+
+    function nextMusic() {
+        if (playMode === 1) {
+            let randomIndex = Math.floor(Math.random() * songs.length);
+            while(randomIndex === songIndex && songs.length > 1) {
+                randomIndex = Math.floor(Math.random() * songs.length);
+            }
+            songIndex = randomIndex;
+        } else if (playMode === 2) {
+        } else {
+            songIndex++;
+            if (songIndex > songs.length - 1) { songIndex = 0; }
+        }
+        loadSong(songs[songIndex]);
+        if (mPlayBtn.innerHTML.includes('暂停')) { playMusic(); }
+    }
+
+    function prevMusic() {
+        if (playMode === 1) {
+            songIndex = Math.floor(Math.random() * songs.length);
+        } else {
+            songIndex--;
+            if (songIndex < 0) { songIndex = songs.length - 1; }
+        }
+        loadSong(songs[songIndex]);
+        if (mPlayBtn.innerHTML.includes('暂停')) { playMusic(); }
+    }
+
+    mPlayBtn.addEventListener('click', () => {
+        if (mPlayBtn.innerHTML.includes('播放')) { playMusic(); } else { pauseMusic(); }
+    });
+    mPrevBtn.addEventListener('click', prevMusic);
+    mNextBtn.addEventListener('click', nextMusic);
+
+    mModeBtn.addEventListener('click', () => {
+        playMode = (playMode + 1) % 3;
+        mModeBtn.innerHTML = modeIcons[playMode];
+    });
+
+    function updateProgress(e) {
+        const { duration, currentTime } = e.srcElement;
+        if (duration) {
+            const progressPercent = (currentTime / duration) * 100;
+            mProgress.style.width = `${progressPercent}%`;
+        }
+    }
+    mAudioPlayer.addEventListener('timeupdate', updateProgress);
+
+    function setProgress(e) {
+        const width = this.clientWidth;
+        const clickX = e.offsetX;
+        const duration = mAudioPlayer.duration;
+        mAudioPlayer.currentTime = (clickX / width) * duration;
+    }
+    mProgressContainer.addEventListener('click', setProgress);
+    mAudioPlayer.addEventListener('ended', nextMusic);
+
+    songs.forEach((song, index) => {
+        const li = document.createElement('li');
+        li.innerText = (index + 1) + ". " + song.name;
+        
+        li.addEventListener('click', () => {
+            if (songIndex !== index) {
+                songIndex = index;
+                loadSong(songs[songIndex]);
+                playMusic();
+            }
+        });
+        mPlaylistList.appendChild(li);
+    });
+
+    mPlaylistBtn.addEventListener('click', () => {
+        if (mPlaylistWrapper.style.maxHeight && mPlaylistWrapper.style.maxHeight !== '0px') {
+            mPlaylistWrapper.style.maxHeight = '0';
+            mPlaylistBtn.innerHTML = '<i class="fa-solid fa-list-ul"></i> 展开歌单'; 
+        } else {
+            mPlaylistWrapper.style.maxHeight = '300px';
+            mPlaylistBtn.innerHTML = '<i class="fa-solid fa-list-ul"></i> 收起歌单'; 
+        }
+    });
+});
