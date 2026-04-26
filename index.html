@@ -7,6 +7,7 @@
     
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -36,6 +37,7 @@
             <span onclick="showPage('home-page')" data-key="nav_home">首页</span>
             <span onclick="showPage('works-page')" data-key="nav_works">作品</span>
             <span onclick="showPage('gallery-page')" data-key="nav_gallery">画廊</span>
+            <span onclick="showPage('music-page')" data-key="nav_music">音乐</span>
             <span onclick="showPage('milestone-page')" data-key="nav_milestone">历程</span>
             <span onclick="showPage('guestbook-page')" data-key="nav_guestbook">留言板</span>
             <span onclick="showPage('about-site-page')" data-key="nav_site">关于本站</span> 
@@ -163,6 +165,42 @@
                 <h2 data-key="nav_gallery" class="center-title">画廊</h2>
                 <div class="gallery" id="vtuber-gallery"></div>
                 <div id="gallery-loading-text" class="loading-text" style="display: none;">加载中...</div>
+            </div>
+        </div>
+
+        <div id="music-page" class="sub-page">
+            <div class="content-area transparent-area" data-aos="fade-up" style="display: flex; justify-content: center; padding-top: 20px;">
+                
+                <div class="music-card">
+                    <img src="images/avatar.jpg" alt="封面" class="music-cover fade-transition" id="music-cover">
+                    
+                    <h2 id="music-song-title" class="music-song-name fade-transition">准备播放</h2>
+                    <p class="music-artist-name">九重紫 Kokonoe Yukari</p>
+                    
+                    <div class="music-progress-container" id="music-progress-container">
+                        <div class="music-progress" id="music-progress"></div>
+                    </div>
+                    
+                    <div class="music-controls-main">
+                        <button class="music-circle-btn" id="music-prev-btn"><i class="fa-solid fa-backward-step"></i></button>
+                        <button class="music-play-btn" id="music-play-btn"><i class="fa-solid fa-play"></i> 播放</button>
+                        <button class="music-circle-btn" id="music-next-btn"><i class="fa-solid fa-forward-step"></i></button>
+                    </div>
+
+                    <div class="music-controls-sub">
+                        <button class="music-sub-btn" id="music-mode-btn"><i class="fa-solid fa-repeat"></i> 列表循环</button>
+                        <button class="music-sub-btn" id="music-playlist-btn"><i class="fa-solid fa-list-ul"></i> 展开歌单</button>
+                    </div>
+
+                    <div class="music-playlist-wrapper" id="music-playlist-wrapper">
+                        <div class="music-playlist-box">
+                            <ul id="music-playlist-list"></ul>
+                        </div>
+                    </div>
+                    
+                    <audio id="audio-player" src=""></audio>
+                </div>
+
             </div>
         </div>
 
