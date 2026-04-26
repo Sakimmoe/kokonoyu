@@ -645,7 +645,7 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
 .fade-transition { transition: opacity 0.4s ease; }
 .fade-out { opacity: 0; }
 
-/* 音乐进度条：加入了透明度过渡，完美解决 0 宽度的竖杠显示问题 */
+/* 音乐进度条：加入了边界锁死，完美解决 0 宽度的竖杠溢出问题 */
 .music-progress-container {
     background: #f1ebf7;
     border-radius: 9999px;
@@ -654,16 +654,15 @@ img.avatar:hover { transform: scale(1.1) rotate(5deg); }
     height: 10px;
     width: 100%;
     box-shadow: inset 0 3px 6px rgba(0,0,0,0.04); 
+    overflow: hidden; /* ✨ 核心修复：强制裁切，把进度条死死锁在轨道里！ */
+    transform: translateZ(0); /* 修复部分浏览器的圆角溢出 Bug */
 }
 .music-progress {
     background: linear-gradient(135deg, #c4a1eb, #a578d6);
     border-radius: 9999px;
     height: 100%;
     width: 0%;
-    /* 🌟 核心修复在这里，增加了 opacity 过渡 🌟 */
-    transition: width 0.1s linear, opacity 0.2s ease;
-    box-shadow: 0 3px 10px rgba(177, 139, 214, 0.5);
-    opacity: 0; /* 默认完全透明，防止在 width=0 时因为渲染阴影而露出竖条 */
+    transition: width 0.1s linear; /* 去掉了透明度干扰，回归顺滑的宽度延伸 */
 }
 
 /* 控制按钮组 */
