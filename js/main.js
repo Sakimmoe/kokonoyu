@@ -698,22 +698,31 @@ document.addEventListener('DOMContentLoaded', function() {
         mCoverImg.classList.add('music-paused');
     }
 
-    function nextMusic() {
-        if (playMode === 1) {
-            let randomIndex = Math.floor(Math.random() * songs.length);
-            while(randomIndex === songIndex && songs.length > 1) {
-                randomIndex = Math.floor(Math.random() * songs.length);
-            }
-            songIndex = randomIndex;
-        } else if (playMode === 2) {
-            // 单曲循环逻辑
-        } else {
-            songIndex++;
-            if (songIndex > songs.length - 1) { songIndex = 0; }
-        }
-        loadSong(songs[songIndex]);
-        if (!mAudioPlayer.paused) { playMusic(); }
-    }
+    function nextMusic(e) {
+        // 判定是否是由于音乐播放结束触发的自动切歌
+        const isAutoNext = (e && e.type === 'ended');
+        // 记录切歌前是否处于播放状态
+        const wasPlaying = !mAudioPlayer.paused;
+
+        if (playMode === 1) {
+            let randomIndex = Math.floor(Math.random() * songs.length);
+            while(randomIndex === songIndex && songs.length > 1) {
+                randomIndex = Math.floor(Math.random() * songs.length);
+            }
+            songIndex = randomIndex;
+        } else if (playMode === 2) {
+            // 单曲循环逻辑：保持当前的 songIndex 不变即可，重新 loadSong 就会从头播放
+        } else {
+            songIndex++;
+            if (songIndex > songs.length - 1) { songIndex = 0; }
+        }
+        loadSong(songs[songIndex]);
+
+        // 如果是自动切歌，或者切歌前原本就在播放，则调用 playMusic()
+        if (isAutoNext || wasPlaying) { 
+            playMusic(); 
+        }
+    }
 
     function prevMusic() {
         if (playMode === 1) {
