@@ -1,7 +1,7 @@
 # 💜 九重紫 -Jiuchong Zi- 非官方个人主页
 
 > 你好！欢迎来到本仓库。这是一个由粉丝用爱发电、自发搭建的 **非官方个人主页**。
-> 🌐 网站在线预览：[kokonoyu.com](https://kokonoyu.com) *(根据实际情况修改)*
+> 🌐 网站在线预览：[www.kokonoyu.com](https://www.kokonoyu.com)
 
 ## 📖 搭建初衷
 
@@ -23,7 +23,7 @@
 ## 📚 内容来源与鸣谢
 
 本站的部分文本资料与设定摘自以下渠道：
-* [萌娘百科 - 九重紫](https://zh.moegirl.org.cn/) *(替换为实际链接)*
+* [萌娘百科 - 九重紫](https://zh.moegirl.org.cn/%E4%B9%9D%E9%87%8D%E7%B4%AB)
 * [九重紫的 Bilibili 个人空间](https://space.bilibili.com/225347042)
 
 感谢所有为紫老师产出内容的粉丝和创作者，以及紫老师的画师妈妈们！
@@ -32,7 +32,7 @@
 
 我只是一名普通的粉丝，个人能力和视角有限。如果你也喜欢九重紫，或者对这个网页的排版、功能、文案内容有任何好的建议（或者发现了 Bug），非常欢迎通过 GitHub Issues 与我交流！
 
-👉 **[点击这里提交 Issue 提出你的建议](https://github.com/你的用户名/你的仓库名/issues)** 
+👉 **[点击这里提交 Issue 提出你的建议](https://github.com/Sakimmoe/kokonoyu/issues)** 
 
 ---
 **⚠️ 免责声明:** 
